@@ -3,6 +3,7 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
+import ErrorText from '../ErrorText'
 import {
   sparkClassName,
   sparkWidthClassName
@@ -52,9 +53,7 @@ class TextInput extends React.Component {
 
     return (
       // TODO: Icon SVG
-      <div className={sparkClassName('base', 'ErrorText')}>
-        {error}
-      </div>
+      <ErrorText>{error}</ErrorText>
     )
   }
 
