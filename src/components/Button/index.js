@@ -28,8 +28,12 @@ class Button extends React.Component {
 
     const classes = [sparkClassName('component', 'Button')]
 
-    if (type !== BUTTON_TYPES.PRIMARY) classes.push(sparkClassName('component', 'Button', null, type))
-    if (disabled) classes.push(sparkClassName('is', 'Disabled'))
+    if (type !== BUTTON_TYPES.PRIMARY) {
+      classes.push(sparkClassName('component', 'Button', null, type))
+    }
+    if (disabled) {
+      classes.push(sparkClassName('is', 'Disabled'))
+    }
     if (fullWidthAtSmallViewport) {
       classes.push(sparkClassName('component', 'Button', null, 'full', 'sm'))
     }

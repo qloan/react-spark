@@ -1,39 +1,61 @@
 import React, { Component } from 'react'
 
-import { Button } from 'react-spark'
+import { Button, Link } from 'react-spark'
 
 import './App.scss'
 
 export default class App extends Component {
-  render() {
+  renderButtons = () => (<>
+    <p>Default:</p>
+    <Button>Default</Button>
+
+    <p>Secondary:</p>
+    <Button type={'secondary'}>Secondary</Button>
+
+    <p>Secondary:</p>
+    <Button type={'tertiary'}>Tertiary</Button>
+
+    <p>Disabled:</p>
+    <Button disabled>Disabled</Button>
+
+    <p>Spinner:</p>
+    <Button spinner>Spinner</Button>
+
+    <p>Full Width at Small Viewport:</p>
+    <Button
+      fullWidthAtSmallViewport
+      onClick={() => console.log('full-width button clicked')}
+    >
+      Button
+    </Button>
+  </>)
+
+  renderLinks = () => (<>
+    <p>Inline:</p>
+    <Link href='#nogo'>Inline</Link>
+
+    <p>Standalone:</p>
+    <Link href='#nogo' type='standalone'>Standalone</Link>
+
+    <p>Disabled:</p>
+    <Link href='#nogo' disabled>Disabled</Link>
+  </>)
+
+  render = () => {
     return (<>
       <h1>React Spark</h1>
 
+      <hr />
+
       <h2>Button</h2>
 
-      <h3>Default</h3>
-      <Button>Default</Button>
+      {this.renderButtons()}
 
-      <h3>Secondary</h3>
-      <Button type={'secondary'}>Secondary</Button>
+      <hr />
 
-      <h3>Secondary</h3>
-      <Button type={'tertiary'}>Tertiary</Button>
+      <h2>Link</h2>
 
-      <h3>Disabled</h3>
-      <Button disabled>Disabled</Button>
-
-      <h3>Spinner</h3>
-
-      <Button spinner>Spinner</Button>
-
-      <h3>Full Width at Small Viewport</h3>
-      <Button
-        fullWidthAtSmallViewport
-        onClick={() => console.log('full-width button clicked')}
-      >
-        Button
-      </Button>
+      {this.renderLinks()}
     </>)
   }
 }

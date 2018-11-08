@@ -1,5 +1,7 @@
-import Button from './components/Button/Button'
+import Button from './components/Button'
+import Link from './components/Link'
 
 export {
-  Button
+  Button,
+  Link
 }
