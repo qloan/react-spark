@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -14,18 +15,18 @@ class Th extends React.Component {
     empty: PropTypes.bool
   }
 
+  get className() {
+    const {empty} = this.props
+
+    const emptyHeadingClass = sparkClassName('base', 'Table', 'empty-heading')
+
+    return classNames({[emptyHeadingClass]: empty})
+  }
+
   render = () => {
-    const {children, empty} = this.props
+    const {children} = this.props
 
-    let classes = []
-
-    if (empty) {
-      classes.push(sparkClassName('base', 'Table', 'empty-heading'))
-    }
-
-    const className = classes.join(' ')
-
-    return (<th className={className}>{children}</th>)
+    return (<th className={this.className}>{children}</th>)
   }
 }
 

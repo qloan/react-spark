@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -22,16 +23,17 @@ class Link extends React.Component {
   get className() {
     const {disabled, variant} = this.props
 
-    const classes = [sparkClassName('base', 'Link')]
+    const baseClass = sparkClassName('base', 'Link')
+    const disabledClass = sparkClassName('base', 'Link', null, 'disabled')
+    const variantClass = sparkClassName('base', 'Link', null, variant)
 
-    if (variant !== LINK_VARIANTS.INLINE) {
-      classes.push(sparkClassName('base', 'Link', null, variant))
-    }
-    if (disabled) {
-      classes.push(sparkClassName('base', 'Link', null, 'disabled'))
-    }
-
-    return classes.join(' ')
+    return classNames(
+      baseClass,
+      {
+        [disabledClass]: disabled,
+        [variantClass]: variant !== LINK_VARIANTS.INLINE
+      }
+    )
   }
 
   render = () => {

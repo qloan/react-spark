@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -16,7 +17,7 @@ class Table extends React.Component {
 
   static propTypes = {
     children: PropTypes.node,
-    spacing: PropTypes.oneOf(['medium']),
+    spacing: PropTypes.oneOf(['medium']), // TODO: Check on this
     striped: PropTypes.bool,
     variant: PropTypes.oneOf(Object.values(TABLE_VARIANTS))
   }
@@ -28,18 +29,17 @@ class Table extends React.Component {
   get tableClassName() {
     const {striped, variant} = this.props
 
-    const classes = [sparkClassName('base', 'Table')]
+    const baseClass = sparkClassName('base', 'Table')
+    const stripedClass = sparkClassName('base', 'Table', null, 'striped')
+    const variantClass = sparkClassName('base', 'Table', null, variant)
 
-    if (variant !== TABLE_VARIANTS.STANDARD) {
-      classes.push(sparkClassName('base', 'Table', null, variant))
-    }
-    if (striped) {
-      classes.push(sparkClassName('base', 'Table', null, 'striped'))
-    }
-
-    classes.push(sparkClassName('base', 'Table', null, 'spacing-medium'))
-
-    return classes.join(' ')
+    return classNames(
+      baseClass,
+      {
+        [stripedClass]: striped,
+        [variantClass]: variant !== TABLE_VARIANTS.STANDARD
+      }
+    )
   }
 
   render = () => {

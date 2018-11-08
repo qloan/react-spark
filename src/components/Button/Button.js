@@ -1,9 +1,10 @@
+import classNames from 'classnames'
+import { setSpinning } from '@sparkdesignsystem/spark-core/components/spinners'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { setSpinning } from '@sparkdesignsystem/spark-core/components/spinners'
 
 import BUTTON_VARIANTS from './variants'
-import { sparkClassName } from '../../util'
+import { sparkClassName, sparkComponentClassName } from '../../util'
 
 class Button extends React.Component {
   static defaultProps = {
@@ -26,19 +27,20 @@ class Button extends React.Component {
   get className() {
     const {disabled, fullWidthAtSmallViewport, variant} = this.props
 
-    const classes = [sparkClassName('component', 'Button')]
+    const baseClass = sparkComponentClassName('Button')
+    const variantClass = sparkComponentClassName('Button', null, variant)
+    const disabledClass = sparkClassName('is', 'Disabled')
+    const fullWidthAtSmallViewportClass =
+      sparkComponentClassName('Button', null, 'full', 'sm')
 
-    if (variant !== BUTTON_VARIANTS.PRIMARY) {
-      classes.push(sparkClassName('component', 'Button', null, variant))
-    }
-    if (disabled) {
-      classes.push(sparkClassName('is', 'Disabled'))
-    }
-    if (fullWidthAtSmallViewport) {
-      classes.push(sparkClassName('component', 'Button', null, 'full', 'sm'))
-    }
-
-    return classes.join(' ')
+    return classNames(
+      baseClass,
+      {
+        [variantClass]: variant !== BUTTON_VARIANTS.PRIMARY,
+        [disabledClass]: disabled,
+        [fullWidthAtSmallViewportClass]: fullWidthAtSmallViewport
+      }
+    )
   }
 
   componentDidMount = () => {

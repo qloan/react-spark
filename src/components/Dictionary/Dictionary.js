@@ -1,3 +1,4 @@
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -20,15 +21,13 @@ class Dictionary extends React.Component {
   get dictionaryClassName() {
     const {variant} = this.props
 
-    const classes = [sparkClassName('component', 'Dictionary')]
+    const baseClass = sparkClassName('component', 'Dictionary')
+    const variantClass = sparkClassName('component', 'Dictionary', null, 'striped')
 
-    if (variant !== DICTIONARY_VARIANTS.BASIC) {
-      classes.push(sparkClassName('component', 'Dictionary', null, 'striped'))
-    }
-
-    const className = classes.join(' ')
-
-    return className
+    return classNames(
+      baseClass,
+      {[variantClass]: variant !== DICTIONARY_VARIANTS.BASIC}
+    )
   }
 
   get keyValuePairsClassName() {

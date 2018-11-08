@@ -1,2 +1,5 @@
+export { default as sparkBaseClassName } from './sparkBaseClassName'
+export { default as sparkComponentClassName } from './sparkComponentClassName'
+export { default as sparkObjectClassName } from './sparkObjectClassName'
 export { default as sparkClassName } from './sparkClassName'
-export { default as sparkWidthClassName } from './sparkClassName'
+export { default as sparkWidthClassName } from './sparkWidthClassName'

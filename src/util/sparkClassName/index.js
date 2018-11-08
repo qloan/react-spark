@@ -6,7 +6,13 @@
  * @param {?string} [breakpoint]
  * @return {string}
  */
-const sparkClassName = (prefix, block, element = null, modifier = null, breakpoint = null) => {
+const sparkClassName = (
+  prefix,
+  block,
+  element = null,
+  modifier = null,
+  breakpoint = null
+) => {
   const NAMESPACE = 'sprk'
   const PREFIXES = {
     base: 'b',
