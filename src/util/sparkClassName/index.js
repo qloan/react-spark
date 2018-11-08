@@ -1,3 +1,11 @@
+/**
+ * @param {string} prefix - 'base', 'object', 'component', 'utility', 'is', or 'has'
+ * @param {string} block
+ * @param {?string} [element]
+ * @param {?string} [modifier]
+ * @param {?string} [breakpoint]
+ * @return {string}
+ */
 const sparkClassName = (prefix, block, element = null, modifier = null, breakpoint = null) => {
   const NAMESPACE = 'sprk'
   const PREFIXES = {

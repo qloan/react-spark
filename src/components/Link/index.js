@@ -25,7 +25,7 @@ class Link extends React.Component {
     const classes = [sparkClassName('base', 'Link')]
 
     if (type !== LINK_TYPES.INLINE) {
-      classes.push(sparkClassName('base', 'Link', null, 'standalone'))
+      classes.push(sparkClassName('base', 'Link', null, type))
     }
     if (disabled) {
       classes.push(sparkClassName('base', 'Link', null, 'disabled'))
