@@ -2,7 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { setSpinning } from '@sparkdesignsystem/spark-core/components/spinners'
 
-import BUTTON_TYPES from './types'
+import BUTTON_VARIANTS from './variants'
 import { sparkClassName } from '../../util'
 
 class Button extends React.Component {
@@ -10,7 +10,7 @@ class Button extends React.Component {
     disabled: false,
     fullWidthAtSmallViewport: false,
     spinner: false,
-    type: 'primary'
+    variant: 'primary'
   }
 
   static propTypes = {
@@ -18,18 +18,18 @@ class Button extends React.Component {
     disabled: PropTypes.bool,
     fullWidthAtSmallViewport: PropTypes.bool,
     spinner: PropTypes.bool,
-    type: PropTypes.oneOf(Object.values(BUTTON_TYPES))
+    variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS))
   }
 
   ref = React.createRef()
 
   get className() {
-    const {disabled, fullWidthAtSmallViewport, type} = this.props
+    const {disabled, fullWidthAtSmallViewport, variant} = this.props
 
     const classes = [sparkClassName('component', 'Button')]
 
-    if (type !== BUTTON_TYPES.PRIMARY) {
-      classes.push(sparkClassName('component', 'Button', null, type))
+    if (variant !== BUTTON_VARIANTS.PRIMARY) {
+      classes.push(sparkClassName('component', 'Button', null, variant))
     }
     if (disabled) {
       classes.push(sparkClassName('is', 'Disabled'))
@@ -55,7 +55,7 @@ class Button extends React.Component {
       disabled,
       fullWidthAtSmallViewport,
       spinner,
-      type,
+      variant,
       ...rest
     } = this.props
 

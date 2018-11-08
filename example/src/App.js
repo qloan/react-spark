@@ -10,10 +10,10 @@ export default class App extends Component {
     <Button>Default</Button>
 
     <p>Secondary:</p>
-    <Button type={'secondary'}>Secondary</Button>
+    <Button variant={'secondary'}>Secondary</Button>
 
     <p>Secondary:</p>
-    <Button type={'tertiary'}>Tertiary</Button>
+    <Button variant={'tertiary'}>Tertiary</Button>
 
     <p>Disabled:</p>
     <Button disabled>Disabled</Button>
@@ -35,7 +35,7 @@ export default class App extends Component {
     <Link href='#nogo'>Inline</Link>
 
     <p>Standalone:</p>
-    <Link href='#nogo' type='standalone'>Standalone</Link>
+    <Link href='#nogo' variant='standalone'>Standalone</Link>
 
     <p>Disabled:</p>
     <Link href='#nogo' disabled>Disabled</Link>
@@ -109,7 +109,7 @@ export default class App extends Component {
     </Table>
 
     <p>Secondary</p>
-    <Table type='secondary'>
+    <Table variant='secondary'>
       <thead>
         <tr>
           <th>Column Heading</th>
@@ -142,7 +142,7 @@ export default class App extends Component {
     </Table>
 
     <p>Grouped columns</p>
-    <Table type='grouped-columns'>
+    <Table variant='grouped-columns'>
       <thead>
         <tr>
           <th rowSpan='2'>Column Heading</th>
@@ -188,7 +188,7 @@ export default class App extends Component {
     </Table>
 
     <p>Row comparison</p>
-    <Table type='row-comparison'>
+    <Table variant='row-comparison'>
       <thead>
         <tr>
           <Table.Th empty />
@@ -226,14 +226,14 @@ export default class App extends Component {
     </Table>
 
     <p>Secondary row comparison</p>
-    <Table type='secondary-row-comparison'>
+    <Table variant='secondary-row-comparison'>
       <tbody>
         <tr>
           <th>Row Heading</th>
           <td>Data</td>
           <td>Data</td>
           <td>
-            <Button type='secondary'>Learn More</Button>
+            <Button variant='secondary'>Learn More</Button>
           </td>
         </tr>
         <tr>
@@ -241,7 +241,7 @@ export default class App extends Component {
           <td>Data</td>
           <td>Data</td>
           <td>
-            <Button type='secondary'>Learn More</Button>
+            <Button variant='secondary'>Learn More</Button>
           </td>
         </tr>
         <tr>

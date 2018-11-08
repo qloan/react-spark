@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import LINK_TYPES from './types'
+import LINK_VARIANTS from './variants'
 import { sparkClassName } from '../../util'
 
 class Link extends React.Component {
@@ -9,23 +9,23 @@ class Link extends React.Component {
     children: null,
     disabled: false,
     standalone: false,
-    type: LINK_TYPES.INLINE
+    variant: LINK_VARIANTS.INLINE
   }
 
   static propTypes = {
     children: PropTypes.node,
     disabled: PropTypes.bool,
     standalone: PropTypes.bool,
-    type: PropTypes.oneOf(Object.values(LINK_TYPES))
+    variant: PropTypes.oneOf(Object.values(LINK_VARIANTS))
   }
 
   get className() {
-    const {disabled, type} = this.props
+    const {disabled, variant} = this.props
 
     const classes = [sparkClassName('base', 'Link')]
 
-    if (type !== LINK_TYPES.INLINE) {
-      classes.push(sparkClassName('base', 'Link', null, type))
+    if (variant !== LINK_VARIANTS.INLINE) {
+      classes.push(sparkClassName('base', 'Link', null, variant))
     }
     if (disabled) {
       classes.push(sparkClassName('base', 'Link', null, 'disabled'))
@@ -39,7 +39,7 @@ class Link extends React.Component {
       children,
       disabled,
       standalone,
-      type,
+      variant,
       ...rest
     } = this.props
 

@@ -3,7 +3,7 @@ import React from 'react'
 
 import GroupedColumn from './GroupedColumn'
 import Th from './Th'
-import TABLE_TYPES from './types'
+import TABLE_VARIANTS from './types'
 import { sparkClassName } from '../../util'
 
 class Table extends React.Component {
@@ -11,14 +11,14 @@ class Table extends React.Component {
     children: null,
     spacing: 'medium',
     striped: false,
-    type: TABLE_TYPES.STANDARD
+    variant: TABLE_VARIANTS.STANDARD
   }
 
   static propTypes = {
     children: PropTypes.node,
     spacing: PropTypes.oneOf(['medium']),
     striped: PropTypes.bool,
-    type: PropTypes.oneOf(Object.values(TABLE_TYPES))
+    variant: PropTypes.oneOf(Object.values(TABLE_VARIANTS))
   }
 
   get containerClassName() {
@@ -26,12 +26,12 @@ class Table extends React.Component {
   }
 
   get tableClassName() {
-    const {striped, type} = this.props
+    const {striped, variant} = this.props
 
     const classes = [sparkClassName('base', 'Table')]
 
-    if (type !== TABLE_TYPES.STANDARD) {
-      classes.push(sparkClassName('base', 'Table', null, type))
+    if (variant !== TABLE_VARIANTS.STANDARD) {
+      classes.push(sparkClassName('base', 'Table', null, variant))
     }
     if (striped) {
       classes.push(sparkClassName('base', 'Table', null, 'striped'))
