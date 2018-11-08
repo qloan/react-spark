@@ -1,3 +1,7 @@
-import { sparkClassName } from './sparkClassName'
+import sparkClassName from './sparkClassName'
+import sparkWidthClassName from './sparkWidthClassName'
 
-export { sparkClassName }
+export {
+  sparkClassName,
+  sparkWidthClassName
+}

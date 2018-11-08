@@ -26,4 +26,4 @@ const sparkClassName = (prefix, block, element = null, modifier = null, breakpoi
   return className
 }
 
-export { sparkClassName }
+export default sparkClassName

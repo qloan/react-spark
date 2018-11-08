@@ -1,6 +1,12 @@
 import React, { Component } from 'react'
-
-import { Button, Dictionary, Link, Table } from 'react-spark'
+import {
+  Button,
+  Dictionary,
+  TextInput,
+  InputContainer,
+  Link,
+  Table
+} from 'react-spark'
 
 import './App.scss'
 
@@ -86,6 +92,37 @@ export default class App extends Component {
         itemValue={'55555'}
       />
     </Dictionary>
+  </>)
+
+  renderInputs = () => (<>
+    <p>Text input:</p>
+    <InputContainer>
+      <TextInput
+        id='text-input-normal'
+        label='Text Input Label'
+        width={100}
+      />
+    </InputContainer>
+
+    <p>Text input with error:</p>
+    <InputContainer>
+      <TextInput
+        error={'There is an error on this field.'}
+        id='text-input-error'
+        label='Text Input Label'
+        width={100}
+      />
+    </InputContainer>
+
+    <p>Disabled text input:</p>
+    <InputContainer>
+      <TextInput
+        disabled
+        id='text-input-disabled'
+        label='Text Input Label'
+        width={100}
+      />
+    </InputContainer>
   </>)
 
   renderLinks = () => (<>
@@ -339,6 +376,9 @@ export default class App extends Component {
 
       <h2>Dictionaries</h2>
       {this.renderDictionaries()}
+
+      <h2>Inputs</h2>
+      {this.renderInputs()}
     </>)
   }
 }
