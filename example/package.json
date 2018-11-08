@@ -6,7 +6,7 @@
   "private": true,
   "dependencies": {
     "@sparkdesignsystem/spark-core": "^3.0.0",
-    "@sparkdesignsystem/spark-extras": "^2.0.1",
+    "@sparkdesignsystem/spark-description-table": "^2.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",

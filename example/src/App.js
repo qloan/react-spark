@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Button, Link, Table } from 'react-spark'
+import { Button, Dictionary, Link, Table } from 'react-spark'
 
 import './App.scss'
 
@@ -28,6 +28,64 @@ export default class App extends Component {
     >
       Button
     </Button>
+  </>)
+
+  renderDictionaries = () => (<>
+    <p>Standard</p>
+    <Dictionary>
+      <Dictionary.Item
+        itemKey={'Email Address'}
+        itemValue={'sparkdesignsystem@quickenloans.com'}
+      />
+      <Dictionary.Item
+        itemKey={'Mailing Address'}
+        itemValue={'123 Main Street, Detroit, MI, 48216'}
+      />
+      <Dictionary.Item
+        itemKey={'Home Phone'}
+        itemValue={'(123) 456-7890'}
+      />
+      <Dictionary.Item
+        itemKey={'Cell Phone'}
+        itemValue={'(098) 765-4321'}
+      />
+      <Dictionary.Item
+        itemKey={'Work Phone'}
+        itemValue={'(555) 555-5555'}
+      />
+      <Dictionary.Item
+        itemKey={'Work Extension'}
+        itemValue={'55555'}
+      />
+    </Dictionary>
+
+    <p>Striped</p>
+    <Dictionary variant='striped'>
+      <Dictionary.Item
+        itemKey={'Email Address'}
+        itemValue={'sparkdesignsystem@quickenloans.com'}
+      />
+      <Dictionary.Item
+        itemKey={'Mailing Address'}
+        itemValue={'123 Main Street, Detroit, MI, 48216'}
+      />
+      <Dictionary.Item
+        itemKey={'Home Phone'}
+        itemValue={'(123) 456-7890'}
+      />
+      <Dictionary.Item
+        itemKey={'Cell Phone'}
+        itemValue={'(098) 765-4321'}
+      />
+      <Dictionary.Item
+        itemKey={'Work Phone'}
+        itemValue={'(555) 555-5555'}
+      />
+      <Dictionary.Item
+        itemKey={'Work Extension'}
+        itemValue={'55555'}
+      />
+    </Dictionary>
   </>)
 
   renderLinks = () => (<>
@@ -276,6 +334,11 @@ export default class App extends Component {
 
       <h2>Tables</h2>
       {this.renderTables()}
+
+      <hr />
+
+      <h2>Dictionaries</h2>
+      {this.renderDictionaries()}
     </>)
   }
 }
