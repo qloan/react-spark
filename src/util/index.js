@@ -1,7 +1,2 @@
-import sparkClassName from './sparkClassName'
-import sparkWidthClassName from './sparkWidthClassName'
-
-export {
-  sparkClassName,
-  sparkWidthClassName
-}
+export { default as sparkClassName } from './sparkClassName'
+export { default as sparkWidthClassName } from './sparkClassName'
