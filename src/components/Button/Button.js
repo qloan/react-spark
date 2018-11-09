@@ -1,5 +1,8 @@
 import classNames from 'classnames'
-import { setSpinning } from '@sparkdesignsystem/spark-core/components/spinners'
+import {
+  setSpinning,
+  cancelSpinning
+} from '@sparkdesignsystem/spark-core/components/spinners'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -12,7 +15,7 @@ class Button extends React.Component {
     fullWidthAtSmallViewport: false,
     spinner: false,
     variant: 'primary'
-  }
+  };
 
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -20,36 +23,38 @@ class Button extends React.Component {
     fullWidthAtSmallViewport: PropTypes.bool,
     spinner: PropTypes.bool,
     variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS))
-  }
+  };
 
-  ref = React.createRef()
+  ref = React.createRef();
 
   get className() {
-    const {disabled, fullWidthAtSmallViewport, variant} = this.props
+    const { disabled, fullWidthAtSmallViewport, variant } = this.props
 
     const baseClass = sparkComponentClassName('Button')
     const variantClass = sparkComponentClassName('Button', null, variant)
     const disabledClass = sparkClassName('is', 'Disabled')
-    const fullWidthAtSmallViewportClass =
-      sparkComponentClassName('Button', null, 'full', 'sm')
-
-    return classNames(
-      baseClass,
-      {
-        [variantClass]: variant !== BUTTON_VARIANTS.PRIMARY,
-        [disabledClass]: disabled,
-        [fullWidthAtSmallViewportClass]: fullWidthAtSmallViewport
-      }
+    const fullWidthAtSmallViewportClass = sparkComponentClassName(
+      'Button',
+      null,
+      'full',
+      'sm'
     )
+
+    return classNames(baseClass, {
+      [variantClass]: variant !== BUTTON_VARIANTS.PRIMARY,
+      [disabledClass]: disabled,
+      [fullWidthAtSmallViewportClass]: fullWidthAtSmallViewport
+    })
   }
 
   componentDidMount = () => {
-    const {spinner} = this.props
-
+    const { spinner } = this.props
     if (spinner) {
       setSpinning(this.ref.current, {})
+    } else {
+      cancelSpinning(this.ref.current, {})
     }
-  }
+  };
 
   render = () => {
     const {
@@ -71,7 +76,7 @@ class Button extends React.Component {
         {children}
       </button>
     )
-  }
+  };
 }
 
 export default Button
