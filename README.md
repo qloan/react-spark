@@ -1,5 +1,7 @@
 # react-spark
 
+**This is an experimental proof-of-concept project.**
+
 React components for Spark
 
 ---
