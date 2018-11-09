@@ -1,8 +1,8 @@
 # react-spark
 
-**This is an experimental proof-of-concept project.**
+**This is an experimental proof-of-concept implementation of Spark as React components.**
 
-React components for Spark
+Usage examples of `react-spark` components can be found in `example/src/App.js`.
 
 ---
 
