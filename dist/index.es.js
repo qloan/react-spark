@@ -283,9 +283,10 @@ var Button = function (_React$Component) {
     return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Button.__proto__ || Object.getPrototypeOf(Button)).call.apply(_ref, [this].concat(args))), _this), _this.ref = React.createRef(), _this.componentDidMount = function () {
       var spinner = _this.props.spinner;
 
-
       if (spinner) {
         setSpinning(_this.ref.current, {});
+      } else {
+        cancelSpinning(_this.ref.current, {});
       }
     }, _this.render = function () {
       var _this$props = _this.props,
