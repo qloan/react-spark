@@ -1,13 +1,13 @@
-import classNames from 'classnames'
+import classNames from 'classnames';
 import {
   setSpinning,
   cancelSpinning
-} from '@sparkdesignsystem/spark-core/components/spinners'
-import PropTypes from 'prop-types'
-import React from 'react'
+} from '@sparkdesignsystem/spark-core/components/spinners';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import BUTTON_VARIANTS from './variants'
-import { sparkClassName, sparkComponentClassName } from '../../util'
+import BUTTON_VARIANTS from './variants';
+import { sparkClassName, sparkComponentClassName } from '../../util';
 
 class Button extends React.Component {
   static defaultProps = {
@@ -47,13 +47,21 @@ class Button extends React.Component {
     })
   }
 
-  componentDidMount = () => {
+  manageSpinner() {
     const { spinner } = this.props
     if (spinner) {
       setSpinning(this.ref.current, {})
     } else {
       cancelSpinning(this.ref.current, {})
     }
+  }
+
+  componentDidMount = () => {
+    this.manageSpinner()
+  };
+
+  componentDidUpdate = () => {
+    this.manageSpinner()
   };
 
   render = () => {

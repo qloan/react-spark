@@ -27,3 +27,7 @@ npm start # runs create-react-app dev server
 ```
 
 Now, anytime you make a change to your library in `src/` or to the example app's `example/src`, `create-react-app` will live-reload your local dev server so you can iterate on your component in real-time.
+
+create a .env file in example/ and add this as the contents
+
+```SKIP_PREFLIGHT_CHECK=true```
