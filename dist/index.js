@@ -313,8 +313,7 @@ var Button = function (_React$Component) {
           disabled: disabled,
           ref: _this.ref
         }, rest),
-        children,
-        'TEST'
+        children
       );
     }, _temp), possibleConstructorReturn(_this, _ret);
   }

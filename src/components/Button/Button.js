@@ -78,7 +78,7 @@ class Button extends React.Component {
         ref={this.ref}
         {...rest}
       >
-        {children}{'TEST'}
+        {children}
       </button>
     )
   };

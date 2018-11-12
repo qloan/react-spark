@@ -12,13 +12,17 @@ This project was generated with [`create-react-library`](https://www.npmjs.com/p
 
 Local development is broken into two parts (ideally using two tabs).
 
-First, run rollup to watch your `src/` module and automatically recompile it into `dist/` whenever you make changes.
+1. create a .env file in example/ and add this as the contents
+
+```SKIP_PREFLIGHT_CHECK=true```
+
+2. Now run rollup to watch your `src/` module and automatically recompile it into `dist/` whenever you make changes.
 
 ```bash
 npm start # runs rollup with watch flag
 ```
 
-The second part will be running the `example/` create-react-app that's linked to the local version of your module.
+3. Run the `example/` create-react-app that's linked to the local version of your module.
 
 ```bash
 # (in another tab)
@@ -27,7 +31,3 @@ npm start # runs create-react-app dev server
 ```
 
 Now, anytime you make a change to your library in `src/` or to the example app's `example/src`, `create-react-app` will live-reload your local dev server so you can iterate on your component in real-time.
-
-create a .env file in example/ and add this as the contents
-
-```SKIP_PREFLIGHT_CHECK=true```
