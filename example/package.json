@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
+  "main": "dist/index.js",
   "dependencies": {
     "@sparkdesignsystem/spark-core": "^3.0.0",
     "@sparkdesignsystem/spark-description-table": "^2.0.1",
