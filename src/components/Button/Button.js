@@ -15,7 +15,7 @@ class Button extends React.Component {
     fullWidthAtSmallViewport: false,
     spinner: false,
     variant: 'primary'
-  };
+  }
 
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -23,9 +23,9 @@ class Button extends React.Component {
     fullWidthAtSmallViewport: PropTypes.bool,
     spinner: PropTypes.bool,
     variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS))
-  };
+  }
 
-  ref = React.createRef();
+  ref = React.createRef()
 
   get className() {
     const { disabled, fullWidthAtSmallViewport, variant } = this.props
@@ -51,7 +51,7 @@ class Button extends React.Component {
     if (this.props.spinner) {
       setSpinning(this.ref.current, {})
     }
-  };
+  }
 
   componentDidUpdate = () => {
     if (this.props.spinner) {
@@ -59,7 +59,7 @@ class Button extends React.Component {
     } else {
       cancelSpinning(this.ref.current, {})
     }
-  };
+  }
 
   render = () => {
     const {
@@ -81,7 +81,7 @@ class Button extends React.Component {
         {children}
       </button>
     )
-  };
+  }
 }
 
 export default Button
