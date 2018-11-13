@@ -2,8 +2,8 @@ import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/textInput'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
+import InputContainer from './../InputContainer/InputContainer'
 
-import ErrorText from '../ErrorText'
 import {
   sparkClassName,
   sparkWidthClassName
@@ -46,46 +46,21 @@ class TextInput extends React.Component {
     )
   }
 
-  renderErrorContent = () => {
-    const {error} = this.props
-
-    if (!error) return null
-
-    return (
-      // TODO: Icon SVG
-      <ErrorText>{error}</ErrorText>
-    )
-  }
-
   render = () => {
     const {disabled, id, label} = this.props
 
     return (
-      <div className={sparkClassName('utility', 'JavaScript')}>
+      <InputContainer id={id} label={label}>
         <input
           className={this.textInputClassName}
           disabled={disabled}
           id={id}
+          data-id={id}
           type='text'
           aria-describedby={`${id}--error-container`}
           ref={this.inputRef}
         />
-        <div
-          className={sparkClassName('base', 'InputContainer', 'input-border')}
-        />
-        <label
-          htmlFor={id}
-          className={sparkClassName('base', 'Label')}
-        >
-          {label}
-        </label>
-        <div
-          className={sparkClassName('base', 'ErrorContainer')}
-          id={`${id}--error-container`}
-        >
-          {this.renderErrorContent()}
-        </div>
-      </div>
+      </InputContainer>
     )
   }
 }

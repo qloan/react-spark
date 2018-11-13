@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 import {
   Button,
   Dictionary,
   CheckboxGroup,
   TextInput,
-  InputContainer,
   Link,
-  Table
-} from 'react-spark'
+  Table,
+  Select
+} from "react-spark";
 
-import './App.scss'
+import "./App.scss";
 
 export default class App extends Component {
   renderButtons = () => (
@@ -18,10 +18,10 @@ export default class App extends Component {
       <Button>Default</Button>
 
       <p>Secondary:</p>
-      <Button variant={'secondary'}>Secondary</Button>
+      <Button variant={"secondary"}>Secondary</Button>
 
       <p>Secondary:</p>
-      <Button variant={'tertiary'}>Tertiary</Button>
+      <Button variant={"tertiary"}>Tertiary</Button>
 
       <p>Disabled:</p>
       <Button disabled>Disabled</Button>
@@ -32,7 +32,7 @@ export default class App extends Component {
       <p>Full Width at Small Viewport:</p>
       <Button
         fullWidthAtSmallViewport
-        onClick={() => console.log('full-width button clicked')}
+        onClick={() => console.log("full-width button clicked")}
       >
         Button
       </Button>
@@ -44,104 +44,113 @@ export default class App extends Component {
       <p>Standard</p>
       <Dictionary>
         <Dictionary.Item
-          itemKey={'Email Address'}
-          itemValue={'sparkdesignsystem@quickenloans.com'}
+          itemKey={"Email Address"}
+          itemValue={"sparkdesignsystem@quickenloans.com"}
         />
         <Dictionary.Item
-          itemKey={'Mailing Address'}
-          itemValue={'123 Main Street, Detroit, MI, 48216'}
+          itemKey={"Mailing Address"}
+          itemValue={"123 Main Street, Detroit, MI, 48216"}
         />
-        <Dictionary.Item itemKey={'Home Phone'} itemValue={'(123) 456-7890'} />
-        <Dictionary.Item itemKey={'Cell Phone'} itemValue={'(098) 765-4321'} />
-        <Dictionary.Item itemKey={'Work Phone'} itemValue={'(555) 555-5555'} />
-        <Dictionary.Item itemKey={'Work Extension'} itemValue={'55555'} />
+        <Dictionary.Item itemKey={"Home Phone"} itemValue={"(123) 456-7890"} />
+        <Dictionary.Item itemKey={"Cell Phone"} itemValue={"(098) 765-4321"} />
+        <Dictionary.Item itemKey={"Work Phone"} itemValue={"(555) 555-5555"} />
+        <Dictionary.Item itemKey={"Work Extension"} itemValue={"55555"} />
       </Dictionary>
 
       <p>Striped</p>
-      <Dictionary variant='striped'>
+      <Dictionary variant="striped">
         <Dictionary.Item
-          itemKey={'Email Address'}
-          itemValue={'sparkdesignsystem@quickenloans.com'}
+          itemKey={"Email Address"}
+          itemValue={"sparkdesignsystem@quickenloans.com"}
         />
         <Dictionary.Item
-          itemKey={'Mailing Address'}
-          itemValue={'123 Main Street, Detroit, MI, 48216'}
+          itemKey={"Mailing Address"}
+          itemValue={"123 Main Street, Detroit, MI, 48216"}
         />
-        <Dictionary.Item itemKey={'Home Phone'} itemValue={'(123) 456-7890'} />
-        <Dictionary.Item itemKey={'Cell Phone'} itemValue={'(098) 765-4321'} />
-        <Dictionary.Item itemKey={'Work Phone'} itemValue={'(555) 555-5555'} />
-        <Dictionary.Item itemKey={'Work Extension'} itemValue={'55555'} />
+        <Dictionary.Item itemKey={"Home Phone"} itemValue={"(123) 456-7890"} />
+        <Dictionary.Item itemKey={"Cell Phone"} itemValue={"(098) 765-4321"} />
+        <Dictionary.Item itemKey={"Work Phone"} itemValue={"(555) 555-5555"} />
+        <Dictionary.Item itemKey={"Work Extension"} itemValue={"55555"} />
       </Dictionary>
     </>
   );
+
+  renderSelect = () => {
+    const options = [
+      { value: 34, text: "First val" },
+      { value: 34, text: "Second val" }
+    ];
+    return (
+      <div>
+        <h2>Select:</h2>
+
+        <Select
+          id="select-normal"
+          label="Select Label"
+          width={100}
+          options={options}
+        />
+      </div>
+    );
+  };
 
   renderInputs = () => (
     <>
       <h3>Text inputs</h3>
 
       <p>Text input:</p>
-      <InputContainer>
-        <TextInput
-          id='text-input-normal'
-          label='Text Input Label'
-          width={100}
-        />
-      </InputContainer>
+      <TextInput id="text-input-normal" label="Text Input Label" width={100} />
 
       <p>Text input with error:</p>
-      <InputContainer>
-        <TextInput
-          error={'There is an error on this field.'}
-          id='text-input-error'
-          label='Text Input Label'
-          width={100}
-        />
-      </InputContainer>
+      <TextInput
+        error={"There is an error on this field."}
+        id="text-input-error"
+        label="Text Input Label"
+        width={100}
+      />
 
       <p>Disabled text input:</p>
-      <InputContainer>
-        <TextInput
-          disabled
-          id='text-input-disabled'
-          label='Text Input Label'
-          width={100}
-        />
-      </InputContainer>
+      <TextInput
+        disabled
+        id="text-input-disabled"
+        label="Text Input Label"
+        width={100}
+      />
 
       <h3>Checkbox Group</h3>
       <p>Normal checkbox group:</p>
       <CheckboxGroup
         checkboxes={[
-          { id: 'checkbox-normal-1', label: 'Checkbox Item 1' },
-          { id: 'checkbox-normal-2', label: 'Checkbox Item 2' },
-          { id: 'checkbox-normal-3', label: 'Checkbox Item 3' }
+          { id: "checkbox-normal-1", label: "Checkbox Item 1" },
+          { id: "checkbox-normal-2", label: "Checkbox Item 2" },
+          { id: "checkbox-normal-3", label: "Checkbox Item 3" }
         ]}
-        id={'checkbox-normal'}
-        label='Checkbox Group Label'
+        id={"checkbox-normal"}
+        label="Checkbox Group Label"
       />
 
       <p>Checkbox group with error:</p>
       <CheckboxGroup
         checkboxes={[
-          { id: 'checkbox-error-1', label: 'Checkbox Item 1' },
-          { id: 'checkbox-error-2', label: 'Checkbox Item 2' },
-          { id: 'checkbox-error-3', label: 'Checkbox Item 3' }
+          { id: "checkbox-error-1", label: "Checkbox Item 1" },
+          { id: "checkbox-error-2", label: "Checkbox Item 2" },
+          { id: "checkbox-error-3", label: "Checkbox Item 3" }
         ]}
-        error='There is an error on this field.'
-        id={'checkbox-error'}
-        label='Checkbox Group Label'
+        error="There is an error on this field."
+        id={"checkbox-error"}
+        label="Checkbox Group Label"
       />
 
       <p>Disabled checkbox group:</p>
       <CheckboxGroup
         checkboxes={[
-          { id: 'checkbox-disabled-1', label: 'Checkbox Item 1' },
-          { id: 'checkbox-disabled-2', label: 'Checkbox Item 2' },
-          { id: 'checkbox-disabled-3', label: 'Checkbox Item 3' }
+          { id: "checkbox-disabled-1", label: "Checkbox Item 1" },
+          { id: "checkbox-disabled-2", label: "Checkbox Item 2" },
+          { id: "checkbox-disabled-3", label: "Checkbox Item 3" }
         ]}
         disabled
-        id={'checkbox-disabled'}
-        label='Checkbox Group Label'
+        id={"checkbox-disabled"}
+        label="Checkbox Group Label"
       />
     </>
   );
@@ -149,15 +158,15 @@ export default class App extends Component {
   renderLinks = () => (
     <>
       <p>Inline:</p>
-      <Link href='#nogo'>Inline</Link>
+      <Link href="#nogo">Inline</Link>
 
       <p>Standalone:</p>
-      <Link href='#nogo' variant='standalone'>
+      <Link href="#nogo" variant="standalone">
         Standalone
       </Link>
 
       <p>Disabled:</p>
-      <Link href='#nogo' disabled>
+      <Link href="#nogo" disabled>
         Disabled
       </Link>
     </>
@@ -232,7 +241,7 @@ export default class App extends Component {
       </Table>
 
       <p>Secondary</p>
-      <Table variant='secondary'>
+      <Table variant="secondary">
         <thead>
           <tr>
             <th>Column Heading</th>
@@ -265,12 +274,12 @@ export default class App extends Component {
       </Table>
 
       <p>Grouped columns</p>
-      <Table variant='grouped-columns'>
+      <Table variant="grouped-columns">
         <thead>
           <tr>
-            <th rowSpan='2'>Column Heading</th>
-            <th colSpan='3'>Column Heading</th>
-            <th rowSpan='2'>Column Heading</th>
+            <th rowSpan="2">Column Heading</th>
+            <th colSpan="3">Column Heading</th>
+            <th rowSpan="2">Column Heading</th>
           </tr>
           <tr>
             <Table.GroupedColumn>SubHeading</Table.GroupedColumn>
@@ -311,7 +320,7 @@ export default class App extends Component {
       </Table>
 
       <p>Row comparison</p>
-      <Table variant='row-comparison'>
+      <Table variant="row-comparison">
         <thead>
           <tr>
             <Table.Th empty />
@@ -349,14 +358,14 @@ export default class App extends Component {
       </Table>
 
       <p>Secondary row comparison</p>
-      <Table variant='secondary-row-comparison'>
+      <Table variant="secondary-row-comparison">
         <tbody>
           <tr>
             <th>Row Heading</th>
             <td>Data</td>
             <td>Data</td>
             <td>
-              <Button variant='secondary'>Learn More</Button>
+              <Button variant="secondary">Learn More</Button>
             </td>
           </tr>
           <tr>
@@ -364,7 +373,7 @@ export default class App extends Component {
             <td>Data</td>
             <td>Data</td>
             <td>
-              <Button variant='secondary'>Learn More</Button>
+              <Button variant="secondary">Learn More</Button>
             </td>
           </tr>
           <tr>
@@ -373,8 +382,8 @@ export default class App extends Component {
             <td>Data</td>
             <td>
               <button
-                className='sprk-c-Button sprk-c-Button--secondary'
-                type='button'
+                className="sprk-c-Button sprk-c-Button--secondary"
+                type="button"
               >
                 Learn More
               </button>
@@ -388,6 +397,10 @@ export default class App extends Component {
   render = () => {
     return (
       <>
+        <h2>Inputs</h2>
+        {this.renderSelect()}
+        {this.renderInputs()}
+
         <h1>React Spark</h1>
 
         <hr />
@@ -409,10 +422,7 @@ export default class App extends Component {
 
         <h2>Dictionaries</h2>
         {this.renderDictionaries()}
-
-        <h2>Inputs</h2>
-        {this.renderInputs()}
       </>
-    )
+    );
   };
 }
