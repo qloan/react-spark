@@ -296,8 +296,7 @@ var Button = function (_React$Component) {
           disabled = _this$props.disabled,
           fullWidthAtSmallViewport = _this$props.fullWidthAtSmallViewport,
           spinner = _this$props.spinner,
-          variant = _this$props.variant,
-          rest = objectWithoutProperties(_this$props, ['children', 'disabled', 'fullWidthAtSmallViewport', 'spinner', 'variant']);
+          rest = objectWithoutProperties(_this$props, ['children', 'disabled', 'fullWidthAtSmallViewport', 'spinner']);
 
 
       return React.createElement(
@@ -305,10 +304,10 @@ var Button = function (_React$Component) {
         _extends({
           className: _this.className,
           disabled: disabled,
-          ref: _this.ref
+          ref: _this.ref,
+          variant: 'secondary'
         }, rest),
-        children,
-        'test'
+        children
       );
     }, _temp), possibleConstructorReturn(_this, _ret);
   }
@@ -606,15 +605,52 @@ var InputContainer = function (_React$Component) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = InputContainer.__proto__ || Object.getPrototypeOf(InputContainer)).call.apply(_ref, [this].concat(args))), _this), _this.render = function () {
-      var children = _this.props.children;
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = InputContainer.__proto__ || Object.getPrototypeOf(InputContainer)).call.apply(_ref, [this].concat(args))), _this), _this.renderErrorContent = function () {
+      var error = _this.props.error;
+
+
+      if (!error) return null;
+
+      return (
+        // TODO: Icon SVG
+        React.createElement(
+          ErrorText,
+          null,
+          error
+        )
+      );
+    }, _this.render = function () {
+      var _this$props = _this.props,
+          children = _this$props.children,
+          id = _this$props.id,
+          label = _this$props.label;
 
       var className = sparkClassName('base', 'InputContainer');
 
       return React.createElement(
         'div',
-        { className: className },
-        children
+        { className: sparkClassName('utility', 'JavaScript') },
+        React.createElement(
+          'div',
+          { className: className },
+          children,
+          React.createElement('div', {
+            className: sparkClassName('base', 'InputContainer', 'input-border')
+          }),
+          React.createElement(
+            'label',
+            { htmlFor: id, className: sparkClassName('base', 'Label') },
+            label
+          ),
+          React.createElement(
+            'div',
+            {
+              className: sparkClassName('base', 'ErrorContainer'),
+              id: id + '--error-container'
+            },
+            _this.renderErrorContent()
+          )
+        )
       );
     }, _temp), possibleConstructorReturn(_this, _ret);
   }
@@ -899,20 +935,6 @@ var TextInput = function (_React$Component) {
 
     return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = TextInput.__proto__ || Object.getPrototypeOf(TextInput)).call.apply(_ref, [this].concat(args))), _this), _this.inputRef = React.createRef(), _this.componentDidMount = function () {
       bindUIEvents(_this.inputRef.current);
-    }, _this.renderErrorContent = function () {
-      var error = _this.props.error;
-
-
-      if (!error) return null;
-
-      return (
-        // TODO: Icon SVG
-        React.createElement(
-          ErrorText,
-          null,
-          error
-        )
-      );
     }, _this.render = function () {
       var _this$props = _this.props,
           disabled = _this$props.disabled,
@@ -921,35 +943,17 @@ var TextInput = function (_React$Component) {
 
 
       return React.createElement(
-        'div',
-        { className: sparkClassName('utility', 'JavaScript') },
+        InputContainer,
+        { id: id, label: label },
         React.createElement('input', {
           className: _this.textInputClassName,
           disabled: disabled,
           id: id,
+          'data-id': id,
           type: 'text',
           'aria-describedby': id + '--error-container',
           ref: _this.inputRef
-        }),
-        React.createElement('div', {
-          className: sparkClassName('base', 'InputContainer', 'input-border')
-        }),
-        React.createElement(
-          'label',
-          {
-            htmlFor: id,
-            className: sparkClassName('base', 'Label')
-          },
-          label
-        ),
-        React.createElement(
-          'div',
-          {
-            className: sparkClassName('base', 'ErrorContainer'),
-            id: id + '--error-container'
-          },
-          _this.renderErrorContent()
-        )
+        })
       );
     }, _temp), possibleConstructorReturn(_this, _ret);
   }
@@ -1225,5 +1229,98 @@ Table.propTypes = {
 Table.GroupedColumn = GroupedColumn;
 Table.Th = Th;
 
-export { Button, Checkbox, CheckboxGroup, Dictionary, ErrorText, Fieldset, Legend as Label, Label as Legend, SelectionContainer, TextInput, InputContainer, Link, Table };
+var Select = function (_React$Component) {
+  inherits(Select, _React$Component);
+
+  function Select() {
+    var _ref;
+
+    var _temp, _this, _ret;
+
+    classCallCheck(this, Select);
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    return _ret = (_temp = (_this = possibleConstructorReturn(this, (_ref = Select.__proto__ || Object.getPrototypeOf(Select)).call.apply(_ref, [this].concat(args))), _this), _this.selectRef = React.createRef(), _this.componentDidMount = function () {
+      bindUIEvents(_this.selectRef.current);
+    }, _this.render = function () {
+      var _this$props = _this.props,
+          disabled = _this$props.disabled,
+          id = _this$props.id,
+          label = _this$props.label,
+          options = _this$props.options;
+
+
+      return React.createElement(
+        InputContainer,
+        { id: id, label: label },
+        React.createElement(
+          'select',
+          {
+            className: sparkClassName('base', 'Select'),
+            id: id,
+            'data-id': id,
+            ref: _this.selectRef,
+            'aria-describedby': id + '--error-container',
+            'data-sprk-input': 'select',
+            disabled: disabled
+          },
+          options.map(function (_ref2) {
+            var value = _ref2.value,
+                text = _ref2.text;
+            return React.createElement(
+              'option',
+              { value: value },
+              text
+            );
+          })
+        ),
+        React.createElement(
+          'svg',
+          {
+            className: sparkClassName('component', 'Icon') + ' ' + sparkClassName('base', 'SelectContainer', 'icon'),
+            viewBox: '0 0 64 64'
+          },
+          React.createElement('use', { xlinkHref: '#chevron-down' })
+        )
+      );
+    }, _temp), possibleConstructorReturn(_this, _ret);
+  }
+
+  createClass(Select, [{
+    key: 'selectClassName',
+    get: function get$$1() {
+      var _classNames;
+
+      var _props = this.props,
+          error = _props.error,
+          width = _props.width;
+
+
+      var baseClass = sparkClassName('base', 'Select');
+      var errorClass = sparkClassName('base', 'TextInput', null, 'error');
+      var widthClass = sparkWidthClassName(width);
+
+      return classnames(baseClass, (_classNames = {}, defineProperty(_classNames, errorClass, error), defineProperty(_classNames, widthClass, width), _classNames));
+    }
+  }]);
+  return Select;
+}(React.Component);
+
+Select.defaultProps = {
+  disabled: false,
+  error: null,
+  width: 100
+};
+Select.propTypes = {
+  disabled: PropTypes.bool,
+  error: PropTypes.string,
+  id: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  width: PropTypes.number
+};
+
+export { Button, Checkbox, CheckboxGroup, Dictionary, ErrorText, Fieldset, Legend as Label, Label as Legend, SelectionContainer, TextInput, InputContainer, Link, Table, Select };
 //# sourceMappingURL=index.es.js.map
