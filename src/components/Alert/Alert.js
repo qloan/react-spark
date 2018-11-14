@@ -8,7 +8,7 @@ import { sparkComponentClassName } from '../../util'
 class Alert extends Component {
   static defaultProps = {
     variant: ALERT_VARIANTS.INFORMATION,
-    dismissible: true,
+    dismissible: true
   }
 
   static propTypes = {
@@ -44,20 +44,16 @@ class Alert extends Component {
   }
 
   render = () => {
-    const { alertType, dismissible, idString, analyticsString, variant, ...rest} = this.props
+    const { alertType, dismissible, idString, analyticsString, variant, ...rest } = this.props
 
     if (dismissible) {
       return null
     }
 
     return <div
-      // role={alertType}
-      // dismissible={dismissible}
-      // id={idString}
-      // analyticsString={analyticsString}
       className={this.className}
       {...rest}
-      >
+    >
     </div>
   }
 }
