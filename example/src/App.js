@@ -82,7 +82,7 @@ export default class App extends Component {
     ]
     return (
       <div>
-        <h2>Select:</h2>
+        <h3>Select:</h3>
 
         <Select
           id='select-normal'
