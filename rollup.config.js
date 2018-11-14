@@ -14,6 +14,7 @@ export default {
     {
       file: pkg.main,
       format: 'cjs',
+      name: 'react-spark',
       sourcemap: true
     }
   ],
