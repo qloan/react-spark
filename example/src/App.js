@@ -6,10 +6,12 @@ import {
   TextInput,
   Link,
   Table,
-  Select
+  Select,
+  Alert
 } from 'react-spark'
 
 import './App.scss'
+// import Alert from 'alert-symbolic' 
 
 export default class App extends Component {
   renderButtons = () => (
@@ -394,6 +396,17 @@ export default class App extends Component {
     </>
   );
 
+renderAlerts = () => (<>
+  <p>Information:</p>
+  <Alert alertType='info' idString='alert-info-1' analyticsString='object.action.event'>This is an info Spark alert!</Alert>
+  
+  <p>Success:</p>
+  <Alert alertType='success' idString='alert-success-1' analyticsString='object.action.event'>Successful alert</Alert>
+
+  <p>Fail:</p>
+  <Alert alertType='fail' idString='alert-fail-1' analyticsString='object.action.event'>Failed alert</Alert>
+</>)
+
   render = () => {
     return (
       <div className='sprk-o-Box'>
@@ -422,7 +435,17 @@ export default class App extends Component {
 
         <h2>Dictionaries</h2>
         {this.renderDictionaries()}
-      </div>
+
+        <hr />
+
+        <h2>Inputs</h2>
+        {this.renderInputs()}
+
+        <hr />
+
+        <h2>Alerts</h2>
+        {this.renderAlerts()}
+        </div>
     )
   };
 }

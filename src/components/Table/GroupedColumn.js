@@ -13,11 +13,11 @@ class GroupedColumn extends React.Component {
   }
 
   render = () => {
-    const {children} = this.props
+    const { children } = this.props
 
     const className = sparkClassName('base', 'Table', null, 'grouped-column')
 
-    return (<th className={className}>{children}</th>)
+    return <th className={className}>{children}</th>
   }
 }
 
