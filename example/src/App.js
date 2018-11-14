@@ -6,10 +6,12 @@ import {
   TextInput,
   InputContainer,
   Link,
-  Table
+  Table,
+  Alert
 } from 'react-spark'
 
 import './App.scss'
+// import Alert from 'alert-symbolic' 
 
 export default class App extends Component {
   renderButtons = () => (<>
@@ -392,6 +394,17 @@ export default class App extends Component {
     </Table>
   </>)
 
+renderAlerts = () => (<>
+  <p>Information:</p>
+  <Alert alertType='info' dismissible={true} idString='alert-info-1' analyticsString='object.action.event'>This is important information</Alert>
+  
+  <p>Success:</p>
+  <Alert alertType='success' dismissible={true} idString='alert-info-1' analyticsString='object.action.event'>Successful information</Alert>
+
+  <p>Fail:</p>
+  <Alert alertType='fail' dismissible={true} idString='alert-info-1' analyticsString='object.action.event'>Failed information</Alert>
+</>)
+
   render = () => {
     return (<>
       <h1>React Spark</h1>
@@ -418,6 +431,9 @@ export default class App extends Component {
 
       <h2>Inputs</h2>
       {this.renderInputs()}
+
+      <h2>Alerts</h2>
+      {this.renderAlerts()}
     </>)
   }
 }

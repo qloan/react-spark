@@ -1,22 +1,21 @@
-import classNames from "classnames";
+import classNames from 'classnames'
 import { alerts } from '@sparkdesignsystem/spark-core/components/alerts'
-import PropTypes from "prop-types";
-import React, {Component} from "react";
-import ALERT_VARIANTS from "./variants";
-import { sparkClassName, sparkComponentClassName } from "../../util";
+import PropTypes from 'prop-types'
+import React, {Component} from 'react'
+import ALERT_VARIANTS from './variants'
+import { sparkComponentClassName } from '../../util'
 
 class Alert extends Component {
   static defaultProps = {
-    variant: "information",
+    variant: ALERT_VARIANTS.INFORMATION,
     dismissible: true,
-    isDisplayed: true
-  };
+  }
 
   static propTypes = {
-    type: PropTypes.string.isRequired,
-    isDisplayed: PropTypes.bool.isRequired,
-    children: PropTypes.node.isRequired,
-    dismissible: PropTypes.bool,
+    alertType: PropTypes.string.isRequired,
+    dismissible: PropTypes.bool.isRequired,
+    idString: PropTypes.string.isRequired,
+    analyticsString: PropTypes.string.isRequired,
     variant: PropTypes.oneOf(Object.values(ALERT_VARIANTS))
   }
 
@@ -31,36 +30,36 @@ class Alert extends Component {
     return classNames(
       baseClass,
       {
-        [variantClass]: variant !== ALERT_VARIANTS.INFORMATION,
+        [variantClass]: variant !== ALERT_VARIANTS.INFORMATION
       }
     )
   }
 
   componentDidMount = () => {
-    const {isDisplayed} = this.props
+    const {dismissible} = this.props
 
-    if (isDisplayed) {
+    if (dismissible) {
       alerts(this.ref.current, {})
     }
   }
 
   render = () => {
-      const {isDisplayed, type, inline, children} = this.props;
-      const base = `alert alert-${type}`;
-      const className = inline ? `${base} inline` : base;
+    const { alertType, dismissible, idString, analyticsString, variant, ...rest} = this.props
 
-      if (!isDisplayed) {
-          return null;
-      }
-
-      return <div
-            id="alertContainer"
-            className={this.className}
-            role="alert">
-            {children}
-        </div>;
-
+    if (dismissible) {
+      return null
     }
+
+    return <div
+      // role={alertType}
+      // dismissible={dismissible}
+      // id={idString}
+      // analyticsString={analyticsString}
+      className={this.className}
+      {...rest}
+      >
+    </div>
+  }
 }
 
-export default Alert;
+export default Alert

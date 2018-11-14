@@ -1,7 +1,9 @@
-import Alert from "./Alert";
+export { default } from './Alert'
 
-const alertTypes = {
-    baseAlert: Alert 
-};
+// import Alert from './Alert'
 
-export default alertTypes;
+// const alertTypes = {
+//   baseAlert: Alert
+// }
+
+// export default alertTypes

@@ -1,5 +1,5 @@
 export default {
-  INFORMATION: "info",
-  SUCCESS: "success",
-  FAIL: "fail"
-};
+  INFORMATION: 'info',
+  SUCCESS: 'success',
+  FAIL: 'fail'
+}
