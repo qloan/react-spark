@@ -15,11 +15,6 @@ export default {
       file: pkg.main,
       format: 'cjs',
       sourcemap: true
-    },
-    {
-      file: pkg.module,
-      format: 'es',
-      sourcemap: true
     }
   ],
   plugins: [
@@ -31,9 +26,16 @@ export default {
     svgr(),
     babel({
       exclude: 'node_modules/**',
-      plugins: [ 'external-helpers' ]
+      plugins: ['external-helpers']
     }),
     resolve(),
     commonjs()
-  ]
+  ],
+  watch: {
+    chokidar: {
+      usePolling: true,
+      interval: 1000
+    },
+    include: 'src/**/*'
+  }
 }
