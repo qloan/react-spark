@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   Button,
   Dictionary,
@@ -7,27 +7,35 @@ import {
   Link,
   Table,
   Select
-} from 'react-spark'
+} from 'react-spark';
 
-import './App.scss'
+import './App.scss';
 
 export default class App extends Component {
   renderButtons = () => (
     <>
       <p>Default:</p>
-      <Button>Default</Button>
+      <Button text='Default'>Default</Button>
 
       <p>Secondary:</p>
-      <Button variant={'secondary'}>Secondary</Button>
+      <Button variant={'secondary'} text='Secondary'>
+        Secondary
+      </Button>
 
       <p>Secondary:</p>
-      <Button variant={'tertiary'}>Tertiary</Button>
+      <Button variant={'tertiary'} text='Tertiary'>
+        Tertiary
+      </Button>
 
       <p>Disabled:</p>
-      <Button disabled>Disabled</Button>
+      <Button disabled text='Disabled'>
+        Disabled
+      </Button>
 
       <p>Spinner:</p>
-      <Button spinner>Spinner</Button>
+      <Button spinner text='Spinner'>
+        Spinner
+      </Button>
 
       <p>Full Width at Small Viewport:</p>
       <Button
@@ -365,7 +373,9 @@ export default class App extends Component {
             <td>Data</td>
             <td>Data</td>
             <td>
-              <Button variant='secondary'>Learn More</Button>
+              <Button variant='secondary' text='Learn More'>
+                Learn More
+              </Button>
             </td>
           </tr>
           <tr>
@@ -373,7 +383,9 @@ export default class App extends Component {
             <td>Data</td>
             <td>Data</td>
             <td>
-              <Button variant='secondary'>Learn More</Button>
+              <Button variant='secondary' text='Learn More'>
+                Learn More
+              </Button>
             </td>
           </tr>
           <tr>
@@ -384,9 +396,8 @@ export default class App extends Component {
               <button
                 className='sprk-c-Button sprk-c-Button--secondary'
                 type='button'
-              >
-                Learn More
-              </button>
+                text='Learn More'
+              />
             </td>
           </tr>
         </tbody>
