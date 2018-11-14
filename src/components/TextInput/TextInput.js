@@ -30,7 +30,7 @@ class TextInput extends React.Component {
     bindUIEvents(this.inputRef.current)
   }
 
-  get textInputClassName() {
+  get className() {
     const {error, width} = this.props
 
     const baseClass = sparkClassName('base', 'TextInput')
@@ -52,7 +52,7 @@ class TextInput extends React.Component {
     return (
       <InputContainer id={id} label={label}>
         <input
-          className={this.textInputClassName}
+          className={this.className}
           disabled={disabled}
           id={id}
           data-id={id}

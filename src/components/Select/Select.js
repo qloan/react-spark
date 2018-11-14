@@ -27,15 +27,13 @@ class Select extends React.Component {
     bindUIEvents(this.selectRef.current)
   };
 
-  get selectClassName() {
-    const { error, width } = this.props
+  get className() {
+    const { width } = this.props
 
     const baseClass = sparkClassName('base', 'Select')
-    const errorClass = sparkClassName('base', 'TextInput', null, 'error')
     const widthClass = sparkWidthClassName(width)
 
     return classNames(baseClass, {
-      [errorClass]: error,
       [widthClass]: width
     })
   }
@@ -46,7 +44,7 @@ class Select extends React.Component {
     return (
       <InputContainer id={id} label={label}>
         <select
-          className={sparkClassName('base', 'Select')}
+          className={this.className}
           id={id}
           data-id={id}
           ref={this.selectRef}
@@ -60,7 +58,11 @@ class Select extends React.Component {
         </select>
         {/* todo: create svg component */}
         <svg
-          className={sparkClassName('component', 'Icon') + ' ' + sparkClassName('base', 'SelectContainer', 'icon')}
+          className={
+            sparkClassName('component', 'Icon') +
+            ' ' +
+            sparkClassName('base', 'SelectContainer', 'icon')
+          }
           viewBox='0 0 64 64'
         >
           <use xlinkHref='#chevron-down' />

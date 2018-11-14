@@ -67,6 +67,7 @@ class Button extends React.Component {
       disabled,
       fullWidthAtSmallViewport,
       spinner,
+      variant,
       ...rest
     } = this.props
 
@@ -75,7 +76,7 @@ class Button extends React.Component {
         className={this.className}
         disabled={disabled}
         ref={this.ref}
-        variant='secondary'
+        variant={variant}
         {...rest}
       >
         {children}
