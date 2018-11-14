@@ -396,13 +396,13 @@ export default class App extends Component {
 
 renderAlerts = () => (<>
   <p>Information:</p>
-  <Alert alertType='info' dismissible={true} idString='alert-info-1' analyticsString='object.action.event'>This is important information</Alert>
+  <Alert alertType='info' idString='alert-info-1' analyticsString='object.action.event'>This is an info Spark alert!</Alert>
   
   <p>Success:</p>
-  <Alert alertType='success' dismissible={true} idString='alert-info-1' analyticsString='object.action.event'>Successful information</Alert>
+  <Alert alertType='success' idString='alert-success-1' analyticsString='object.action.event'>Successful alert</Alert>
 
   <p>Fail:</p>
-  <Alert alertType='fail' dismissible={true} idString='alert-info-1' analyticsString='object.action.event'>Failed information</Alert>
+  <Alert alertType='fail' idString='alert-fail-1' analyticsString='object.action.event'>Failed alert</Alert>
 </>)
 
   render = () => {

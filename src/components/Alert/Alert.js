@@ -1,38 +1,34 @@
-import classNames from 'classnames'
 import { alerts } from '@sparkdesignsystem/spark-core/components/alerts'
 import PropTypes from 'prop-types'
-import React, {Component} from 'react'
+import React from 'react'
 import ALERT_VARIANTS from './variants'
 import { sparkComponentClassName } from '../../util'
 
-class Alert extends Component {
+class Alert extends React.Component {
   static defaultProps = {
-    variant: ALERT_VARIANTS.INFORMATION,
+    alertType: ALERT_VARIANTS.INFORMATION,
     dismissible: true
   }
 
   static propTypes = {
-    alertType: PropTypes.string.isRequired,
+    alertType: PropTypes.oneOf(Object.values(ALERT_VARIANTS)),
     dismissible: PropTypes.bool.isRequired,
     idString: PropTypes.string.isRequired,
     analyticsString: PropTypes.string.isRequired,
-    variant: PropTypes.oneOf(Object.values(ALERT_VARIANTS))
+    children: PropTypes.node.isRequired
   }
 
   ref = React.createRef()
 
   get className() {
-    const { variant } = this.props
+    const { alertType } = this.props
 
     const baseClass = sparkComponentClassName('Alert')
-    const variantClass = sparkComponentClassName('Alert', null, variant)
-
-    return classNames(
+    const variantClass = sparkComponentClassName('Alert', null, alertType)
+    return [
       baseClass,
-      {
-        [variantClass]: variant !== ALERT_VARIANTS.INFORMATION
-      }
-    )
+      variantClass
+    ].join(' ')
   }
 
   componentDidMount = () => {
@@ -44,16 +40,13 @@ class Alert extends Component {
   }
 
   render = () => {
-    const { alertType, dismissible, idString, analyticsString, variant, ...rest } = this.props
-
-    if (dismissible) {
-      return null
-    }
+    const { alertType, dismissible, idString, analyticsString, children, variant, ...rest } = this.props
 
     return <div
       className={this.className}
       {...rest}
     >
+      {children}
     </div>
   }
 }
