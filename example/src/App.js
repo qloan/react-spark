@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Button,
   Dictionary,
@@ -7,33 +7,33 @@ import {
   Link,
   Table,
   Select
-} from 'react-spark';
+} from 'react-spark'
 
-import './App.scss';
+import './App.scss'
 
 export default class App extends Component {
   renderButtons = () => (
     <>
       <p>Default:</p>
-      <Button text='Default'>Default</Button>
+      <Button >Default</Button>
 
       <p>Secondary:</p>
-      <Button variant={'secondary'} text='Secondary'>
+      <Button variant={'secondary'}>
         Secondary
       </Button>
 
       <p>Secondary:</p>
-      <Button variant={'tertiary'} text='Tertiary'>
+      <Button variant={'tertiary'} >
         Tertiary
       </Button>
 
       <p>Disabled:</p>
-      <Button disabled text='Disabled'>
+      <Button disabled >
         Disabled
       </Button>
 
       <p>Spinner:</p>
-      <Button spinner text='Spinner'>
+      <Button spinner >
         Spinner
       </Button>
 
@@ -373,9 +373,7 @@ export default class App extends Component {
             <td>Data</td>
             <td>Data</td>
             <td>
-              <Button variant='secondary' text='Learn More'>
-                Learn More
-              </Button>
+              <Button variant='secondary'>Learn More</Button>
             </td>
           </tr>
           <tr>
@@ -383,9 +381,7 @@ export default class App extends Component {
             <td>Data</td>
             <td>Data</td>
             <td>
-              <Button variant='secondary' text='Learn More'>
-                Learn More
-              </Button>
+              <Button variant='secondary'>Learn More</Button>
             </td>
           </tr>
           <tr>
@@ -396,8 +392,9 @@ export default class App extends Component {
               <button
                 className='sprk-c-Button sprk-c-Button--secondary'
                 type='button'
-                text='Learn More'
-              />
+              >
+                Learn More
+              </button>
             </td>
           </tr>
         </tbody>
