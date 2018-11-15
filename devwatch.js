@@ -1,7 +1,7 @@
 module.exports = {
   watchers: function(Monitor) {
     return [
-      new Monitor('start', {
+      new Monitor('start:webpack', {
         command: '/usr/local/bin/npm run',
         cwd: '/react-spark',
         logFile: '/log/react-spark.log',
