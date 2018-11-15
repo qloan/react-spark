@@ -15,19 +15,27 @@ export default class App extends Component {
   renderButtons = () => (
     <>
       <p>Default:</p>
-      <Button>Default</Button>
+      <Button >Default</Button>
 
       <p>Secondary:</p>
-      <Button variant={'secondary'}>Secondary</Button>
+      <Button variant={'secondary'}>
+        Secondary
+      </Button>
 
       <p>Secondary:</p>
-      <Button variant={'tertiary'}>Tertiary</Button>
+      <Button variant={'tertiary'} >
+        Tertiary
+      </Button>
 
       <p>Disabled:</p>
-      <Button disabled>Disabled</Button>
+      <Button disabled >
+        Disabled
+      </Button>
 
       <p>Spinner:</p>
-      <Button spinner>Spinner</Button>
+      <Button spinner >
+        Spinner
+      </Button>
 
       <p>Full Width at Small Viewport:</p>
       <Button
