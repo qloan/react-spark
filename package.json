@@ -25,6 +25,7 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
+    "babel-loader": "7.1.2",
     "@svgr/rollup": "^2.4.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.5",
@@ -59,7 +60,6 @@
     "dist"
   ],
   "dependencies": {
-    "babel-loader": "7.1.2",
     "@sparkdesignsystem/spark-core": "^3.0.0",
     "@sparkdesignsystem/spark-extras": "^2.0.1",
     "classnames": "^2.2.6",
