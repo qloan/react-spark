@@ -15,35 +15,49 @@ import {
 
 import './App.scss'
 
-let isVisible = false
-
 export default class App extends Component {
-  renderButtons = () => (
-    <>
-      <p>Default:</p>
-      <Button>Default</Button>
+  constructor(props) {
+    super(props)
+    this.state = {
+      spin: false,
+      showModal: false
+    }
+  }
+  renderButtons () {
+    return (
+      <>
+        <p>Default:</p>
+        <Button>Default</Button>
 
-      <p>Secondary:</p>
-      <Button variant={'secondary'}>Secondary</Button>
+        <p>Secondary:</p>
+        <Button variant={'secondary'}>Secondary</Button>
 
-      <p>Secondary:</p>
-      <Button variant={'tertiary'}>Tertiary</Button>
+        <p>Secondary:</p>
+        <Button variant={'tertiary'}>Tertiary</Button>
 
-      <p>Disabled:</p>
-      <Button disabled>Disabled</Button>
+        <p>Disabled:</p>
+        <Button disabled>Disabled</Button>
 
-      <p>Spinner:</p>
-      <Button spinner>Spinner</Button>
+        <p>Spinner:</p>
+        <button
+          onClick={() => {
+            this.setState({spin: !this.state.spin})
+          }}
+        >
+          spin
+        </button>
+        <Button spinner={this.state.spin}>Spinner</Button>
 
-      <p>Full Width at Small Viewport:</p>
-      <Button
-        fullWidthAtSmallViewport
-        onClick={() => console.log('full-width button clicked')}
-      >
-        Button
-      </Button>
-    </>
-  );
+        <p>Full Width at Small Viewport:</p>
+        <Button
+          fullWidthAtSmallViewport
+          onClick={() => console.log('full-width button clicked')}
+        >
+          Button
+        </Button>
+      </>
+    )
+  };
 
   renderDictionaries = () => (
     <>
@@ -423,55 +437,84 @@ export default class App extends Component {
       </div>
     )
   };
-  renderAlerts = () => (<>
-    <p>Information:</p>
-    <Alert alertType='info' dismissible={false} idString='alert-info-1' analyticsString='object.action.event'>This is an info Spark alert!</Alert>
+  renderAlerts = () => (
+    <>
+      <p>Information:</p>
+      <Alert
+        alertType='info'
+        dismissible={false}
+        idString='alert-info-1'
+        analyticsString='object.action.event'
+      >
+        This is an info Spark alert!
+      </Alert>
 
-    <p>Success:</p>
-    <Alert alertType='success' dismissible={true} idString='alert-success-1' analyticsString='object.action.event'>Successful alert</Alert>
+      <p>Success:</p>
+      <Alert
+        alertType='success'
+        dismissible={true}
+        idString='alert-success-1'
+        analyticsString='object.action.event'
+      >
+        Successful alert
+      </Alert>
 
-    <p>Fail:</p>
-    <Alert alertType='fail' dismissible={true} idString='alert-fail-1' analyticsString='object.action.event'>Failed alert</Alert>
-  </>);
+      <p>Fail:</p>
+      <Alert
+        alertType='fail'
+        dismissible={true}
+        idString='alert-fail-1'
+        analyticsString='object.action.event'
+      >
+        Failed alert
+      </Alert>
+    </>
+  );
 
-  renderModals = () => (<>
-    <p>Choice:</p>
-    <button
-      className='sprk-c-Button'
-      type='button'
-      // onClick={isVisible = !isVisible}
-      onClick={Modal.toggleChoiceModal}
-    >
+  renderModals () {
+    return <div>
+      <p>Choice:</p>
+      <button
+        className='sprk-c-Button'
+        type='button'
+
+        onClick={() => {
+          this.setState({showModal: !this.state.showModal})
+        }}
+      >
       Open Choice Modal
-    </button>
-    <Modal modalType='choice' isVisible={isVisible} idString='modal-choice-1'>This is some content that is in a Modal.
-      There will also be a way to close the modal.</Modal>
+      </button>
+      <Modal type='choice' show={this.state.showModal}>
+      This is some content that is in a Modal. There will also be a way to
+      close the modal.
+      </Modal>
 
-    <p>Info:</p>
-    <button
-      className='sprk-c-Button'
-      type='button'
-      onClick='toggleInfoModal($e)'
-    >
-      Open Info Modal
-    </button>
-    <Modal modalType='info' idString='modal-info-1' isVisible={isVisible} hide='toggleInfoModal($event)'>This is some content for info Modal.
-      There will also be a way to close the modal.</Modal>
+      {/* <p>Info:</p>
+  <button
+    className='sprk-c-Button'
+    type='button'
+    onClick='toggleInfoModal($e)'
+  >
+    Open Info Modal
+  </button>
+  <Modal modalType='info' idString='modal-info-1' isVisible={isVisible} hide='toggleInfoModal($event)'>This is some content for info Modal.
+    There will also be a way to close the modal.</Modal>
 
-    <p>Wait:</p>
-    <button
-      className='sprk-c-Button'
-      type='button'
-      onClick='toggleWaitModal($e)'
-    >
-      Open Wait Modal
-    </button>
-    <Modal modalType='wait' idString='modal-wait-1' isVisible={isVisible} title='Please wait...' hide='toggleInfoModal($event)'>This type of modal can't be closed by the user but will close shortly
-      for demonstration purposes.
-    </Modal>
-  </>);
+  <p>Wait:</p>
+  <button
+    className='sprk-c-Button'
+    type='button'
+    onClick='toggleWaitModal($e)'
+  >
+    Open Wait Modal
+  </button>
+  <Modal modalType='wait' idString='modal-wait-1' isVisible={isVisible} title='Please wait...' hide='toggleInfoModal($event)'>This type of modal can't be closed by the user but will close shortly
+    for demonstration purposes.
+  </Modal> */}
+    </div>
+  };
 
-  render = () => {
+  render() {
     return (
       <div className='sprk-o-Box'>
         <h1>React Spark</h1>

@@ -48,7 +48,7 @@ class Masthead extends React.Component {
   }
 
   toggleMobile() {
-    this.setState({
+    this.setState({ 
       showMobileNav: !this.state.showMobileNav
     })
     console.log(this.state.showMobileNav)
