@@ -54,7 +54,7 @@ class Modal extends React.Component {
     const {show} = this.props
 
     if (show) {
-      // modals(this.mainRef.current, {})
+      // NOT WORKING HERE
       // showModal(this.modalRef.current, this.maskRef.current, this.mainRef.current)
     } else {
       // hideModal(this.modalRef.current, this.maskRef.current, this.mainRef.current)
