@@ -1,4 +1,4 @@
-import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/textInput'
+import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/selectInput'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
