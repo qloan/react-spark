@@ -1,3 +1,4 @@
+/* eslint-disable no-return-assign */
 import React, { Component } from 'react'
 import {
   Button,
@@ -7,10 +8,14 @@ import {
   Link,
   Table,
   Select,
-  Masthead
+  Masthead,
+  Alert,
+  Modal
 } from 'react-spark'
 
 import './App.scss'
+
+let isVisible = false
 
 export default class App extends Component {
   renderButtons = () => (
@@ -418,6 +423,53 @@ export default class App extends Component {
       </div>
     )
   };
+  renderAlerts = () => (<>
+    <p>Information:</p>
+    <Alert alertType='info' dismissible={false} idString='alert-info-1' analyticsString='object.action.event'>This is an info Spark alert!</Alert>
+
+    <p>Success:</p>
+    <Alert alertType='success' dismissible={true} idString='alert-success-1' analyticsString='object.action.event'>Successful alert</Alert>
+
+    <p>Fail:</p>
+    <Alert alertType='fail' dismissible={true} idString='alert-fail-1' analyticsString='object.action.event'>Failed alert</Alert>
+  </>);
+
+  renderModals = () => (<>
+    <p>Choice:</p>
+    <button
+      className='sprk-c-Button'
+      type='button'
+      // onClick={isVisible = !isVisible}
+      onClick={Modal.toggleChoiceModal}
+    >
+      Open Choice Modal
+    </button>
+    <Modal modalType='choice' isVisible={isVisible} idString='modal-choice-1'>This is some content that is in a Modal.
+      There will also be a way to close the modal.</Modal>
+
+    <p>Info:</p>
+    <button
+      className='sprk-c-Button'
+      type='button'
+      onClick='toggleInfoModal($e)'
+    >
+      Open Info Modal
+    </button>
+    <Modal modalType='info' idString='modal-info-1' isVisible={isVisible} hide='toggleInfoModal($event)'>This is some content for info Modal.
+      There will also be a way to close the modal.</Modal>
+
+    <p>Wait:</p>
+    <button
+      className='sprk-c-Button'
+      type='button'
+      onClick='toggleWaitModal($e)'
+    >
+      Open Wait Modal
+    </button>
+    <Modal modalType='wait' idString='modal-wait-1' isVisible={isVisible} title='Please wait...' hide='toggleInfoModal($event)'>This type of modal can't be closed by the user but will close shortly
+      for demonstration purposes.
+    </Modal>
+  </>);
 
   render = () => {
     return (
@@ -449,6 +501,21 @@ export default class App extends Component {
 
         <h2>Dictionaries</h2>
         {this.renderDictionaries()}
+
+        <hr />
+
+        <h2>Inputs</h2>
+        {this.renderInputs()}
+
+        <hr />
+
+        <h2>Alerts</h2>
+        {this.renderAlerts()}
+
+        <hr />
+
+        <h2>Modals</h2>
+        {this.renderModals()}
       </div>
     )
   };
