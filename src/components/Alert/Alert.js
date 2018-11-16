@@ -7,7 +7,7 @@ import { sparkComponentClassName } from '../../util'
 class Alert extends React.Component {
   static defaultProps = {
     alertType: ALERT_VARIANTS.INFORMATION,
-    dismissible: true
+    dismissible: false
   }
 
   static propTypes = {
