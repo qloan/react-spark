@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import LINK_VARIANTS from './variants'
-import { sparkBaseClassName } from '../../util'
+import { sparkClassName } from '../../util'
 
 class Link extends React.Component {
   static defaultProps = {
@@ -23,9 +23,9 @@ class Link extends React.Component {
   get className() {
     const {disabled, variant} = this.props
 
-    const baseClass = sparkBaseClassName('Link')
-    const disabledClass = sparkBaseClassName('Link', null, 'disabled')
-    const variantClass = sparkBaseClassName('Link', null, variant)
+    const baseClass = sparkClassName('base', 'Link')
+    const disabledClass = sparkClassName('base', 'Link', null, 'disabled')
+    const variantClass = sparkClassName('base', 'Link', null, variant)
 
     return classNames(
       baseClass,

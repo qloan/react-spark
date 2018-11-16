@@ -12,7 +12,10 @@ export { default as InputContainer } from './components/InputContainer'
 export { default as Link } from './components/Link'
 export { default as Table } from './components/Table'
 export { default as Select } from './components/Select'
+<<<<<<< HEAD
 export { default as Alert } from './components/Alert'
 export { default as Modal } from './components/Modal'
 export { default as ModalHeader } from './components/Modal/ModalHeader'
 export { default as ModalBody } from './components/Modal/ModalBody'
+=======
+>>>>>>> a2666b696640165673783db529dcf183286ef116

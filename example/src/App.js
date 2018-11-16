@@ -7,6 +7,7 @@ import {
   TextInput,
   Link,
   Table,
+<<<<<<< HEAD
   Select,
   Alert,
   Modal
@@ -15,6 +16,12 @@ import {
 import './App.scss'
 
 let isVisible = false
+=======
+  Select
+} from 'react-spark'
+
+import './App.scss'
+>>>>>>> a2666b696640165673783db529dcf183286ef116
 
 export default class App extends Component {
   renderButtons = () => (
