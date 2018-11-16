@@ -1,4 +1,4 @@
-import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/textInput'
+import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/selectInput'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -52,8 +52,8 @@ class Select extends React.Component {
           data-sprk-input='select'
           disabled={disabled}
         >
-          {options.map(({ value, text }) => (
-            <option value={value}>{text}</option>
+          {options.map(({ value, text }, index) => (
+            <option value={value} key={index}>{text}</option>
           ))}
         </select>
         {/* todo: create svg component */}

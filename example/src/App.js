@@ -6,7 +6,8 @@ import {
   TextInput,
   Link,
   Table,
-  Select
+  Select,
+  Masthead
 } from 'react-spark'
 
 import './App.scss'
@@ -15,27 +16,19 @@ export default class App extends Component {
   renderButtons = () => (
     <>
       <p>Default:</p>
-      <Button >Default</Button>
+      <Button>Default</Button>
 
       <p>Secondary:</p>
-      <Button variant={'secondary'}>
-        Secondary
-      </Button>
+      <Button variant={'secondary'}>Secondary</Button>
 
       <p>Secondary:</p>
-      <Button variant={'tertiary'} >
-        Tertiary
-      </Button>
+      <Button variant={'tertiary'}>Tertiary</Button>
 
       <p>Disabled:</p>
-      <Button disabled >
-        Disabled
-      </Button>
+      <Button disabled>Disabled</Button>
 
       <p>Spinner:</p>
-      <Button spinner >
-        Spinner
-      </Button>
+      <Button spinner>Spinner</Button>
 
       <p>Full Width at Small Viewport:</p>
       <Button
@@ -402,30 +395,55 @@ export default class App extends Component {
     </>
   );
 
+  renderMasthead = () => {
+    return (
+      <div>
+        <h3>Masthead:</h3>
+        <Masthead
+          id='main-nav'
+          logo={
+            <img
+              src='https://seeklogo.com/images/G/generic-logo-EE8C8E244E-seeklogo.com.png'
+              alt='Logo'
+              height='100'
+            />
+          }
+          links={[
+            { title: 'Personal Loans', href: '#nogog' },
+            { title: 'About Us', href: '#sdfg' },
+            { title: 'Review', href: '#dfg' }
+          ]}
+        />
+      </div>
+    )
+  };
+
   render = () => {
     return (
       <div className='sprk-o-Box'>
+        <h1>React Spark</h1>
+        <hr />
+
+        <h2>Navs</h2>
+        {this.renderMasthead()}
+
+        <hr />
+
         <h2>Inputs</h2>
         {this.renderSelect()}
         {this.renderInputs()}
-
-        <h1>React Spark</h1>
-
         <hr />
 
         <h2>Button</h2>
         {this.renderButtons()}
-
         <hr />
 
         <h2>Link</h2>
         {this.renderLinks()}
-
         <hr />
 
         <h2>Tables</h2>
         {this.renderTables()}
-
         <hr />
 
         <h2>Dictionaries</h2>
