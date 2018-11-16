@@ -1,3 +1,5 @@
 export default {
-  INFORMATION: 'info'
+  INFORMATION: 'info',
+  SUCCESS: 'success',
+  FAIL: 'fail'
 }
