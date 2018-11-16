@@ -1,13 +1,13 @@
-import classNames from 'classnames';
+import classNames from 'classnames'
 import {
   setSpinning,
   cancelSpinning
-} from '@sparkdesignsystem/spark-core/components/spinners';
-import PropTypes from 'prop-types';
-import React from 'react';
+} from '@sparkdesignsystem/spark-core/es5/spinners'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import BUTTON_VARIANTS from './variants';
-import { sparkClassName, sparkComponentClassName } from '../../util';
+import BUTTON_VARIANTS from './variants'
+import { sparkClassName, sparkComponentClassName } from '../../util'
 
 class Button extends React.Component {
   static defaultProps = {
@@ -15,7 +15,7 @@ class Button extends React.Component {
     fullWidthAtSmallViewport: false,
     spinner: false,
     variant: 'primary'
-  };
+  }
 
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -23,9 +23,9 @@ class Button extends React.Component {
     fullWidthAtSmallViewport: PropTypes.bool,
     spinner: PropTypes.bool,
     variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS))
-  };
+  }
 
-  ref = React.createRef();
+  ref = React.createRef()
 
   get className() {
     const { disabled, fullWidthAtSmallViewport, variant } = this.props
@@ -51,7 +51,7 @@ class Button extends React.Component {
     if (this.props.spinner) {
       setSpinning(this.ref.current, {})
     }
-  };
+  }
 
   componentDidUpdate = prevProps => {
     const { props, ref } = this
@@ -62,7 +62,7 @@ class Button extends React.Component {
         cancelSpinning(ref.current, {})
       }
     }
-  };
+  }
 
   render = () => {
     const {
@@ -82,7 +82,7 @@ class Button extends React.Component {
         {children}
       </button>
     )
-  };
+  }
 }
 
 export default Button

@@ -11,50 +11,60 @@ class Select extends React.Component {
     disabled: false,
     error: null,
     width: 100
-  };
+  }
 
-  selectRef = React.createRef();
+  selectRef = React.createRef()
 
   static propTypes = {
     disabled: PropTypes.bool,
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+    options: PropTypes.arrayOf(PropTypes.object),
     width: PropTypes.number
-  };
+  }
 
   componentDidMount = () => {
     bindUIEvents(this.selectRef.current)
-  };
+  }
 
   get className() {
-    const { width } = this.props
+    const { error, width } = this.props
 
     const baseClass = sparkClassName('base', 'Select')
+    const errorClass = sparkClassName('base', 'TextInput', null, 'error')
     const widthClass = sparkWidthClassName(width)
 
     return classNames(baseClass, {
+      [errorClass]: error,
       [widthClass]: width
     })
   }
 
   render = () => {
-    const { disabled, id, label, options } = this.props
+    const { disabled, error, id, label, name, options, ...rest } = this.props
 
     return (
-      <InputContainer id={id} label={label}>
+      <InputContainer error={error} id={id} label={label}>
         <select
-          className={this.className}
-          id={id}
-          data-id={id}
-          ref={this.selectRef}
           aria-describedby={`${id}--error-container`}
+          className={this.className}
+          data-id={id}
           data-sprk-input='select'
           disabled={disabled}
+          id={id}
+          name={name}
+          ref={this.selectRef}
+          {...rest}
         >
-          {options.map(({ value, text }) => (
-            <option value={value}>{text}</option>
-          ))}
+          {options.map(
+            ({ disabled = false, value, selected = false, text }) => (
+              <option disabled={disabled} value={value} selected={selected}>
+                {text}
+              </option>
+            )
+          )}
         </select>
         {/* todo: create svg component */}
         <svg
@@ -69,7 +79,7 @@ class Select extends React.Component {
         </svg>
       </InputContainer>
     )
-  };
+  }
 }
 
 export default Select
