@@ -401,6 +401,7 @@ export default class App extends Component {
         <h3>Masthead:</h3>
         <Masthead
           id='main-nav'
+          logoHref='#nogo'
           logo={
             <img
               src='https://seeklogo.com/images/G/generic-logo-EE8C8E244E-seeklogo.com.png'
@@ -411,7 +412,7 @@ export default class App extends Component {
           links={[
             { title: 'Personal Loans', href: '#nogog' },
             { title: 'About Us', href: '#sdfg' },
-            { title: 'Review', href: '#dfg' }
+            { title: 'Reviews', href: '#dfg' }
           ]}
         />
       </div>

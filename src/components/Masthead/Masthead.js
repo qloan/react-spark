@@ -55,7 +55,7 @@ class Masthead extends React.Component {
   }
 
   render = () => {
-    const { logo, links } = this.props
+    const { logo, links, logoHref } = this.props
 
     return (
       <header className='sprk-c-Masthead' role='banner' idstring='masthead-1'>
@@ -68,7 +68,7 @@ class Masthead extends React.Component {
               }}
             />
             <div className='sprk-c-Masthead__logo'>
-              <a href='#nogo'>
+              <a href={logoHref}>
                 <div>{logo}</div>
                 <span className='sprk-u-ScreenReaderText'>
                   Go to the home page
