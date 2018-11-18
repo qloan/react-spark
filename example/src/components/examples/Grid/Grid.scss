@@ -1,7 +1,10 @@
 // Styling taken from Spark's docs:
 // https://sparkdesignsystem.com/patterns/fundamentals/grid
-.sprk-o-Stack__item {
-  background-color: rgba(253, 108, 69, 0.4);
-  border: 2px solid #fc6c45;
-  padding: 2rem;
+
+.react-spark-grid-examples {
+  .sprk-o-Stack__item {
+    background-color: rgba(253, 108, 69, 0.4);
+    border: 2px solid #fc6c45;
+    padding: 2rem;
+  }
 }
