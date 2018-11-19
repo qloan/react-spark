@@ -1,5 +1,5 @@
 /* eslint-disable no-return-assign */
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   Button,
   Dictionary,
@@ -11,9 +11,9 @@ import {
   Masthead,
   Alert,
   Modal
-} from 'react-spark'
+} from 'react-spark';
 
-import './App.scss'
+import './App.scss';
 
 export default class App extends Component {
   constructor(props) {
@@ -23,7 +23,7 @@ export default class App extends Component {
       showModal: false
     }
   }
-  renderButtons () {
+  renderButtons() {
     return (
       <>
         <p>Default:</p>
@@ -41,7 +41,7 @@ export default class App extends Component {
         <p>Spinner:</p>
         <button
           onClick={() => {
-            this.setState({spin: !this.state.spin})
+            this.setState({ spin: !this.state.spin })
           }}
         >
           spin
@@ -57,7 +57,7 @@ export default class App extends Component {
         </Button>
       </>
     )
-  };
+  }
 
   renderDictionaries = () => (
     <>
@@ -425,7 +425,14 @@ export default class App extends Component {
           links={[
             { title: 'Personal Loans', href: '#nogog' },
             { title: 'About Us', href: '#sdfg' },
-            { title: 'Reviews', href: '#dfg' }
+            { title: 'Reviews', href: '#dfg' },
+            { title: 'Sign In', href: '#dfg', button: true },
+            {
+              title: 'See My Options',
+              href: '#dgjrty',
+              button: true,
+              callToAction: true
+            }
           ]}
         />
       </div>
@@ -465,55 +472,56 @@ export default class App extends Component {
     </>
   );
 
-  renderModals () {
-    return <div>
-      <p>Choice:</p>
-      <button
-        className='sprk-c-Button'
-        type='button'
+  renderModals() {
+    return (
+      <div>
+        <p>Choice:</p>
+        <button
+          className='sprk-c-Button'
+          type='button'
+          onClick={() => {
+            this.setState({ showModal: !this.state.showModal })
+          }}
+        >
+          Open Choice Modal
+        </button>
+        <Modal type='choice' show={this.state.showModal}>
+          This is some content that is in a Modal. There will also be a way to
+          close the modal.
+        </Modal>
 
-        onClick={() => {
-          this.setState({showModal: !this.state.showModal})
-        }}
-      >
-      Open Choice Modal
-      </button>
-      <Modal type='choice' show={this.state.showModal}>
-      This is some content that is in a Modal. There will also be a way to
-      close the modal.
-      </Modal>
+        <p>Info:</p>
+        <button
+          className='sprk-c-Button'
+          type='button'
+          onClick={() => {
+            this.setState({ showModal: !this.state.showModal })
+          }}
+        >
+          Open Info Modal
+        </button>
+        <Modal modalType='info' show={this.state.showModal}>
+          This is some content for info Modal. There will also be a way to close
+          the modal.
+        </Modal>
 
-      <p>Info:</p>
-      <button
-        className='sprk-c-Button'
-        type='button'
-        onClick={() => {
-          this.setState({showModal: !this.state.showModal})
-        }}
-      >
-      Open Info Modal
-      </button>
-      <Modal modalType='info' show={this.state.showModal}>
-      This is some content for info Modal.
-      There will also be a way to close the modal.
-      </Modal>
-
-      <p>Wait:</p>
-      <button
-        className='sprk-c-Button'
-        type='button'
-        onClick={() => {
-          this.setState({showModal: !this.state.showModal})
-        }}
-      >
-        Open Wait Modal
-      </button>
-      <Modal modalType='wait' show={this.state.showModal}>
-      This type of modal can't be closed by the user but will close shortly
-      for demonstration purposes.
-      </Modal>
-    </div>
-  };
+        <p>Wait:</p>
+        <button
+          className='sprk-c-Button'
+          type='button'
+          onClick={() => {
+            this.setState({ showModal: !this.state.showModal })
+          }}
+        >
+          Open Wait Modal
+        </button>
+        <Modal modalType='wait' show={this.state.showModal}>
+          This type of modal can't be closed by the user but will close shortly
+          for demonstration purposes.
+        </Modal>
+      </div>
+    )
+  }
 
   render() {
     return (
@@ -562,5 +570,5 @@ export default class App extends Component {
         {this.renderModals()}
       </div>
     )
-  };
+  }
 }
