@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Alerts from './components/examples/Alerts'
 import Buttons from './components/examples/Buttons'
+import Cards from './components/examples/Cards'
 import Dictionaries from './components/examples/Dictionaries'
 import Grid from './components/examples/Grid'
 import Inputs from './components/examples/Inputs'
@@ -25,6 +26,7 @@ export default class App extends Component {
 
           <Route path='/alerts' component={Alerts} />
           <Route path='/buttons' component={Buttons} />
+          <Route path='/cards' component={Cards} />
           <Route path='/dictionaries' component={Dictionaries} />
           <Route path='/grid' component={Grid} />
           <Route path='/inputs' component={Inputs} />

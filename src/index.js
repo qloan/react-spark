@@ -1,5 +1,6 @@
 export { default as Box } from './components/Box'
 export { default as Button } from './components/Button'
+export { default as Card } from './components/Card'
 export { default as CenteredColumn } from './components/CenteredColumn'
 export { default as Checkbox } from './components/Checkbox'
 export { default as CheckboxGroup } from './components/CheckboxGroup'
