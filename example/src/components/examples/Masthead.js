@@ -11,7 +11,14 @@ const MastheadExample = () => (<>
     links={[
       {title: 'Personal Loans', href: '#nogog'},
       {title: 'About Us', href: '#sdfg'},
-      {title: 'Reviews', href: '#dfg'}
+      {title: 'Reviews', href: '#dfg'},
+      {title: 'Sign In', href: '#dfg', button: true},
+      {
+        title: 'See My Options',
+        href: '#dgjrty',
+        button: true,
+        callToAction: true
+      }
     ]}
   />
 </>)
