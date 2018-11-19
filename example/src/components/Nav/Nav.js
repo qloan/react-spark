@@ -12,6 +12,7 @@ const Nav = () => (<>
       <li><NavLink to='/dictionaries'>Dictionaries</NavLink></li>
       <li><NavLink to='/grid'>Grid</NavLink></li>
       <li><NavLink to='/inputs'>Inputs</NavLink></li>
+      <li><NavLink to='/layout'>Layout</NavLink></li>
       <li><NavLink to='/links'>Links</NavLink></li>
       <li><NavLink to='/masthead'>Masthead</NavLink></li>
       <li><NavLink to='/modals'>Modals</NavLink></li>

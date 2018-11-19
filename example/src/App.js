@@ -6,6 +6,7 @@ import Buttons from './components/examples/Buttons'
 import Dictionaries from './components/examples/Dictionaries'
 import Grid from './components/examples/Grid'
 import Inputs from './components/examples/Inputs'
+import Layout from './components/examples/Layout'
 import Links from './components/examples/Links'
 import Masthead from './components/examples/Masthead'
 import Modals from './components/examples/Modals'
@@ -27,6 +28,7 @@ export default class App extends Component {
           <Route path='/dictionaries' component={Dictionaries} />
           <Route path='/grid' component={Grid} />
           <Route path='/inputs' component={Inputs} />
+          <Route path='/layout' component={Layout} />
           <Route path='/links' component={Links} />
           <Route path='/masthead' component={Masthead} />
           <Route path='/modals' component={Modals} />
