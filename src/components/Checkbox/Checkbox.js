@@ -6,11 +6,13 @@ import { sparkBaseClassName } from '../../util/index'
 
 class Checkbox extends React.Component {
   static defaultProps = {
+    checked: false,
     disabled: false
   }
 
   static propTypes = {
     containerId: PropTypes.string.isRequired,
+    checked: PropTypes.bool,
     disabled: PropTypes.bool,
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired
@@ -24,21 +26,20 @@ class Checkbox extends React.Component {
   }
 
   render = () => {
-    const {containerId, disabled, id, label} = this.props
+    const { containerId, checked, disabled, id, label, ...rest } = this.props
 
     return (
-      <SelectionContainer>
+      <SelectionContainer label={label}>
         <input
           aria-describedby={`${containerId}--error-container`}
+          checked={checked}
           data-id={id}
           disabled={disabled}
           id={id}
           type='checkbox'
+          {...rest}
         />
-        <label
-          className={this.labelClassName}
-          htmlFor={id}
-        >
+        <label className={this.labelClassName} htmlFor={id}>
           {label}
         </label>
       </SelectionContainer>
