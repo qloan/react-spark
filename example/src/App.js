@@ -489,28 +489,35 @@ export default class App extends Component {
       close the modal.
       </Modal>
 
-      {/* <p>Info:</p>
-  <button
-    className='sprk-c-Button'
-    type='button'
-    onClick='toggleInfoModal($e)'
-  >
-    Open Info Modal
-  </button>
-  <Modal modalType='info' idString='modal-info-1' isVisible={isVisible} hide='toggleInfoModal($event)'>This is some content for info Modal.
-    There will also be a way to close the modal.</Modal>
+      <p>Info:</p>
+      <button
+        className='sprk-c-Button'
+        type='button'
+        onClick={() => {
+          this.setState({showModal: !this.state.showModal})
+        }}
+      >
+      Open Info Modal
+      </button>
+      <Modal modalType='info' show={this.state.showModal}>
+      This is some content for info Modal.
+      There will also be a way to close the modal.
+      </Modal>
 
-  <p>Wait:</p>
-  <button
-    className='sprk-c-Button'
-    type='button'
-    onClick='toggleWaitModal($e)'
-  >
-    Open Wait Modal
-  </button>
-  <Modal modalType='wait' idString='modal-wait-1' isVisible={isVisible} title='Please wait...' hide='toggleInfoModal($event)'>This type of modal can't be closed by the user but will close shortly
-    for demonstration purposes.
-  </Modal> */}
+      <p>Wait:</p>
+      <button
+        className='sprk-c-Button'
+        type='button'
+        onClick={() => {
+          this.setState({showModal: !this.state.showModal})
+        }}
+      >
+        Open Wait Modal
+      </button>
+      <Modal modalType='wait' show={this.state.showModal}>
+      This type of modal can't be closed by the user but will close shortly
+      for demonstration purposes.
+      </Modal>
     </div>
   };
 

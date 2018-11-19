@@ -19,9 +19,15 @@ class ModalBody extends React.Component {
   }
 
   render = () => {
-    return <div
-      className={this.className}
-    />
+    return (
+      <div className={this.className}
+      >
+        <p
+          className='sprk-b-TypeBodyTwo'
+          id='modalChoiceContent'
+        />
+      </div>
+    )
   }
 }
 

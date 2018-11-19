@@ -10,6 +10,7 @@ import { sparkComponentClassName } from '../../util'
 import sparkClassName from '../../util/sparkClassName'
 import ModalHeader from './ModalHeader'
 import ModalBody from './ModalBody'
+import ModalFooter from './ModalFooter'
 
 class Modal extends Component {
   static defaultProps = {
@@ -93,6 +94,7 @@ class Modal extends Component {
       children,
       variant,
       body,
+      footer,
       ...rest
     } = this.props
 
@@ -118,6 +120,11 @@ class Modal extends Component {
             )} />
             {children}
             <ModalBody>{body}</ModalBody>
+            <ModalFooter close={() => hideModal(
+              this.modalRef.current,
+              this.maskRef.current,
+              this.mainRef.current
+            )}>{footer}</ModalFooter>
           </div>
         </div>
         <div
