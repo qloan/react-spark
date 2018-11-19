@@ -1,24 +1,13 @@
-// import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/'
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import { sparkClassName, sparkWidthClassName } from '../../util'
-import Hamburger from './Hamburger'
-import Navbar from './Navbar'
-import NavbarMobile from './NavbarMobile'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { sparkClassName } from '../../util';
+import { masthead } from '@sparkdesignsystem/spark-core/components/masthead';
+import Hamburger from './Hamburger';
+import Navbar from './Navbar';
+import NavbarMobile from './NavbarMobile';
 
 class Masthead extends React.Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      showMobileNav: false
-    }
-    window.onresize = () => {
-      this.setState({
-        showMobileNav: false
-      })
-    }
-  }
   static defaultProps = {
     links: []
   };
@@ -26,55 +15,47 @@ class Masthead extends React.Component {
   inputRef = React.createRef();
 
   static propTypes = {
-    logo: PropTypes.object.isRequired,
+    logoPath: PropTypes.object.isRequired,
     links: PropTypes.array
   };
 
   componentDidMount = () => {
-    // bindUIEvents(this.inputRef.current)
+    masthead()
   };
 
   get className() {
     const baseClass = sparkClassName('base', 'WideNavigation')
-
     return classNames(baseClass)
   }
 
   get mobileClassName() {
-    const hide = this.state.showMobileNav ? '' : ' sprk-u-Display--none'
-    const baseClass = `sprk-c-Masthead__narrow-navigation-container ${hide}`
-
+    const baseClass = `sprk-c-Masthead__narrow-navigation-container sprk-u-Display--none`
     return classNames(baseClass)
   }
 
-  toggleMobile() {
-    this.setState({ 
-      showMobileNav: !this.state.showMobileNav
-    })
-    console.log(this.state.showMobileNav)
-  }
-
   render = () => {
-    const { logo, links, logoHref } = this.props
+    const { logoPath, links, logoHref } = this.props
 
     return (
-      <header className='sprk-c-Masthead' role='banner' idstring='masthead-1'>
+      <header
+        className='sprk-c-Masthead'
+        role='banner'
+        idstring='masthead-1'
+        data-sprk-main
+      >
         <div className='sprk-c-Masthead__content'>
           <div className='sprk-c-Masthead__top-row'>
-            <Hamburger
-              navTrigger={Masthead.navTrigger}
-              onClick={() => {
-                this.toggleMobile()
-              }}
-            />
             <div className='sprk-c-Masthead__logo'>
               <a href={logoHref}>
-                <div>{logo}</div>
+                <div>
+                  <img src={logoPath} alt='Logo' height='60' width='262' />
+                </div>
                 <span className='sprk-u-ScreenReaderText'>
                   Go to the home page
                 </span>
               </a>
             </div>
+            <Hamburger navTrigger={Masthead.navTrigger} />
             <div className='sprk-c-Masthead__secondary-nav'>
               <Navbar links={links} id='navigation-secondary-desktop' />
             </div>
