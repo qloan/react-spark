@@ -1,3 +1,4 @@
+export { default as breakpointWordToLetter } from './breakpointWordToLetter'
 export { default as sparkBaseClassName } from './sparkBaseClassName'
 export { default as sparkComponentClassName } from './sparkComponentClassName'
 export { default as sparkObjectClassName } from './sparkObjectClassName'
