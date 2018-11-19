@@ -1,5 +1,5 @@
 /* eslint-disable no-return-assign */
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import {
   Button,
   Dictionary,
@@ -10,18 +10,13 @@ import {
   Select,
   Masthead,
   Alert,
-<<<<<<< HEAD
   Modal,
   ModalChoice,
   ModalInfo,
   ModalWait
 } from 'react-spark'
-=======
-  Modal
-} from 'react-spark';
->>>>>>> f3ed684ea668c8f02541c2825343f6bd4e485ad4
 
-import './App.scss';
+import './App.scss'
 
 export default class App extends Component {
   constructor(props) {
@@ -490,89 +485,44 @@ export default class App extends Component {
           className='sprk-c-Button'
           type='button'
           onClick={() => {
-            this.setState({ showModal: !this.state.showModal })
+            this.setState({ showChoiceModal: !this.state.showChoiceModal })
           }}
         >
-          Open Choice Modal
+        Open Choice Modal
         </button>
-        <Modal type='choice' show={this.state.showModal}>
-          This is some content that is in a Modal. There will also be a way to
-          close the modal.
-        </Modal>
+        <ModalChoice type='choice' show={this.state.showChoiceModal}>
+        This is some content within a Modal. There will also be a way to
+        close the modal.
+        </ModalChoice>
 
-<<<<<<< HEAD
-        onClick={() => {
-          this.setState({showChoiceModal: !this.state.showChoiceModal})
-        }}
-      >
-      Open Choice Modal
-      </button>
-      <ModalChoice type='choice' show={this.state.showChoiceModal}>
-      This is some content within a Modal. There will also be a way to
-      close the modal.
-      </ModalChoice>
-
-      <p>Info:</p>
-      <button
-        className='sprk-c-Button'
-        type='button'
-        onClick={() => {
-          this.setState({showInfoModal: !this.state.showInfoModal})
-        }}
-      >
-      Open Info Modal
-      </button>
-      <ModalInfo type='info' show={this.state.showInfoModal}>
-      This is some content for the Information Modal.
-      </ModalInfo>
-
-      <p>Wait:</p>
-      <button
-        className='sprk-c-Button'
-        type='button'
-        onClick={() => {
-          this.setState({showWaitModal: !this.state.showWaitModal})
-        }}
-      >
-        Open Wait Modal
-      </button>
-      <ModalWait type='wait' show={this.state.showWaitModal} />
-    </div>
-  };
-=======
         <p>Info:</p>
         <button
           className='sprk-c-Button'
           type='button'
           onClick={() => {
-            this.setState({ showModal: !this.state.showModal })
+            this.setState({showInfoModal: !this.state.showInfoModal})
           }}
         >
-          Open Info Modal
+        Open Info Modal
         </button>
-        <Modal modalType='info' show={this.state.showModal}>
-          This is some content for info Modal. There will also be a way to close
-          the modal.
-        </Modal>
+        <ModalInfo type='info' show={this.state.showInfoModal}>
+        This is some content for the Information Modal.
+        </ModalInfo>
 
         <p>Wait:</p>
         <button
           className='sprk-c-Button'
           type='button'
           onClick={() => {
-            this.setState({ showModal: !this.state.showModal })
+            this.setState({showWaitModal: !this.state.showWaitModal})
           }}
         >
           Open Wait Modal
         </button>
-        <Modal modalType='wait' show={this.state.showModal}>
-          This type of modal can't be closed by the user but will close shortly
-          for demonstration purposes.
-        </Modal>
+        <ModalWait type='wait' show={this.state.showWaitModal} />
       </div>
     )
-  }
->>>>>>> f3ed684ea668c8f02541c2825343f6bd4e485ad4
+  };
 
   render() {
     return (
