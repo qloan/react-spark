@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from 'react'
 import MODAL_VARIANTS from './variants'
 import PropTypes from 'prop-types'
+import classNames from 'classnames'
 import {
   modals,
   showModal,
@@ -14,18 +15,19 @@ import ModalFooter from './ModalFooter'
 
 class Modal extends Component {
   static defaultProps = {
-    type: MODAL_VARIANTS.INFO
+    type: MODAL_VARIANTS.CHOICE,
+    variant: 'wait'
   };
 
   static propTypes = {
     type: PropTypes.oneOf(Object.values(MODAL_VARIANTS)),
-    confirmText: PropTypes.string.isRequired,
-    cancelText: PropTypes.string.isRequired,
-    confirmAnalyticsString: PropTypes.string.isRequired,
-    idString: PropTypes.string.isRequired,
-    onHide: PropTypes.func.isRequired,
-    confirmClick: PropTypes.func.isRequired,
-    cancelClick: PropTypes.func.isRequired,
+    confirmText: PropTypes.string,
+    cancelText: PropTypes.string,
+    confirmAnalyticsString: PropTypes.string,
+    idString: PropTypes.string,
+    onHide: PropTypes.func,
+    confirmClick: PropTypes.func,
+    cancelClick: PropTypes.func,
     show: PropTypes.bool.isRequired,
     children: PropTypes.node
   };
@@ -35,18 +37,28 @@ class Modal extends Component {
   modalRef = React.createRef();
 
   get className() {
+    const { variant } = this.props
     const baseClass =
-      sparkComponentClassName('Modal') +
-      ' ' +
+      sparkComponentClassName('Modal') + ' ' +
       sparkClassName('utility', 'Display', null, 'none')
-    return [
-      baseClass
-      // variantClass
-    ].join(' ')
+
+    const variantClass = sparkComponentClassName('Modal') + ' ' +
+      sparkClassName('component', 'Modal', null, variant) + ' ' +
+      sparkClassName('utility', 'Display', null, 'none')
+
+    // return [
+    //   baseClass
+    //   // variantClass
+    // ].join(' ')
+
+    return classNames(baseClass, {
+      [variantClass]: variant !== MODAL_VARIANTS.CHOICE
+    })
   }
 
   componentDidMount = () => {
     const { show } = this.props
+
     if (show) {
       showModal(
         this.modalRef.current,
@@ -81,6 +93,10 @@ class Modal extends Component {
     }
   };
 
+  modalChoiceLogic = () => {
+
+  }
+
   render = () => {
     const {
       type,
@@ -98,7 +114,50 @@ class Modal extends Component {
       ...rest
     } = this.props
 
+    if (type === MODAL_VARIANTS.CHOICE) {
+      console.log('CHOICE')
+    } else if (type === MODAL_VARIANTS.INFO) {
+      console.log('INFO')
+    } else if (type === MODAL_VARIANTS.WAIT) {
+      console.log('WAIT')
+    }
+
     return (
+    // <div ref={this.mainRef}>
+    //   <div className={this.className}
+    //     {...rest}
+    //     ref={this.modalRef}
+    //     role='dialog'
+    //     tabIndex='-1'
+    //     aria-labelledby='modalChoiceHeading'
+    //     aria-modal='true'
+    //     aria-describedby='modalChoiceContent'
+    //     data-sprk-modal='exampleChoiceModal'
+    //     data-id='modal-choice-1'
+    //   >
+    //     <div className='sprk-o-Stack sprk-o-Stack--large'>
+    //       <ModalHeader close={() => hideModal(
+    //         this.modalRef.current,
+    //         this.maskRef.current,
+    //         this.mainRef.current
+    //       )} />
+    //       {children}
+    //       <ModalBody>{body}</ModalBody>
+    //       <ModalFooter close={() => hideModal(
+    //         this.modalRef.current,
+    //         this.maskRef.current,
+    //         this.mainRef.current
+    //       )}>{footer}</ModalFooter>
+    //     </div>
+    //   </div>
+    //   <div
+    //     data-sprk-modal-mask='true'
+    //     className='sprk-c-ModalMask sprk-u-Display--none'
+    //     tabIndex='-1'
+    //     ref={this.maskRef}
+    //   />
+    // </div>
+
       <div ref={this.mainRef}>
         <div
           className={this.className}
@@ -106,11 +165,11 @@ class Modal extends Component {
           ref={this.modalRef}
           role='dialog'
           tabIndex='-1'
-          aria-labelledby='modalChoiceHeading'
+          aria-labelledby='modalInfoHeading'
           aria-modal='true'
-          aria-describedby='modalChoiceContent'
-          data-sprk-modal='exampleChoiceModal'
-          data-id='modal-choice-1'
+          aria-describedby='modalInfoContent'
+          data-sprk-modal='exampleInfoModal'
+          data-id='modal-info-1'
         >
           <div className='sprk-o-Stack sprk-o-Stack--large'>
             <ModalHeader close={() => hideModal(
@@ -120,11 +179,6 @@ class Modal extends Component {
             )} />
             {children}
             <ModalBody>{body}</ModalBody>
-            <ModalFooter close={() => hideModal(
-              this.modalRef.current,
-              this.maskRef.current,
-              this.mainRef.current
-            )}>{footer}</ModalFooter>
           </div>
         </div>
         <div
@@ -134,6 +188,50 @@ class Modal extends Component {
           ref={this.maskRef}
         />
       </div>
+
+    // <div ref={this.mainRef}>
+    //   <div
+    //     className={this.className}
+    //     {...rest}
+    //     ref={this.modalRef}
+    //     // className='sprk-c-Modal sprk-c-Modal--wait sprk-u-Display--none'
+    //     role='dialog'
+    //     tabIndex='-1'
+    //     aria-labelledby='modalWaitHeading'
+    //     aria-modal='true'
+    //     aria-describedby='modalWaitContent'
+    //     data-sprk-modal='exampleWaitModal'
+    //     data-sprk-modal-type='wait'
+    //     data-id='modal-wait-1'
+    //   >
+    //     <div className='sprk-o-Stack sprk-o-Stack--large'>
+    //       <ModalHeader close={() => hideModal(
+    //         this.modalRef.current,
+    //         this.maskRef.current,
+    //         this.mainRef.current
+    //       )} />
+    //       <div className='sprk-o-Stack__item sprk-c-Modal__header'>
+    //         <h2 className='sprk-c-Modal__heading sprk-b-TypeDisplayFive' id='modalWaitHeading'>
+    //         Please Wait...
+    //         </h2>
+    //       </div>
+    //       {children}
+    //       {/* <ModalBody>{body}</ModalBody> */}
+    //       <div className='sprk-o-Stack__item sprk-c-Modal__body sprk-o-Stack sprk-o-Stack--medium'>
+    //         <div className='sprk-o-Stack__item sprk-c-Spinner sprk-c-Spinner--circle sprk-c-Spinner--large sprk-c-Spinner--dark' />
+    //         <p className='sprk-o-Stack__item sprk-b-TypeBodyTwo' id='modalWaitContent'>
+    //         This modal will close shortly for demonstration purposes.
+    //         </p>
+    //       </div>
+    //     </div>
+    //   </div>
+    //   <div
+    //     data-sprk-modal-mask='true'
+    //     className='sprk-c-ModalMask sprk-u-Display--none'
+    //     tabIndex='-1'
+    //     ref={this.maskRef}
+    //   />
+    // </div>
     )
   };
 }

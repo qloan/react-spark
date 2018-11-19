@@ -10,7 +10,10 @@ import {
   Select,
   Masthead,
   Alert,
-  Modal
+  Modal,
+  ModalChoice,
+  ModalInfo,
+  ModalWait
 } from 'react-spark'
 
 import './App.scss'
@@ -20,7 +23,9 @@ export default class App extends Component {
     super(props)
     this.state = {
       spin: false,
-      showModal: false
+      showChoiceModal: false,
+      showInfoModal: false,
+      showWaitModal: false
     }
   }
   renderButtons () {
@@ -479,45 +484,41 @@ export default class App extends Component {
         type='button'
 
         onClick={() => {
-          this.setState({showModal: !this.state.showModal})
+          this.setState({showChoiceModal: !this.state.showChoiceModal})
         }}
       >
       Open Choice Modal
       </button>
-      <Modal type='choice' show={this.state.showModal}>
-      This is some content that is in a Modal. There will also be a way to
+      <ModalChoice type='choice' show={this.state.showChoiceModal}>
+      This is some content within a Modal. There will also be a way to
       close the modal.
-      </Modal>
+      </ModalChoice>
 
       <p>Info:</p>
       <button
         className='sprk-c-Button'
         type='button'
         onClick={() => {
-          this.setState({showModal: !this.state.showModal})
+          this.setState({showInfoModal: !this.state.showInfoModal})
         }}
       >
       Open Info Modal
       </button>
-      <Modal modalType='info' show={this.state.showModal}>
-      This is some content for info Modal.
-      There will also be a way to close the modal.
-      </Modal>
+      <ModalInfo type='info' show={this.state.showInfoModal}>
+      This is some content for the Information Modal.
+      </ModalInfo>
 
       <p>Wait:</p>
       <button
         className='sprk-c-Button'
         type='button'
         onClick={() => {
-          this.setState({showModal: !this.state.showModal})
+          this.setState({showWaitModal: !this.state.showWaitModal})
         }}
       >
         Open Wait Modal
       </button>
-      <Modal modalType='wait' show={this.state.showModal}>
-      This type of modal can't be closed by the user but will close shortly
-      for demonstration purposes.
-      </Modal>
+      <ModalWait type='wait' show={this.state.showWaitModal} />
     </div>
   };
 

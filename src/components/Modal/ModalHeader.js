@@ -1,13 +1,12 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { sparkComponentClassName } from '../../util';
-import sparkClassName from '../../util/sparkClassName';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { sparkComponentClassName } from '../../util'
 
 class ModalHeader extends React.Component {
   static defaultProps = {};
 
   static propTypes = {
-    title: PropTypes.string
+    close: PropTypes.func
   };
 
   get className() {
