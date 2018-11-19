@@ -2,17 +2,15 @@ import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/textInput'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
+import InputContainer from './../InputContainer/InputContainer'
 
-import ErrorText from '../ErrorText'
-import {
-  sparkClassName,
-  sparkWidthClassName
-} from '../../util'
+import { sparkClassName, sparkWidthClassName } from '../../util'
 
 class TextInput extends React.Component {
   static defaultProps = {
     disabled: false,
     error: null,
+    type: 'text',
     width: 100
   }
 
@@ -30,62 +28,35 @@ class TextInput extends React.Component {
     bindUIEvents(this.inputRef.current)
   }
 
-  get textInputClassName() {
-    const {error, width} = this.props
+  get className() {
+    const { error, width } = this.props
 
     const baseClass = sparkClassName('base', 'TextInput')
     const errorClass = sparkClassName('base', 'TextInput', null, 'error')
     const widthClass = sparkWidthClassName(width)
 
-    return classNames(
-      baseClass,
-      {
-        [errorClass]: error,
-        [widthClass]: width
-      }
-    )
-  }
-
-  renderErrorContent = () => {
-    const {error} = this.props
-
-    if (!error) return null
-
-    return (
-      // TODO: Icon SVG
-      <ErrorText>{error}</ErrorText>
-    )
+    return classNames(baseClass, {
+      [errorClass]: error,
+      [widthClass]: width
+    })
   }
 
   render = () => {
-    const {disabled, id, label} = this.props
+    const { disabled, error, id, label, type, ...rest } = this.props
 
     return (
-      <div className={sparkClassName('utility', 'JavaScript')}>
+      <InputContainer error={error} id={id} label={label}>
         <input
-          className={this.textInputClassName}
+          className={this.className}
           disabled={disabled}
           id={id}
-          type='text'
+          data-id={id}
+          type={type}
           aria-describedby={`${id}--error-container`}
           ref={this.inputRef}
+          {...rest}
         />
-        <div
-          className={sparkClassName('base', 'InputContainer', 'input-border')}
-        />
-        <label
-          htmlFor={id}
-          className={sparkClassName('base', 'Label')}
-        >
-          {label}
-        </label>
-        <div
-          className={sparkClassName('base', 'ErrorContainer')}
-          id={`${id}--error-container`}
-        >
-          {this.renderErrorContent()}
-        </div>
-      </div>
+      </InputContainer>
     )
   }
 }

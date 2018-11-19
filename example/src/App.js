@@ -1,10 +1,13 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
+import Alerts from './components/examples/Alerts'
 import Buttons from './components/examples/Buttons'
 import Dictionaries from './components/examples/Dictionaries'
 import Inputs from './components/examples/Inputs'
 import Links from './components/examples/Links'
+import Masthead from './components/examples/Masthead'
+import Modals from './components/examples/Modals'
 import Nav from './components/Nav'
 import Tables from './components/examples/Tables'
 
@@ -18,10 +21,13 @@ export default class App extends Component {
           <h1>React Spark</h1>
           <Nav />
 
+          <Route path='/alerts' component={Alerts} />
           <Route path='/buttons' component={Buttons} />
           <Route path='/dictionaries' component={Dictionaries} />
           <Route path='/inputs' component={Inputs} />
           <Route path='/links' component={Links} />
+          <Route path='/masthead' component={Masthead} />
+          <Route path='/modals' component={Modals} />
           <Route path='/tables' component={Tables} />
         </>
       </Router>

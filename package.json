@@ -5,9 +5,7 @@
   "author": "ptrkcsk",
   "license": "UNLICENSED",
   "repository": "ptrkcsk/react-spark",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
-  "jsnext:main": "dist/index.es.js",
+  "main": "dist/react-spark-bundle.js",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
@@ -16,10 +14,13 @@
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "build": "rollup -c",
+    "build:webpack": "NODE_ENV='dev' webpack",
     "start": "rollup -c -w",
+    "start:webpack": "NODE_ENV='dev' webpack --watch",
     "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "postinstall": "npm run build:webpack"
   },
   "peerDependencies": {
     "prop-types": "^15.5.4",
@@ -27,6 +28,7 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
+    "babel-loader": "7.1.2",
     "@svgr/rollup": "^2.4.1",
     "babel-core": "^6.26.3",
     "babel-eslint": "^8.2.5",
@@ -34,6 +36,7 @@
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
+    "chokidar": "^2.0.4",
     "cross-env": "^5.1.4",
     "eslint": "^5.0.1",
     "eslint-config-standard": "^11.0.0",
@@ -54,7 +57,8 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "rollup-plugin-peer-deps-external": "^2.2.0",
     "rollup-plugin-postcss": "^1.6.2",
-    "rollup-plugin-url": "^1.4.0"
+    "rollup-plugin-url": "^1.4.0",
+    "webpack": "^3.9.1"
   },
   "files": [
     "dist"

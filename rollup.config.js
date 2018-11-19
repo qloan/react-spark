@@ -14,11 +14,7 @@ export default {
     {
       file: pkg.main,
       format: 'cjs',
-      sourcemap: true
-    },
-    {
-      file: pkg.module,
-      format: 'es',
+      name: 'react-spark',
       sourcemap: true
     }
   ],
@@ -31,9 +27,16 @@ export default {
     svgr(),
     babel({
       exclude: 'node_modules/**',
-      plugins: [ 'external-helpers' ]
+      plugins: ['external-helpers']
     }),
     resolve(),
     commonjs()
-  ]
+  ],
+  watch: {
+    chokidar: {
+      usePolling: true,
+      interval: 1000
+    },
+    include: 'src/**/*'
+  }
 }
