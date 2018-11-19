@@ -1,11 +1,11 @@
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import { sparkClassName } from '../../util'
-import { masthead } from '@sparkdesignsystem/spark-core/components/masthead'
-import Hamburger from './Hamburger'
-import Navbar from './Navbar'
-import NavbarMobile from './NavbarMobile'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { sparkClassName } from '../../util';
+import { masthead } from '@sparkdesignsystem/spark-core/components/masthead';
+import Hamburger from './Hamburger';
+import Navbar from './Navbar';
+import NavbarMobile from './NavbarMobile';
 
 class Masthead extends React.Component {
   static defaultProps = {
@@ -15,7 +15,8 @@ class Masthead extends React.Component {
   inputRef = React.createRef();
 
   static propTypes = {
-    logoPath: PropTypes.object.isRequired,
+    logoPath: PropTypes.string.isRequired,
+    logoHref: PropTypes.string.isRequired,
     links: PropTypes.array
   };
 
@@ -44,9 +45,7 @@ class Masthead extends React.Component {
               <Hamburger navTrigger={Masthead.navTrigger} />
               <div className='sprk-c-Masthead__logo'>
                 <a href={logoHref}>
-                  <div>
-                    <img src={logoPath} alt='Logo' height='60' width='262' />
-                  </div>
+                  <img src={logoPath} alt='Logo' height='60' width='262' />
                   <span className='sprk-u-ScreenReaderText'>
                     Go to the home page
                   </span>

@@ -17,6 +17,7 @@ class ModalInfo extends Component {
   };
 
   static propTypes = {
+    id: PropTypes.string.isRequired,
     type: PropTypes.oneOf(Object.values(MODAL_VARIANTS)),
     confirmText: PropTypes.string,
     cancelText: PropTypes.string,
@@ -34,18 +35,16 @@ class ModalInfo extends Component {
   modalRef = React.createRef();
 
   get className() {
-    const baseClass =
-      sparkComponentClassName('Modal') + ' ' +
-      sparkClassName('utility', 'Display', null, 'none')
-
-    return [
-      baseClass
-    ].join(' ')
+    const baseClass = [
+      sparkComponentClassName('Modal') +
+        ' ' +
+        sparkClassName('utility', 'Display', null, 'none')
+    ]
+    return [baseClass].join(' ')
   }
 
-  componentDidMount = () => {
+  toggleModal() {
     const { show } = this.props
-
     if (show) {
       showModal(
         this.modalRef.current,
@@ -59,29 +58,22 @@ class ModalInfo extends Component {
         this.mainRef.current
       )
     }
+  }
+
+  componentDidMount = () => {
+    this.toggleModal()
   };
 
   componentDidUpdate = prevProps => {
     const { show } = this.props
     if (prevProps.show !== show) {
-      if (show) {
-        showModal(
-          this.modalRef.current,
-          this.maskRef.current,
-          this.mainRef.current
-        )
-      } else {
-        hideModal(
-          this.modalRef.current,
-          this.maskRef.current,
-          this.mainRef.current
-        )
-      }
+      this.toggleModal()
     }
   };
 
   render = () => {
     const {
+      id,
       type,
       confirmText,
       cancelText,
@@ -101,22 +93,27 @@ class ModalInfo extends Component {
       <div ref={this.mainRef}>
         <div
           className={this.className}
-          {...rest}
           ref={this.modalRef}
           role='dialog'
           tabIndex='-1'
           aria-labelledby='modalInfoHeading'
           aria-modal='true'
           aria-describedby='modalInfoContent'
-          data-sprk-modal='exampleInfoModal'
+          data-sprk-modal={id}
           data-id='modal-info-1'
+          {...rest}
         >
           <div className='sprk-o-Stack sprk-o-Stack--large'>
-            <ModalHeader close={() => hideModal(
-              this.modalRef.current,
-              this.maskRef.current,
-              this.mainRef.current
-            )} />
+            <ModalHeader
+              close={() =>
+                hideModal(
+                  this.modalRef.current,
+                  this.maskRef.current,
+                  this.mainRef.current
+                )
+              }
+              modalName={id}
+            />
             {children}
             <ModalBody>{body}</ModalBody>
           </div>

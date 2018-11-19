@@ -51,19 +51,19 @@ class ModalWait extends Component {
   componentDidMount = () => {
     const { show } = this.props
 
-    if (show) {
-      showModal(
-        this.modalRef.current,
-        this.maskRef.current,
-        this.mainRef.current
-      )
-    } else {
-      hideModal(
-        this.modalRef.current,
-        this.maskRef.current,
-        this.mainRef.current
-      )
-    }
+    // if (show) {
+    //   showModal(
+    //     this.modalRef.current,
+    //     this.maskRef.current,
+    //     this.mainRef.current
+    //   )
+    // } else {
+    //   hideModal(
+    //     this.modalRef.current,
+    //     this.maskRef.current,
+    //     this.mainRef.current
+    //   )
+    // }
   };
 
   componentDidUpdate = prevProps => {
