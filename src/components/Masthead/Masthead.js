@@ -1,11 +1,11 @@
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { sparkClassName } from '../../util';
-import { masthead } from '@sparkdesignsystem/spark-core/components/masthead';
-import Hamburger from './Hamburger';
-import Navbar from './Navbar';
-import NavbarMobile from './NavbarMobile';
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { sparkClassName } from '../../util'
+import { masthead } from '@sparkdesignsystem/spark-core/components/masthead'
+import Hamburger from './Hamburger'
+import Navbar from './Navbar'
+import NavbarMobile from './NavbarMobile'
 
 class Masthead extends React.Component {
   static defaultProps = {
@@ -45,6 +45,7 @@ class Masthead extends React.Component {
       >
         <div className='sprk-c-Masthead__content'>
           <div className='sprk-c-Masthead__top-row'>
+            <Hamburger navTrigger={Masthead.navTrigger} />
             <div className='sprk-c-Masthead__logo'>
               <a href={logoHref}>
                 <div>
@@ -55,7 +56,6 @@ class Masthead extends React.Component {
                 </span>
               </a>
             </div>
-            <Hamburger navTrigger={Masthead.navTrigger} />
             <div className='sprk-c-Masthead__secondary-nav'>
               <Navbar links={links} id='navigation-secondary-desktop' />
             </div>
