@@ -13,8 +13,7 @@ class Hamburger extends React.Component {
   inputRef = React.createRef();
 
   static propTypes = {
-    navTrigger: PropTypes.string.isRequired,
-    onClick: PropTypes.func.isRequired
+    navTrigger: PropTypes.string.isRequired
   };
 
   componentDidMount = () => {
@@ -27,7 +26,7 @@ class Hamburger extends React.Component {
   }
 
   render = () => {
-    const { navTrigger, onClick } = this.props
+    const { navTrigger } = this.props
 
     return (
       <div className='sprk-c-Masthead__hamburger'>
@@ -36,7 +35,6 @@ class Hamburger extends React.Component {
           type='button'
           aria-expanded='false'
           data-sprk-mobile-nav-trigger={navTrigger}
-          onClick={() => onClick()}
         >
           <span className='sprk-u-ScreenReaderText'>Toggle Navigation</span>
           <svg

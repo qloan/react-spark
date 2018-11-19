@@ -1,5 +1,5 @@
 /* eslint-disable no-return-assign */
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import {
   Button,
   Dictionary,
@@ -10,13 +10,18 @@ import {
   Select,
   Masthead,
   Alert,
+<<<<<<< HEAD
   Modal,
   ModalChoice,
   ModalInfo,
   ModalWait
 } from 'react-spark'
+=======
+  Modal
+} from 'react-spark';
+>>>>>>> f3ed684ea668c8f02541c2825343f6bd4e485ad4
 
-import './App.scss'
+import './App.scss';
 
 export default class App extends Component {
   constructor(props) {
@@ -28,7 +33,7 @@ export default class App extends Component {
       showWaitModal: false
     }
   }
-  renderButtons () {
+  renderButtons() {
     return (
       <>
         <p>Default:</p>
@@ -46,7 +51,7 @@ export default class App extends Component {
         <p>Spinner:</p>
         <button
           onClick={() => {
-            this.setState({spin: !this.state.spin})
+            this.setState({ spin: !this.state.spin })
           }}
         >
           spin
@@ -62,7 +67,7 @@ export default class App extends Component {
         </Button>
       </>
     )
-  };
+  }
 
   renderDictionaries = () => (
     <>
@@ -426,17 +431,18 @@ export default class App extends Component {
         <Masthead
           id='main-nav'
           logoHref='#nogo'
-          logo={
-            <img
-              src='https://seeklogo.com/images/G/generic-logo-EE8C8E244E-seeklogo.com.png'
-              alt='Logo'
-              height='100'
-            />
-          }
+          logoPath='https://seeklogo.com/images/G/generic-logo-EE8C8E244E-seeklogo.com.png'
           links={[
             { title: 'Personal Loans', href: '#nogog' },
             { title: 'About Us', href: '#sdfg' },
-            { title: 'Reviews', href: '#dfg' }
+            { title: 'Reviews', href: '#dfg' },
+            { title: 'Sign In', href: '#dfg', button: true },
+            {
+              title: 'See My Options',
+              href: '#dgjrty',
+              button: true,
+              callToAction: true
+            }
           ]}
         />
       </div>
@@ -476,13 +482,25 @@ export default class App extends Component {
     </>
   );
 
-  renderModals () {
-    return <div>
-      <p>Choice:</p>
-      <button
-        className='sprk-c-Button'
-        type='button'
+  renderModals() {
+    return (
+      <div>
+        <p>Choice:</p>
+        <button
+          className='sprk-c-Button'
+          type='button'
+          onClick={() => {
+            this.setState({ showModal: !this.state.showModal })
+          }}
+        >
+          Open Choice Modal
+        </button>
+        <Modal type='choice' show={this.state.showModal}>
+          This is some content that is in a Modal. There will also be a way to
+          close the modal.
+        </Modal>
 
+<<<<<<< HEAD
         onClick={() => {
           this.setState({showChoiceModal: !this.state.showChoiceModal})
         }}
@@ -521,6 +539,40 @@ export default class App extends Component {
       <ModalWait type='wait' show={this.state.showWaitModal} />
     </div>
   };
+=======
+        <p>Info:</p>
+        <button
+          className='sprk-c-Button'
+          type='button'
+          onClick={() => {
+            this.setState({ showModal: !this.state.showModal })
+          }}
+        >
+          Open Info Modal
+        </button>
+        <Modal modalType='info' show={this.state.showModal}>
+          This is some content for info Modal. There will also be a way to close
+          the modal.
+        </Modal>
+
+        <p>Wait:</p>
+        <button
+          className='sprk-c-Button'
+          type='button'
+          onClick={() => {
+            this.setState({ showModal: !this.state.showModal })
+          }}
+        >
+          Open Wait Modal
+        </button>
+        <Modal modalType='wait' show={this.state.showModal}>
+          This type of modal can't be closed by the user but will close shortly
+          for demonstration purposes.
+        </Modal>
+      </div>
+    )
+  }
+>>>>>>> f3ed684ea668c8f02541c2825343f6bd4e485ad4
 
   render() {
     return (
@@ -569,5 +621,5 @@ export default class App extends Component {
         {this.renderModals()}
       </div>
     )
-  };
+  }
 }
