@@ -17,7 +17,6 @@
     "build:webpack": "NODE_ENV='dev' webpack",
     "start": "rollup -c -w",
     "start:webpack": "NODE_ENV='dev' webpack --watch",
-    "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build",
     "postinstall": "npm run build:webpack"

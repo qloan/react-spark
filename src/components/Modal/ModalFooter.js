@@ -1,12 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { sparkComponentClassName } from '../../util'
-import sparkClassName from '../../util/sparkClassName'
 
 class ModalFooter extends React.Component {
   static defaultProps = {};
 
-  static propTypes = {}
+  static propTypes = {
+    close: PropTypes.func
+  }
 
   get className() {
     const baseClass = sparkComponentClassName('Modal', 'footer')

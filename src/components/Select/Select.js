@@ -20,7 +20,7 @@ class Select extends React.Component {
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    name: PropTypes.string.isRequired,
+    name: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.object),
     width: PropTypes.number
   }
