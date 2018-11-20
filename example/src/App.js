@@ -16,6 +16,7 @@ import Nav from './components/Nav'
 import Tables from './components/examples/Tables'
 
 import './App.scss'
+import SparkSVGs from './assets/images/D-SparkCoreIcons.svg'
 
 export default class App extends Component {
   render = () => {
@@ -40,5 +41,5 @@ export default class App extends Component {
         </>
       </Router>
     )
-  }
+  };
 }
