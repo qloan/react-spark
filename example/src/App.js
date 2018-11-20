@@ -5,6 +5,7 @@ import Alerts from './components/examples/Alerts'
 import Buttons from './components/examples/Buttons'
 import Cards from './components/examples/Cards'
 import Dictionaries from './components/examples/Dictionaries'
+import Footer from './components/examples/Footer'
 import Grid from './components/examples/Grid'
 import Inputs from './components/examples/Inputs'
 import Layout from './components/examples/Layout'
@@ -28,6 +29,7 @@ export default class App extends Component {
           <Route path='/buttons' component={Buttons} />
           <Route path='/cards' component={Cards} />
           <Route path='/dictionaries' component={Dictionaries} />
+          <Route path='/footer' component={Footer} />
           <Route path='/grid' component={Grid} />
           <Route path='/inputs' component={Inputs} />
           <Route path='/layout' component={Layout} />
