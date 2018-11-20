@@ -14,16 +14,16 @@ Code examples of working components [`here`](http://half-education.surge.sh)
 See current progress [`here`](https://github.com/qloan/react-spark/projects/1)
 
 ## Available Components
-[`Alerts`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Alerts.js)
-[`Buttons`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Buttons.js)
-[`Cards`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Cards.js)
-[`Dictionaries`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Dictionaries.js)
-[`Inputs`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Inputs.js)
-[`Links`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Links.js)
-[`Masthead`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Masthead.js)
-[`Modals`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Modals.js)
-[`Select`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Select.js)
-[`Tables`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Tables.js)
+* [`Alerts`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Alerts.js)
+* [`Buttons`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Buttons.js)
+* [`Cards`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Cards.js)
+* [`Dictionaries`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Dictionaries.js)
+* [`Inputs`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Inputs.js)
+* [`Links`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Links.js)
+* [`Masthead`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Masthead.js)
+* [`Modals`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Modals.js)
+* [`Select`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Select.js)
+* [`Tables`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Tables.js)
 
 
 ## Development
