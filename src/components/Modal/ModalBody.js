@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { sparkComponentClassName } from '../../util'
-import sparkClassName from '../../util/sparkClassName'
 
 class ModalBody extends React.Component {
   static defaultProps = {
@@ -20,13 +19,7 @@ class ModalBody extends React.Component {
 
   render = () => {
     return (
-      <div className={this.className}
-      >
-        <p
-          className='sprk-b-TypeBodyTwo'
-          id='modalChoiceContent'
-        />
-      </div>
+      <div className={this.className} />
     )
   }
 }

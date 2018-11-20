@@ -1,13 +1,13 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { sparkComponentClassName } from '../../util';
-import sparkClassName from '../../util/sparkClassName';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { sparkComponentClassName } from '../../util'
 
 class ModalHeader extends React.Component {
   static defaultProps = {};
 
   static propTypes = {
-    title: PropTypes.string
+    modalName: PropTypes.string.isRequired,
+    close: PropTypes.func
   };
 
   get className() {
@@ -17,13 +17,13 @@ class ModalHeader extends React.Component {
   }
 
   render = () => {
-    const { close } = this.props
+    const { close, modalName } = this.props
     return (
       <div className={this.className}>
         {/* //todo: use react spark button/ */}
         <button
           className='sprk-c-Modal__icon'
-          data-sprk-modal-cancel='exampleChoiceModal'
+          data-sprk-modal-cancel={modalName}
           aria-label='Close Modal'
           onClick={() => close()}
         >

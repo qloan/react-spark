@@ -17,7 +17,6 @@
     "build:webpack": "NODE_ENV='dev' webpack",
     "start": "rollup -c -w",
     "start:webpack": "NODE_ENV='dev' webpack --watch",
-    "prepare": "npm run build",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "gh-pages -d example/build",
     "postinstall": "npm run build:webpack"
@@ -65,7 +64,7 @@
   ],
   "dependencies": {
     "@sparkdesignsystem/spark-core": "^3.0.0",
-    "@sparkdesignsystem/spark-extras": "^2.0.1",
+    "@sparkdesignsystem/spark-extras": "^3.1.1",
     "classnames": "^2.2.6",
     "prop-types": "^15.6.2"
   }

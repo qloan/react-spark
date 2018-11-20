@@ -1,4 +1,4 @@
-import sparkClassName from '../sparkClassName'
+import sparkClassName from './sparkClassName'
 
 /**
  * @param {string} block
@@ -7,11 +7,11 @@ import sparkClassName from '../sparkClassName'
  * @param {?string} [breakpoint]
  * @return {string}
  */
-const sparkBaseClassName = (
+const sparkObjectClassName = (
   block,
   element = null,
   modifier = null,
   breakpoint = null
-) => sparkClassName('base', block, element, modifier, breakpoint)
+) => sparkClassName('object', block, element, modifier, breakpoint)
 
-export default sparkBaseClassName
+export default sparkObjectClassName
