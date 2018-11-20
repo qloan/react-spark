@@ -1,6 +1,5 @@
 {
   "name": "react-spark-example",
-  "homepage": "https://ptrkcsk.github.io/react-spark",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
@@ -18,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "npm run build; surge public/",
+    "deploy": "npm run build; surge build/",
     "postinstall": "npm run build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
