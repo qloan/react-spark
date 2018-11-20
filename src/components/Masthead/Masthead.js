@@ -11,14 +11,13 @@ class Masthead extends React.Component {
   static defaultProps = {
     links: []
   };
-  static navTrigger = 'mobileNav';
-  inputRef = React.createRef();
 
   static propTypes = {
     logoPath: PropTypes.string.isRequired,
     logoHref: PropTypes.string.isRequired,
     links: PropTypes.array
   };
+  navTrigger = 'mobileNav';
 
   componentDidMount = () => {
     masthead()
@@ -42,7 +41,7 @@ class Masthead extends React.Component {
         <header className='sprk-c-Masthead' role='banner' idstring='masthead-1'>
           <div className='sprk-c-Masthead__content'>
             <div className='sprk-c-Masthead__top-row'>
-              <Hamburger navTrigger={Masthead.navTrigger} />
+              <Hamburger navTrigger={this.navTrigger} />
               <div className='sprk-c-Masthead__logo'>
                 <a href={logoHref}>
                   <img src={logoPath} alt='Logo' height='60' width='262' />
@@ -59,7 +58,7 @@ class Masthead extends React.Component {
           <div className='sprk-c-Masthead__navigation'>
             <div
               className={this.mobileClassName}
-              data-sprk-mobile-nav={Masthead.navTrigger}
+              data-sprk-mobile-nav={this.navTrigger}
             >
               <NavbarMobile links={links} id='navigation-secondary-mobile' />
             </div>

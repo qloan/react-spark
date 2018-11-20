@@ -27,6 +27,11 @@ class Navbar extends React.Component {
     return classNames(base)
   }
 
+  get linkClassName() {
+    const base = 'sprk-c-Accordion__summary'
+    return classNames(base)
+  }
+
   render = () => {
     const { id, links } = this.props
     return (
@@ -39,7 +44,7 @@ class Navbar extends React.Component {
             >
               <a
                 aria-controls='details1'
-                className='sprk-c-Accordion__summary'
+                className={this.linkClassName}
                 href={href}
               >
                 <span className='sprk-b-TypeBodyTwo sprk-c-Accordion__heading '>
