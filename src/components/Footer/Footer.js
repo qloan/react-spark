@@ -1,9 +1,9 @@
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { sparkClassName } from '../../util';
-import Box from '../Box/Box';
-import Stack from '../Stack/Stack';
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { sparkClassName } from '../../util'
+import Box from '../Box/Box'
+import Stack from '../Stack/Stack'
 
 class Footer extends React.Component {
   static defaultProps = {};
@@ -16,7 +16,7 @@ class Footer extends React.Component {
     const { children, id } = this.props
 
     return (
-      <Box color='gray' padding='large'>
+      <Box color='gray' padding='medium'>
         <footer role='contentinfo' data-id={id}>
           <Stack splitAt='tiny'>
             <Stack.Item breakpoint='tiny' width='fifth' />
