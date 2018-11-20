@@ -1,5 +1,5 @@
-import React from 'react';
-import { ModalChoice, ModalInfo, ModalWait } from 'react-spark';
+import React from 'react'
+import { Modal } from 'react-spark'
 
 class Modals extends React.Component {
   state = {
@@ -9,17 +9,12 @@ class Modals extends React.Component {
     showWaitModal: false
   };
 
-  modalChoiceName = 'modalChoiceName';
-  modalWaitName = 'modalWaitName';
-  modalInfoName = 'modalInfo';
-
   render = () => (
     <>
       <h2>Modals</h2>
 
       <p>Choice:</p>
-      {/* todo: need to create a modal toggle button that takes a name and sets the data-sprk-modal-trigger attribute */}
-      <button
+      {/* <button
         className='sprk-c-Button'
         data-sprk-modal-trigger={this.modalChoiceName}
         type='button'
@@ -30,34 +25,33 @@ class Modals extends React.Component {
         Open Choice Modal
       </button>
       <ModalChoice
-        id={this.modalChoiceName}
+        id='modalChoice'
         type='choice'
         show={this.state.showChoiceModal}
       >
         This is some content within a Modal. There will also be a way to close
         the modal.
-      </ModalChoice>
+      </ModalChoice> */}
 
       <p>Info:</p>
       <button
         className='sprk-c-Button'
         type='button'
-        data-sprk-modal-trigger={this.modalInfoName}
         onClick={() => {
           this.setState({ showInfoModal: !this.state.showInfoModal })
         }}
       >
         Open Info Modal
       </button>
-      <ModalInfo
-        id={this.modalInfoName}
+      <Modal
         type='info'
+        id={'modalInfo'}
         show={this.state.showInfoModal}
       >
         This is some content for the Information Modal.
-      </ModalInfo>
+      </Modal>
 
-      <p>Wait:</p>
+      {/* <p>Wait:</p>
       <button
         className='sprk-c-Button'
         type='button'
@@ -69,10 +63,10 @@ class Modals extends React.Component {
         Open Wait Modal
       </button>
       <ModalWait
-        id={this.modalWaitName}
+        id='modalShow'
         type='wait'
         show={this.state.showWaitModal}
-      />
+      /> */}
     </>
   );
 }
