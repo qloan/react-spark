@@ -1,15 +1,17 @@
-import React, { Component } from 'react';
-import MODAL_VARIANTS from './variants';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react'
+import MODAL_VARIANTS from './variants'
+import PropTypes from 'prop-types'
 import {
   showModal,
   hideModal
-} from '@sparkdesignsystem/spark-core/components/modals';
-import { sparkComponentClassName } from '../../util';
-import sparkClassName from '../../util/sparkClassName';
-import InfoContent from './InfoContent';
+} from '@sparkdesignsystem/spark-core/components/modals'
+import { sparkComponentClassName } from '../../util'
+import sparkClassName from '../../util/sparkClassName'
+import InfoContent from './InfoContent'
+import ChoiceContent from './ChoiceContent'
+import WaitContent from './WaitContent'
 
-class ModalInfo extends Component {
+class Modal extends Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     type: PropTypes.oneOf(Object.values(MODAL_VARIANTS)),
@@ -21,12 +23,15 @@ class ModalInfo extends Component {
     confirmClick: PropTypes.func,
     cancelClick: PropTypes.func,
     show: PropTypes.bool.isRequired,
+    ariaLabelledby: PropTypes.string,
+    ariaDescribedby: PropTypes.string,
+    dataId: PropTypes.string,
     children: PropTypes.node
-  };
+  }
 
-  mainRef = React.createRef();
-  maskRef = React.createRef();
-  modalRef = React.createRef();
+  mainRef = React.createRef()
+  maskRef = React.createRef()
+  modalRef = React.createRef()
 
   get className() {
     const baseClass = [
@@ -85,6 +90,9 @@ class ModalInfo extends Component {
       children,
       variant,
       footer,
+      ariaLabelledby,
+      ariaDescribedby,
+      dataId,
       ...rest
     } = this.props
 
@@ -97,11 +105,11 @@ class ModalInfo extends Component {
           ref={this.modalRef}
           role='dialog'
           tabIndex='-1'
-          aria-labelledby='modalInfoHeading'
+          aria-labelledby={ariaLabelledby}
           aria-modal='true'
-          aria-describedby='modalInfoContent'
+          aria-describedby={ariaDescribedby}
           data-sprk-modal={id}
-          data-id='modal-info-1'
+          data-id={dataId}
           {...rest}
         >
           <div className='sprk-o-Stack sprk-o-Stack--large'>
@@ -112,8 +120,20 @@ class ModalInfo extends Component {
                 close={() => this.hide()}
               />
             )}
-            {/* {type ===  MODAL_VARIANTS.CHOICe && <ChoiceContent />}
-            {type ===  MODAL_VARIANTS.WAIT && <WaitContent />} */}
+            {type === MODAL_VARIANTS.CHOICE && (
+              <ChoiceContent
+                modalName={id}
+                body={children}
+                close={() => this.hide()}
+              />
+            )}
+            {type === MODAL_VARIANTS.WAIT && (
+              <WaitContent
+                modalName={id}
+                body={children}
+                close={() => this.hide()}
+              />
+            )}
           </div>
         </div>
         <div
@@ -127,4 +147,4 @@ class ModalInfo extends Component {
   };
 }
 
-export default ModalInfo
+export default Modal

@@ -14,7 +14,7 @@ class Modals extends React.Component {
       <h2>Modals</h2>
 
       <p>Choice:</p>
-      {/* <button
+      <button
         className='sprk-c-Button'
         data-sprk-modal-trigger={this.modalChoiceName}
         type='button'
@@ -24,14 +24,17 @@ class Modals extends React.Component {
       >
         Open Choice Modal
       </button>
-      <ModalChoice
-        id='modalChoice'
+      <Modal
+        id={'exampleChoiceModal'}
         type='choice'
+        ariaLabelledby='modalChoiceHeading'
+        ariaDescribedby='modalChoiceContent'
+        dataId='modal-choice-1'
         show={this.state.showChoiceModal}
       >
         This is some content within a Modal. There will also be a way to close
         the modal.
-      </ModalChoice> */}
+      </Modal>
 
       <p>Info:</p>
       <button
@@ -46,12 +49,15 @@ class Modals extends React.Component {
       <Modal
         type='info'
         id={'modalInfo'}
+        ariaLabelledby='modalInfoHeading'
+        ariaDescribedby='modalInfoContent'
+        dataId='modal-info-1'
         show={this.state.showInfoModal}
       >
         This is some content for the Information Modal.
       </Modal>
 
-      {/* <p>Wait:</p>
+      <p>Wait:</p>
       <button
         className='sprk-c-Button'
         type='button'
@@ -62,11 +68,14 @@ class Modals extends React.Component {
       >
         Open Wait Modal
       </button>
-      <ModalWait
-        id='modalShow'
+      <Modal
+        id={'exampleChoiceModal'}
         type='wait'
+        ariaLabelledby='modalWaitHeading'
+        ariaDescribedby='modalWaitContent'
+        dataId='modal-wait-1'
         show={this.state.showWaitModal}
-      /> */}
+      />
     </>
   );
 }
