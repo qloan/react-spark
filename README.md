@@ -9,7 +9,7 @@ Usage examples of `react-spark` components can be found in `example/src/App.js`.
 
 This project was generated with [`create-react-library`](https://www.npmjs.com/package/create-react-library)
 
-Code examples of working components [`here`](http://half-education.surge.sh/links)
+Code examples of working components [`here`](http://half-education.surge.sh)
 
 See current progress [`here`](https://github.com/qloan/react-spark/projects/1)
 
