@@ -6,7 +6,7 @@ const FooterExample = () => (
     <h2>Footer</h2>
     <br />
     <Footer id='footer' size='medium'>
-      <Stack centerColumn splitAt='tiny'>
+      <Stack splitAt='tiny'>
         <Stack.Item breakpoint='tiny' width='third'>
           <Stack.Item>
             <h6>COMPANY NAME</h6>
@@ -51,9 +51,14 @@ const FooterExample = () => (
         </Stack.Item>
       </Stack>
 
+      <Stack>
+        <Stack.Item>
+          <hr />
+        </Stack.Item>
+      </Stack>
+
       <Stack endColumn>
         <Stack.Item>
-          <h6>CONNECT WITH US</h6>
           <Link href='#nogo'>FB</Link>
           <Link href='#nogo'>IG</Link>
           <Link href='#nogo'>TW</Link>
@@ -63,7 +68,6 @@ const FooterExample = () => (
 
       <Stack>
         <Stack.Item>
-          <hr />
           {/* todo: create accordion */}
           <h6>DISCLAMER</h6>
           <br />

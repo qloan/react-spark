@@ -18,7 +18,12 @@ class Footer extends React.Component {
     return (
       <Box color='gray' padding='large'>
         <footer role='contentinfo' data-id={id}>
-          {children}
+          <Stack splitAt='tiny'>
+            <Stack.Item breakpoint='tiny' width='fifth' />
+            <Stack.Item breakpoint='tiny' width='three-fifths'>
+              {children}
+            </Stack.Item>
+          </Stack>
         </footer>
       </Box>
     )
