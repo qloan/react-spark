@@ -9,31 +9,28 @@ import Content from './Content'
 
 class Accordion extends React.Component {
   static defaultProps = {
-    id: 'accordion'
+    padding: false
   };
   static propTypes = {
-    id: PropTypes.string
+    padding: PropTypes.bool
   };
 
   componentDidMount() {
     toggle()
   }
 
-  get calssName() {
-    const baseClass = [
-      sparkClassName('component', 'Accordion'),
-      sparkClassName('object', 'VerticalList')
-    ].join(' ')
-    return classNames(baseClass)
+  get className() {
+    const { padding } = this.props
+    const baseClass = sparkClassName('object', 'VerticalList')
+    const paddingClass = sparkClassName('component', 'Accordion')
+    return classNames(baseClass, {
+      [paddingClass]: Boolean(padding)
+    })
   }
 
   render = () => {
-    const { id, children } = this.props
-    return (
-      <ul className={this.calssName} data-id={id}>
-        {children}
-      </ul>
-    )
+    const { children } = this.props
+    return <ul className={this.className}>{children}</ul>
   };
 }
 Accordion.Item = Item

@@ -10,6 +10,7 @@ import Dividers from './components/examples/Dividers'
 import Footer from './components/examples/Footer'
 import Grid from './components/examples/Grid'
 import Inputs from './components/examples/Inputs'
+import Icons from './components/examples/Icons'
 import Layout from './components/examples/Layout'
 import Links from './components/examples/Links'
 import Masthead from './components/examples/Masthead'
@@ -18,7 +19,6 @@ import Nav from './components/Nav'
 import Tables from './components/examples/Tables'
 
 import './App.scss'
-import SparkSVGs from './assets/images/D-SparkCoreIcons.svg'
 
 export default class App extends Component {
   render = () => {
@@ -37,6 +37,7 @@ export default class App extends Component {
           <Route path='/footer' component={Footer} />
           <Route path='/grid' component={Grid} />
           <Route path='/inputs' component={Inputs} />
+          <Route path='/icons' component={Icons} />
           <Route path='/layout' component={Layout} />
           <Route path='/links' component={Links} />
           <Route path='/masthead' component={Masthead} />

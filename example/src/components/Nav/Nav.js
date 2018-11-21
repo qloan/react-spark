@@ -16,6 +16,7 @@ const Nav = () => (<>
       <li><NavLink to='/footer'>Footer</NavLink></li>
       <li><NavLink to='/grid'>Grid</NavLink></li>
       <li><NavLink to='/inputs'>Inputs</NavLink></li>
+      <li><NavLink to='/icons'>Icons</NavLink></li>
       <li><NavLink to='/layout'>Layout</NavLink></li>
       <li><NavLink to='/links'>Links</NavLink></li>
       <li><NavLink to='/masthead'>Masthead</NavLink></li>

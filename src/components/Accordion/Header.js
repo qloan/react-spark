@@ -2,6 +2,8 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { sparkClassName } from '../../util'
+import Icon from './../Icon/Icon'
+import Stack from './../Stack'
 
 class AccordionHeader extends React.Component {
   static defaultProps = {
@@ -12,21 +14,36 @@ class AccordionHeader extends React.Component {
     analytics: PropTypes.string
   };
 
-  get calssName() {
+  get className() {
     const baseClass = sparkClassName('component', 'Accordion', 'summary')
     return classNames(baseClass)
   }
 
   render = () => {
-    const { control, analytics, children } = this.props
+    const { id, control, analytics, children } = this.props
     return (
       <a
-        className={this.calssName}
+        data-id={id}
+        className={this.className}
         aria-controls={control}
         data-analytics={analytics}
         data-sprk-toggle='trigger'
+        data-sprk-toggle-type='accordion'
+        href='#'
       >
-        {children}
+        <Stack>
+          <Stack.Item>{children}</Stack.Item>
+        </Stack>
+        <Stack endColumn>
+          <Stack.Item>
+            <Icon
+              name='chevron-down-circle'
+              size='l'
+              toggle='accordionIconUseElement'
+              variant='Accordion'
+            />
+          </Stack.Item>
+        </Stack>
       </a>
     )
   };

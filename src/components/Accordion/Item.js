@@ -3,7 +3,7 @@ import React from 'react'
 import { sparkClassName } from '../../util'
 
 class AccordionItem extends React.Component {
-  get calssName() {
+  get className() {
     const baseClass = sparkClassName('component', 'Accordion', 'item')
     return classNames(baseClass)
   }
@@ -11,7 +11,7 @@ class AccordionItem extends React.Component {
   render = () => {
     const { children } = this.props
     return (
-      <li className={this.calssName} data-sprk-toggle='container'>
+      <li className={this.className} data-sprk-toggle='container'>
         {children}
       </li>
     )
