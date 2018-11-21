@@ -2,9 +2,11 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import Alerts from './components/examples/Alerts'
+import Accordions from './components/examples/Accordions'
 import Buttons from './components/examples/Buttons'
 import Cards from './components/examples/Cards'
 import Dictionaries from './components/examples/Dictionaries'
+import Dividers from './components/examples/Dividers'
 import Footer from './components/examples/Footer'
 import Grid from './components/examples/Grid'
 import Inputs from './components/examples/Inputs'
@@ -27,9 +29,11 @@ export default class App extends Component {
           <Nav />
 
           <Route path='/alerts' component={Alerts} />
+          <Route path='/accordions' component={Accordions} />
           <Route path='/buttons' component={Buttons} />
           <Route path='/cards' component={Cards} />
           <Route path='/dictionaries' component={Dictionaries} />
+          <Route path='/dividers' component={Dividers} />
           <Route path='/footer' component={Footer} />
           <Route path='/grid' component={Grid} />
           <Route path='/inputs' component={Inputs} />

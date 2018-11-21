@@ -1,5 +1,5 @@
 import React from 'react'
-import { Footer, Stack, Link } from 'react-spark'
+import { Footer, Stack, Link, Divider } from 'react-spark'
 
 const FooterExample = () => (
   <>
@@ -53,7 +53,7 @@ const FooterExample = () => (
 
       <Stack>
         <Stack.Item>
-          <hr />
+          <Divider />
         </Stack.Item>
       </Stack>
 

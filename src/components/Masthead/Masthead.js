@@ -1,11 +1,11 @@
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { sparkClassName } from '../../util';
-import { masthead } from '@sparkdesignsystem/spark-core/components/masthead';
-import Hamburger from './Hamburger';
-import Navbar from './Navbar';
-import NavbarMobile from './NavbarMobile';
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { sparkClassName } from '../../util'
+import { masthead } from '@sparkdesignsystem/spark-core/components/masthead'
+import Hamburger from './Hamburger'
+import Navbar from './Navbar'
+import NavbarMobile from './NavbarMobile'
 
 class Masthead extends React.Component {
   static defaultProps = {
