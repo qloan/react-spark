@@ -1,0 +1,12 @@
+// Some styles to prevent the Masthead from sticking to the top of the viewport,
+// for demo purposes
+
+.ReactSparkExample-Masthead {
+  .sprk-c-Masthead__content {
+    position: static !important;
+  }
+
+  .sprk-c-Masthead__narrow-navigation-container {
+    position: static !important;
+  }
+}

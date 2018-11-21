@@ -4,8 +4,9 @@ import React from 'react'
 import './Nav.scss'
 
 const Nav = () => (<>
-  <hr />
-  <nav>
+  <span className='sprk-c-Divider' />
+
+  <nav className='ReactSparkExample-Nav'>
     <ul>
       <li><NavLink to='/alerts'>Alerts</NavLink></li>
       <li><NavLink to='/buttons'>Buttons</NavLink></li>
@@ -20,7 +21,8 @@ const Nav = () => (<>
       <li><NavLink to='/tables'>Tables</NavLink></li>
     </ul>
   </nav>
-  <hr />
+
+  <span className='sprk-c-Divider' />
 </>)
 
 export default Nav

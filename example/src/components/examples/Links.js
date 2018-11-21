@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-spark'
 
 const Links = () => (<>
+  <h2>Links</h2>
+
   <p>Inline:</p>
   <Link href='#'>Inline</Link>
 
