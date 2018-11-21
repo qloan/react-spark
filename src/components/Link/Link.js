@@ -9,14 +9,12 @@ class Link extends React.Component {
   static defaultProps = {
     children: null,
     disabled: false,
-    standalone: false,
     variant: LINK_VARIANTS.INLINE
   }
 
   static propTypes = {
     children: PropTypes.node,
     disabled: PropTypes.bool,
-    standalone: PropTypes.bool,
     variant: PropTypes.oneOf(Object.values(LINK_VARIANTS))
   }
 
