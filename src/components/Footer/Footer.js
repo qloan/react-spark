@@ -16,7 +16,7 @@ class Footer extends React.Component {
     const { children, id } = this.props
 
     return (
-      <Box color='gray' padding='medium'>
+      <Box color='gray' padding='small'>
         <footer role='contentinfo' data-id={id}>
           <Stack splitAt='medium'>
             <Stack.Item breakpoint='medium' width='fifth' />

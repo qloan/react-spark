@@ -4,10 +4,10 @@ import React from 'react'
 import { sparkClassName } from '../../util'
 
 class Divider extends React.Component {
-  defaultProps = {
+  static defaultProps = {
     id: 'divider'
   };
-  propTypes = {
+  static propTypes = {
     id: PropTypes.string
   };
 

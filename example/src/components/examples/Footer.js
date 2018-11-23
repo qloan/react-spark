@@ -1,5 +1,5 @@
 import React from 'react'
-import { Footer, Stack, Link, Divider, Accordion } from 'react-spark'
+import { Footer, Stack, Link, Divider, Toggle, Icon } from 'react-spark'
 
 const FooterExample = () => (
   <>
@@ -59,36 +59,38 @@ const FooterExample = () => (
 
       <Stack endColumn>
         <Stack.Item>
-          <Link href='#nogo'>FB</Link>
-          <Link href='#nogo'>IG</Link>
-          <Link href='#nogo'>TW</Link>
-          <Link href='#nogo'>YT</Link>
+          <Link href='#nogo' variant='plain'>
+            <Icon name='facebook' size='l' />
+          </Link>{' '}
+          <Link href='#nogo' variant='plain'>
+            <Icon name='instagram' size='l' />
+          </Link>{' '}
+          <Link href='#nogo' variant='plain'>
+            <Icon name='twitter' size='l' />
+          </Link>{' '}
+          <Link href='#nogo' variant='plain'>
+            <Icon name='youtube' size='l' />
+          </Link>
         </Stack.Item>
       </Stack>
 
       <Stack beginColumn>
         <Stack.Item>
-          <Accordion>
-            <Accordion.Item>
-              <Accordion.Header control='disclamer'>
-                <h6>DISCLAMER</h6>
-              </Accordion.Header>
-              <Accordion.Content id='disclamer'>
-                <p>
-                  Lorem Ipsum is simply dummy text of the printing and
-                  typesetting industry. Lorem Ipsum has been the industry's
-                  standard dummy text ever since the 1500s, when an unknown
-                  printer took a galley of type and scrambled it to make a type
-                  specimen book. It has survived not only five centuries, but
-                  also the leap into electronic typesetting, remaining
-                  essentially unchanged. It was popularised in the 1960s with
-                  the release of Letraset sheets containing Lorem Ipsum
-                  passages, and more recently with desktop publishing software
-                  like Aldus PageMaker including versions of Lorem Ipsum.
-                </p>
-              </Accordion.Content>
-            </Accordion.Item>
-          </Accordion>
+          <Toggle id='disclaimerContainer'>
+            <Toggle.Header >My Disclamer</Toggle.Header>
+            <Toggle.Content >
+              Lorem Ipsum is simply dummy text of the printing and typesetting
+              industry. Lorem Ipsum has been the industry's standard dummy text
+              ever since the 1500s, when an unknown printer took a galley of
+              type and scrambled it to make a type specimen book. It has
+              survived not only five centuries, but also the leap into
+              electronic typesetting, remaining essentially unchanged. It was
+              popularised in the 1960s with the release of Letraset sheets
+              containing Lorem Ipsum passages, and more recently with desktop
+              publishing software like Aldus PageMaker including versions of
+              Lorem Ipsum.
+            </Toggle.Content>
+          </Toggle>
         </Stack.Item>
       </Stack>
     </Footer>
