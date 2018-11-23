@@ -7,7 +7,9 @@ class ModalHeader extends React.Component {
 
   static propTypes = {
     modalName: PropTypes.string.isRequired,
-    close: PropTypes.func
+    close: PropTypes.func,
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string
   };
 
   get className() {
@@ -17,10 +19,13 @@ class ModalHeader extends React.Component {
   }
 
   render = () => {
-    const { close, modalName } = this.props
+    const { close, modalName, id, text } = this.props
     return (
       <div className={this.className}>
         {/* //todo: use react spark button/ */}
+        <h2 className='sprk-c-Modal__heading sprk-b-TypeDisplayFive' id={id}>
+          {text}
+        </h2>
         <button
           className='sprk-c-Modal__icon'
           data-sprk-modal-cancel={modalName}
