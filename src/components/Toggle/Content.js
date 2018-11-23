@@ -1,6 +1,6 @@
-import React from 'react'
-import classNames from 'classnames'
-import { sparkClassName } from '../../util'
+import React from 'react';
+import classNames from 'classnames';
+import { sparkClassName } from '../../util';
 
 class ToggleContent extends React.Component {
   get className() {
@@ -17,7 +17,7 @@ class ToggleContent extends React.Component {
     const { children } = this.props
     return (
       <div data-sprk-toggle='content'>
-        <p className={this.className}>{children}</p>
+        <div className={this.className}>{children}</div>
       </div>
     )
   };
