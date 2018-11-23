@@ -21,7 +21,8 @@
         padding: $space-inset-xs;
 
         &.active {
-          background-color: $red;
+          background-color: $red-mid;
+          box-shadow: $btn-shadow;
           color: $white;
         }
       }

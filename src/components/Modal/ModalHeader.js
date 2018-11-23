@@ -6,6 +6,7 @@ class ModalHeader extends React.Component {
   static defaultProps = {};
 
   static propTypes = {
+    modalName: PropTypes.string.isRequired,
     close: PropTypes.func
   };
 
@@ -16,13 +17,13 @@ class ModalHeader extends React.Component {
   }
 
   render = () => {
-    const { close } = this.props
+    const { close, modalName } = this.props
     return (
       <div className={this.className}>
         {/* //todo: use react spark button/ */}
         <button
           className='sprk-c-Modal__icon'
-          data-sprk-modal-cancel='exampleChoiceModal'
+          data-sprk-modal-cancel={modalName}
           aria-label='Close Modal'
           onClick={() => close()}
         >

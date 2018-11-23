@@ -1,13 +1,12 @@
 {
   "name": "react-spark-example",
-  "homepage": "https://ptrkcsk.github.io/react-spark",
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
   "main": "./dist/index.js",
   "dependencies": {
-    "@sparkdesignsystem/spark-core": "^4.0.0",
-    "@sparkdesignsystem/spark-extras": "^3.1.1",
+    "@sparkdesignsystem/spark-core": "^5.0.0",
+    "@sparkdesignsystem/spark-extras": "^3.1.3",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
@@ -18,6 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "deploy": "npm run build; surge build/",
     "postinstall": "npm run build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
@@ -27,5 +27,8 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "devDependencies": {
+    "surge": "^0.20.1"
+  }
 }
