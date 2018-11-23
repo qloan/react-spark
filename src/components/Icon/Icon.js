@@ -1,7 +1,7 @@
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import { sparkClassName } from '../../util'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { sparkClassName } from '../../util';
 
 /**
  * In order for Icons to work you need to include a sprite SVG file at the top of your body tag.
@@ -11,30 +11,34 @@ class Icon extends React.Component {
     L: 'l',
     XL: 'xl',
     XXL: 'xxl'
-  }
+  };
 
   static defaultProps = {
     size: '',
     variant: '',
-    toggle: ''
+    toggle: '',
+    select: false
   };
   static propTypes = {
     name: PropTypes.string.isRequired,
     size: PropTypes.string,
     variant: PropTypes.string,
-    toggle: PropTypes.string
+    toggle: PropTypes.string,
+    select: PropTypes.bool
   };
 
   get className() {
-    const { size, toggle, variant } = this.props
+    const { size, toggle, variant, select } = this.props
     const baseClass = sparkClassName('component', 'Icon')
     const sizeClass = sparkClassName('component', 'Icon', null, size)
     const toggleClass = sparkClassName('component', 'Icon', null, 'toggle')
     const variantClass = sparkClassName('component', variant, 'icon')
+    const selectClass = sparkClassName('base', 'SelectContainer', 'icon')
     return classNames(baseClass, {
       [toggleClass]: Boolean(toggle),
       [sizeClass]: Boolean(size),
-      [variantClass]: Boolean(variant)
+      [variantClass]: Boolean(variant),
+      [selectClass]: Boolean(select)
     })
   }
 
