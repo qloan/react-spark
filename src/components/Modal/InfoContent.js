@@ -14,7 +14,7 @@ class InfoContent extends React.Component {
     const { modalName, body, close } = this.props
     return (
       <Fragment>
-        <ModalHeader close={() => close()} modalName={modalName} />
+        <ModalHeader close={() => close()} modalName={modalName} id='modalInfoHeading' />
         <ModalBody>{body}</ModalBody>
       </Fragment>
     )

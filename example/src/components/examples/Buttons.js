@@ -10,11 +10,14 @@ class Buttons extends React.Component {
     <p>Default:</p>
     <Button>Default</Button>
 
-    <p>Secondary:</p>
-    <Button variant={'secondary'}>Secondary</Button>
+    <p>Default with href:</p>
+    <Button href='#'>Default</Button>
 
     <p>Secondary:</p>
-    <Button variant={'tertiary'}>Tertiary</Button>
+    <Button variant='secondary'>Secondary</Button>
+
+    <p>Secondary:</p>
+    <Button variant='tertiary'>Tertiary</Button>
 
     <p>Disabled:</p>
     <Button disabled>Disabled</Button>

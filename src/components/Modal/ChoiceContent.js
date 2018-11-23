@@ -16,7 +16,7 @@ class ChoiceContent extends React.Component {
     const { modalName, body, close, footer } = this.props
     return (
       <Fragment>
-        <ModalHeader close={() => close()} modalName={modalName} />
+        <ModalHeader close={() => close()} modalName={modalName} id='modalChoiceHeading' text='Are you sure' />
         <ModalBody>{body}</ModalBody>
         <ModalFooter close={() => close()} modalName={modalName}>{footer}</ModalFooter>
       </Fragment>

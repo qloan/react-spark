@@ -25,7 +25,7 @@ export default class App extends Component {
     return (
       <Router>
         <>
-          <h1>React Spark</h1>
+          <h1>react-spark</h1>
           <Nav />
 
           <Route path='/alerts' component={Alerts} />

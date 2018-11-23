@@ -2,6 +2,8 @@ import React from 'react'
 import { Button, Table } from 'react-spark'
 
 const Tables = () => (<>
+  <h1>Tables</h1>
+
   <p>Standard</p>
   <Table>
     <thead>
