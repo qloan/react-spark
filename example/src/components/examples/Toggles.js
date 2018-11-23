@@ -8,7 +8,7 @@ const Toggles = () => (
 
       <br />
       <Toggle id='disclaimerContainer'>
-        <Toggle.Header>My Disclamer</Toggle.Header>
+        <Toggle.Header>My Disclaimer</Toggle.Header>
         <Toggle.Content>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
