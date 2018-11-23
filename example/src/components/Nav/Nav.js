@@ -23,6 +23,7 @@ const Nav = () => (<>
       <li><NavLink to='/masthead'>Masthead</NavLink></li>
       <li><NavLink to='/modals'>Modals</NavLink></li>
       <li><NavLink to='/tables'>Tables</NavLink></li>
+      <li><NavLink to='/toggles'>Toggles</NavLink></li>
     </ul>
   </nav>
 

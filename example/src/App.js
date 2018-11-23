@@ -17,6 +17,7 @@ import Masthead from './components/examples/Masthead'
 import Modals from './components/examples/Modals'
 import Nav from './components/Nav'
 import Tables from './components/examples/Tables'
+import Toggles from './components/examples/Toggles'
 
 import './App.scss'
 
@@ -43,6 +44,7 @@ export default class App extends Component {
           <Route path='/masthead' component={Masthead} />
           <Route path='/modals' component={Modals} />
           <Route path='/tables' component={Tables} />
+          <Route path='/toggles' component={Toggles} />
         </>
       </Router>
     )
