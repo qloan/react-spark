@@ -1,48 +1,51 @@
 // TODO: Add support for search in <Masthead.Secondary>
 
-import { masthead } from '@sparkdesignsystem/spark-core/components/masthead'
-import PropTypes from 'prop-types'
-import React from 'react'
+import {
+  masthead,
+  hideMobileNavs
+} from '@sparkdesignsystem/spark-core/components/masthead';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import Content from './Content'
-import Hamburger from './Hamburger'
-import Logo from './Logo'
-import NarrowNavigation from './NarrowNavigation'
-import Navigation from './Navigation'
-import WideNavigation from './WideNavigation'
-import Secondary from './Secondary'
-import SecondaryNav from './SecondaryNav'
-import TopRow from './TopRow'
+import Content from './Content';
+import Hamburger from './Hamburger';
+import Logo from './Logo';
+import NarrowNavigation from './NarrowNavigation';
+import Navigation from './Navigation';
+import WideNavigation from './WideNavigation';
+import Secondary from './Secondary';
+import SecondaryNav from './SecondaryNav';
+import TopRow from './TopRow';
 
-import { sparkComponentClassName } from '../../util'
+import { sparkComponentClassName } from '../../util';
 
 class Masthead extends React.Component {
   static defaultProps = {
     children: null
-  }
+  };
 
   static propTypes = {
     children: PropTypes.node
-  }
+  };
 
   componentDidMount = () => {
     masthead()
-  }
+    window.onresize = () => {
+      hideMobileNavs()
+    };
+  };
 
   render = () => {
-    const {children} = this.props
+    const { children } = this.props
 
     return (
       <div data-sprk-main>
-        <header
-          className={sparkComponentClassName('Masthead')}
-          role='banner'
-        >
+        <header className={sparkComponentClassName('Masthead')} role='banner'>
           {children}
         </header>
       </div>
     )
-  }
+  };
 }
 
 Masthead.Content = Content

@@ -8,22 +8,24 @@ class Logo extends React.Component {
     href: null,
     screenReaderText: null,
     imgAlt: null,
-    imgSrc: null
+    imgSrc: null,
+    imgWidth: '262'
   }
 
   static propTypes = {
     href: PropTypes.string,
     screenReaderText: PropTypes.string,
     imgAlt: PropTypes.string,
-    imgSrc: PropTypes.string
+    imgSrc: PropTypes.string,
+    imgWidth: PropTypes.string
   }
 
   renderInner = () => {
-    const {screenReaderText, imgAlt, imgSrc} = this.props
+    const {screenReaderText, imgAlt, imgSrc, imgWidth} = this.props
 
     return (<React.Fragment>
       {imgSrc && (
-        <img alt={imgAlt || ''} src={imgSrc} />
+        <img alt={imgAlt || ''} src={imgSrc} width={imgWidth} />
       )}
       {screenReaderText && (
         <span className={sparkClassName('utility', 'ScreenReaderText')}>
