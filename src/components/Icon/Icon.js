@@ -22,7 +22,7 @@ class Icon extends React.Component {
     name: PropTypes.string.isRequired,
     size: PropTypes.string,
     variant: PropTypes.string,
-    toggle: PropTypes.bool
+    toggle: PropTypes.string
   };
 
   get className() {

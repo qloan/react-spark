@@ -16,6 +16,7 @@ class Accordion extends React.Component {
   };
 
   componentDidMount() {
+    // todo: this only works with one accordion on the page. Need to be fixed for multiple accordions
     toggle()
   }
 
