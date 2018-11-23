@@ -2,7 +2,7 @@ import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 import { sparkClassName } from '../../util'
-import Icon from './../Icon/Icon'
+import Icon from './../Icon'
 import Stack from './../Stack'
 
 class AccordionHeader extends React.Component {
@@ -26,6 +26,7 @@ class AccordionHeader extends React.Component {
         data-id={id}
         className={this.className}
         aria-controls={control}
+        aria-expanded='false'
         data-analytics={analytics}
         data-sprk-toggle='trigger'
         data-sprk-toggle-type='accordion'
