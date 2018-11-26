@@ -136,7 +136,7 @@ class Inputs extends React.Component {
 
   render = () => (
     <>
-      <h2>Inputs +</h2>
+      <h2>Inputs</h2>
 
       {/* TODO: Add table of contents */}
       {this.renderTextInputs()}

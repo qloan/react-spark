@@ -44,7 +44,12 @@ class TextArea extends React.Component {
     const { disabled, error, id, label, ...rest } = this.props
 
     return (
-      <InputContainer error={error} id={id} label={label}>
+      <InputContainer
+        error={error}
+        id={id}
+        label={label}
+        positionLabelUpper={true}
+      >
         <textarea
           className={this.className}
           disabled={disabled}

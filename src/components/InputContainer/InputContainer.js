@@ -1,16 +1,18 @@
-import PropTypes from 'prop-types';
-import React from 'react';
-import ErrorText from '../ErrorText';
-import { sparkClassName } from '../../util';
+import PropTypes from 'prop-types'
+import React from 'react'
+import ErrorText from '../ErrorText'
+import { sparkClassName } from '../../util'
 
 class InputContainer extends React.Component {
   static defaultProps = {
-    children: null
-  };
+    children: null,
+    positionLabelUpper: false
+  }
 
   static propTypes = {
-    children: PropTypes.node
-  };
+    children: PropTypes.node,
+    positionLabelUpper: PropTypes.bool
+  }
 
   renderErrorContent = () => {
     const { error } = this.props
@@ -21,22 +23,27 @@ class InputContainer extends React.Component {
       // TODO: Icon SVG
       <ErrorText>{error}</ErrorText>
     )
-  };
+  }
+
+  renderLabelContent = ({ id, label }) => (
+    <label htmlFor={id} className={sparkClassName('base', 'Label')}>
+      {label}
+    </label>
+  )
 
   render = () => {
-    const { children, id, label } = this.props
+    const { children, id, label, positionLabelUpper } = this.props
     const className = sparkClassName('base', 'InputContainer')
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
         <div className={className}>
+          {positionLabelUpper && this.renderLabelContent(this.props)}
           {children}
           <div
             className={sparkClassName('base', 'InputContainer', 'input-border')}
           />
-          <label htmlFor={id} className={sparkClassName('base', 'Label')}>
-            {label}
-          </label>
+          {!positionLabelUpper && this.renderLabelContent(this.props)}
           <div
             className={sparkClassName('base', 'ErrorContainer')}
             id={`${id}--error-container`}
@@ -46,7 +53,7 @@ class InputContainer extends React.Component {
         </div>
       </div>
     )
-  };
+  }
 }
 
 export default InputContainer
