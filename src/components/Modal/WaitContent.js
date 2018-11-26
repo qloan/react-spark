@@ -22,7 +22,7 @@ class WaitContent extends React.Component {
     const { modalName, body, close } = this.props
     return (
       <div className={this.className}>
-        <ModalHeader close={() => close()} modalName={modalName} />
+        <ModalHeader close={() => close()} modalName={modalName} id='modalWaitingHeading' />
         <div className='sprk-o-Stack__item sprk-c-Modal__header'>
           <h2 className='sprk-c-Modal__heading sprk-b-TypeDisplayFive'>
             Please Wait...

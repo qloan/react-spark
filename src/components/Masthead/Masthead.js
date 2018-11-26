@@ -1,72 +1,61 @@
-import classNames from 'classnames';
+// TODO: Add support for search in <Masthead.Secondary>
+
+import {
+  masthead,
+  hideMobileNavs
+} from '@sparkdesignsystem/spark-core/components/masthead';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { sparkClassName } from '../../util';
-import { masthead } from '@sparkdesignsystem/spark-core/components/masthead';
+
+import Content from './Content';
 import Hamburger from './Hamburger';
-import Navbar from './Navbar';
-import NavbarMobile from './NavbarMobile';
+import Logo from './Logo';
+import NarrowNavigation from './NarrowNavigation';
+import Navigation from './Navigation';
+import WideNavigation from './WideNavigation';
+import Secondary from './Secondary';
+import SecondaryNav from './SecondaryNav';
+import TopRow from './TopRow';
+
+import { sparkComponentClassName } from '../../util';
 
 class Masthead extends React.Component {
   static defaultProps = {
-    links: []
+    children: null
   };
 
   static propTypes = {
-    logoPath: PropTypes.string.isRequired,
-    logoHref: PropTypes.string.isRequired,
-    links: PropTypes.array
+    children: PropTypes.node
   };
-  navTrigger = 'mobileNav';
 
   componentDidMount = () => {
     masthead()
+    window.onresize = () => {
+      hideMobileNavs()
+    };
   };
 
-  get className() {
-    const baseClass = sparkClassName('base', 'WideNavigation')
-    return classNames(baseClass)
-  }
-
-  get mobileClassName() {
-    const baseClass = `sprk-c-Masthead__narrow-navigation-container sprk-u-Display--none`
-    return classNames(baseClass)
-  }
-
   render = () => {
-    const { logoPath, links, logoHref } = this.props
+    const { children } = this.props
 
     return (
       <div data-sprk-main>
-        <header className='sprk-c-Masthead' role='banner' idstring='masthead-1'>
-          <div className='sprk-c-Masthead__content'>
-            <div className='sprk-c-Masthead__top-row'>
-              <Hamburger navTrigger={this.navTrigger} />
-              <div className='sprk-c-Masthead__logo'>
-                <a href={logoHref}>
-                  <img src={logoPath} alt='Logo' height='60' width='262' />
-                  <span className='sprk-u-ScreenReaderText'>
-                    Go to the home page
-                  </span>
-                </a>
-              </div>
-              <div className='sprk-c-Masthead__secondary-nav'>
-                <Navbar links={links} id='navigation-secondary-desktop' />
-              </div>
-            </div>
-          </div>
-          <div className='sprk-c-Masthead__navigation'>
-            <div
-              className={this.mobileClassName}
-              data-sprk-mobile-nav={this.navTrigger}
-            >
-              <NavbarMobile links={links} id='navigation-secondary-mobile' />
-            </div>
-          </div>
+        <header className={sparkComponentClassName('Masthead')} role='banner'>
+          {children}
         </header>
       </div>
     )
   };
 }
+
+Masthead.Content = Content
+Masthead.Hamburger = Hamburger
+Masthead.Logo = Logo
+Masthead.Navigation = Navigation
+Masthead.NarrowNavigation = NarrowNavigation
+Masthead.Secondary = Secondary
+Masthead.SecondaryNav = SecondaryNav
+Masthead.TopRow = TopRow
+Masthead.WideNavigation = WideNavigation
 
 export default Masthead

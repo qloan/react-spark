@@ -1,67 +1,67 @@
-// import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/'
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
 import React from 'react'
 
-import { sparkClassName } from '../../util'
+import { sparkClassName, sparkComponentClassName } from '../../util'
 
 class Hamburger extends React.Component {
-  static defaultProps = {
-
-  };
-
-  inputRef = React.createRef();
-
-  static propTypes = {
-    navTrigger: PropTypes.string.isRequired
-  };
-
-  componentDidMount = () => {
-    // bindUIEvents(this.inputRef.current)
-  };
-
-  get className() {
-    const baseClass = sparkClassName('component', 'Hamburger')
-    return classNames(baseClass)
+  get bottomBunClassName() {
+    return [
+      sparkComponentClassName('Hamburger', 'line'),
+      sparkComponentClassName('Hamburger', 'line', 'three')
+    ].join(' ')
   }
 
-  render = () => {
-    const { navTrigger } = this.props
+  get pattyClassName() {
+    return [
+      sparkComponentClassName('Hamburger', 'line'),
+      sparkComponentClassName('Hamburger', 'line', 'two')
+    ].join(' ')
+  }
 
-    return (
-      <div className='sprk-c-Masthead__hamburger'>
-        <button
-          className={this.className}
-          type='button'
-          aria-expanded='false'
-          data-sprk-mobile-nav-trigger={navTrigger}
-        >
-          <span className='sprk-u-ScreenReaderText'>Toggle Navigation</span>
-          <svg
-            className='sprk-c-Icon sprk-c-Icon--l sprk-c-Hamburger__icon'
-            aria-hidden='true'
-            viewBox='0 0 64 64'
-            xmlns='http://www.w3.org/2000/svg'
-          >
-            <g>
-              <path
-                className='sprk-c-Hamburger__line sprk-c-Hamburger__line--two'
-                d='m8 32h48'
-              />
-              <path
-                className='sprk-c-Hamburger__line sprk-c-Hamburger__line--one'
-                d='m8 18.68h48'
-              />
-              <path
-                className='sprk-c-Hamburger__line sprk-c-Hamburger__line--three'
-                d='m8 45.32h48'
-              />
-            </g>
-          </svg>
-        </button>
-      </div>
-    )
-  };
+  get svgClassName() {
+    return [
+      sparkComponentClassName('Icon'),
+      sparkComponentClassName('Icon', null, 'l'),
+      sparkComponentClassName('Hamburger', 'icon')
+    ].join(' ')
+  }
+
+  get topBunClassName() {
+    return [
+      sparkComponentClassName('Hamburger', 'line'),
+      sparkComponentClassName('Hamburger', 'line', 'one')
+    ].join(' ')
+  }
+
+  renderSvg = () => (
+    <svg
+      aria-hidden='true'
+      className={this.svgClassName}
+      viewBox='0 0 64 64'
+      xmlns='http://www.w3.org/2000/svg'
+    >
+      <g>
+        <path className={this.topBunClassName} d='m8 18.68h48' />
+        <path className={this.pattyClassName} d='m8 32h48' />
+        <path className={this.bottomBunClassName} d='m8 45.32h48' />
+      </g>
+    </svg>
+  )
+
+  render = () => (
+    <div className={sparkComponentClassName('Masthead', 'hamburger')}>
+      <button
+        className={sparkComponentClassName('Hamburger')}
+        type='button'
+        aria-expanded='false'
+        data-sprk-mobile-nav-trigger='mobileNav'
+      >
+        <span className={sparkClassName('utility', 'ScreenReaderText')}>
+          Toggle Navigation
+        </span>
+        {this.renderSvg()}
+      </button>
+    </div>
+  )
 }
 
 export default Hamburger
