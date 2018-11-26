@@ -19,7 +19,7 @@ module.exports = {
         minUptime: 3000,
         spinSleepTime: 15000,
         silent: false,
-        watch: true
+        watch: false
       })
     ]
   }
