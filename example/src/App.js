@@ -10,6 +10,7 @@ import Grid from './components/examples/Grid'
 import Inputs from './components/examples/Inputs'
 import Layout from './components/examples/Layout'
 import Links from './components/examples/Links'
+import Lists from './components/examples/Lists'
 import Masthead from './components/examples/Masthead'
 import Modals from './components/examples/Modals'
 import Nav from './components/Nav'
@@ -35,6 +36,7 @@ export default class App extends Component {
           <Route path='/inputs' component={Inputs} />
           <Route path='/layout' component={Layout} />
           <Route path='/links' component={Links} />
+          <Route path='/lists' component={Lists} />
           <Route path='/masthead' component={Masthead} />
           <Route path='/modals' component={Modals} />
           <Route path='/tables' component={Tables} />
