@@ -13,7 +13,7 @@
   "scripts": {
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
-    "build:webpack": "NODE_ENV='dev' webpack",
+    "build:webpack": "NODE_ENV='dev' webpack --config webpack.config.js",
     "start": "npm run start:webpack",
     "start:webpack": "NODE_ENV='dev' webpack --watch",
     "predeploy": "cd example && npm install && npm run build",
