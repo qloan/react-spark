@@ -1,25 +1,27 @@
-import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import { sparkClassName } from '../../util'
+import { sparkComponentClassName } from '../../util'
 
 class Divider extends React.Component {
   static defaultProps = {
-    id: 'divider'
-  };
-  static propTypes = {
-    id: PropTypes.string
-  };
+    dataId: null
+  }
 
-  get calssName() {
-    const baseClass = sparkClassName('component', 'Divider')
-    return classNames(baseClass)
+  static propTypes = {
+    dataId: PropTypes.string
   }
 
   render = () => {
-    const { id } = this.props
-    return <span className={this.calssName} data-id={id} />
-  };
+    const {dataId, ...props} = this.props
+
+    return (
+      <span
+        className={sparkComponentClassName('Divider')}
+        data-id={dataId}
+        {...props}
+      />
+    )
+  }
 }
 
 export default Divider
