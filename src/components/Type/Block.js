@@ -35,7 +35,7 @@ class Block extends React.Component {
       ...props
     } = this.props
 
-    return <Element className={this.className} {...props}>{children}</Element>
+    return <Element {...props} className={this.className}>{children}</Element>
   }
 }
 
