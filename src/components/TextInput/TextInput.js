@@ -1,4 +1,7 @@
-import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/textInput'
+import {
+  bindUIEvents,
+  valueTest
+} from '@sparkdesignsystem/spark-core/base/textInput'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -25,11 +28,12 @@ class TextInput extends React.Component {
   }
 
   componentDidMount = () => {
+    valueTest(this.inputRef.current)
     bindUIEvents(this.inputRef.current)
   }
 
   get className() {
-    const { error, width } = this.props
+    const {error, width} = this.props
 
     const baseClass = sparkClassName('base', 'TextInput')
     const errorClass = sparkClassName('base', 'TextInput', null, 'error')
@@ -42,7 +46,7 @@ class TextInput extends React.Component {
   }
 
   render = () => {
-    const { disabled, error, id, label, type, ...rest } = this.props
+    const {disabled, error, id, label, type, ...rest} = this.props
 
     return (
       <InputContainer error={error} id={id} label={label}>
