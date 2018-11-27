@@ -2,6 +2,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import ErrorText from '../ErrorText'
 import { sparkClassName } from '../../util'
+import Icon from '../Icon'
 
 class InputContainer extends React.Component {
   static defaultProps = {
@@ -32,7 +33,7 @@ class InputContainer extends React.Component {
   )
 
   render = () => {
-    const { children, id, label, positionLabelUpper } = this.props
+    const { children, id, positionLabelUpper } = this.props
     const className = sparkClassName('base', 'InputContainer')
 
     return (
