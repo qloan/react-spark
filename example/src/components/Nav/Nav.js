@@ -25,6 +25,7 @@ const Nav = () => (<>
       <li><NavLink to='/modals'>Modals</NavLink></li>
       <li><NavLink to='/tables'>Tables</NavLink></li>
       <li><NavLink to='/toggles'>Toggles</NavLink></li>
+      <li><NavLink to='/typography'>Typography</NavLink></li>
     </ul>
   </nav>
 
