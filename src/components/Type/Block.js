@@ -32,6 +32,8 @@ class Block extends React.Component {
     const {
       children,
       element: Element,
+      level,
+      type,
       ...props
     } = this.props
 
