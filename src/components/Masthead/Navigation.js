@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -12,14 +13,19 @@ class Navigation extends React.Component {
     children: PropTypes.node
   }
 
-  render = () => {
-    const {children} = this.props
+  get className() {
+    const {className} = this.props
 
-    return (
-      <div className={sparkComponentClassName('Masthead', 'navigation')}>
-        {children}
-      </div>
+    return classnames(
+      sparkComponentClassName('Masthead', 'navigation'),
+      {[className]: className}
     )
+  }
+
+  render = () => {
+    const {children, className, ...props} = this.props
+
+    return <div className={this.className} {...props}>{children}</div>
   }
 }
 

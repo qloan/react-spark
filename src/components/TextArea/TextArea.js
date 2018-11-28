@@ -2,9 +2,9 @@ import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/textInput'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import InputContainer from './../InputContainer/InputContainer'
 
-import { sparkClassName, sparkWidthClassName } from '../../util'
+import InputContainer from './../InputContainer/InputContainer'
+import { sparkBaseClassName, sparkWidthClassName } from '../../util'
 
 class TextArea extends React.Component {
   static defaultProps = {
@@ -28,20 +28,23 @@ class TextArea extends React.Component {
   }
 
   get className() {
-    const { error, width } = this.props
+    const {className, error, width} = this.props
 
-    const baseClass = sparkClassName('base', 'TextInput')
-    const errorClass = sparkClassName('base', 'TextInput', null, 'error')
+    const baseClass = sparkBaseClassName('TextInput')
+    const errorClass = sparkBaseClassName('TextInput', null, 'error')
     const widthClass = sparkWidthClassName(width)
 
-    return classNames(baseClass, {
-      [errorClass]: error,
-      [widthClass]: width
-    })
+    return classNames(
+      baseClass, {
+        [errorClass]: error,
+        [widthClass]: width,
+        [className]: className
+      }
+    )
   }
 
   render = () => {
-    const { disabled, error, id, label, ...rest } = this.props
+    const {className, disabled, error, id, label, ...props} = this.props
 
     return (
       <InputContainer
@@ -57,7 +60,7 @@ class TextArea extends React.Component {
           data-id={id}
           aria-describedby={`${id}--error-container`}
           ref={this.inputRef}
-          {...rest}
+          {...props}
         />
       </InputContainer>
     )

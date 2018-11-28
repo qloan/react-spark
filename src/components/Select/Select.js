@@ -12,9 +12,9 @@ class Select extends React.Component {
     disabled: false,
     error: null,
     width: 100
-  };
+  }
 
-  selectRef = React.createRef();
+  selectRef = React.createRef()
 
   static propTypes = {
     disabled: PropTypes.bool,
@@ -24,27 +24,40 @@ class Select extends React.Component {
     name: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.object),
     width: PropTypes.number
-  };
+  }
 
   componentDidMount = () => {
     bindUIEvents(this.selectRef.current)
-  };
+  }
 
   get className() {
-    const { error, width } = this.props
+    const {className, error, width} = this.props
 
     const baseClass = sparkClassName('base', 'Select')
     const errorClass = sparkClassName('base', 'TextInput', null, 'error')
     const widthClass = sparkWidthClassName(width)
 
-    return classNames(baseClass, {
-      [errorClass]: error,
-      [widthClass]: width
-    })
+    return classNames(
+      baseClass,
+      {
+        [errorClass]: error,
+        [widthClass]: width,
+        [className]: className
+      }
+    )
   }
 
   render = () => {
-    const { disabled, error, id, label, name, options, ...rest } = this.props
+    const {
+      className,
+      disabled,
+      error,
+      id,
+      label,
+      name,
+      options,
+      ...props
+    } = this.props
 
     return (
       <InputContainer error={error} id={id} label={label}>
@@ -57,10 +70,10 @@ class Select extends React.Component {
           id={id}
           name={name}
           ref={this.selectRef}
-          {...rest}
+          {...props}
         >
           {options.map(
-            ({ disabled = false, value, selected = false, text }, index) => (
+            ({disabled = false, value, selected = false, text}, index) => (
               <option
                 disabled={disabled}
                 value={value}
@@ -75,7 +88,7 @@ class Select extends React.Component {
         <Icon name='chevron-down' select />
       </InputContainer>
     )
-  };
+  }
 }
 
 export default Select

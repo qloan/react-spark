@@ -1,21 +1,36 @@
 import classNames from 'classnames'
 import React from 'react'
-import { sparkClassName } from '../../util'
+
+import { sparkComponentClassName } from '../../util'
 
 class AccordionItem extends React.Component {
   get className() {
-    const baseClass = sparkClassName('component', 'Accordion', 'item')
-    return classNames(baseClass)
+    const {className} = this.props
+    const baseClass = sparkComponentClassName('Accordion', 'item')
+
+    return classNames(
+      baseClass,
+      {[className]: className}
+    )
   }
 
   render = () => {
-    const { children } = this.props
+    const {
+      children,
+      className,
+      ...props
+    } = this.props
+
     return (
-      <li className={this.className} data-sprk-toggle='container'>
+      <li
+        className={this.className}
+        data-sprk-toggle='container'
+        {...props}
+      >
         {children}
       </li>
     )
-  };
+  }
 }
 
 export default AccordionItem

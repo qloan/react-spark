@@ -14,7 +14,9 @@ class Typography extends React.Component {
     <h2>Body</h2>
 
     <p>Body One:</p>
-    <Type.BodyOne>{this.bodyText}</Type.BodyOne>
+    <Type.BodyOne className='extra-class' data-extra-attribute>
+      {this.bodyText}
+    </Type.BodyOne>
 
     <Divider />
 
@@ -36,7 +38,9 @@ class Typography extends React.Component {
     <h2>Display</h2>
 
     <p>Display One:</p>
-    <Type.DisplayOne>{this.displayText}</Type.DisplayOne>
+    <Type.DisplayOne className='extra-class' data-extra-attribute>
+      {this.displayText}
+    </Type.DisplayOne>
 
     <Divider />
 

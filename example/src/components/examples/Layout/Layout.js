@@ -8,7 +8,7 @@ const Layout = () => (<>
   <h2>Layout</h2>
 
   <p>Box object:</p>
-  <Box />
+  <Box className='extra-class' data-extra-attribute />
 
   <p>Box object sizing:</p>
   <Box padding='flush'>Flush</Box>
@@ -18,14 +18,14 @@ const Layout = () => (<>
   <Box padding='huge'>Huge</Box>
 
   <p>Centered column:</p>
-  <CenteredColumn />
+  <CenteredColumn className='extra-class' data-extra-attribute />
 
   <p>Flag object:</p>
-  <Flag>
-    <Flag.Figure>
+  <Flag className='extra-class' data-extra-attribute>
+    <Flag.Figure className='extra-class' data-extra-attribute>
       <img alt='Provide useful alternative text' src={img} />
     </Flag.Figure>
-    <Flag.Body>
+    <Flag.Body className='extra-class' data-extra-attribute>
       <p>
         Lorem ipsum dolor. Sit amet pede. Tempus donec et. Suspendisse id
         inventore integer eum non enim diam habitant. Maecenas nunc per lacus
