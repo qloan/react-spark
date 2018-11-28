@@ -103,6 +103,14 @@ class Inputs extends React.Component {
         width={100}
       />
 
+      <p>Text input with helper text:</p>
+      <TextInput
+        helper={'This is helper text for this input.'}
+        id='text-input-helper'
+        label='Text Input Label'
+        width={100}
+      />
+
       <p>Disabled text input:</p>
       <TextInput
         disabled
@@ -110,6 +118,24 @@ class Inputs extends React.Component {
         label='Text Input Label'
         width={100}
       />
+
+      <p>Monetary Text Input:</p>
+      <TextInput
+        id='text-input-monetary'
+        label='Monetary Text Input'
+        width={100}
+        type={'tel'}
+        variant={'monetary'}
+      />
+
+      {/* <div className='sprk-b-InputContainer' data-sprk-input='monetary'>
+        <div className='sprk-b-TextInputIconContainer sprk-b-TextInputIconContainer--monetary'>
+          <input className='sprk-b-TextInput sprk-b-TextInput--monetary  sprk-u-Width-100' pattern='(^\$?(\d+|\d{1,3}(,\d{3})*)(\.\d+)?$)|^$' id='monetary-normal' data-id='monetary-normal' type='tel' aria-describedby='monetary-normal--error-container' data-sprk-input='text' />
+          <div className='sprk-b-InputContainer__input-border' />
+          <label htmlFor='monetary-normal' className='sprk-b-Label sprk-b-Label--monetary'>Payment</label>
+        </div>
+        <div className='sprk-b-ErrorContainer' id='monetary-normal--error-container' />
+      </div> */}
     </>
   )
 

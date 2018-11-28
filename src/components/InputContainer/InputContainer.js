@@ -1,18 +1,25 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 import ErrorText from '../ErrorText'
+import HelperText from '../HelperText'
+import classNames from 'classnames'
 import { sparkClassName } from '../../util'
-import Icon from '../Icon'
 
 class InputContainer extends React.Component {
   static defaultProps = {
     children: null,
-    positionLabelUpper: false
+    positionLabelUpper: false,
+    variant: null
   }
 
   static propTypes = {
     children: PropTypes.node,
-    positionLabelUpper: PropTypes.bool
+    positionLabelUpper: PropTypes.bool,
+    error: PropTypes.string,
+    helper: PropTypes.string,
+    id: PropTypes.string,
+    variant: PropTypes.string,
+    label: PropTypes.string
   }
 
   renderErrorContent = () => {
@@ -21,36 +28,85 @@ class InputContainer extends React.Component {
     if (!error) return null
 
     return (
-      // TODO: Icon SVG
       <ErrorText>{error}</ErrorText>
     )
   }
 
-  renderLabelContent = ({ id, label }) => (
-    <label htmlFor={id} className={sparkClassName('base', 'Label')}>
-      {label}
-    </label>
-  )
-
-  render = () => {
-    const { children, id, positionLabelUpper } = this.props
-    const className = sparkClassName('base', 'InputContainer')
+  renderHelperContent = () => {
+    const { helper } = this.props
+    if (!helper) return null
 
     return (
-      <div className={sparkClassName('utility', 'JavaScript')}>
-        <div className={className}>
-          {positionLabelUpper && this.renderLabelContent(this.props)}
-          {children}
-          <div
-            className={sparkClassName('base', 'InputContainer', 'input-border')}
-          />
-          {!positionLabelUpper && this.renderLabelContent(this.props)}
+      <HelperText>{helper}</HelperText>
+    )
+  }
+
+  renderLabelContent = () => {
+    const { variant, id, label } = this.props
+
+    const baseClass = sparkClassName('base', 'Label')
+    const variantClass = variant === 'monetary' ? sparkClassName('base', 'Label', null, variant) : null
+
+    return (
+      <label htmlFor={id} className={classNames(baseClass, {
+        [variantClass]: variant
+      })}>
+        {label}
+      </label>
+    )
+  }
+
+  get textInputIconContainerClassNames() {
+    const { variant } = this.props
+
+    const baseClass = sparkClassName('base', 'TextInputIconContainer')
+    const variantClass = variant === 'monetary' ? sparkClassName('base', 'TextInputIconContainer', null, variant) : null
+
+    return classNames(baseClass, {
+      [variantClass]: variant
+    })
+  }
+
+  render = () => {
+    const { variant, children, positionLabelUpper, id } = this.props
+    const classNameInputIconContainer = this.textInputIconContainerClassNames
+
+    if (variant) {
+      return (
+        <div className={sparkClassName('base', 'InputContainer')} data-sprk-input={variant}>
+          <div className={classNameInputIconContainer}>
+            {positionLabelUpper && this.renderLabelContent()}
+            {children}
+            <div
+              className={sparkClassName('base', 'InputContainer', 'input-border')}
+            />
+            {!positionLabelUpper && this.renderLabelContent()}
+          </div>
           <div
             className={sparkClassName('base', 'ErrorContainer')}
             id={`${id}--error-container`}
           >
+            {this.renderHelperContent()}
             {this.renderErrorContent()}
           </div>
+        </div>
+      )
+    }
+    return (
+      <div className={sparkClassName('base', 'InputContainer')} data-sprk-input={variant}>
+        {positionLabelUpper && this.renderLabelContent(this.props)}
+        {children}
+        <div
+          className={sparkClassName('base', 'InputContainer', 'input-border')}
+        />
+        {!positionLabelUpper && this.renderLabelContent(this.props)}
+
+        <div
+          className={sparkClassName('base', 'ErrorContainer')}
+          id={`${id}--error-container`}
+        >
+          {this.renderHelperContent()}
+          {this.renderErrorContent()}
         </div>
       </div>
     )
