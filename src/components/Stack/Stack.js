@@ -79,7 +79,17 @@ class Stack extends React.Component {
   }
 
   render = () => {
-    const {children, className, ...props} = this.props
+    const {
+      centerColumn,
+      centerRow,
+      children,
+      className,
+      endColumn,
+      endRow,
+      itemSpacing,
+      splitAt,
+      ...props
+    } = this.props
 
     return (
       <div className={this.className} {...props}>
