@@ -1,27 +1,50 @@
 import React from 'react'
-import { List } from 'react-spark'
+import { Divider, List } from 'react-spark'
 
 const Lists = () => (<>
   <h2>Lists</h2>
 
-  <br />
-  <h5>Information:</h5>
-  <List listType='list' dataId='unordered-list-1' text='Bare List Item' listItemId='list-item-1' />
-  <List listType='list' dataId='ordered-list-1' text='Ordered List Item' listItemId='list-item-4' />
+  <List className='extra-class' data-extra-attribute element='ul'>
+    <li>Unordered List Item</li>
+    <li>Unordered List Item</li>
+    <li>Unordered List Item</li>
+  </List>
 
-  <br />
-  <h5>Indented:</h5>
+  <List element='ol'>
+    <li>Ordered List Item</li>
+    <li>Ordered List Item</li>
+    <li>Ordered List Item</li>
+  </List>
+
+  <Divider />
+
+  <h3>Indented</h3>
+
   <p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida urna quis nulla ultrices, sed efficitur risus elementum.
-  </p>
-  <List listType='indented' dataId='unordered-list-1' text='Indented Item' listItemId='list-item-7' />
-  <p>
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida urna quis nulla ultrices, sed efficitur risus elementum.
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida urna
+    quis nulla ultrices, sed efficitur risus elementum.
   </p>
 
-  <br />
-  <h5>Bare:</h5>
-  <List listType='bare' dataId='unordered-list-1' text='Bare List Item' listItemId='list-item-10' />
+  <List element='ul' variant='indented'>
+    <li>Indented Item</li>
+    <li>Indented Item</li>
+    <li>Indented Item</li>
+  </List>
+
+  <p>
+    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed gravida urna
+    quis nulla ultrices, sed efficitur risus elementum.
+  </p>
+
+  <Divider />
+
+  <h3>Bare</h3>
+
+  <List element='ul' variant='bare'>
+    <li>Bare List Item</li>
+    <li>Bare List Item</li>
+    <li>Bare List Item</li>
+  </List>
 </>)
 
 export default Lists
