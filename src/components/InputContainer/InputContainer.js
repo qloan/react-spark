@@ -9,8 +9,7 @@ import { sparkBaseClassName, sparkClassName } from '../../util'
 class InputContainer extends React.Component {
   static defaultProps = {
     children: null,
-    positionLabelUpper: false,
-    variant: null
+    positionLabelUpper: false
   }
 
   static propTypes = {
@@ -19,12 +18,12 @@ class InputContainer extends React.Component {
     error: PropTypes.string,
     helper: PropTypes.string,
     id: PropTypes.string,
-    variant: PropTypes.string,
-    label: PropTypes.string
+    label: PropTypes.string,
+    className: PropTypes.string
   }
 
   get className() {
-    const {className} = this.props
+    const { className } = this.props
 
     return classNames(
       sparkBaseClassName('InputContainer'),
@@ -44,6 +43,7 @@ class InputContainer extends React.Component {
 
   renderHelperContent = () => {
     const { helper } = this.props
+
     if (!helper) return null
 
     return (
@@ -52,58 +52,20 @@ class InputContainer extends React.Component {
   }
 
   renderLabelContent = () => {
-    const { variant, id, label } = this.props
-
-    const baseClass = sparkClassName('base', 'Label')
-    const variantClass = variant === 'monetary' ? sparkClassName('base', 'Label', null, variant) : null
+    const { id, label } = this.props
 
     return (
-      <label htmlFor={id} className={classNames(baseClass, {
-        [variantClass]: variant
-      })}>
+      <label htmlFor={id} className={sparkClassName('base', 'Label')}>
         {label}
       </label>
     )
   }
 
-  get textInputIconContainerClassNames() {
-    const { variant } = this.props
-
-    const baseClass = sparkClassName('base', 'TextInputIconContainer')
-    const variantClass = variant === 'monetary' ? sparkClassName('base', 'TextInputIconContainer', null, variant) : null
-
-    return classNames(baseClass, {
-      [variantClass]: variant
-    })
-  }
-
   render = () => {
-    const { children, className, id, positionLabelUpper, variant, ...props } = this.props
-    const classNameInputIconContainer = this.textInputIconContainerClassNames
+    const { children, id, positionLabelUpper } = this.props
 
-    if (variant) {
-      return (
-        <div className={sparkClassName('base', 'InputContainer')}>
-          <div className={classNameInputIconContainer} {...props}>
-            {positionLabelUpper && this.renderLabelContent()}
-            {children}
-            <div
-              className={sparkClassName('base', 'InputContainer', 'input-border')}
-            />
-            {!positionLabelUpper && this.renderLabelContent()}
-          </div>
-          <div
-            className={sparkBaseClassName('ErrorContainer')}
-            id={`${id}--error-container`}
-          >
-            {this.renderHelperContent()}
-            {this.renderErrorContent()}
-          </div>
-        </div>
-      )
-    }
     return (
-      <div className={sparkClassName('base', 'InputContainer')} data-sprk-input={variant}>
+      <div className={sparkClassName('base', 'InputContainer')}>
         {positionLabelUpper && this.renderLabelContent(this.props)}
         {children}
         <div

@@ -125,14 +125,6 @@ class Inputs extends React.Component {
         width={100}
       />
 
-      <p>Monetary Text Input:</p>
-      <TextInput
-        id='text-input-monetary'
-        label='Monetary Text Input'
-        width={100}
-        type={'tel'}
-        variant={'monetary'}
-      />
     </>
   )
 
