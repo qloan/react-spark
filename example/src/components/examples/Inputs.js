@@ -124,7 +124,6 @@ class Inputs extends React.Component {
         label='Text Input Label'
         width={100}
       />
-
     </>
   )
 
