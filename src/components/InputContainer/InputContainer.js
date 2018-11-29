@@ -14,12 +14,12 @@ class InputContainer extends React.Component {
 
   static propTypes = {
     children: PropTypes.node,
-    positionLabelUpper: PropTypes.bool,
+    className: PropTypes.string,
     error: PropTypes.string,
     helper: PropTypes.string,
     id: PropTypes.string,
     label: PropTypes.string,
-    className: PropTypes.string
+    positionLabelUpper: PropTypes.bool
   }
 
   get className() {
