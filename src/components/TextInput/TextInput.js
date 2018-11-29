@@ -16,8 +16,7 @@ class TextInput extends React.Component {
     error: null,
     helper: null,
     type: 'text',
-    width: 100,
-    placeholder: null
+    width: 100
   }
 
   inputRef = React.createRef()
@@ -29,9 +28,7 @@ class TextInput extends React.Component {
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     width: PropTypes.number,
-    value: PropTypes.any,
-    variant: PropTypes.string,
-    placeholder: PropTypes.string
+    value: PropTypes.any
   }
 
   componentDidMount = () => {
