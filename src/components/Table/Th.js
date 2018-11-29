@@ -1,8 +1,8 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { sparkClassName } from '../../util'
+import { sparkBaseClassName } from '../../util'
 
 class Th extends React.Component {
   static defaultProps = {
@@ -16,17 +16,20 @@ class Th extends React.Component {
   }
 
   get className() {
-    const {empty} = this.props
+    const {className, empty} = this.props
 
-    const emptyHeadingClass = sparkClassName('base', 'Table', 'empty-heading')
+    const emptyHeadingClass = sparkBaseClassName('Table', 'empty-heading')
 
-    return classNames({[emptyHeadingClass]: empty})
+    return classnames({
+      [emptyHeadingClass]: empty,
+      [className]: className
+    })
   }
 
   render = () => {
-    const {children} = this.props
+    const {children, className, ...props} = this.props
 
-    return (<th className={this.className}>{children}</th>)
+    return <th className={this.className} {...props}>{children}</th>
   }
 }
 

@@ -25,6 +25,8 @@ class Inputs extends React.Component {
           {id: 'checkbox-normal-2', label: 'Checkbox Item 2'},
           {id: 'checkbox-normal-3', label: 'Checkbox Item 3'}
         ]}
+        className='extra-class'
+        data-extra-attribute
         id={'checkbox-normal'}
         label='Checkbox Group Label'
       />
@@ -66,10 +68,12 @@ class Inputs extends React.Component {
         <h3>Select:</h3>
 
         <Select
+          className='extra-class'
+          data-extra-attribute
           id='select-normal'
           label='Select Label'
-          width={100}
           options={options}
+          width={100}
         />
       </>
     )
@@ -81,6 +85,8 @@ class Inputs extends React.Component {
 
       <p>Text input:</p>
       <TextInput
+        className='extra-class'
+        data-extra-attribute
         id='text-input-normal'
         label='Text Input Label'
         width={100}
@@ -148,6 +154,8 @@ class Inputs extends React.Component {
 
       <p>Text input with error:</p>
       <TextArea
+        className='extra-class'
+        data-extra-attribute
         error={'There is an error on this field.'}
         id='text-input-error'
         label='TextArea Label'

@@ -126,8 +126,8 @@ class Cards extends React.Component {
     <h2>Cards</h2>
 
     <p>Base:</p>
-    <Card>
-      <Card.Content />
+    <Card className='extra-class' data-extra-attribute>
+      <Card.Content className='extra-class' data-extra-attribute />
     </Card>
 
     <p>Teaser:</p>

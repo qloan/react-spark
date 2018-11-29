@@ -35,6 +35,7 @@ class Stack extends React.Component {
     const {
       centerColumn,
       centerRow,
+      className,
       endColumn,
       endRow,
       itemSpacing,
@@ -71,16 +72,27 @@ class Stack extends React.Component {
         [endColumnClassName]: endColumn,
         [endRowClassName]: endRow,
         [itemSpacingClassName]: itemSpacing,
-        [splitAtClassName]: splitAt
+        [splitAtClassName]: splitAt,
+        [className]: className
       }
     )
   }
 
   render = () => {
-    const {children} = this.props
+    const {
+      centerColumn,
+      centerRow,
+      children,
+      className,
+      endColumn,
+      endRow,
+      itemSpacing,
+      splitAt,
+      ...props
+    } = this.props
 
     return (
-      <div className={this.className}>
+      <div className={this.className} {...props}>
         {children}
       </div>
     )

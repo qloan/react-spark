@@ -7,7 +7,7 @@ class Modals extends React.Component {
     showInfoModal: false,
     showModal: false,
     showWaitModal: false
-  };
+  }
 
   render = () => (
     <>
@@ -19,18 +19,20 @@ class Modals extends React.Component {
         data-sprk-modal-trigger={this.modalChoiceName}
         type='button'
         onClick={() => {
-          this.setState({ showChoiceModal: !this.state.showChoiceModal })
+          this.setState({showChoiceModal: !this.state.showChoiceModal})
         }}
       >
         Open Choice Modal
       </button>
       <Modal
-        id={'exampleChoiceModal'}
-        type='choice'
-        ariaLabelledby='modalChoiceHeading'
         ariaDescribedby='modalChoiceContent'
+        ariaLabelledby='modalChoiceHeading'
+        className='extra-class'
         dataId='modal-choice-1'
+        data-extra-attribute
+        id={'exampleChoiceModal'}
         show={this.state.showChoiceModal}
+        type='choice'
       >
         This is some content within a Modal. There will also be a way to close
         the modal.
@@ -41,7 +43,7 @@ class Modals extends React.Component {
         className='sprk-c-Button'
         type='button'
         onClick={() => {
-          this.setState({ showInfoModal: !this.state.showInfoModal })
+          this.setState({showInfoModal: !this.state.showInfoModal})
         }}
       >
         Open Info Modal
@@ -63,7 +65,7 @@ class Modals extends React.Component {
         type='button'
         data-sprk-modal-trigger={this.modalWaitName}
         onClick={() => {
-          this.setState({ showWaitModal: !this.state.showWaitModal })
+          this.setState({showWaitModal: !this.state.showWaitModal})
         }}
       >
         Open Wait Modal
@@ -77,7 +79,7 @@ class Modals extends React.Component {
         show={this.state.showWaitModal}
       />
     </>
-  );
+  )
 }
 
 export default Modals

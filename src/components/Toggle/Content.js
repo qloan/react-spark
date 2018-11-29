@@ -1,26 +1,28 @@
-import React from 'react';
-import classNames from 'classnames';
-import { sparkClassName } from '../../util';
+import React from 'react'
+import classNames from 'classnames'
+import { sparkBaseClassName, sparkClassName } from '../../util'
 
 class ToggleContent extends React.Component {
   get className() {
-    const baseClass = sparkClassName('base', 'TypeBodyFour')
-    const utilityPTSClass = sparkClassName('utility', 'pts')
-    const utilityPBSClass = sparkClassName('utility', 'pbs')
-    return classNames(baseClass, {
-      [utilityPTSClass]: true,
-      [utilityPBSClass]: true
-    })
+    const {className} = this.props
+
+    return classNames(
+      sparkBaseClassName('TypeBodyFour'),
+      sparkClassName('utility', 'pts'),
+      sparkClassName('utility', 'pbs'),
+      {[className]: className}
+    )
   }
 
   render = () => {
-    const { children } = this.props
+    const {children, className, ...props} = this.props
+
     return (
       <div data-sprk-toggle='content'>
-        <div className={this.className}>{children}</div>
+        <div className={this.className} {...props}>{children}</div>
       </div>
     )
-  };
+  }
 }
 
 export default ToggleContent

@@ -1,34 +1,32 @@
 import classNames from 'classnames'
 import React from 'react'
-import { sparkClassName } from '../../util'
+
+import { sparkBaseClassName } from '../../util'
 import Icon from './../Icon'
 
 class ToggleHeader extends React.Component {
   get className() {
-    const baseClass = sparkClassName('base', 'TypeBodyThree')
-    const baseLinkClass = sparkClassName('base', 'Link')
-    const linkPlainClass = sparkClassName('base', 'Link', null, 'plain')
-    const linkStandaloneClass = sparkClassName(
-      'base',
-      'Link',
-      null,
-      'standalone'
+    const {className} = this.props
+
+    return classNames(
+      sparkBaseClassName('TypeBodyThree'),
+      sparkBaseClassName('Link'),
+      sparkBaseClassName('Link', null, 'plain'),
+      sparkBaseClassName('Link', null, 'standalone'),
+      {[className]: className}
     )
-    return classNames(baseClass, {
-      [baseLinkClass]: true,
-      [linkStandaloneClass]: true,
-      [linkPlainClass]: true
-    })
   }
 
   render = () => {
-    const { children } = this.props
+    const {children, className, ...props} = this.props
+
     return (
       <a
+        aria-expanded='false'
         className={this.className}
         data-sprk-toggle='trigger'
         href='#'
-        aria-expanded='false'
+        {...props}
       >
         <Icon
           name='chevron-down'
@@ -37,7 +35,7 @@ class ToggleHeader extends React.Component {
         {children}
       </a>
     )
-  };
+  }
 }
 
 export default ToggleHeader

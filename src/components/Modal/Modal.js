@@ -1,12 +1,14 @@
-import React, { Component } from 'react'
-import MODAL_VARIANTS from './variants'
-import PropTypes from 'prop-types'
 import {
   showModal,
   hideModal
 } from '@sparkdesignsystem/spark-core/components/modals'
-import { sparkComponentClassName } from '../../util'
-import sparkClassName from '../../util/sparkClassName'
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React, { Component } from 'react'
+
+import MODAL_VARIANTS from './variants'
+import { sparkClassName, sparkComponentClassName } from '../../util'
+
 import InfoContent from './InfoContent'
 import ChoiceContent from './ChoiceContent'
 import WaitContent from './WaitContent'
@@ -34,11 +36,13 @@ class Modal extends Component {
   modalRef = React.createRef()
 
   get className() {
-    const baseClass = [
+    const {className} = this.props
+
+    return classnames(
       sparkComponentClassName('Modal'),
-      sparkClassName('utility', 'Display', null, 'none')
-    ].join(' ')
-    return [baseClass].join(' ')
+      sparkClassName('utility', 'Display', null, 'none'),
+      {[className]: className}
+    )
   }
 
   hide() {
@@ -48,6 +52,7 @@ class Modal extends Component {
       this.mainRef.current
     )
   }
+
   show() {
     showModal(
       this.modalRef.current,
@@ -57,7 +62,7 @@ class Modal extends Component {
   }
 
   toggle() {
-    const { show } = this.props
+    const {show} = this.props
     if (show) {
       this.show()
     } else {
@@ -67,33 +72,34 @@ class Modal extends Component {
 
   componentDidMount = () => {
     this.toggle()
-  };
+  }
 
   componentDidUpdate = prevProps => {
-    const { show } = this.props
+    const {show} = this.props
     if (prevProps.show !== show) {
       this.toggle()
     }
-  };
+  }
 
   render = () => {
     const {
-      id,
-      type,
-      confirmText,
+      ariaDescribedby,
+      ariaLabelledby,
+      cancelClick,
       cancelText,
+      children,
+      className,
       confirmAnalyticsString,
+      confirmClick,
+      confirmText,
+      dataId,
+      footer,
+      id,
       idString,
       onHide,
-      confirmClick,
-      cancelClick,
-      children,
+      type,
       variant,
-      footer,
-      ariaLabelledby,
-      ariaDescribedby,
-      dataId,
-      ...rest
+      ...props
     } = this.props
 
     return (
@@ -110,7 +116,7 @@ class Modal extends Component {
           aria-describedby={ariaDescribedby}
           data-sprk-modal={id}
           data-id={dataId}
-          {...rest}
+          {...props}
         >
           <div className='sprk-o-Stack sprk-o-Stack--large'>
             {type === MODAL_VARIANTS.INFO && (
@@ -144,7 +150,7 @@ class Modal extends Component {
         />
       </div>
     )
-  };
+  }
 }
 
 export default Modal

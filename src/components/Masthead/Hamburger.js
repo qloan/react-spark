@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import React from 'react'
 
 import { sparkClassName, sparkComponentClassName } from '../../util'
@@ -8,6 +9,15 @@ class Hamburger extends React.Component {
       sparkComponentClassName('Hamburger', 'line'),
       sparkComponentClassName('Hamburger', 'line', 'three')
     ].join(' ')
+  }
+
+  get className() {
+    const {className} = this.props
+
+    return classnames(
+      sparkComponentClassName('Masthead', 'hamburger'),
+      {[className]: className}
+    )
   }
 
   get pattyClassName() {
@@ -47,21 +57,25 @@ class Hamburger extends React.Component {
     </svg>
   )
 
-  render = () => (
-    <div className={sparkComponentClassName('Masthead', 'hamburger')}>
-      <button
-        className={sparkComponentClassName('Hamburger')}
-        type='button'
-        aria-expanded='false'
-        data-sprk-mobile-nav-trigger='mobileNav'
-      >
-        <span className={sparkClassName('utility', 'ScreenReaderText')}>
-          Toggle Navigation
-        </span>
-        {this.renderSvg()}
-      </button>
-    </div>
-  )
+  render = () => {
+    const {className, ...props} = this.props
+
+    return (
+      <div className={this.className} {...props}>
+        <button
+          className={sparkComponentClassName('Hamburger')}
+          type='button'
+          aria-expanded='false'
+          data-sprk-mobile-nav-trigger='mobileNav'
+        >
+          <span className={sparkClassName('utility', 'ScreenReaderText')}>
+            Toggle Navigation
+          </span>
+          {this.renderSvg()}
+        </button>
+      </div>
+    )
+  }
 }
 
 export default Hamburger

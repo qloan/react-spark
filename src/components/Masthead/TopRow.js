@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -12,14 +13,19 @@ class TopRow extends React.Component {
     children: PropTypes.node
   }
 
-  render = () => {
-    const {children} = this.props
+  get className() {
+    const {className} = this.props
 
-    return (
-      <div className={sparkComponentClassName('Masthead', 'top-row')}>
-        {children}
-      </div>
+    return classnames(
+      sparkComponentClassName('Masthead', 'top-row'),
+      {[className]: className}
     )
+  }
+
+  render = () => {
+    const {children, className, ...props} = this.props
+
+    return <div className={this.className} {...props}>{children}</div>
   }
 }
 

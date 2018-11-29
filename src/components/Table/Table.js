@@ -1,11 +1,11 @@
-import classNames from 'classnames'
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import GroupedColumn from './GroupedColumn'
 import Th from './Th'
 import TABLE_VARIANTS from './types'
-import { sparkClassName } from '../../util'
+import { sparkBaseClassName } from '../../util'
 
 class Table extends React.Component {
   static defaultProps = {
@@ -23,18 +23,22 @@ class Table extends React.Component {
   }
 
   get containerClassName() {
-    return sparkClassName('b', 'TableContainer')
+    const {className} = this.props
+
+    return classnames(
+      sparkBaseClassName('TableContainer'),
+      {[className]: className}
+    )
   }
 
   get tableClassName() {
     const {striped, variant} = this.props
 
-    const baseClass = sparkClassName('base', 'Table')
-    const stripedClass = sparkClassName('base', 'Table', null, 'striped')
-    const variantClass = sparkClassName('base', 'Table', null, variant)
+    const stripedClass = sparkBaseClassName('Table', null, 'striped')
+    const variantClass = sparkBaseClassName('Table', null, variant)
 
-    return classNames(
-      baseClass,
+    return classnames(
+      sparkBaseClassName('Table'),
       {
         [stripedClass]: striped,
         [variantClass]: variant !== TABLE_VARIANTS.STANDARD
@@ -43,10 +47,10 @@ class Table extends React.Component {
   }
 
   render = () => {
-    const {children} = this.props
+    const {children, className, ...props} = this.props
 
     return (
-      <div className={this.containerClassName}>
+      <div className={this.containerClassName} {...props}>
         <table className={this.tableClassName}>
           {children}
         </table>

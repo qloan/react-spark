@@ -4,7 +4,7 @@ import React from 'react'
 
 import Item from './Item'
 
-import { sparkClassName } from '../../util'
+import { sparkComponentClassName } from '../../util'
 import DICTIONARY_VARIANTS from './variants'
 
 class Dictionary extends React.Component {
@@ -19,27 +19,24 @@ class Dictionary extends React.Component {
   }
 
   get dictionaryClassName() {
-    const {variant} = this.props
+    const {className, variant} = this.props
 
-    const baseClass = sparkClassName('component', 'Dictionary')
-    const variantClass = sparkClassName('component', 'Dictionary', null, 'striped')
+    const baseClass = sparkComponentClassName('Dictionary')
+    const variantClass = sparkComponentClassName('Dictionary', null, 'striped')
 
     return classNames(
       baseClass,
-      {[variantClass]: variant !== DICTIONARY_VARIANTS.BASIC}
+      {[variantClass]: variant !== DICTIONARY_VARIANTS.BASIC},
+      {[className]: className}
     )
   }
 
-  get keyValuePairsClassName() {
-    return sparkClassName('component', 'Dictionary', 'keyvaluepairs')
-  }
-
   render = () => {
-    const {children} = this.props
+    const {children, className, ...props} = this.props
 
     return (
-      <div className={this.dictionaryClassName}>
-        <dl className={this.keyValuePairsClassName}>
+      <div className={this.dictionaryClassName} {...props}>
+        <dl className={sparkComponentClassName('Dictionary', 'keyvaluepairs')}>
           {children}
         </dl>
       </div>

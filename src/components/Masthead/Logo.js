@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -20,6 +21,15 @@ class Logo extends React.Component {
     imgWidth: PropTypes.string
   }
 
+  get className() {
+    const {className} = this.props
+
+    return classnames(
+      sparkComponentClassName('Masthead', 'logo'),
+      {[className]: className}
+    )
+  }
+
   renderInner = () => {
     const {screenReaderText, imgAlt, imgSrc, imgWidth} = this.props
 
@@ -36,10 +46,18 @@ class Logo extends React.Component {
   }
 
   render = () => {
-    const {href} = this.props
+    const {
+      className,
+      href,
+      imgAlt,
+      imgSrc,
+      imgWidth,
+      screenReaderText,
+      ...props
+    } = this.props
 
     return (
-      <div className={sparkComponentClassName('Masthead', 'logo')}>
+      <div className={this.className} {...props}>
         {href ? (
           <a href={href}>{this.renderInner()}</a>
         ) : (

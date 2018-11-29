@@ -81,23 +81,37 @@ class MastheadExample extends React.Component {
     <div className='ReactSparkExample-Masthead'>
       <h2>Masthead</h2>
 
-      <Masthead>
-        <Masthead.Content>
-          <Masthead.TopRow>
-            <Masthead.Hamburger />
+      <Masthead className='extra-class' data-extra-attribute>
+        <Masthead.Content className='extra-class' data-extra-attribute>
+          <Masthead.TopRow className='extra-class' data-extra-attribute>
+            <Masthead.Hamburger className='extra-class' data-extra-attribute />
             <Masthead.Logo
+              className='extra-class'
+              data-extra-attribute
               href='/masthead'
               imgAlt='Placeholder'
               imgSrc={logo}
               screenReaderText='Go to the home page'
             />
-            <Masthead.SecondaryNav links={this.secondaryNavLinks} />
+            <Masthead.SecondaryNav
+              className='extra-class'
+              data-extra-attribute
+              links={this.secondaryNavLinks}
+            />
           </Masthead.TopRow>
-          <Masthead.Secondary />
+          <Masthead.Secondary className='extra-class' data-extra-attribute />
         </Masthead.Content>
-        <Masthead.Navigation>
-          <Masthead.WideNavigation links={this.wideNavigationLinks} />
-          <Masthead.NarrowNavigation links={this.narrowNavigationLinks} />
+        <Masthead.Navigation className='extra-class' data-extra-attribute>
+          <Masthead.WideNavigation
+            className='extra-class'
+            data-extra-attribute
+            links={this.wideNavigationLinks}
+          />
+          <Masthead.NarrowNavigation
+            className='extra-class'
+            data-extra-attribute
+            links={this.narrowNavigationLinks}
+          />
         </Masthead.Navigation>
       </Masthead>
     </div>

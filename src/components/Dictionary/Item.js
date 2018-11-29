@@ -1,7 +1,11 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { sparkClassName } from '../../util'
+import {
+  sparkBaseClassName,
+  sparkComponentClassName
+} from '../../util'
 
 class Item extends React.Component {
   static propTypes = {
@@ -10,26 +14,31 @@ class Item extends React.Component {
   }
 
   get className() {
-    return sparkClassName('component', 'Dictionary', 'keyvaluepair')
+    const {className} = this.props
+
+    return classnames(
+      sparkComponentClassName('Dictionary', 'keyvaluepair'),
+      {[className]: className}
+    )
   }
 
   get keyClassName() {
     return [
-      sparkClassName('component', 'Dictionary', 'key'),
-      sparkClassName('base', 'Label'),
-      sparkClassName('base', 'Label', null, 'no-input')
+      sparkComponentClassName('Dictionary', 'key'),
+      sparkBaseClassName('Label'),
+      sparkBaseClassName('Label', null, 'no-input')
     ].join(' ')
   }
 
   get valueClassName() {
-    return sparkClassName('component', 'Dictionary', 'value')
+    return sparkComponentClassName('Dictionary', 'value')
   }
 
   render = () => {
-    const {itemKey, itemValue} = this.props
+    const {className, itemKey, itemValue, ...props} = this.props
 
     return (
-      <div className={this.className}>
+      <div className={this.className} {...props}>
         <dt className={this.keyClassName}>{itemKey}</dt>
         <dd className={this.valueClassName}>{itemValue}</dd>
       </div>

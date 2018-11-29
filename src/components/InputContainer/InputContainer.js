@@ -1,9 +1,10 @@
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
+
 import ErrorText from '../ErrorText'
 import HelperText from '../HelperText'
-import classNames from 'classnames'
-import { sparkClassName } from '../../util'
+import { sparkBaseClassName, sparkClassName } from '../../util'
 
 class InputContainer extends React.Component {
   static defaultProps = {
@@ -22,8 +23,17 @@ class InputContainer extends React.Component {
     label: PropTypes.string
   }
 
+  get className() {
+    const {className} = this.props
+
+    return classNames(
+      sparkBaseClassName('InputContainer'),
+      {[className]: className}
+    )
+  }
+
   renderErrorContent = () => {
-    const { error } = this.props
+    const {error} = this.props
 
     if (!error) return null
 
@@ -68,13 +78,13 @@ class InputContainer extends React.Component {
   }
 
   render = () => {
-    const { variant, children, positionLabelUpper, id } = this.props
+    const { children, className, id, positionLabelUpper, variant, ...props } = this.props
     const classNameInputIconContainer = this.textInputIconContainerClassNames
 
     if (variant) {
       return (
-        <div className={sparkClassName('base', 'InputContainer')} data-sprk-input={variant}>
-          <div className={classNameInputIconContainer}>
+        <div className={sparkClassName('base', 'InputContainer')}>
+          <div className={classNameInputIconContainer} {...props}>
             {positionLabelUpper && this.renderLabelContent()}
             {children}
             <div
@@ -83,7 +93,7 @@ class InputContainer extends React.Component {
             {!positionLabelUpper && this.renderLabelContent()}
           </div>
           <div
-            className={sparkClassName('base', 'ErrorContainer')}
+            className={sparkBaseClassName('ErrorContainer')}
             id={`${id}--error-container`}
           >
             {this.renderHelperContent()}

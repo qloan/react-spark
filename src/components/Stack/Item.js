@@ -25,7 +25,7 @@ class Item extends React.Component {
   }
 
   get className() {
-    const {breakpoint, width} = this.props
+    const {breakpoint, className, width} = this.props
     const block = 'Stack'
 
     const widthClassName = width
@@ -39,14 +39,17 @@ class Item extends React.Component {
 
     return classNames(
       sparkObjectClassName(block, 'item'),
-      {[widthClassName]: width}
+      {
+        [widthClassName]: width,
+        [className]: className
+      }
     )
   }
 
   render = () => {
-    const {children} = this.props
+    const {children, className, ...props} = this.props
 
-    return <div className={this.className}>{children}</div>
+    return <div className={this.className} {...props}>{children}</div>
   }
 }
 

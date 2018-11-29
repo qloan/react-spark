@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -17,6 +18,15 @@ class SecondaryNav extends React.Component {
       href: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired
     })).isRequired
+  }
+
+  get className() {
+    const {className} = this.props
+
+    return classnames(
+      sparkComponentClassName('Masthead', 'secondary-nav'),
+      {[className]: className}
+    )
   }
 
   get ulClassName() {
@@ -58,20 +68,22 @@ class SecondaryNav extends React.Component {
     ))
   }
 
-  render = () => (
-    <div
-      className={sparkComponentClassName('Masthead', 'secondary-nav')}
-    >
-      <nav role='navigation'>
-        <ul
-          className={this.ulClassName}
-          style={this.ulStyle}
-        >
-          {this.renderLinks()}
-        </ul>
-      </nav>
-    </div>
-  )
+  render = () => {
+    const {className, links, ...props} = this.props
+
+    return (
+      <div className={this.className} {...props}>
+        <nav role='navigation'>
+          <ul
+            className={this.ulClassName}
+            style={this.ulStyle}
+          >
+            {this.renderLinks()}
+          </ul>
+        </nav>
+      </div>
+    )
+  }
 }
 
 export default SecondaryNav

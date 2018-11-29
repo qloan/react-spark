@@ -16,9 +16,7 @@ class SelectionContainer extends React.Component {
     const {children} = this.props
 
     return (
-      <fieldset className={sparkBaseClassName('SelectionContainer')}>
-        {children}
-      </fieldset>
+      <div className={sparkBaseClassName('SelectionContainer')}>{children}</div>
     )
   }
 }
