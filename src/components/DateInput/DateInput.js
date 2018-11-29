@@ -6,6 +6,7 @@ import React from 'react'
 
 import {
   sparkBaseClassName,
+  sparkClassName,
   sparkWidthClassName
 } from '../../util'
 
@@ -59,33 +60,36 @@ class DateInput extends React.Component {
     } = this.props
 
     return (
-      <div
-        className={sparkBaseClassName('InputContainer')}
-        ref={this.inputContainerRef}
-      >
-        <input
-          aria-describedby={`${id}--error-container`}
-          className={this.className}
-          data-id={id}
-          disabled={disabled}
-          id={id}
-          pattern={pattern}
-          placeholder={placeholder}
-          ref={this.inputRef}
-          type='text'
-          {...props}
-        />
-        <div className={sparkBaseClassName('InputContainer', 'input-border')} />
-        <label
-          className={sparkBaseClassName('Label')}
-          htmlFor={id}
-        >
-          {label}
-        </label>
+      <div className={sparkClassName('utility', 'JavaScript')}>
         <div
-          className={sparkBaseClassName('ErrorContainer')}
-          id={`${id}-error-container`}
-        />
+          className={sparkBaseClassName('InputContainer')}
+          ref={this.inputContainerRef}
+        >
+          <input
+            aria-describedby={`${id}--error-container`}
+            className={this.className}
+            data-id={id}
+            disabled={disabled}
+            id={id}
+            pattern={pattern}
+            placeholder={placeholder}
+            ref={this.inputRef}
+            type='text'
+            {...props}
+          />
+          <div
+            className={sparkBaseClassName('InputContainer', 'input-border')} />
+          <label
+            className={sparkBaseClassName('Label')}
+            htmlFor={id}
+          >
+            {label}
+          </label>
+          <div
+            className={sparkBaseClassName('ErrorContainer')}
+            id={`${id}-error-container`}
+          />
+        </div>
       </div>
     )
   }
