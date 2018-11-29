@@ -133,15 +133,6 @@ class Inputs extends React.Component {
         type={'tel'}
         variant={'monetary'}
       />
-
-      {/* <div className='sprk-b-InputContainer' data-sprk-input='monetary'>
-        <div className='sprk-b-TextInputIconContainer sprk-b-TextInputIconContainer--monetary'>
-          <input className='sprk-b-TextInput sprk-b-TextInput--monetary  sprk-u-Width-100' pattern='(^\$?(\d+|\d{1,3}(,\d{3})*)(\.\d+)?$)|^$' id='monetary-normal' data-id='monetary-normal' type='tel' aria-describedby='monetary-normal--error-container' data-sprk-input='text' />
-          <div className='sprk-b-InputContainer__input-border' />
-          <label htmlFor='monetary-normal' className='sprk-b-Label sprk-b-Label--monetary'>Payment</label>
-        </div>
-        <div className='sprk-b-ErrorContainer' id='monetary-normal--error-container' />
-      </div> */}
     </>
   )
 
