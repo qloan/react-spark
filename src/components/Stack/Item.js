@@ -47,7 +47,7 @@ class Item extends React.Component {
   }
 
   render = () => {
-    const {children, className, ...props} = this.props
+    const {breakpoint, children, className, width, ...props} = this.props
 
     return <div className={this.className} {...props}>{children}</div>
   }
