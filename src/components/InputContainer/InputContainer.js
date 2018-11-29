@@ -62,17 +62,16 @@ class InputContainer extends React.Component {
   }
 
   render = () => {
-    const { children, id, positionLabelUpper } = this.props
+    const { children, id, positionLabelUpper, ...props } = this.props
 
     return (
-      <div className={sparkClassName('base', 'InputContainer')}>
+      <div className={sparkClassName('base', 'InputContainer')} {...props}>
         {positionLabelUpper && this.renderLabelContent(this.props)}
         {children}
         <div
           className={sparkClassName('base', 'InputContainer', 'input-border')}
         />
         {!positionLabelUpper && this.renderLabelContent(this.props)}
-
         <div
           className={sparkClassName('base', 'ErrorContainer')}
           id={`${id}--error-container`}
