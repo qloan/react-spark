@@ -13,6 +13,8 @@ class InputContainer extends React.Component {
 
   static propTypes = {
     children: PropTypes.node,
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
     positionLabelUpper: PropTypes.bool
   }
 
@@ -43,7 +45,14 @@ class InputContainer extends React.Component {
   )
 
   render = () => {
-    const {children, className, id, positionLabelUpper, ...props} = this.props
+    const {
+      children,
+      className,
+      id,
+      label,
+      positionLabelUpper,
+      ...props
+    } = this.props
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
