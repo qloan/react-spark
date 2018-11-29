@@ -1,6 +1,8 @@
 import React from 'react'
 import {
   CheckboxGroup,
+  DateInput,
+  DatePicker,
   Select,
   TextArea,
   TextInput
@@ -56,6 +58,46 @@ class Inputs extends React.Component {
       />
     </>
   )
+
+  renderDateInputs = () => (<>
+    <h3>Date Inputs</h3>
+
+    <p>Normal:</p>
+    <DateInput
+      className='extra-class'
+      data-extra-attribute
+      id='date-input-normal'
+      label='Date'
+      width={100}
+    />
+
+    <p>Disabled:</p>
+    <DateInput
+      disabled
+      id='date-input-disabled'
+      label='Date'
+      width={100}
+    />
+
+    <h3>Date Picker</h3>
+
+    <p>Normal:</p>
+    <DatePicker
+      className='extra-class'
+      data-extra-attribute
+      id='date-picker-normal'
+      label='Date'
+      width={100}
+    />
+
+    <p>Disabled:</p>
+    <DatePicker
+      disabled
+      id='date-picker-normal'
+      label='Date'
+      width={100}
+    />
+  </>)
 
   renderSelects = () => {
     const options = [
@@ -152,9 +194,10 @@ class Inputs extends React.Component {
 
       {/* TODO: Add table of contents */}
       {this.renderTextInputs()}
-      {this.renderTextAreas()}
-      {this.renderSelects()}
       {this.renderCheckboxes()}
+      {this.renderSelects()}
+      {this.renderTextAreas()}
+      {this.renderDateInputs()}
     </>
   )
 }
