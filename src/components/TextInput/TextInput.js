@@ -9,7 +9,6 @@ import React from 'react'
 import InputContainer from './../InputContainer/InputContainer'
 
 import { sparkClassName, sparkWidthClassName } from '../../util'
-import TEXTINPUT_VARIANTS from './variants'
 
 class TextInput extends React.Component {
   static defaultProps = {
@@ -18,10 +17,7 @@ class TextInput extends React.Component {
     helper: null,
     type: 'text',
     width: 100,
-    variant: null,
-    pattern: null,
-    placeholder: null,
-    icon: null
+    placeholder: null
   }
 
   inputRef = React.createRef()
@@ -43,19 +39,12 @@ class TextInput extends React.Component {
     bindUIEvents(this.inputRef.current)
   }
 
-  get variant() {
-    const { variant } = this.props
-    if (!variant) return TEXTINPUT_VARIANTS.default
-    return TEXTINPUT_VARIANTS[variant.toLowerCase()]
-  }
-
   get className() {
-    const {className, error, width, value, helper, variant} = this.props
+    const {className, error, width, value, helper} = this.props
 
     const baseClass = sparkClassName('base', 'TextInput')
     const errorClass = sparkClassName('base', 'TextInput', null, 'error')
     const helperClass = sparkClassName('base', 'TextInput', null, 'helper')
-    const variantClass = sparkClassName('base', 'TextInput', null, variant)
     const widthClass = sparkWidthClassName(width)
     const hasValueClass = value ? sparkClassName('base', 'TextInput', null, 'has-value') : null
 
@@ -63,17 +52,16 @@ class TextInput extends React.Component {
       [errorClass]: error,
       [helperClass]: helper,
       [widthClass]: width,
-      [variantClass]: variant,
       [hasValueClass]: hasValueClass,
       [className]: className
     })
   }
 
   render = () => {
-    const {className, disabled, error, helper, id, label, type, variant, placeholder, pattern, ...props} = this.props
+    const {className, disabled, error, helper, id, label, type, placeholder, pattern, ...props} = this.props
 
     return (
-      <InputContainer error={error} helper={helper} id={id} label={label} variant={variant}>
+      <InputContainer error={error} helper={helper} id={id} label={label}>
         <input
           className={this.className}
           disabled={disabled}
@@ -82,9 +70,6 @@ class TextInput extends React.Component {
           type={type}
           aria-describedby={`${id}--error-container`}
           ref={this.inputRef}
-          placeholder={placeholder || this.variant.placeholder}
-          pattern={pattern || this.variant.pattern}
-          data-sprk-input={'text'}
           {...props}
         />
       </InputContainer>
