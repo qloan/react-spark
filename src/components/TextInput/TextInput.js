@@ -8,15 +8,13 @@ import React from 'react'
 
 import InputContainer from './../InputContainer/InputContainer'
 
-import {
-  sparkBaseClassName,
-  sparkWidthClassName
-} from '../../util'
+import { sparkClassName, sparkWidthClassName } from '../../util'
 
 class TextInput extends React.Component {
   static defaultProps = {
     disabled: false,
     error: null,
+    helper: null,
     type: 'text',
     width: 100
   }
@@ -26,9 +24,11 @@ class TextInput extends React.Component {
   static propTypes = {
     disabled: PropTypes.bool,
     error: PropTypes.string,
+    helper: PropTypes.string,
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    width: PropTypes.number
+    width: PropTypes.number,
+    value: PropTypes.any
   }
 
   componentDidMount = () => {
@@ -37,26 +37,28 @@ class TextInput extends React.Component {
   }
 
   get className() {
-    const {className, error, width} = this.props
+    const {className, error, width, value, helper} = this.props
 
-    const errorClass = sparkBaseClassName('TextInput', null, 'error')
+    const baseClass = sparkClassName('base', 'TextInput')
+    const errorClass = sparkClassName('base', 'TextInput', null, 'error')
+    const helperClass = sparkClassName('base', 'TextInput', null, 'helper')
     const widthClass = sparkWidthClassName(width)
+    const hasValueClass = value ? sparkClassName('base', 'TextInput', null, 'has-value') : null
 
-    return classNames(
-      sparkBaseClassName('TextInput'),
-      {
-        [errorClass]: error,
-        [widthClass]: width,
-        [className]: className
-      }
-    )
+    return classNames(baseClass, {
+      [errorClass]: error,
+      [helperClass]: helper,
+      [widthClass]: width,
+      [hasValueClass]: hasValueClass,
+      [className]: className
+    })
   }
 
   render = () => {
-    const {className, disabled, error, id, label, type, ...props} = this.props
+    const {className, disabled, error, helper, id, label, type, placeholder, pattern, ...props} = this.props
 
     return (
-      <InputContainer error={error} id={id} label={label}>
+      <InputContainer error={error} helper={helper} id={id} label={label}>
         <input
           className={this.className}
           disabled={disabled}

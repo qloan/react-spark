@@ -151,6 +151,14 @@ class Inputs extends React.Component {
         width={100}
       />
 
+      <p>Text input with helper text:</p>
+      <TextInput
+        helper={'This is helper text for this input.'}
+        id='text-input-helper'
+        label='Text Input Label'
+        width={100}
+      />
+
       <p>Disabled text input:</p>
       <TextInput
         disabled

@@ -1,8 +1,9 @@
-import classnames from 'classnames'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import ErrorText from '../ErrorText'
+import HelperText from '../HelperText'
 import { sparkBaseClassName, sparkClassName } from '../../util'
 
 class InputContainer extends React.Component {
@@ -13,15 +14,18 @@ class InputContainer extends React.Component {
 
   static propTypes = {
     children: PropTypes.node,
-    id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    error: PropTypes.string,
+    helper: PropTypes.string,
+    id: PropTypes.string,
+    label: PropTypes.string,
     positionLabelUpper: PropTypes.bool
   }
 
   get className() {
-    const {className} = this.props
+    const { className } = this.props
 
-    return classnames(
+    return classNames(
       sparkBaseClassName('InputContainer'),
       {[className]: className}
     )
@@ -33,26 +37,32 @@ class InputContainer extends React.Component {
     if (!error) return null
 
     return (
-      // TODO: Icon SVG
       <ErrorText>{error}</ErrorText>
     )
   }
 
-  renderLabelContent = ({id, label}) => (
-    <label htmlFor={id} className={sparkBaseClassName('Label')}>
-      {label}
-    </label>
-  )
+  renderHelperContent = () => {
+    const { helper } = this.props
+
+    if (!helper) return null
+
+    return (
+      <HelperText>{helper}</HelperText>
+    )
+  }
+
+  renderLabelContent = () => {
+    const { id, label } = this.props
+
+    return (
+      <label htmlFor={id} className={sparkClassName('base', 'Label')}>
+        {label}
+      </label>
+    )
+  }
 
   render = () => {
-    const {
-      children,
-      className,
-      id,
-      label,
-      positionLabelUpper,
-      ...props
-    } = this.props
+    const {children, id, positionLabelUpper, ...props} = this.props
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
@@ -67,6 +77,7 @@ class InputContainer extends React.Component {
             className={sparkBaseClassName('ErrorContainer')}
             id={`${id}--error-container`}
           >
+            {this.renderHelperContent()}
             {this.renderErrorContent()}
           </div>
         </div>
