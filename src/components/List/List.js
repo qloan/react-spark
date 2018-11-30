@@ -1,69 +1,42 @@
-import React from 'react'
-import LIST_VARIANTS from './variants'
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
-import sparkClassName from '../../util/sparkClassName'
+import React from 'react'
+
+import LIST_VARIANTS from './variants'
+import { sparkBaseClassName } from '../../util'
 
 class List extends React.Component {
   static defaultProps = {
-    listType: LIST_VARIANTS.LIST
+    variant: null
   }
 
   static propTypes = {
-    dataId: PropTypes.string,
-    listItemId: PropTypes.string,
-    listType: PropTypes.oneOf(Object.values(LIST_VARIANTS)),
-    text: PropTypes.string,
-    children: PropTypes.node
+    children: PropTypes.node,
+    element: PropTypes.oneOf(['ol', 'ul']).isRequired,
+    variant: PropTypes.oneOf(Object.values(LIST_VARIANTS))
   }
-
-  listRef = React.createRef()
 
   get className() {
-    const { listType } = this.props
+    const {className, variant} = this.props
+    const variantClass = sparkBaseClassName('List', null, variant)
 
-    const baseClass = sparkClassName('base', 'List')
-    const variantClass = sparkClassName('base', 'List', null, listType)
-
-    return [
-      baseClass,
-      variantClass
-    ].join(' ')
-  }
-
-  incrementCount = () => {
-    this.setState((state) => {
-      return {count: state.count + 1}
-    })
+    return classnames(
+      sparkBaseClassName('List'),
+      {[variantClass]: variantClass},
+      {[className]: className}
+    )
   }
 
   render = () => {
     const {
-      listType,
-      dataId,
-      listItemId,
-      text,
       children,
-      ...rest
+      className,
+      element: Element,
+      variant,
+      ...props
     } = this.props
 
-    return (
-      <div>
-        {dataId === 'unordered-list-1' && (
-          <ul className={this.className} data-id={dataId} {...rest}>
-            <li data-id={listItemId}>{text}</li>
-            <li data-id={listItemId}>{text}</li>
-            <li data-id={listItemId}>{text}</li>
-          </ul>
-        )}
-        {dataId === 'ordered-list-1' && (
-          <ol className={this.className} data-id={dataId} {...rest}>
-            <li data-id={listItemId}>{text}</li>
-            <li data-id={listItemId}>{text}</li>
-            <li data-id={listItemId}>{text}</li>
-          </ol>
-        )}
-      </div>
-    )
+    return <Element className={this.className} {...props}>{children}</Element>
   }
 }
 

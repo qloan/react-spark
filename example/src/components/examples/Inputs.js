@@ -1,5 +1,12 @@
 import React from 'react'
-import { CheckboxGroup, Select, TextArea, TextInput } from 'react-spark'
+import {
+  CheckboxGroup,
+  DateInput,
+  DatePicker,
+  Select,
+  TextArea,
+  TextInput
+} from 'react-spark'
 
 class Inputs extends React.Component {
   state = {
@@ -32,6 +39,8 @@ class Inputs extends React.Component {
             name: 'checkbox-normal-3'
           }
         ]}
+        className='extra-class'
+        data-extra-attribute
         id={'checkbox-normal'}
         label='Checkbox Group Label'
       />
@@ -86,6 +95,38 @@ class Inputs extends React.Component {
     </>
   )
 
+  renderDateInputs = () => (
+    <>
+      <h3>Date Inputs</h3>
+
+      <p>Normal:</p>
+      <DateInput
+        className='extra-class'
+        data-extra-attribute
+        id='date-input-normal'
+        label='Date'
+        width={100}
+      />
+
+      <p>Disabled:</p>
+      <DateInput disabled id='date-input-disabled' label='Date' width={100} />
+
+      <h3>Date Picker</h3>
+
+      <p>Normal:</p>
+      <DatePicker
+        className='extra-class'
+        data-extra-attribute
+        id='date-picker-normal'
+        label='Date'
+        width={100}
+      />
+
+      <p>Disabled:</p>
+      <DatePicker disabled id='date-picker-normal' label='Date' width={100} />
+    </>
+  )
+
   renderSelects = () => {
     const options = [
       { value: 34, text: 'First val' },
@@ -97,10 +138,12 @@ class Inputs extends React.Component {
         <h3>Select:</h3>
 
         <Select
+          className='extra-class'
+          data-extra-attribute
           id='select-normal'
           label='Select Label'
-          width={100}
           options={options}
+          width={100}
         />
       </>
     )
@@ -111,7 +154,13 @@ class Inputs extends React.Component {
       <h3>Text inputs</h3>
 
       <p>Text input:</p>
-      <TextInput id='text-input-normal' label='Text Input Label' width={100} />
+      <TextInput
+        className='extra-class'
+        data-extra-attribute
+        id='text-input-normal'
+        label='Text Input Label'
+        width={100}
+      />
 
       <p>Text input with value:</p>
       <TextInput
@@ -149,6 +198,8 @@ class Inputs extends React.Component {
 
       <p>Text input with error:</p>
       <TextArea
+        className='extra-class'
+        data-extra-attribute
         error={'There is an error on this field.'}
         id='text-input-error'
         label='TextArea Label'
@@ -171,9 +222,10 @@ class Inputs extends React.Component {
 
       {/* TODO: Add table of contents */}
       {this.renderTextInputs()}
-      {this.renderTextAreas()}
-      {this.renderSelects()}
       {this.renderCheckboxes()}
+      {this.renderSelects()}
+      {this.renderTextAreas()}
+      {this.renderDateInputs()}
     </>
   )
 }

@@ -6,7 +6,11 @@ const Icons = () => (
     <h2>Icons</h2>
 
     <p>Small</p>
-    <Icon name='chevron-down-circle' />
+    <Icon
+      className='extra-class'
+      data-extra-attribute
+      name='chevron-down-circle'
+    />
 
     <p>Large</p>
     <Icon name='application' size={Icon.size.L} />

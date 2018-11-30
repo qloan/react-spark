@@ -1,8 +1,9 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
+
 import ErrorText from '../ErrorText'
-import { sparkClassName } from '../../util'
-import Icon from '../Icon'
+import { sparkBaseClassName, sparkClassName } from '../../util'
 
 class InputContainer extends React.Component {
   static defaultProps = {
@@ -12,11 +13,22 @@ class InputContainer extends React.Component {
 
   static propTypes = {
     children: PropTypes.node,
+    id: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
     positionLabelUpper: PropTypes.bool
   }
 
+  get className() {
+    const {className} = this.props
+
+    return classnames(
+      sparkBaseClassName('InputContainer'),
+      {[className]: className}
+    )
+  }
+
   renderErrorContent = () => {
-    const { error } = this.props
+    const {error} = this.props
 
     if (!error) return null
 
@@ -26,27 +38,33 @@ class InputContainer extends React.Component {
     )
   }
 
-  renderLabelContent = ({ id, label }) => (
-    <label htmlFor={id} className={sparkClassName('base', 'Label')}>
+  renderLabelContent = ({id, label}) => (
+    <label htmlFor={id} className={sparkBaseClassName('Label')}>
       {label}
     </label>
   )
 
   render = () => {
-    const { children, id, positionLabelUpper } = this.props
-    const className = sparkClassName('base', 'InputContainer')
+    const {
+      children,
+      className,
+      id,
+      label,
+      positionLabelUpper,
+      ...props
+    } = this.props
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
-        <div className={className}>
+        <div className={this.className} {...props}>
           {positionLabelUpper && this.renderLabelContent(this.props)}
           {children}
           <div
-            className={sparkClassName('base', 'InputContainer', 'input-border')}
+            className={sparkBaseClassName('InputContainer', 'input-border')}
           />
           {!positionLabelUpper && this.renderLabelContent(this.props)}
           <div
-            className={sparkClassName('base', 'ErrorContainer')}
+            className={sparkBaseClassName('ErrorContainer')}
             id={`${id}--error-container`}
           >
             {this.renderErrorContent()}

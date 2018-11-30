@@ -15,11 +15,7 @@ class Label extends React.Component {
   render = () => {
     const {children} = this.props
 
-    return (
-      <fieldset className={sparkBaseClassName('Label')}>
-        {children}
-      </fieldset>
-    )
+    return <legend className={sparkBaseClassName('Label')}>{children}</legend>
   }
 }
 

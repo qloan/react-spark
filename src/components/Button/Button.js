@@ -1,8 +1,8 @@
-import classNames from 'classnames'
 import {
   setSpinning,
   cancelSpinning
 } from '@sparkdesignsystem/spark-core/es5/spinners'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -30,7 +30,7 @@ class Button extends React.Component {
   ref = React.createRef()
 
   get className() {
-    const {disabled, fullWidthAtSmallViewport, variant} = this.props
+    const {className, disabled, fullWidthAtSmallViewport, variant} = this.props
 
     const baseClass = sparkComponentClassName('Button')
     const variantClass = sparkComponentClassName('Button', null, variant)
@@ -41,7 +41,8 @@ class Button extends React.Component {
     return classNames(baseClass, {
       [variantClass]: variant !== BUTTON_VARIANTS.PRIMARY,
       [disabledClass]: disabled,
-      [fullWidthAtSmallViewportClass]: fullWidthAtSmallViewport
+      [fullWidthAtSmallViewportClass]: fullWidthAtSmallViewport,
+      [className]: className
     })
   }
 
@@ -66,6 +67,7 @@ class Button extends React.Component {
   render = () => {
     const {
       children,
+      className,
       disabled,
       fullWidthAtSmallViewport,
       href,
@@ -74,6 +76,7 @@ class Button extends React.Component {
     } = this.props
 
     let Element
+
     let props = {
       className: this.className,
       disabled: disabled,
@@ -88,7 +91,7 @@ class Button extends React.Component {
       Element = 'button'
     }
 
-    return <Element{...props}>{children}</Element>
+    return <Element {...props}>{children}</Element>
   }
 }
 

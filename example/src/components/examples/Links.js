@@ -5,7 +5,7 @@ const Links = () => (<>
   <h2>Links</h2>
 
   <p>Inline:</p>
-  <Link href='#'>Inline</Link>
+  <Link className='extra-class' data-extra-attribute href='#'>Inline</Link>
 
   <p>Plain:</p>
   <Link href='#' variant='plain'>Plain</Link>

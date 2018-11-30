@@ -53,10 +53,18 @@ class CheckboxGroup extends React.Component {
   }
 
   render = () => {
-    const { checkboxes, disabled, id, label, onChange } = this.props
+    const {
+      checkboxes,
+      className,
+      disabled,
+      id,
+      label,
+      onChange,
+      ...props
+    } = this.props
 
     return (
-      <InputContainer>
+      <InputContainer className={className} {...props}>
         <Fieldset>
           <Legend>
             <Label>{label}</Label>

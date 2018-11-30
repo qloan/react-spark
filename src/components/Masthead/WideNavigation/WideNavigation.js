@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -17,6 +18,15 @@ class WideNavigation extends React.Component {
     })).isRequired
   }
 
+  get className() {
+    const {className} = this.props
+
+    return classnames(
+      sparkComponentClassName('Masthead', 'wide-navigation-container'),
+      {[className]: className}
+    )
+  }
+
   renderItems = () => {
     const {links} = this.props
 
@@ -31,19 +41,19 @@ class WideNavigation extends React.Component {
     ))
   }
 
-  render = () => (
-    <div
-      className={
-        sparkComponentClassName('Masthead', 'wide-navigation-container')
-      }
-    >
-      <nav role='navigation'>
-        <ul className={sparkComponentClassName('WideNavigation')}>
-          {this.renderItems()}
-        </ul>
-      </nav>
-    </div>
-  )
+  render = () => {
+    const {className, links, ...props} = this.props
+
+    return (
+      <div className={this.className} {...props}>
+        <nav role='navigation'>
+          <ul className={sparkComponentClassName('WideNavigation')}>
+            {this.renderItems()}
+          </ul>
+        </nav>
+      </div>
+    )
+  }
 }
 
 export default WideNavigation

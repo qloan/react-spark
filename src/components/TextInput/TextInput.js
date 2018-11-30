@@ -5,9 +5,10 @@ import {
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
+
 import InputContainer from './../InputContainer/InputContainer'
 
-import { sparkClassName, sparkWidthClassName } from '../../util'
+import { sparkBaseClassName, sparkWidthClassName } from '../../util'
 
 class TextInput extends React.Component {
   static defaultProps = {
@@ -33,20 +34,20 @@ class TextInput extends React.Component {
   }
 
   get className() {
-    const { error, width } = this.props
+    const { className, error, width } = this.props
 
-    const baseClass = sparkClassName('base', 'TextInput')
-    const errorClass = sparkClassName('base', 'TextInput', null, 'error')
+    const errorClass = sparkBaseClassName('TextInput', null, 'error')
     const widthClass = sparkWidthClassName(width)
 
-    return classNames(baseClass, {
+    return classNames(sparkBaseClassName('TextInput'), {
       [errorClass]: error,
-      [widthClass]: width
+      [widthClass]: width,
+      [className]: className
     })
   }
 
   render = () => {
-    const { disabled, error, id, label, type, ...rest } = this.props
+    const { className, disabled, error, id, label, type, ...props } = this.props
 
     return (
       <InputContainer error={error} id={id} label={label}>
@@ -58,7 +59,7 @@ class TextInput extends React.Component {
           type={type}
           aria-describedby={`${id}--error-container`}
           ref={this.inputRef}
-          {...rest}
+          {...props}
         />
       </InputContainer>
     )

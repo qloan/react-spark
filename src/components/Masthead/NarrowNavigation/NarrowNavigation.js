@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -22,10 +23,13 @@ class NarrowNavigation extends React.Component {
   }
 
   get className() {
-    return [
+    const {className} = this.props
+
+    return classnames(
       sparkComponentClassName('Masthead', 'narrow-navigation-container'),
-      sparkClassName('utility', 'Display', null, 'none')
-    ].join(' ')
+      sparkClassName('utility', 'Display', null, 'none'),
+      {[className]: className}
+    )
   }
 
   get ulClassName() {
@@ -56,18 +60,23 @@ class NarrowNavigation extends React.Component {
     })
   }
 
-  render = () => (
-    <div
-      className={this.className}
-      data-sprk-mobile-nav='mobileNav'
-    >
-      <nav role='navigation'>
-        <ul className={this.ulClassName}>
-          {this.renderItems()}
-        </ul>
-      </nav>
-    </div>
-  )
+  render = () => {
+    const {className, links, ...props} = this.props
+
+    return (
+      <div
+        className={this.className}
+        data-sprk-mobile-nav='mobileNav'
+        {...props}
+      >
+        <nav role='navigation'>
+          <ul className={this.ulClassName}>
+            {this.renderItems()}
+          </ul>
+        </nav>
+      </div>
+    )
+  }
 }
 
 export default NarrowNavigation
