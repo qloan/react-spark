@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import Checkbox from '../Checkbox'
 import ErrorText from '../ErrorText'
 import Fieldset from '../Fieldset'
+import InputContainer from '../InputContainer'
 import Label from '../Label'
 import Legend from '../Legend'
-import InputContainer from '../InputContainer'
+import Radio from '../Radio'
 
 import { sparkBaseClassName } from '../../util'
 
-class CheckboxGroup extends React.Component {
+class RadioGroup extends React.Component {
   static defaultProps = {
     disabled: false,
     error: null,
@@ -20,7 +20,7 @@ class CheckboxGroup extends React.Component {
   }
 
   static propTypes = {
-    checkboxes: PropTypes.arrayOf(
+    radios: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string,
         label: PropTypes.string.isRequired,
@@ -53,7 +53,7 @@ class CheckboxGroup extends React.Component {
   }
 
   render = () => {
-    const { checkboxes, disabled, id, label, onChange } = this.props
+    const { disabled, id, label, onChange, radios } = this.props
 
     return (
       <InputContainer>
@@ -61,8 +61,8 @@ class CheckboxGroup extends React.Component {
           <Legend>
             <Label>{label}</Label>
           </Legend>
-          {checkboxes.map(checkbox => (
-            <Checkbox
+          {radios.map(checkbox => (
+            <Radio
               checked={checkbox.checked ? 'checked' : null}
               containerId={id}
               disabled={disabled}
@@ -85,4 +85,4 @@ class CheckboxGroup extends React.Component {
   }
 }
 
-export default CheckboxGroup
+export default RadioGroup

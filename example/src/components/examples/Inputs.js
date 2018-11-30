@@ -1,10 +1,5 @@
 import React from 'react'
-import {
-  CheckboxGroup,
-  Select,
-  TextArea,
-  TextInput
-} from 'react-spark'
+import { CheckboxGroup, Select, TextArea, TextInput } from 'react-spark'
 
 class Inputs extends React.Component {
   state = {
@@ -12,7 +7,7 @@ class Inputs extends React.Component {
   }
 
   handleTextInputChange = e => {
-    this.setState({textInputWithValueValue: e.value})
+    this.setState({ textInputWithValueValue: e.value })
   }
 
   renderCheckboxes = () => (
@@ -21,9 +16,21 @@ class Inputs extends React.Component {
       <p>Normal checkbox group:</p>
       <CheckboxGroup
         checkboxes={[
-          {id: 'checkbox-normal-1', label: 'Checkbox Item 1'},
-          {id: 'checkbox-normal-2', label: 'Checkbox Item 2'},
-          {id: 'checkbox-normal-3', label: 'Checkbox Item 3'}
+          {
+            id: 'checkbox-normal-1',
+            label: 'Checkbox Item 1',
+            name: 'checkbox-normal-1'
+          },
+          {
+            id: 'checkbox-normal-2',
+            label: 'Checkbox Item 2',
+            name: 'checkbox-normal-2'
+          },
+          {
+            id: 'checkbox-normal-3',
+            label: 'Checkbox Item 3',
+            name: 'checkbox-normal-3'
+          }
         ]}
         id={'checkbox-normal'}
         label='Checkbox Group Label'
@@ -32,9 +39,21 @@ class Inputs extends React.Component {
       <p>Checkbox group with error:</p>
       <CheckboxGroup
         checkboxes={[
-          {id: 'checkbox-error-1', label: 'Checkbox Item 1'},
-          {id: 'checkbox-error-2', label: 'Checkbox Item 2'},
-          {id: 'checkbox-error-3', label: 'Checkbox Item 3'}
+          {
+            id: 'checkbox-error-1',
+            label: 'Checkbox Item 1',
+            name: 'checkbox-normal-1'
+          },
+          {
+            id: 'checkbox-error-2',
+            label: 'Checkbox Item 2',
+            name: 'checkbox-normal-2'
+          },
+          {
+            id: 'checkbox-error-3',
+            label: 'Checkbox Item 3',
+            name: 'checkbox-normal-3'
+          }
         ]}
         error='There is an error on this field.'
         id={'checkbox-error'}
@@ -44,9 +63,21 @@ class Inputs extends React.Component {
       <p>Disabled checkbox group:</p>
       <CheckboxGroup
         checkboxes={[
-          {id: 'checkbox-disabled-1', label: 'Checkbox Item 1'},
-          {id: 'checkbox-disabled-2', label: 'Checkbox Item 2'},
-          {id: 'checkbox-disabled-3', label: 'Checkbox Item 3'}
+          {
+            id: 'checkbox-disabled-1',
+            label: 'Checkbox Item 1',
+            name: 'checkbox-normal-1'
+          },
+          {
+            id: 'checkbox-disabled-2',
+            label: 'Checkbox Item 2',
+            name: 'checkbox-normal-2'
+          },
+          {
+            id: 'checkbox-disabled-3',
+            label: 'Checkbox Item 3',
+            name: 'checkbox-normal-3'
+          }
         ]}
         disabled
         id={'checkbox-disabled'}
@@ -57,8 +88,8 @@ class Inputs extends React.Component {
 
   renderSelects = () => {
     const options = [
-      {value: 34, text: 'First val'},
-      {value: 34, text: 'Second val'}
+      { value: 34, text: 'First val' },
+      { value: 34, text: 'Second val' }
     ]
 
     return (
@@ -80,11 +111,7 @@ class Inputs extends React.Component {
       <h3>Text inputs</h3>
 
       <p>Text input:</p>
-      <TextInput
-        id='text-input-normal'
-        label='Text Input Label'
-        width={100}
-      />
+      <TextInput id='text-input-normal' label='Text Input Label' width={100} />
 
       <p>Text input with value:</p>
       <TextInput

@@ -33,7 +33,7 @@ class TextInput extends React.Component {
   }
 
   get className() {
-    const {error, width} = this.props
+    const { error, width } = this.props
 
     const baseClass = sparkClassName('base', 'TextInput')
     const errorClass = sparkClassName('base', 'TextInput', null, 'error')
@@ -46,7 +46,7 @@ class TextInput extends React.Component {
   }
 
   render = () => {
-    const {disabled, error, id, label, type, ...rest} = this.props
+    const { disabled, error, id, label, type, ...rest } = this.props
 
     return (
       <InputContainer error={error} id={id} label={label}>

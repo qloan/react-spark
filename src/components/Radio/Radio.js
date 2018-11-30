@@ -4,7 +4,7 @@ import React from 'react'
 import SelectionContainer from '../SelectionContainer'
 import { sparkBaseClassName } from '../../util/index'
 
-class Checkbox extends React.Component {
+class Radio extends React.Component {
   static defaultProps = {
     checked: false,
     disabled: false
@@ -58,4 +58,4 @@ class Checkbox extends React.Component {
   }
 }
 
-export default Checkbox
+export default Radio

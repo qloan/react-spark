@@ -10,10 +10,10 @@ import Content from './Content'
 class Accordion extends React.Component {
   static defaultProps = {
     padding: false
-  };
+  }
   static propTypes = {
     padding: PropTypes.bool
-  };
+  }
 
   componentDidMount() {
     // todo: this only works with one accordion on the page. Need to be fixed for multiple accordions
@@ -32,7 +32,7 @@ class Accordion extends React.Component {
   render = () => {
     const { children } = this.props
     return <ul className={this.className}>{children}</ul>
-  };
+  }
 }
 Accordion.Item = Item
 Accordion.Header = Header
