@@ -26,6 +26,9 @@ import Nav from './components/Nav'
 import './App.scss'
 
 export default class App extends Component {
+  componentDidMount() {
+    document.body.classList.add('sprk-u-JavaScript')
+  }
   render = () => {
     return (
       <Router>
