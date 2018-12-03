@@ -33,6 +33,7 @@ class Radio extends React.Component {
       id,
       label,
       name,
+      onChange,
       value,
       ...rest
     } = this.props
@@ -46,6 +47,7 @@ class Radio extends React.Component {
           disabled={disabled}
           id={id}
           name={name}
+          onChange={onChange}
           type='radio'
           value={value}
           {...rest}

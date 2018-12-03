@@ -102,7 +102,6 @@ class Inputs extends React.Component {
   renderRadios = () => (
     <>
       <h3>Radio Group</h3>
-      <p>Normal radio group:</p>
       <RadioGroup
         radios={[
           {
@@ -114,13 +113,13 @@ class Inputs extends React.Component {
           {
             id: 'radio-normal-2',
             label: 'Radio Item 2',
-            name: 'radio-normal-2',
+            name: 'radio-normal-1',
             value: 'bar'
           },
           {
             id: 'radio-normal-3',
             label: 'Radio Item 3',
-            name: 'radio-normal-3',
+            name: 'radio-normal-1',
             value: 'baz'
           }
         ]}
@@ -130,7 +129,6 @@ class Inputs extends React.Component {
         label='Radio Group Label'
       />
 
-      <p>Radio group with error:</p>
       <RadioGroup
         radios={[
           {
@@ -141,20 +139,19 @@ class Inputs extends React.Component {
           {
             id: 'radio-error-2',
             label: 'Radio Item 2',
-            name: 'radio-error-2'
+            name: 'radio-error-1'
           },
           {
             id: 'radio-error-3',
             label: 'Radio Item 3',
-            name: 'radio-error-3'
+            name: 'radio-error-1'
           }
         ]}
         error='There is an error on this field.'
         id={'radio-error'}
-        label='Radio Group Label'
+        label='Radio Group With Error'
       />
 
-      <p>Disabled radio group:</p>
       <RadioGroup
         radios={[
           {
@@ -165,17 +162,17 @@ class Inputs extends React.Component {
           {
             id: 'radio-disabled-2',
             label: 'Radio Item 2',
-            name: 'radio-disabled-2'
+            name: 'radio-disabled-1'
           },
           {
             id: 'radio-disabled-3',
             label: 'Radio Item 3',
-            name: 'radio-disabled-3'
+            name: 'radio-disabled-1'
           }
         ]}
         disabled
         id={'radio-disabled'}
-        label='Radio Group Label'
+        label='Radio Group Disabled'
       />
     </>
   )

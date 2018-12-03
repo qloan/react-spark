@@ -8,11 +8,7 @@ import React from 'react'
 
 import InputContainer from './../InputContainer/InputContainer'
 
-<<<<<<< HEAD
-import { sparkBaseClassName, sparkWidthClassName } from '../../util'
-=======
 import { sparkClassName, sparkWidthClassName } from '../../util'
->>>>>>> dc7b5d42ea0a035f503999186af228d5aee6754b
 
 class TextInput extends React.Component {
   static defaultProps = {
@@ -41,13 +37,15 @@ class TextInput extends React.Component {
   }
 
   get className() {
-    const {className, error, width, value, helper} = this.props
+    const { className, error, width, value, helper } = this.props
 
     const baseClass = sparkClassName('base', 'TextInput')
     const errorClass = sparkClassName('base', 'TextInput', null, 'error')
     const helperClass = sparkClassName('base', 'TextInput', null, 'helper')
     const widthClass = sparkWidthClassName(width)
-    const hasValueClass = value ? sparkClassName('base', 'TextInput', null, 'has-value') : null
+    const hasValueClass = value
+      ? sparkClassName('base', 'TextInput', null, 'has-value')
+      : null
 
     return classNames(baseClass, {
       [errorClass]: error,
@@ -59,7 +57,18 @@ class TextInput extends React.Component {
   }
 
   render = () => {
-    const {className, disabled, error, helper, id, label, type, placeholder, pattern, ...props} = this.props
+    const {
+      className,
+      disabled,
+      error,
+      helper,
+      id,
+      label,
+      type,
+      placeholder,
+      pattern,
+      ...props
+    } = this.props
 
     return (
       <InputContainer error={error} helper={helper} id={id} label={label}>

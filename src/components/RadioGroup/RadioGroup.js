@@ -61,16 +61,17 @@ class RadioGroup extends React.Component {
           <Legend>
             <Label>{label}</Label>
           </Legend>
-          {radios.map(checkbox => (
+          {radios.map(radio => (
             <Radio
-              checked={checkbox.checked ? 'checked' : null}
+              checked={radio.checked ? 'checked' : null}
               containerId={id}
               disabled={disabled}
-              id={checkbox.id || checkbox.name}
-              key={checkbox.id}
-              label={checkbox.label}
-              name={checkbox.name}
+              id={radio.id || radio.name}
+              key={radio.id}
+              label={radio.label}
+              name={radio.name}
               onChange={onChange}
+              value={radio.value || ''}
             />
           ))}
         </Fieldset>
