@@ -154,7 +154,7 @@ class Modal extends Component {
               }
             </Stack>
           </div>
-          <ModalMask maskRef={this.maskRef} />
+          <ModalMask className={sparkClassName('utility', 'Display', null, 'none')} maskRef={this.maskRef} />
         </div>
       </div>
     )

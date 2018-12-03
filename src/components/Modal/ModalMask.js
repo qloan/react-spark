@@ -11,16 +11,17 @@ class ModalMask extends React.Component {
     };
 
     get className() {
+      const { className } = this.props
       const baseClass = sparkComponentClassName('ModalMask')
-      const displayClass = sparkClassName('utility', 'Display', null, 'none')
-      return classNames(baseClass, displayClass)
+      return classNames(baseClass, {[className]: className})
     }
 
     render = () => {
-      const { maskRef } = this.props
+      const { maskRef, ...props } = this.props
       return (
 
         <div
+          {...props}
           data-sprk-modal-mask='true'
           className={this.className}
           tabIndex='-1'
