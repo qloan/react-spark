@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { sparkObjectClassName } from '../../util'
-import { Button } from '../Button'
+import Button from '../Button'
 
 class ModalFooter extends React.Component {
   static defaultProps = {
@@ -30,7 +30,7 @@ class ModalFooter extends React.Component {
         <Button
           id={`${modalId}-button-confirm`}
           name='confirm'
-          onClick={() => onConfirm()}
+          onClick={onConfirm}
         >
           {confirmText}
         </Button>
@@ -41,7 +41,7 @@ class ModalFooter extends React.Component {
           className='sprk-c-Button sprk-c-Button--tertiary'
           data-sprk-modal-cancel={modalId}
           aria-label='Close Modal'
-          onClick={() => onCancel()}
+          onClick={onCancel}
         >
           {cancelText}
         </Button>

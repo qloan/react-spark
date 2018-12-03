@@ -21,21 +21,21 @@ class Modal extends Component {
   };
   static propTypes = {
     id: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
     type: PropTypes.oneOf(Object.values(MODAL_VARIANTS)).isRequired,
+    show: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
     confirmText: PropTypes.string,
     cancelText: PropTypes.string,
     confirmAnalyticsString: PropTypes.string,
     idString: PropTypes.string,
-    onHide: PropTypes.func,
     confirmClick: PropTypes.func,
     cancelClick: PropTypes.func,
-    show: PropTypes.bool.isRequired,
     ariaLabelledby: PropTypes.string,
     ariaDescribedby: PropTypes.string,
     dataId: PropTypes.string,
     children: PropTypes.node,
-    dismissable: PropTypes.bool,
-    title: PropTypes.string.isRequired
+    dismissable: PropTypes.bool
   }
 
   mainRef = React.createRef()
@@ -106,11 +106,13 @@ class Modal extends Component {
       onHide,
       type,
       title,
+      onClose,
       ...props
     } = this.props
 
     return (
       <div className='sprk-u-JavaScript'>
+        <div data-sprk-modal-trigger={id} />  {/* This needs to be fixed, their method looks for this attribute and sets focus to it */}
         <div ref={this.mainRef}>
           <div
             className={this.className}
@@ -129,7 +131,7 @@ class Modal extends Component {
               <ModalHeader
                 id={ariaLabelledby}
                 dismissable={dismissable || (type !== MODAL_VARIANTS.WAIT)}
-                onClose={() => this.hide()}
+                onClose={onClose}
                 title={title}
                 modalName={id}
               />
@@ -141,7 +143,13 @@ class Modal extends Component {
               </ModalBody>
               {
                 type === MODAL_VARIANTS.CHOICE &&
-                <ModalFooter />
+                <ModalFooter
+                  modalId={id}
+                  onConfirm={onConfirm}
+                  onCancel={onCancel}
+                  confirmText={confirmText}
+                  cancelText={cancelText}
+                />
               }
             </Stack>
           </div>

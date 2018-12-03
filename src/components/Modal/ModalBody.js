@@ -21,7 +21,6 @@ class ModalBody extends React.Component {
 
   render = () => {
     const { children } = this.props
-    console.log(children)
     return <div className={this.className}>{children}</div>
   };
 }
