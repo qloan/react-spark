@@ -46,7 +46,7 @@ class Radio extends React.Component {
           disabled={disabled}
           id={id}
           name={name}
-          type='checkbox'
+          type='radio'
           value={value}
           {...rest}
         />

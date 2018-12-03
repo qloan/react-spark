@@ -73,21 +73,16 @@ class CheckboxGroup extends React.Component {
             <Checkbox
               checked={checkbox.checked ? 'checked' : null}
               containerId={id}
-              disabled={disabled}
+              disabled={disabled || checkbox.disabled}
               id={checkbox.id || checkbox.name}
               key={checkbox.id}
               label={checkbox.label}
               name={checkbox.name}
               onChange={onChange}
+              value={checkbox.value || ''}
             />
           ))}
         </Fieldset>
-        <div
-          className={sparkBaseClassName('ErrorContainer')}
-          id={`${id}--error-container`}
-        >
-          {this.renderErrorContent()}
-        </div>
       </InputContainer>
     )
   }

@@ -3,6 +3,7 @@ import {
   CheckboxGroup,
   DateInput,
   DatePicker,
+  RadioGroup,
   Select,
   TextArea,
   TextInput
@@ -26,17 +27,20 @@ class Inputs extends React.Component {
           {
             id: 'checkbox-normal-1',
             label: 'Checkbox Item 1',
-            name: 'checkbox-normal-1'
+            name: 'checkbox-normal-1',
+            value: 'foo'
           },
           {
             id: 'checkbox-normal-2',
             label: 'Checkbox Item 2',
-            name: 'checkbox-normal-2'
+            name: 'checkbox-normal-2',
+            value: 'bar'
           },
           {
             id: 'checkbox-normal-3',
             label: 'Checkbox Item 3',
-            name: 'checkbox-normal-3'
+            name: 'checkbox-normal-3',
+            value: 'baz'
           }
         ]}
         className='extra-class'
@@ -91,6 +95,87 @@ class Inputs extends React.Component {
         disabled
         id={'checkbox-disabled'}
         label='Checkbox Group Label'
+      />
+    </>
+  )
+
+  renderRadios = () => (
+    <>
+      <h3>Radio Group</h3>
+      <p>Normal radio group:</p>
+      <RadioGroup
+        radios={[
+          {
+            id: 'radio-normal-1',
+            label: 'Radio Item 1',
+            name: 'radio-normal-1',
+            value: 'foo'
+          },
+          {
+            id: 'radio-normal-2',
+            label: 'Radio Item 2',
+            name: 'radio-normal-2',
+            value: 'bar'
+          },
+          {
+            id: 'radio-normal-3',
+            label: 'Radio Item 3',
+            name: 'radio-normal-3',
+            value: 'baz'
+          }
+        ]}
+        className='extra-class'
+        data-extra-attribute
+        id={'radio-normal'}
+        label='Radio Group Label'
+      />
+
+      <p>Radio group with error:</p>
+      <RadioGroup
+        radios={[
+          {
+            id: 'radio-error-1',
+            label: 'Radio Item 1',
+            name: 'radio-error-1'
+          },
+          {
+            id: 'radio-error-2',
+            label: 'Radio Item 2',
+            name: 'radio-error-2'
+          },
+          {
+            id: 'radio-error-3',
+            label: 'Radio Item 3',
+            name: 'radio-error-3'
+          }
+        ]}
+        error='There is an error on this field.'
+        id={'radio-error'}
+        label='Radio Group Label'
+      />
+
+      <p>Disabled radio group:</p>
+      <RadioGroup
+        radios={[
+          {
+            id: 'radio-disabled-1',
+            label: 'Radio Item 1',
+            name: 'radio-disabled-1'
+          },
+          {
+            id: 'radio-disabled-2',
+            label: 'Radio Item 2',
+            name: 'radio-disabled-2'
+          },
+          {
+            id: 'radio-disabled-3',
+            label: 'Radio Item 3',
+            name: 'radio-disabled-3'
+          }
+        ]}
+        disabled
+        id={'radio-disabled'}
+        label='Radio Group Label'
       />
     </>
   )
@@ -223,6 +308,7 @@ class Inputs extends React.Component {
       {/* TODO: Add table of contents */}
       {this.renderTextInputs()}
       {this.renderCheckboxes()}
+      {this.renderRadios()}
       {this.renderSelects()}
       {this.renderTextAreas()}
       {this.renderDateInputs()}
