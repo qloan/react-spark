@@ -92,21 +92,21 @@ class Modal extends Component {
 
   render = () => {
     const {
-      ariaDescribedby,
-      ariaLabelledby,
-      cancelText,
-      children,
-      className,
-      confirmAnalyticsString,
-      confirmText,
-      dataId,
       id,
-      onCancel,
-      onConfirm,
-      onHide,
-      type,
       title,
+      type,
+      show,
       onClose,
+      onConfirm,
+      onCancel,
+      confirmText,
+      cancelText,
+      confirmAnalyticsString,
+      idString,
+      ariaLabelledby,
+      ariaDescribedby,
+      dataId,
+      children,
       hasCloseButton,
       ...props
     } = this.props
