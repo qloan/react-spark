@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { sparkComponentClassName, sparkUtiltiyClassName } from '../../util'
+import { sparkComponentClassName, sparkClassName } from '../../util'
 
 class ModalMask extends React.Component {
     static defaultProps = {};
@@ -12,7 +12,7 @@ class ModalMask extends React.Component {
 
     get className() {
       const baseClass = sparkComponentClassName('ModalMask')
-      const displayClass = sparkUtiltiyClassName('Display', 'none')
+      const displayClass = sparkClassName('utility', 'Display', null, 'none')
       return classNames(baseClass, displayClass)
     }
 
@@ -22,7 +22,7 @@ class ModalMask extends React.Component {
 
         <div
           data-sprk-modal-mask='true'
-          className='sprk-c-ModalMask sprk-u-Display--none'
+          className={this.className}
           tabIndex='-1'
           ref={maskRef}
         />
