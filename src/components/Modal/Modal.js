@@ -12,6 +12,7 @@ import { sparkClassName, sparkComponentClassName } from '../../util'
 import ModalHeader from './ModalHeader'
 import ModalBody from './ModalBody'
 import ModalFooter from './ModalFooter'
+import ModalMask from './ModalMask'
 import Stack from '../Stack'
 import Spinner from '../Spinner'
 
@@ -45,13 +46,13 @@ class Modal extends Component {
 
   get className() {
     const { className, type } = this.props
-
-    return classnames(
+    const result = classnames(
+      className,
       sparkComponentClassName('Modal'),
       sparkClassName('utility', 'Display', null, 'none'),
-      sparkClassName('component', 'Modal', null, type),
-      { [className]: className }
+      sparkClassName('component', 'Modal', null, type)
     )
+    return result
   }
 
   hide() {
@@ -110,13 +111,13 @@ class Modal extends Component {
       hasCloseButton,
       ...props
     } = this.props
-
+    const classNames = this.className
+    console.log(classNames)
     return (
       <div className='sprk-u-JavaScript'>
         <div data-sprk-modal-trigger={id} />  {/* This needs to be fixed, their method looks for this attribute and sets focus to it */}
         <div ref={this.mainRef}>
           <div
-            className={this.className}
             ref={this.modalRef}
             role='dialog'
             tabIndex='-1'
@@ -127,6 +128,7 @@ class Modal extends Component {
             data-sprk-modal-type={type}
             data-id={dataId}
             {...props}
+            className={classNames}
           >
             <Stack itemSpacing={'large'}>
               <ModalHeader
@@ -138,9 +140,7 @@ class Modal extends Component {
               />
               <ModalBody>
                 {type === MODAL_VARIANTS.WAIT && <Spinner />}
-                <p className='sprk-o-Stack__item sprk-b-TypeBodyTwo' id={ariaDescribedby}>
-                  {children}
-                </p>
+                {children}
               </ModalBody>
               {
                 type === MODAL_VARIANTS.CHOICE &&
@@ -154,16 +154,10 @@ class Modal extends Component {
               }
             </Stack>
           </div>
-          <div
-            data-sprk-modal-mask='true'
-            className='sprk-c-ModalMask sprk-u-Display--none'
-            tabIndex='-1'
-            ref={this.maskRef}
-          />
+          <ModalMask maskRef={this.maskRef} />
         </div>
       </div>
     )
   }
 }
-
 export default Modal

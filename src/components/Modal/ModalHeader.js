@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import { sparkComponentClassName, sparkObjectClassName } from '../../util'
 import ModalHeading from './ModalHeading'
+import Icon from '../Icon'
 
 class ModalHeader extends React.Component {
   static defaultProps = {
@@ -36,9 +37,7 @@ class ModalHeader extends React.Component {
         {
           hasCloseButton &&
           <button onClick={onClose} className='sprk-c-Modal__icon' data-sprk-modal-cancel={id} type='button' aria-label='Close Modal'>
-            <svg className='sprk-c-Icon sprk-c-Icon--l sprk-c-Icon--current-color' viewBox='0 0 64 64' aria-hidden='true' focusable='false'>
-              <use xlinkHref='#close-circle' />
-            </svg>
+            <Icon name='close-circle' size='l' />
           </button>
         }
       </header>

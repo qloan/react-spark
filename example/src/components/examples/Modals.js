@@ -1,13 +1,18 @@
 import React from 'react'
-import { Modal } from 'react-spark'
+import { Modal, Type, Stack, Card, Button } from 'react-spark'
+
+import img from '../../assets/images/card-img.jpg'
 
 class Modals extends React.Component {
   state = {
     showChoiceModal: false,
     showInfoModal: false,
+    showInfoModal2: false,
     showModal: false,
     showWaitModal: false
   }
+
+  renderImg = () => <img alt='Spark placeholder' src={img} />
 
   render = () => (
     <>
@@ -24,10 +29,11 @@ class Modals extends React.Component {
       >
         Open Choice Modal
       </button>
+
       <Modal
         ariaDescribedby='modalChoiceContent'
         ariaLabelledby='modalChoiceHeading'
-        className='extra-class'
+        className='Test'
         dataId='modal-choice-1'
         id={'exampleChoiceModal'}
         show={this.state.showChoiceModal}
@@ -64,7 +70,64 @@ class Modals extends React.Component {
         dismissable={true}
         onClose={() => { this.setState({ showInfoModal: !this.state.showInfoModal }) }}
       >
-        This is some content for the Information Modal.
+        <Stack>
+          <Stack.Item>
+            <Type.BodyOne>
+              This is some content for the Information Modal.
+            </Type.BodyOne>
+          </Stack.Item>
+        </Stack>
+      </Modal>
+
+      <p>Info with advanced content:</p>
+      <button
+        data-sprk-modal-trigger='modalInfo2'
+        className='sprk-c-Button'
+        type='button'
+        onClick={() => {
+          this.setState({ showInfoModal2: !this.state.showInfoModal2 })
+        }}
+      >
+        Open Info Modal Content
+      </button>
+      <Modal
+        type='info'
+        id={'modalInfo2'}
+        ariaLabelledby='modalInfoHeading2'
+        ariaDescribedby='modalInfoContent2'
+        dataId='modal-info-2'
+        show={this.state.showInfoModal2}
+        dismissable={true}
+        onClose={() => { this.setState({ showInfoModal2: !this.state.showInfoModal2 }) }}
+      >
+        <Card>
+          <Stack>
+            <Stack.Item>
+              <a href='#nogo'>
+                {this.renderImg()}
+              </a>
+            </Stack.Item>
+            <Stack.Item>
+              <Card.Content>
+                <Stack>
+                  <Stack.Item>
+                    <h4 className='sprk-b-TypeDisplaySix sprk-o-Stack__item'>
+                      Title!
+                    </h4>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <p className='sprk-b-TypeBodyTwo sprk-o-Stack__item'>
+                      Placeholder text.
+                    </p>
+                  </Stack.Item>
+                  <Stack.Item>
+                    <Button>Button</Button>
+                  </Stack.Item>
+                </Stack>
+              </Card.Content>
+            </Stack.Item>
+          </Stack>
+        </Card>
       </Modal>
 
       <p>Wait:</p>
@@ -89,7 +152,13 @@ class Modals extends React.Component {
         dataId='modal-wait-1'
         show={this.state.showWaitModal}
       >
-        This is the body copy.
+        <Stack>
+          <Stack.Item>
+            <Type.BodyTwo>
+              This is some content for the Information Modal.
+            </Type.BodyTwo>
+          </Stack.Item>
+        </Stack>
       </Modal>
     </>
   )
