@@ -15,7 +15,7 @@ class ModalHeader extends React.Component {
     onClose: PropTypes.func,
     id: PropTypes.string.isRequired,
     title: PropTypes.string,
-    dismissable: PropTypes.bool
+    hasCloseButton: PropTypes.bool
   };
 
   get className() {
@@ -26,7 +26,7 @@ class ModalHeader extends React.Component {
   }
 
   render = () => {
-    const { onClose, id, title, dismissable } = this.props
+    const { onClose, id, title, hasCloseButton } = this.props
     return (
       <header className={this.className}>
         {/* //todo: use react spark button/ */}
@@ -34,7 +34,7 @@ class ModalHeader extends React.Component {
           {title}
         </ModalHeading>
         {
-          dismissable &&
+          hasCloseButton &&
           <button onClick={onClose} className='sprk-c-Modal__icon' data-sprk-modal-cancel={id} type='button' aria-label='Close Modal'>
             <svg className='sprk-c-Icon sprk-c-Icon--l sprk-c-Icon--current-color' viewBox='0 0 64 64' aria-hidden='true' focusable='false'>
               <use xlinkHref='#close-circle' />

@@ -17,7 +17,8 @@ import Spinner from '../Spinner'
 
 class Modal extends Component {
   static defaultProps = {
-    title: 'Please Wait'
+    title: 'Please Wait',
+    hasCloseButton: true
   };
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -35,7 +36,7 @@ class Modal extends Component {
     ariaDescribedby: PropTypes.string,
     dataId: PropTypes.string,
     children: PropTypes.node,
-    dismissable: PropTypes.bool
+    hasCloseButton: PropTypes.bool
   }
 
   mainRef = React.createRef()
@@ -99,7 +100,6 @@ class Modal extends Component {
       confirmAnalyticsString,
       confirmText,
       dataId,
-      dismissable,
       id,
       onCancel,
       onConfirm,
@@ -107,6 +107,7 @@ class Modal extends Component {
       type,
       title,
       onClose,
+      hasCloseButton,
       ...props
     } = this.props
 
@@ -130,10 +131,10 @@ class Modal extends Component {
             <Stack itemSpacing={'large'}>
               <ModalHeader
                 id={ariaLabelledby}
-                dismissable={dismissable || (type !== MODAL_VARIANTS.WAIT)}
                 onClose={onClose}
                 title={title}
                 modalName={id}
+                hasCloseButton={type !== MODAL_VARIANTS.WAIT ? hasCloseButton : false}
               />
               <ModalBody>
                 {type === MODAL_VARIANTS.WAIT && <Spinner />}
