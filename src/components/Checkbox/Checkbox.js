@@ -15,7 +15,8 @@ class Checkbox extends React.Component {
     checked: PropTypes.bool,
     disabled: PropTypes.bool,
     id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired
+    label: PropTypes.string.isRequired,
+    name: PropTypes.string
   }
 
   get labelClassName() {
@@ -45,7 +46,7 @@ class Checkbox extends React.Component {
           data-id={id}
           disabled={disabled}
           id={id}
-          name={name}
+          name={name || id}
           type='checkbox'
           value={value}
           {...rest}
