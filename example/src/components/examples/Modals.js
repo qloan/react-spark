@@ -35,7 +35,7 @@ class Modals extends React.Component {
         confirmText={'confirm'}
         cancelText={'cancel'}
         onCancel={() => { this.setState({ showChoiceModal: !this.state.showChoiceModal }) }}
-        onConfirm={() => { console.log('confirmed') }}
+        onConfirm={() => { console.log('confirmed'); this.setState({ showChoiceModal: !this.state.showChoiceModal }) }}
         onClose={() => { this.setState({ showChoiceModal: !this.state.showChoiceModal }) }
         }
       >
