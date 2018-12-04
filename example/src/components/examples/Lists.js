@@ -40,7 +40,7 @@ const Lists = () => (<>
 
   <h3>Bare</h3>
 
-  <List element='ul' variant='bare'>
+  <List element='ul' variant='bare' size='medium'>
     <li>Bare List Item</li>
     <li>Bare List Item</li>
     <li>Bare List Item</li>

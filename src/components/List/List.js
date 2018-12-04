@@ -3,27 +3,31 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import LIST_VARIANTS from './variants'
-import { sparkBaseClassName } from '../../util'
+import { sparkBaseClassName, sparkClassName } from '../../util'
 
 class List extends React.Component {
   static defaultProps = {
-    variant: null
-  }
+    variant: null,
+    element: 'ul',
+    size: ''
+  };
 
   static propTypes = {
     children: PropTypes.node,
     element: PropTypes.oneOf(['ol', 'ul']).isRequired,
     variant: PropTypes.oneOf(Object.values(LIST_VARIANTS))
-  }
+  };
 
   get className() {
-    const {className, variant} = this.props
+    const { className, variant, size } = this.props
     const variantClass = sparkBaseClassName('List', null, variant)
+    const sizeClass = sparkClassName('object', 'Stack', null, size)
 
     return classnames(
       sparkBaseClassName('List'),
-      {[variantClass]: variantClass},
-      {[className]: className}
+      { [variantClass]: variantClass },
+      { [className]: className },
+      { [sizeClass]: Boolean(size) }
     )
   }
 
@@ -36,8 +40,12 @@ class List extends React.Component {
       ...props
     } = this.props
 
-    return <Element className={this.className} {...props}>{children}</Element>
-  }
+    return (
+      <Element className={this.className} {...props}>
+        {children}
+      </Element>
+    )
+  };
 }
 
 export default List
