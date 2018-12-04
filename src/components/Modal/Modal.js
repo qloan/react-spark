@@ -50,7 +50,8 @@ class Modal extends Component {
       className,
       sparkComponentClassName('Modal'),
       sparkClassName('utility', 'Display', null, 'none'),
-      sparkClassName('component', 'Modal', null, type)
+      sparkClassName('component', 'Modal', null, type),
+      {[className]: className}
     )
     return result
   }
@@ -111,13 +112,12 @@ class Modal extends Component {
       hasCloseButton,
       ...props
     } = this.props
-    const classNames = this.className
-    console.log(classNames)
     return (
       <div className='sprk-u-JavaScript'>
         <div data-sprk-modal-trigger={id} />  {/* This needs to be fixed, their method looks for this attribute and sets focus to it */}
         <div ref={this.mainRef}>
           <div
+            {...props}
             ref={this.modalRef}
             role='dialog'
             tabIndex='-1'
@@ -127,8 +127,7 @@ class Modal extends Component {
             data-sprk-modal={id}
             data-sprk-modal-type={type}
             data-id={dataId}
-            {...props}
-            className={classNames}
+            className={this.className}
           >
             <Stack itemSpacing={'large'}>
               <ModalHeader

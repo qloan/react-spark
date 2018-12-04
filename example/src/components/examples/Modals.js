@@ -67,7 +67,6 @@ class Modals extends React.Component {
         ariaDescribedby='modalInfoContent'
         dataId='modal-info-1'
         show={this.state.showInfoModal}
-        dismissable={true}
         onClose={() => { this.setState({ showInfoModal: !this.state.showInfoModal }) }}
       >
         <Stack>
@@ -97,7 +96,6 @@ class Modals extends React.Component {
         ariaDescribedby='modalInfoContent2'
         dataId='modal-info-2'
         show={this.state.showInfoModal2}
-        dismissable={true}
         onClose={() => { this.setState({ showInfoModal2: !this.state.showInfoModal2 }) }}
       >
         <Card>
