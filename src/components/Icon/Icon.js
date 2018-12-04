@@ -20,8 +20,7 @@ class Icon extends React.Component {
   static defaultProps = {
     size: '',
     variant: '',
-    toggle: '',
-    select: false
+    toggle: ''
   }
 
   static propTypes = {
