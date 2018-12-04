@@ -6,38 +6,37 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { Component } from 'react'
 
-import MODAL_VARIANTS from './variants'
 import { sparkClassName, sparkComponentClassName } from '../../util'
-
-import ModalHeader from './ModalHeader'
+import MODAL_VARIANTS from './variants'
 import ModalBody from './ModalBody'
 import ModalFooter from './ModalFooter'
+import ModalHeader from './ModalHeader'
 import ModalMask from './ModalMask'
-import Stack from '../Stack'
 import Spinner from '../Spinner'
+import Stack from '../Stack'
 
 class Modal extends Component {
   static defaultProps = {
-    title: 'Please Wait',
-    hasCloseButton: true
+    hasCloseButton: true,
+    title: 'Please Wait'
   };
   static propTypes = {
+    ariaDescribedby: PropTypes.string,
+    ariaLabelledby: PropTypes.string,
+    cancelText: PropTypes.string,
+    children: PropTypes.node,
+    confirmAnalyticsString: PropTypes.string,
+    confirmText: PropTypes.string,
+    dataId: PropTypes.string,
+    hasCloseButton: PropTypes.bool,
     id: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-    type: PropTypes.oneOf(Object.values(MODAL_VARIANTS)).isRequired,
-    show: PropTypes.bool.isRequired,
+    idString: PropTypes.string,
+    onCancel: PropTypes.func,
     onClose: PropTypes.func,
     onConfirm: PropTypes.func,
-    onCancel: PropTypes.func,
-    confirmText: PropTypes.string,
-    cancelText: PropTypes.string,
-    confirmAnalyticsString: PropTypes.string,
-    idString: PropTypes.string,
-    ariaLabelledby: PropTypes.string,
-    ariaDescribedby: PropTypes.string,
-    dataId: PropTypes.string,
-    children: PropTypes.node,
-    hasCloseButton: PropTypes.bool
+    show: PropTypes.bool.isRequired,
+    title: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(Object.values(MODAL_VARIANTS)).isRequired
   }
 
   mainRef = React.createRef()
@@ -46,14 +45,12 @@ class Modal extends Component {
 
   get className() {
     const { className, type } = this.props
-    const result = classnames(
-      className,
+    return classnames(
       sparkComponentClassName('Modal'),
       sparkClassName('utility', 'Display', null, 'none'),
-      sparkClassName('component', 'Modal', null, type),
+      sparkComponentClassName('Modal', null, type),
       {[className]: className}
     )
-    return result
   }
 
   hide() {
@@ -94,22 +91,22 @@ class Modal extends Component {
 
   render = () => {
     const {
+      ariaDescribedby,
+      ariaLabelledby,
+      cancelText,
+      children,
+      confirmAnalyticsString,
+      confirmText,
+      dataId,
+      hasCloseButton,
       id,
-      title,
-      type,
-      show,
+      idString,
+      onCancel,
       onClose,
       onConfirm,
-      onCancel,
-      confirmText,
-      cancelText,
-      confirmAnalyticsString,
-      idString,
-      ariaLabelledby,
-      ariaDescribedby,
-      dataId,
-      children,
-      hasCloseButton,
+      show,
+      title,
+      type,
       ...props
     } = this.props
     return (
@@ -117,25 +114,25 @@ class Modal extends Component {
         <div data-sprk-modal-trigger={id} />  {/* This needs to be fixed, their method looks for this attribute and sets focus to it */}
         <div ref={this.mainRef}>
           <div
-            {...props}
+            aria-describedby={ariaDescribedby}
+            aria-labelledby={ariaLabelledby}
+            aria-modal='true'
+            className={this.className}
+            data-id={dataId}
+            data-sprk-modal-type={type}
+            data-sprk-modal={id}
             ref={this.modalRef}
             role='dialog'
             tabIndex='-1'
-            aria-labelledby={ariaLabelledby}
-            aria-modal='true'
-            aria-describedby={ariaDescribedby}
-            data-sprk-modal={id}
-            data-sprk-modal-type={type}
-            data-id={dataId}
-            className={this.className}
+            {...props}
           >
             <Stack itemSpacing={'large'}>
               <ModalHeader
+                hasCloseButton={type !== MODAL_VARIANTS.WAIT ? hasCloseButton : false}
                 id={ariaLabelledby}
+                modalName={id}
                 onClose={onClose}
                 title={title}
-                modalName={id}
-                hasCloseButton={type !== MODAL_VARIANTS.WAIT ? hasCloseButton : false}
               />
               <ModalBody>
                 {type === MODAL_VARIANTS.WAIT && <Spinner />}
@@ -144,11 +141,11 @@ class Modal extends Component {
               {
                 type === MODAL_VARIANTS.CHOICE &&
                 <ModalFooter
-                  modalId={id}
-                  onConfirm={onConfirm}
-                  onCancel={onCancel}
-                  confirmText={confirmText}
                   cancelText={cancelText}
+                  confirmText={confirmText}
+                  modalId={id}
+                  onCancel={onCancel}
+                  onConfirm={onConfirm}
                 />
               }
             </Stack>
