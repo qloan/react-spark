@@ -88,7 +88,7 @@ class Modals extends React.Component {
           this.setState({ showInfoModal2: !this.state.showInfoModal2 })
         }}
       >
-        Open Info Modal Content
+        Open Info Modal With Content
       </button>
       <Modal
         type='info'
