@@ -1,41 +1,51 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { sparkComponentClassName } from '../../util'
+import { sparkObjectClassName } from '../../util'
+import Button from '../Button'
 
 class ModalFooter extends React.Component {
-  static defaultProps = {};
+  static defaultProps = {
+    confirmText: 'Confirm',
+    cancelText: 'Cancel'
+  };
 
   static propTypes = {
-    close: PropTypes.func
+    onConfirm: PropTypes.func,
+    onCancel: PropTypes.func,
+    confirmText: PropTypes.string,
+    cancelText: PropTypes.string,
+    modalId: PropTypes.string
   }
 
   get className() {
-    const baseClass = sparkComponentClassName('Modal', 'footer')
+    const baseClass = sparkObjectClassName('Stack', 'item')
 
     return [baseClass].join('')
   }
 
   render = () => {
-    const { close } = this.props
+    const { confirmText, cancelText, onConfirm, onCancel, modalId } = this.props
     return (
-      <div className={this.className}>
-        {/* //todo: use react spark button/ */}
-        <button
-          className='sprk-c-Button sprk-u-mrm'
-          data-sprk-modal-cancel='exampleChoiceModal'
+      <footer className={this.className}>
+        <Button
+          id={`${modalId}-button-confirm`}
+          name='confirm'
+          onClick={onConfirm}
         >
-          Confirm
-        </button>
+          {confirmText}
+        </Button>
 
-        <button
+        <Button
+          id={`${modalId}-button-cancel`}
+          name='cancel'
           className='sprk-c-Button sprk-c-Button--tertiary'
-          data-sprk-modal-cancel='exampleChoiceModal'
+          data-sprk-modal-cancel={modalId}
           aria-label='Close Modal'
-          onClick={() => close()}
+          onClick={onCancel}
         >
-          Cancel
-        </button>
-      </div>
+          {cancelText}
+        </Button>
+      </footer>
     )
   };
 }
