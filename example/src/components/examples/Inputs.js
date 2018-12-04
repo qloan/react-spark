@@ -10,8 +10,11 @@ import {
 
 class Inputs extends React.Component {
   state = {
-    textInputWithValueValue: 'value'
+    textInputWithValueValue: 'value',
+    selectValue: '1'
   }
+
+  handleSelectChange = e => this.setState({selectValue: e.target.value})
 
   handleTextInputChange = e => {
     this.setState({textInputWithValueValue: e.value})
@@ -101,24 +104,25 @@ class Inputs extends React.Component {
 
   renderSelects = () => {
     const options = [
-      {value: 34, text: 'First val'},
-      {value: 34, text: 'Second val'}
+      {value: '1', text: 'Option 1'},
+      {value: '2', text: 'Option 2'},
+      {value: '3', text: 'Option 3', disabled: true}
     ]
 
-    return (
-      <>
-        <h3>Select:</h3>
+    return (<>
+      <h3>Select:</h3>
 
-        <Select
-          className='extra-class'
-          data-extra-attribute
-          id='select-normal'
-          label='Select Label'
-          options={options}
-          width={100}
-        />
-      </>
-    )
+      <Select
+        className='extra-class'
+        data-extra-attribute
+        id='select-normal'
+        label='Select Label'
+        onChange={this.handleSelectChange}
+        options={options}
+        value={this.state.selectValue}
+        width={100}
+      />
+    </>)
   }
 
   renderTextInputs = () => (

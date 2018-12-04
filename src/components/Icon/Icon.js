@@ -49,7 +49,15 @@ class Icon extends React.Component {
   }
 
   render = () => {
-    const {className, name, toggle, ...props} = this.props
+    const {
+      className,
+      name,
+      select,
+      size,
+      toggle,
+      variant,
+      ...props
+    } = this.props
 
     return (
       <svg

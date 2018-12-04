@@ -11,6 +11,7 @@ class Select extends React.Component {
   static defaultProps = {
     disabled: false,
     error: null,
+    value: null,
     width: 100
   }
 
@@ -22,7 +23,12 @@ class Select extends React.Component {
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     name: PropTypes.string,
-    options: PropTypes.arrayOf(PropTypes.object),
+    options: PropTypes.arrayOf(PropTypes.shape({
+      disabled: PropTypes.bool,
+      text: PropTypes.string.isRequired,
+      value: PropTypes.string.isRequired
+    })).isRequired,
+    value: PropTypes.string,
     width: PropTypes.number
   }
 
@@ -56,6 +62,7 @@ class Select extends React.Component {
       label,
       name,
       options,
+      value,
       ...props
     } = this.props
 
@@ -70,20 +77,18 @@ class Select extends React.Component {
           id={id}
           name={name}
           ref={this.selectRef}
+          value={value}
           {...props}
         >
-          {options.map(
-            ({disabled = false, value, selected = false, text}, index) => (
-              <option
-                disabled={disabled}
-                value={value}
-                selected={selected}
-                key={index}
-              >
-                {text}
-              </option>
-            )
-          )}
+          {options.map(({disabled = false, value, text}, index) => (
+            <option
+              disabled={disabled}
+              value={value}
+              key={index}
+            >
+              {text}
+            </option>
+          ))}
         </select>
         <Icon name='chevron-down' select />
       </InputContainer>
