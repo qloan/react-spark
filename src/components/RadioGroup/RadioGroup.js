@@ -53,7 +53,7 @@ class RadioGroup extends React.Component {
   }
 
   render = () => {
-    const { disabled, id, label, onChange, radios } = this.props
+    const { disabled, id, label, name, onChange, radios } = this.props
 
     return (
       <InputContainer>
@@ -66,10 +66,10 @@ class RadioGroup extends React.Component {
               checked={radio.checked ? 'checked' : null}
               containerId={id}
               disabled={disabled}
-              id={radio.id || radio.name}
+              id={radio.id}
               key={radio.id}
               label={radio.label}
-              name={radio.name}
+              name={name}
               onChange={onChange}
               value={radio.value || ''}
             />
