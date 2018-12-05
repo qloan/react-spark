@@ -46,7 +46,7 @@ class Checkbox extends React.Component {
           data-id={id}
           disabled={disabled}
           id={id}
-          name={name || id}
+          name={name}
           type='checkbox'
           value={value}
           {...rest}

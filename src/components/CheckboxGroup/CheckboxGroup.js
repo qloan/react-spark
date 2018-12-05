@@ -16,7 +16,8 @@ class CheckboxGroup extends React.Component {
     error: null,
     onChange: () => {
       console.log('onChange not implemented')
-    }
+    },
+    value: []
   }
 
   static propTypes = {
@@ -32,7 +33,8 @@ class CheckboxGroup extends React.Component {
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    onChange: PropTypes.function
+    onChange: PropTypes.function,
+    value: PropTypes.arrayOf(PropTypes.any).isRequired
   }
 
   get labelClassName() {
@@ -61,6 +63,8 @@ class CheckboxGroup extends React.Component {
       id,
       label,
       onChange,
+      name,
+      value,
       ...props
     } = this.props
 
@@ -72,13 +76,13 @@ class CheckboxGroup extends React.Component {
           </Legend>
           {checkboxes.map(checkbox => (
             <Checkbox
-              checked={checkbox.checked ? 'checked' : null}
+              checked={value.indexOf(checkbox.value) !== -1}
               containerId={id}
               disabled={disabled || checkbox.disabled}
-              id={checkbox.id || checkbox.name}
+              id={checkbox.id}
               key={checkbox.id}
               label={checkbox.label}
-              name={checkbox.name}
+              name={name}
               onChange={onChange}
               value={checkbox.value || ''}
             />
