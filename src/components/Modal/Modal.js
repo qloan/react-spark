@@ -112,7 +112,7 @@ class Modal extends Component {
     return (
       <div className='sprk-u-JavaScript'>
         <div data-sprk-modal-trigger={id} />  {/* This needs to be fixed, their method looks for this attribute and sets focus to it */}
-        <div ref={this.mainRef}>
+        <div id={id} ref={this.mainRef}>
           <div
             aria-describedby={ariaDescribedby}
             aria-labelledby={ariaLabelledby}
