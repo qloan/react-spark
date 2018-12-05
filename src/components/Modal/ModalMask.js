@@ -1,13 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import classNames from 'classnames'
-import { sparkComponentClassName, sparkClassName } from '../../util'
+import { sparkComponentClassName } from '../../util'
 
 class ModalMask extends React.Component {
     static defaultProps = {};
 
     static propTypes = {
-      maskRef: PropTypes.string.isRequired
+      maskRef: PropTypes.object.isRequired
     };
 
     get className() {
