@@ -37,7 +37,7 @@ class ModalHeader extends React.Component {
         {
           hasCloseButton &&
           <button onClick={onClose} className='sprk-c-Modal__icon' data-sprk-modal-cancel={id} type='button' aria-label='Close Modal'>
-            <Icon name='close-circle' size='l' />
+            <Icon name='close-circle' size={Icon.size.L} />
           </button>
         }
       </header>
