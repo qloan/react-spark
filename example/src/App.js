@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-
+import React, { Component } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import SVG from 'react-inlinesvg';
 import {
   Accordions,
   Alerts,
@@ -20,10 +20,10 @@ import {
   Tables,
   Toggles,
   Typography
-} from './components/examples'
-import Nav from './components/Nav'
+} from './components/examples';
+import Nav from './components/Nav';
 
-import './App.scss'
+import './App.scss';
 
 export default class App extends Component {
   render = () => {
@@ -31,6 +31,10 @@ export default class App extends Component {
       <Router>
         <>
           <h1>react-spark</h1>
+          <SVG
+            src='https://spark-assets.netlify.com/spark-core-icons.svg'
+            uniquifyIDs={false}
+          />
           <Nav />
 
           <Route path='/alerts' component={Alerts} />
@@ -54,5 +58,5 @@ export default class App extends Component {
         </>
       </Router>
     )
-  }
+  };
 }
