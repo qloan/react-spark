@@ -24,14 +24,14 @@ class RadioGroup extends React.Component {
       PropTypes.shape({
         id: PropTypes.string,
         label: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
+        value: PropTypes.any.isRequired
       })
     ).isRequired,
     disabled: PropTypes.bool,
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    onChange: PropTypes.function
+    onChange: PropTypes.func
   }
 
   get labelClassName() {

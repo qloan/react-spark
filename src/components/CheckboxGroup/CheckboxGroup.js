@@ -25,7 +25,6 @@ class CheckboxGroup extends React.Component {
       PropTypes.shape({
         id: PropTypes.string,
         label: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
         value: PropTypes.any
       })
     ).isRequired,
@@ -33,7 +32,7 @@ class CheckboxGroup extends React.Component {
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    onChange: PropTypes.function,
+    onChange: PropTypes.func,
     value: PropTypes.arrayOf(PropTypes.any).isRequired
   }
 
