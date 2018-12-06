@@ -1,9 +1,6 @@
 // TODO: Add support for search in <Masthead.Secondary>
 
-import {
-  masthead,
-  hideMobileNavs
-} from '@sparkdesignsystem/spark-core/components/masthead'
+import { masthead } from '@sparkdesignsystem/spark-core/components/masthead'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -12,7 +9,6 @@ import Content from './Content'
 import Hamburger from './Hamburger'
 import Logo from './Logo'
 import NarrowNavigation from './NarrowNavigation'
-import Navigation from './Navigation'
 import WideNavigation from './WideNavigation'
 import Secondary from './Secondary'
 import SecondaryNav from './SecondaryNav'
@@ -30,9 +26,6 @@ class Masthead extends React.Component {
 
   componentDidMount = () => {
     masthead()
-    window.onresize = () => {
-      hideMobileNavs()
-    }
   };
 
   get className() {
@@ -49,7 +42,12 @@ class Masthead extends React.Component {
 
     return (
       <div data-sprk-main>
-        <header className={this.className} role='banner' {...props}>
+        <header
+          className={this.className}
+          role='banner'
+          data-sprk-masthead
+          {...props}
+        >
           {children}
         </header>
       </div>
@@ -60,7 +58,6 @@ class Masthead extends React.Component {
 Masthead.Content = Content
 Masthead.Hamburger = Hamburger
 Masthead.Logo = Logo
-Masthead.Navigation = Navigation
 Masthead.NarrowNavigation = NarrowNavigation
 Masthead.Secondary = Secondary
 Masthead.SecondaryNav = SecondaryNav
