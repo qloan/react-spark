@@ -190,6 +190,16 @@ class Inputs extends React.Component {
         width={100}
       />
 
+      <p>Error:</p>
+      <DateInput
+        className='extra-class'
+        data-extra-attribute
+        error='There is an error on this field.'
+        id='date-input-normal'
+        label='Date'
+        width={100}
+      />
+
       <p>Disabled:</p>
       <DateInput disabled id='date-input-disabled' label='Date' width={100} />
 
@@ -200,6 +210,16 @@ class Inputs extends React.Component {
         className='extra-class'
         data-extra-attribute
         id='date-picker-normal'
+        label='Date'
+        width={100}
+      />
+
+      <p>Error:</p>
+      <DatePicker
+        className='extra-class'
+        data-extra-attribute
+        error='There is an error on this field.'
+        id='date-input-normal'
         label='Date'
         width={100}
       />

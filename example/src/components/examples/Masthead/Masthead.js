@@ -8,41 +8,43 @@ class MastheadExample extends React.Component {
   narrowNavigationLinks = [
     {
       active: false,
-      href: '#',
+      href: '',
       links: [
-        {href: '#', text: 'Item 1'},
-        {href: '#', text: 'Item 2'},
-        {href: '#', text: 'Item 3'}
+        { href: '#', text: 'Item 1' },
+        { href: '#', text: 'Item 2' },
+        { href: '#', text: 'Item 3' }
       ],
-      text: 'Item 1'
+      text: 'Talk To Us'
     },
     {
       active: true,
       href: '#',
-      text: 'Item 1'
+      text: 'Talk To Us'
     },
     {
       active: false,
       href: '#',
       links: [
-        {href: '#', text: 'Item 1'},
-        {href: '#', text: 'Item 2'},
-        {href: '#', text: 'Item 3'}
+        { href: '#', text: 'Item 1' },
+        { href: '#', text: 'Item 2' },
+        { href: '#', text: 'Item 3' }
       ],
       text: 'Item 3'
     }
-  ]
+  ];
 
   secondaryNavLinks = [
-    {href: '#', text: 'Item 1'},
-    {buttonVariant: 'secondary', href: '#', text: 'Item 2'},
-    {buttonVariant: 'primary', href: '#', text: 'Item 3'}
-  ]
+    { href: '#/item1', text: '(555) 555-5555', variant: 'standalone' },
+    { href: '#/item1', text: 'Talk To Us' },
+    { href: '#/user', icon: 'user' },
+    { buttonVariant: 'secondary', href: '#', text: 'Item 2' },
+    { buttonVariant: 'primary', href: '#', text: 'Item 3' }
+  ];
 
   wideNavigationLinks = [
     {
       active: true,
-      href: '#',
+      href: '#/item1',
       text: 'Item 1'
     },
     {
@@ -50,9 +52,9 @@ class MastheadExample extends React.Component {
       href: '#',
       text: 'Item 2',
       links: [
-        {href: '#', text: 'Item 1'},
-        {href: '#', text: 'Item 2'},
-        {href: '#', text: 'Item 3'}
+        { href: '#', text: 'Item 1' },
+        { href: '#', text: 'Item 2' },
+        { href: '#', text: 'Item 3' }
       ]
     },
     {
@@ -65,9 +67,9 @@ class MastheadExample extends React.Component {
       href: '#',
       text: 'Item 4',
       links: [
-        {href: '#', text: 'Item 1'},
-        {href: '#', text: 'Item 2'},
-        {href: '#', text: 'Item 3'}
+        { href: '#', text: 'Item 1' },
+        { href: '#', text: 'Item 2' },
+        { href: '#', text: 'Item 3' }
       ]
     },
     {
@@ -75,15 +77,15 @@ class MastheadExample extends React.Component {
       href: '#',
       text: 'Item 5'
     }
-  ]
+  ];
 
-  render = () => (<>
-    <div className='ReactSparkExample-Masthead'>
-      <h2>Masthead</h2>
+  render = () => (
+    <>
+      <div className='ReactSparkExample-Masthead'>
+        <h2>Masthead</h2>
 
-      <Masthead className='extra-class' data-extra-attribute>
-        <Masthead.Content className='extra-class' data-extra-attribute>
-          <Masthead.TopRow className='extra-class' data-extra-attribute>
+        <Masthead className='extra-class' data-extra-attribute>
+          <Masthead.Content className='extra-class' data-extra-attribute>
             <Masthead.Hamburger className='extra-class' data-extra-attribute />
             <Masthead.Logo
               className='extra-class'
@@ -98,10 +100,8 @@ class MastheadExample extends React.Component {
               data-extra-attribute
               links={this.secondaryNavLinks}
             />
-          </Masthead.TopRow>
-          <Masthead.Secondary className='extra-class' data-extra-attribute />
-        </Masthead.Content>
-        <Masthead.Navigation className='extra-class' data-extra-attribute>
+            <Masthead.Secondary className='extra-class' data-extra-attribute />
+          </Masthead.Content>
           <Masthead.WideNavigation
             className='extra-class'
             data-extra-attribute
@@ -112,10 +112,10 @@ class MastheadExample extends React.Component {
             data-extra-attribute
             links={this.narrowNavigationLinks}
           />
-        </Masthead.Navigation>
-      </Masthead>
-    </div>
-  </>)
+        </Masthead>
+      </div>
+    </>
+  );
 }
 
 export default MastheadExample

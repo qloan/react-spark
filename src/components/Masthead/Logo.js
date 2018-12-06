@@ -10,8 +10,8 @@ class Logo extends React.Component {
     screenReaderText: null,
     imgAlt: null,
     imgSrc: null,
-    imgWidth: '262'
-  }
+    imgWidth: '175'
+  };
 
   static propTypes = {
     href: PropTypes.string,
@@ -19,31 +19,40 @@ class Logo extends React.Component {
     imgAlt: PropTypes.string,
     imgSrc: PropTypes.string,
     imgWidth: PropTypes.string
-  }
+  };
 
   get className() {
-    const {className} = this.props
+    const { className } = this.props
 
     return classnames(
-      sparkComponentClassName('Masthead', 'logo'),
-      {[className]: className}
+      sparkComponentClassName('Masthead', 'branding'),
+      sparkClassName('object', 'Stack', 'item'),
+      sparkClassName('object', 'Stack', 'item', 'center-column@xxs'),
+      { [className]: className }
     )
   }
 
   renderInner = () => {
-    const {screenReaderText, imgAlt, imgSrc, imgWidth} = this.props
+    const { screenReaderText, imgAlt, imgSrc, imgWidth } = this.props
 
-    return (<React.Fragment>
-      {imgSrc && (
-        <img alt={imgAlt || ''} src={imgSrc} width={imgWidth} />
-      )}
-      {screenReaderText && (
-        <span className={sparkClassName('utility', 'ScreenReaderText')}>
-          Go to the home page
-        </span>
-      )}
-    </React.Fragment>)
-  }
+    return (
+      <React.Fragment>
+        {imgSrc && (
+          <img
+            alt={imgAlt || ''}
+            src={imgSrc}
+            width={imgWidth}
+            className={sparkComponentClassName('Masthead', 'logo')}
+          />
+        )}
+        {screenReaderText && (
+          <span className={sparkClassName('utility', 'ScreenReaderText')}>
+            Go to the home page
+          </span>
+        )}
+      </React.Fragment>
+    )
+  };
 
   render = () => {
     const {
@@ -58,14 +67,10 @@ class Logo extends React.Component {
 
     return (
       <div className={this.className} {...props}>
-        {href ? (
-          <a href={href}>{this.renderInner()}</a>
-        ) : (
-          this.renderInner()
-        )}
+        {href ? <a href={href}>{this.renderInner()}</a> : this.renderInner()}
       </div>
     )
-  }
+  };
 }
 
 export default Logo
