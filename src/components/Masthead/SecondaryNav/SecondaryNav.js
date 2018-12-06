@@ -1,16 +1,16 @@
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-
-import Button from '../../components/Button';
-import Link from '../../components/Link';
-import Icon from '../../components/Icon/Icon';
-import BUTTON_VARIANTS from '../Button/variants';
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import SiteLinks from './SiteLinks'
+import Button from '../../Button'
+import Link from '../../Link'
+import Icon from '../../Icon/Icon'
+import BUTTON_VARIANTS from '../../Button/variants'
 import {
   sparkComponentClassName,
   sparkObjectClassName,
   sparkClassName
-} from '../../util';
+} from '../../../util'
 
 class SecondaryNav extends React.Component {
   static propTypes = {
@@ -83,10 +83,11 @@ class SecondaryNav extends React.Component {
   };
 
   render = () => {
-    const { className, links, ...props } = this.props
+    const { children, className, links, siteLinks, ...props } = this.props
 
     return (
       <nav role='navigation' className={this.className} {...props}>
+        {siteLinks && <SiteLinks links={siteLinks} />}
         <ul className={this.ulClassName}>{this.renderLinks()}</ul>
       </nav>
     )

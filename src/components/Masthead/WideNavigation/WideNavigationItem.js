@@ -3,7 +3,6 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import Icon from '../../Icon/Icon'
 import Link from '../../Link/Link'
-
 import {
   sparkClassName,
   sparkComponentClassName,
