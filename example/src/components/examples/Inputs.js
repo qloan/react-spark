@@ -5,16 +5,27 @@ import {
   DatePicker,
   Select,
   TextArea,
-  TextInput
+  TextInput,
+  Type
 } from 'react-spark'
 
 class Inputs extends React.Component {
   state = {
+    dateInputValue: '',
+    datePickerValue: '',
     textInputWithValueValue: 'value'
   }
 
-  handleTextInputChange = e => {
-    this.setState({textInputWithValueValue: e.value})
+  handleDateInputChange = event => {
+    this.setState({dateInputValue: event.target.value})
+  }
+
+  handleDatePickerChange = event => {
+    this.setState({datePickerValue: event.target.value})
+  }
+
+  handleTextInputChange = event => {
+    this.setState({textInputWithValueValue: event.target.value})
   }
 
   renderCheckboxes = () => (
@@ -68,6 +79,8 @@ class Inputs extends React.Component {
       data-extra-attribute
       id='date-input-normal'
       label='Date'
+      onChange={this.handleDateInputChange}
+      value={this.state.dateInputValue}
       width={100}
     />
 
@@ -91,12 +104,19 @@ class Inputs extends React.Component {
 
     <h3>Date Picker</h3>
 
+    <Type.BodyOne>
+      WARNING: Input/change events don't yet work
+      on <code>&lt;DatePicker&gt;</code>.
+    </Type.BodyOne>
+
     <p>Normal:</p>
     <DatePicker
       className='extra-class'
       data-extra-attribute
       id='date-picker-normal'
       label='Date'
+      onChange={this.handleDatePickerChange}
+      value={this.state.datePickerValue}
       width={100}
     />
 

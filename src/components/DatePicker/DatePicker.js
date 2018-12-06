@@ -1,12 +1,18 @@
-import { bindUIEvents as bindDateInputUiEvents } from '@sparkdesignsystem/spark-core/base/dateInput'
-import { bindUIEvents as bindDatePickerUiEvents } from '@sparkdesignsystem/spark-core/base/datePicker'
-import { bindUIEvents as bindTextInputUiEvents } from '@sparkdesignsystem/spark-core/base/textInput'
+import { formatDate } from '@sparkdesignsystem/spark-core/base/dateInput'
+import {
+  bindUIEvents as bindDatePickerUiEvents
+} from '@sparkdesignsystem/spark-core/base/datePicker'
+import {
+  bindUIEvents as bindTextInputUiEvents
+} from '@sparkdesignsystem/spark-core/base/textInput'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
-  sparkBaseClassName, sparkClassName, sparkComponentClassName,
+  sparkBaseClassName,
+  sparkClassName,
+  sparkComponentClassName,
   sparkWidthClassName
 } from '../../util'
 
@@ -14,8 +20,11 @@ class DatePicker extends React.Component {
   static defaultProps = {
     disabled: false,
     error: null,
+    mask: formatDate,
     pattern: '^(((0[1358]|1[02])([\\/-]?)(0[1-9]|[12]\\d|3[01])|(0[469]|11)([\\/-]?)(0[1-9]|[12]\\d|30)|02(\\/?)((0?\\d)|[12]\\d))(\\4|\\7|\\9)[12]\\d{3})?$',
     placeholder: 'MM/DD/YYYY',
+    tinyDatePickerConfig: {},
+    value: null,
     width: null
   }
 
@@ -30,13 +39,18 @@ class DatePicker extends React.Component {
     label: PropTypes.string.isRequired,
     pattern: PropTypes.string,
     placeholder: PropTypes.string,
+    // See https://github.com/chrisdavies/tiny-date-picker/blob/master/docs/tiny-date-picker.md#options
+    tinyDatePickerConfig: PropTypes.object,
+    value: PropTypes.string,
     width: PropTypes.number
   }
 
-  componentDidMount = () => {
-    bindDateInputUiEvents(this.inputContainerRef.current)
-    bindDatePickerUiEvents(this.inputContainerRef.current)
-    bindTextInputUiEvents(this.inputRef.current)
+  get calendarSvgClassName() {
+    return [
+      sparkComponentClassName('Icon'),
+      sparkComponentClassName('Icon', null, 'current-color'),
+      sparkBaseClassName('DatePicker', 'icon')
+    ].join(' ')
   }
 
   get className() {
@@ -59,12 +73,33 @@ class DatePicker extends React.Component {
     )
   }
 
-  get calendarSvgClassName() {
-    return [
-      sparkComponentClassName('Icon'),
-      sparkComponentClassName('Icon', null, 'current-color'),
-      sparkBaseClassName('DatePicker', 'icon')
-    ].join(' ')
+  componentDidMount = () => {
+    const inputElement = this.inputRef.current
+
+    bindDatePickerUiEvents(
+      this.inputContainerRef.current,
+      this.props.tinyDatePickerConfig
+    )
+    bindTextInputUiEvents(this.inputRef.current)
+
+    // Add event listener if this component is uncontrolled
+    if (this.props.value == null) {
+      inputElement.addEventListener('input', this.handleInput)
+    }
+  }
+
+  componentDidUpdate = () => {
+    const {value} = this.props
+
+    // Mask value if this component is controlled
+    if (value != null && value !== this.maskedValue) this.maskValue()
+  }
+
+  componentWillUnmount() {
+    // Add event listener if this component is uncontrolled
+    if (this.props.value == null) {
+      this.inputRef.current.removeEventListener('input', this.handleInput)
+    }
   }
 
   get exclamationSvgClassName() {
@@ -73,6 +108,43 @@ class DatePicker extends React.Component {
       sparkComponentClassName('Icon', null, 'm'),
       sparkBaseClassName('ErrorIcon')
     ].join(' ')
+  }
+
+  handleInput = event => {
+    const {value} = this.props
+
+    // Mask value if this component is uncontrolled
+    if (value == null && event.target.value !== this.maskedValue) {
+      this.maskValue()
+    }
+  }
+
+  get maskedValue() {
+    const {mask, pattern, value} = this.props
+    const inputElement = this.inputRef.current
+    const patternRegex = new RegExp(pattern)
+
+    if (value == null) { // This component is uncontrolled
+      return patternRegex.test(inputElement.value)
+        ? mask(inputElement.value)
+        : inputElement.value
+    } else { // This component is controlled
+      return patternRegex.test(value) ? mask(value) : value
+    }
+  }
+
+  /**
+   * Set input value to masked value and fire input event
+   */
+  maskValue = () => {
+    const inputElement = this.inputRef.current
+    const inputEvent = new window.Event('input', {bubbles: true})
+    const nativeInputValueSetter = Object
+      .getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')
+      .set
+
+    nativeInputValueSetter.call(inputElement, this.maskedValue)
+    inputElement.dispatchEvent(inputEvent)
   }
 
   renderCalendarSvg = () => (
@@ -137,46 +209,51 @@ class DatePicker extends React.Component {
       error,
       id,
       label,
+      mask,
       pattern,
       placeholder,
+      tinyDatePickerConfig,
+      value,
       width,
       ...props
     } = this.props
 
     return (
-      <div
-        className={sparkBaseClassName('InputContainer')}
-        ref={this.inputContainerRef}
-      >
-        <div className={sparkBaseClassName('TextInputIconContainer')}>
-          {this.renderCalendarSvg()}
-          <input
-            aria-describedby={`${id}--error-container`}
-            aria-invalid={!!error}
-            className={this.className}
-            data-id={id}
-            disabled={disabled}
-            id={id}
-            pattern={pattern}
-            placeholder={placeholder}
-            ref={this.inputRef}
-            type='text'
-            {...props}
-          />
-          <div
-            className={sparkBaseClassName('InputContainer', 'input-border')} />
-          <label
-            className={sparkBaseClassName('Label')}
-            htmlFor={id}
-          >
-            {label}
-          </label>
-        </div>
+      <div className={sparkClassName('utility', 'JavaScript')}>
         <div
-          className={sparkBaseClassName('ErrorContainer')}
-          id={`${id}-error-container`}
+          className={sparkBaseClassName('InputContainer')}
+          ref={this.inputContainerRef}
         >
-          {this.renderErrorContent()}
+          <div className={sparkBaseClassName('TextInputIconContainer')}>
+            {this.renderCalendarSvg()}
+            <input
+              aria-describedby={`${id}--error-container`}
+              aria-invalid={!!error}
+              className={this.className}
+              data-id={id}
+              disabled={disabled}
+              id={id}
+              pattern={pattern}
+              placeholder={placeholder}
+              ref={this.inputRef}
+              type='text'
+              {...props}
+            />
+            <div
+              className={sparkBaseClassName('InputContainer', 'input-border')} />
+            <label
+              className={sparkBaseClassName('Label')}
+              htmlFor={id}
+            >
+              {label}
+            </label>
+          </div>
+          <div
+            className={sparkBaseClassName('ErrorContainer')}
+            id={`${id}-error-container`}
+          >
+            {this.renderErrorContent()}
+          </div>
         </div>
       </div>
     )
