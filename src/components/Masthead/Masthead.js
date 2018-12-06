@@ -10,7 +10,6 @@ import Hamburger from './Hamburger'
 import Logo from './Logo'
 import NarrowNavigation from './NarrowNavigation'
 import WideNavigation from './WideNavigation'
-import Secondary from './Secondary'
 import SecondaryNav from './SecondaryNav'
 
 import { sparkComponentClassName, sparkObjectClassName } from '../../util'
@@ -59,7 +58,6 @@ Masthead.Content = Content
 Masthead.Hamburger = Hamburger
 Masthead.Logo = Logo
 Masthead.NarrowNavigation = NarrowNavigation
-Masthead.Secondary = Secondary
 Masthead.SecondaryNav = SecondaryNav
 Masthead.WideNavigation = WideNavigation
 

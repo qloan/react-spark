@@ -100,7 +100,6 @@ class MastheadExample extends React.Component {
               data-extra-attribute
               links={this.secondaryNavLinks}
             />
-            <Masthead.Secondary className='extra-class' data-extra-attribute />
           </Masthead.Content>
           <Masthead.WideNavigation
             className='extra-class'
