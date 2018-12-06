@@ -9,8 +9,7 @@ class Link extends React.Component {
   static defaultProps = {
     children: null,
     disabled: false,
-    variant: LINK_VARIANTS.INLINE,
-    plain: false
+    variant: LINK_VARIANTS.INLINE
   };
 
   static propTypes = {

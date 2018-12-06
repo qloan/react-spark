@@ -1,17 +1,14 @@
-// import {
-//   bindUIEvents
-// } from '@sparkdesignsystem/spark-core/components/wide-navigation'
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import Icon from '../../Icon/Icon';
-import Link from '../../Link/Link';
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Icon from '../../Icon/Icon'
+import Link from '../../Link/Link'
 
 import {
   sparkClassName,
   sparkComponentClassName,
   sparkObjectClassName
-} from '../../../util';
+} from '../../../util'
 
 class WideNavigationItem extends React.Component {
   static defaultProps = {
@@ -30,10 +27,6 @@ class WideNavigationItem extends React.Component {
       })
     ),
     text: PropTypes.string.isRequired
-  };
-
-  componentDidMount = () => {
-    // bindUIEvents(this.liRef.current)
   };
 
   getClassName = active => {
@@ -69,29 +62,26 @@ class WideNavigationItem extends React.Component {
 
   render = () => {
     const { active, href, text, links, id } = this.props
-    const toggleId = id + '-nav-item-toggle';
+    const toggleId = id + '-nav-item-toggle'
     let conditionalLiProps = {}
 
     if (this.hasLinks) {
       conditionalLiProps = {
         ...conditionalLiProps,
         'aria-haspopup': true,
-        'aria-expanded': false
+        role: 'combobox'
       }
     }
 
     return (
-      <li
-        className={this.getClassName(active)}
-        ref={this.liRef}
-        {...conditionalLiProps}
-      >
+      <li className={this.getClassName(active)} ref={this.liRef}>
         <Link
           variant='plain'
           masthead
           className={sparkComponentClassName('Masthead', 'link', 'big-nav')}
           href={href}
           data-sprk-dropdown-trigger={toggleId}
+          {...conditionalLiProps}
         >
           {text}
           {this.hasLinks && <Icon name='chevron-down' color='base' />}

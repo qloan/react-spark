@@ -1,16 +1,16 @@
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import Button from '../../components/Button'
-import Link from '../../components/Link'
-import Icon from '../../components/Icon/Icon'
-import BUTTON_VARIANTS from '../Button/variants'
+import Button from '../../components/Button';
+import Link from '../../components/Link';
+import Icon from '../../components/Icon/Icon';
+import BUTTON_VARIANTS from '../Button/variants';
 import {
   sparkComponentClassName,
   sparkObjectClassName,
   sparkClassName
-} from '../../util'
+} from '../../util';
 
 class SecondaryNav extends React.Component {
   static propTypes = {
@@ -51,26 +51,17 @@ class SecondaryNav extends React.Component {
     ].join(' ')
   }
 
-  /**
-   * Because Spark doesn't (at the moment) support buttons in the secondary nav
-   *
-   * @return {object}
-   */
-  get ulStyle() {
-    return {
-      WebkitBoxAlign: 'center',
-      msFlexAlign: 'center',
-      alignItems: 'center'
-    }
-  }
-
   renderLinks = () => {
     const { links } = this.props
 
     return links.map((link, i) => (
       <li key={i}>
         {link.buttonVariant ? (
-          <Button href={link.href} variant={link.buttonVariant}>
+          <Button
+            href={link.href}
+            variant={link.buttonVariant}
+            className='sprk-c-Button--compact'
+          >
             {link.text}
           </Button>
         ) : (
@@ -96,9 +87,7 @@ class SecondaryNav extends React.Component {
 
     return (
       <nav role='navigation' className={this.className} {...props}>
-        <ul className={this.ulClassName} style={this.ulStyle}>
-          {this.renderLinks()}
-        </ul>
+        <ul className={this.ulClassName}>{this.renderLinks()}</ul>
       </nav>
     )
   };
