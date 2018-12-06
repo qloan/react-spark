@@ -6,8 +6,8 @@ import { sparkClassName, sparkComponentClassName } from '../../util'
 class Hamburger extends React.Component {
   get bottomBunClassName() {
     return [
-      sparkComponentClassName('Hamburger', 'line'),
-      sparkComponentClassName('Hamburger', 'line', 'three')
+      sparkComponentClassName('Menu', 'line'),
+      sparkComponentClassName('Menu', 'line', 'three')
     ].join(' ')
   }
 
@@ -15,15 +15,17 @@ class Hamburger extends React.Component {
     const {className} = this.props
 
     return classnames(
-      sparkComponentClassName('Masthead', 'hamburger'),
+      sparkComponentClassName('Masthead', 'menu'),
+      sparkClassName('object', 'Stack', 'item'),
+      sparkClassName('object', 'Stack', 'item', 'center-column@xxs'),
       {[className]: className}
     )
   }
 
   get pattyClassName() {
     return [
-      sparkComponentClassName('Hamburger', 'line'),
-      sparkComponentClassName('Hamburger', 'line', 'two')
+      sparkComponentClassName('Menu', 'line'),
+      sparkComponentClassName('Menu', 'line', 'two')
     ].join(' ')
   }
 
@@ -31,14 +33,14 @@ class Hamburger extends React.Component {
     return [
       sparkComponentClassName('Icon'),
       sparkComponentClassName('Icon', null, 'l'),
-      sparkComponentClassName('Hamburger', 'icon')
+      sparkComponentClassName('Menu', 'icon')
     ].join(' ')
   }
 
   get topBunClassName() {
     return [
-      sparkComponentClassName('Hamburger', 'line'),
-      sparkComponentClassName('Hamburger', 'line', 'one')
+      sparkComponentClassName('Menu', 'line'),
+      sparkComponentClassName('Menu', 'line', 'one')
     ].join(' ')
   }
 
@@ -63,7 +65,7 @@ class Hamburger extends React.Component {
     return (
       <div className={this.className} {...props}>
         <button
-          className={sparkComponentClassName('Hamburger')}
+          className={sparkComponentClassName('Menu')}
           type='button'
           aria-expanded='false'
           data-sprk-mobile-nav-trigger='mobileNav'

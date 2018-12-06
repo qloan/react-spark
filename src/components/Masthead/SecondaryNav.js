@@ -4,36 +4,50 @@ import React from 'react'
 
 import Button from '../../components/Button'
 import Link from '../../components/Link'
-
+import Icon from '../../components/Icon/Icon'
 import BUTTON_VARIANTS from '../Button/variants'
 import {
   sparkComponentClassName,
-  sparkObjectClassName
+  sparkObjectClassName,
+  sparkClassName
 } from '../../util'
 
 class SecondaryNav extends React.Component {
   static propTypes = {
-    links: PropTypes.arrayOf(PropTypes.shape({
-      buttonVariant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
-      href: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired
-    })).isRequired
-  }
+    links: PropTypes.arrayOf(
+      PropTypes.shape({
+        buttonVariant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
+        href: PropTypes.string.isRequired,
+        text: PropTypes.string,
+        icon: PropTypes.string
+      })
+    ).isRequired
+  };
 
   get className() {
-    const {className} = this.props
-
+    const { className } = this.props
     return classnames(
-      sparkComponentClassName('Masthead', 'secondary-nav'),
-      {[className]: className}
+      sparkComponentClassName('Masthead', 'little-nav'),
+      sparkObjectClassName('Stack'),
+      sparkObjectClassName('Stack', 'item'),
+      sparkObjectClassName('Stack', null, 'large'),
+      sparkObjectClassName('Stack', null, 'split@s'),
+      sparkObjectClassName('Stack', null, 'end-row'),
+      sparkObjectClassName('Box'),
+      sparkObjectClassName('Stack', 'item', 'flex@xxs'),
+      {
+        [className]: className
+      }
     )
   }
 
   get ulClassName() {
     return [
-      sparkComponentClassName('SecondaryNavigation'),
+      sparkObjectClassName('Stack', 'item'),
       sparkObjectClassName('HorizontalList'),
-      sparkObjectClassName('HorizontalList', null, 'spacing-medium')
+      sparkObjectClassName('HorizontalList', null, 'spacing-large'),
+      sparkObjectClassName('Stack', null, 'center-column'),
+      sparkClassName('utility', 'Position', null, 'relative')
     ].join(' ')
   }
 
@@ -51,7 +65,7 @@ class SecondaryNav extends React.Component {
   }
 
   renderLinks = () => {
-    const {links} = this.props
+    const { links } = this.props
 
     return links.map((link, i) => (
       <li key={i}>
@@ -60,30 +74,34 @@ class SecondaryNav extends React.Component {
             {link.text}
           </Button>
         ) : (
-          <Link href={link.href} variant='standalone'>
-            {link.text}
+          <Link
+            href={link.href}
+            plain
+            variant={link.variant}
+            masthead={!link.variant}
+          >
+            {link.text ? (
+              link.text
+            ) : (
+              <Icon name={link.icon} size={Icon.size.L} color='base' />
+            )}
           </Link>
         )}
       </li>
     ))
-  }
+  };
 
   render = () => {
-    const {className, links, ...props} = this.props
+    const { className, links, ...props } = this.props
 
     return (
-      <div className={this.className} {...props}>
-        <nav role='navigation'>
-          <ul
-            className={this.ulClassName}
-            style={this.ulStyle}
-          >
-            {this.renderLinks()}
-          </ul>
-        </nav>
-      </div>
+      <nav role='navigation' className={this.className} {...props}>
+        <ul className={this.ulClassName} style={this.ulStyle}>
+          {this.renderLinks()}
+        </ul>
+      </nav>
     )
-  }
+  };
 }
 
 export default SecondaryNav

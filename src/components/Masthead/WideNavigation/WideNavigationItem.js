@@ -1,6 +1,6 @@
-import {
-  bindUIEvents
-} from '@sparkdesignsystem/spark-core/components/wide-navigation'
+// import {
+//   bindUIEvents
+// } from '@sparkdesignsystem/spark-core/components/wide-navigation'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -25,7 +25,7 @@ class WideNavigationItem extends React.Component {
   }
 
   componentDidMount = () => {
-    bindUIEvents(this.liRef.current)
+    // bindUIEvents(this.liRef.current)
   }
 
   getClassName = active => {

@@ -32,10 +32,11 @@ class Icon extends React.Component {
   }
 
   get className() {
-    const {className, select, size, toggle, variant} = this.props
+    const {className, select, size, toggle, variant, color} = this.props
     const baseClass = sparkComponentClassName('Icon')
     const sizeClass = sparkComponentClassName('Icon', null, size)
     const toggleClass = sparkComponentClassName('Icon', null, 'toggle')
+    const colorClass = sparkComponentClassName('Icon', null, 'current-color')
     const variantClass = sparkComponentClassName(variant, 'icon')
     const selectClass = sparkBaseClassName('SelectContainer', 'icon')
 
@@ -44,6 +45,7 @@ class Icon extends React.Component {
       [sizeClass]: Boolean(size),
       [variantClass]: Boolean(variant),
       [selectClass]: Boolean(select),
+      [colorClass]: color === 'base',
       [className]: className
     })
   }

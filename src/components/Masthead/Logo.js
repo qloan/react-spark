@@ -25,7 +25,9 @@ class Logo extends React.Component {
     const {className} = this.props
 
     return classnames(
-      sparkComponentClassName('Masthead', 'logo'),
+      sparkComponentClassName('Masthead', 'branding'),
+      sparkClassName('object', 'Stack', 'item'),
+      sparkClassName('object', 'Stack', 'item', 'center-column@xxs'),
       {[className]: className}
     )
   }

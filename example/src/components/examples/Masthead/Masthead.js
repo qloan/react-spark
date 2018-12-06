@@ -8,18 +8,18 @@ class MastheadExample extends React.Component {
   narrowNavigationLinks = [
     {
       active: false,
-      href: '#',
+      href: '',
       links: [
         {href: '#', text: 'Item 1'},
         {href: '#', text: 'Item 2'},
         {href: '#', text: 'Item 3'}
       ],
-      text: 'Item 1'
+      text: 'Talk To Us'
     },
     {
       active: true,
       href: '#',
-      text: 'Item 1'
+      text: 'Talk To Us'
     },
     {
       active: false,
@@ -34,7 +34,9 @@ class MastheadExample extends React.Component {
   ]
 
   secondaryNavLinks = [
-    {href: '#', text: 'Item 1'},
+    {href: '#/item1', text: '(555) 555-5555', variant: 'standalone'},
+    {href: '#/item1', text: 'Talk To Us'},
+    {href: '#/user', icon: 'user'},
     {buttonVariant: 'secondary', href: '#', text: 'Item 2'},
     {buttonVariant: 'primary', href: '#', text: 'Item 3'}
   ]
@@ -42,7 +44,7 @@ class MastheadExample extends React.Component {
   wideNavigationLinks = [
     {
       active: true,
-      href: '#',
+      href: '#/item1',
       text: 'Item 1'
     },
     {
@@ -78,27 +80,25 @@ class MastheadExample extends React.Component {
   ]
 
   render = () => (<>
-    <div className='ReactSparkExample-Masthead'>
+    <div>
       <h2>Masthead</h2>
 
       <Masthead className='extra-class' data-extra-attribute>
         <Masthead.Content className='extra-class' data-extra-attribute>
-          <Masthead.TopRow className='extra-class' data-extra-attribute>
-            <Masthead.Hamburger className='extra-class' data-extra-attribute />
-            <Masthead.Logo
-              className='extra-class'
-              data-extra-attribute
-              href='/masthead'
-              imgAlt='Placeholder'
-              imgSrc={logo}
-              screenReaderText='Go to the home page'
-            />
-            <Masthead.SecondaryNav
-              className='extra-class'
-              data-extra-attribute
-              links={this.secondaryNavLinks}
-            />
-          </Masthead.TopRow>
+          <Masthead.Hamburger className='extra-class' data-extra-attribute />
+          <Masthead.Logo
+            className='extra-class'
+            data-extra-attribute
+            href='/masthead'
+            imgAlt='Placeholder'
+            imgSrc={logo}
+            screenReaderText='Go to the home page'
+          />
+          <Masthead.SecondaryNav
+            className='extra-class'
+            data-extra-attribute
+            links={this.secondaryNavLinks}
+          />
           <Masthead.Secondary className='extra-class' data-extra-attribute />
         </Masthead.Content>
         <Masthead.Navigation className='extra-class' data-extra-attribute>
