@@ -1,5 +1,7 @@
-import { bindUIEvents as bindDateInputUiEvents } from '@sparkdesignsystem/spark-core/base/dateInput'
-import { bindUIEvents as bindTextInputUiEvents } from '@sparkdesignsystem/spark-core/base/textInput'
+import { formatDate } from '@sparkdesignsystem/spark-core/base/dateInput'
+import {
+  bindUIEvents as bindTextInputUiEvents
+} from '@sparkdesignsystem/spark-core/base/textInput'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -15,8 +17,10 @@ class DateInput extends React.Component {
   static defaultProps = {
     disabled: false,
     error: null,
+    mask: formatDate,
     pattern: '^(((0[1358]|1[02])([\\/-]?)(0[1-9]|[12]\\d|3[01])|(0[469]|11)([\\/-]?)(0[1-9]|[12]\\d|30)|02(\\/?)((0?\\d)|[12]\\d))(\\4|\\7|\\9)[12]\\d{3})?$',
     placeholder: 'MM/DD/YYYY',
+    value: null,
     width: null
   }
 
@@ -29,14 +33,11 @@ class DateInput extends React.Component {
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
+    mask: PropTypes.func,
     pattern: PropTypes.string,
     placeholder: PropTypes.string,
+    value: PropTypes.string,
     width: PropTypes.number
-  }
-
-  componentDidMount = () => {
-    bindDateInputUiEvents(this.inputContainerRef.current)
-    bindTextInputUiEvents(this.inputRef.current)
   }
 
   get className() {
@@ -56,12 +57,74 @@ class DateInput extends React.Component {
     )
   }
 
+  componentDidUpdate = () => {
+    const {value} = this.props
+
+    // Mask value if this component is controlled
+    if (value != null && value !== this.maskedValue) this.maskValue()
+  }
+
+  componentDidMount = () => {
+    const inputElement = this.inputRef.current
+
+    bindTextInputUiEvents(inputElement)
+
+    // Add event listener if this component is uncontrolled
+    if (this.props.value == null) {
+      inputElement.addEventListener('input', this.handleInput)
+    }
+  }
+
+  componentWillUnmount() {
+    // Add event listener if this component is uncontrolled
+    if (this.props.value == null) {
+      this.inputRef.current.removeEventListener('input', this.handleInput)
+    }
+  }
+
   get exclamationSvgClassName() {
     return [
       sparkComponentClassName('Icon'),
       sparkComponentClassName('Icon', null, 'm'),
       sparkBaseClassName('ErrorIcon')
     ].join(' ')
+  }
+
+  handleInput = event => {
+    const {value} = this.props
+
+    // Mask value if this component is uncontrolled
+    if (value == null && event.target.value !== this.maskedValue) {
+      this.maskValue()
+    }
+  }
+
+  get maskedValue() {
+    const {mask, pattern, value} = this.props
+    const inputElement = this.inputRef.current
+    const patternRegex = new RegExp(pattern)
+
+    if (value == null) { // This component is uncontrolled
+      return patternRegex.test(inputElement.value)
+        ? mask(inputElement.value)
+        : inputElement.value
+    } else { // This component is controlled
+      return patternRegex.test(value) ? mask(value) : value
+    }
+  }
+
+  /**
+   * Set input value to masked value and fire input event
+   */
+  maskValue = () => {
+    const inputElement = this.inputRef.current
+    const inputEvent = new window.Event('input', {bubbles: true})
+    const nativeInputValueSetter = Object
+      .getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')
+      .set
+
+    nativeInputValueSetter.call(inputElement, this.maskedValue)
+    inputElement.dispatchEvent(inputEvent)
   }
 
   renderErrorContent = () => {
@@ -112,8 +175,10 @@ class DateInput extends React.Component {
       error,
       id,
       label,
+      mask,
       pattern,
       placeholder,
+      value,
       width,
       ...props
     } = this.props
