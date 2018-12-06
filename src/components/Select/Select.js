@@ -31,20 +31,17 @@ class Select extends React.Component {
   }
 
   get className() {
-    const {className, error, width} = this.props
+    const { className, error, width } = this.props
 
     const baseClass = sparkClassName('base', 'Select')
     const errorClass = sparkClassName('base', 'TextInput', null, 'error')
     const widthClass = sparkWidthClassName(width)
 
-    return classNames(
-      baseClass,
-      {
-        [errorClass]: error,
-        [widthClass]: width,
-        [className]: className
-      }
-    )
+    return classNames(baseClass, {
+      [errorClass]: error,
+      [widthClass]: width,
+      [className]: className
+    })
   }
 
   render = () => {
@@ -72,18 +69,11 @@ class Select extends React.Component {
           ref={this.selectRef}
           {...props}
         >
-          {options.map(
-            ({disabled = false, value, selected = false, text}, index) => (
-              <option
-                disabled={disabled}
-                value={value}
-                selected={selected}
-                key={index}
-              >
-                {text}
-              </option>
-            )
-          )}
+          {options.map(({ disabled = false, value, text }, index) => (
+            <option disabled={disabled} value={value} key={index}>
+              {text}
+            </option>
+          ))}
         </select>
         <Icon name='chevron-down' select />
       </InputContainer>

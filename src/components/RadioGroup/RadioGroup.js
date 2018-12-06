@@ -65,7 +65,7 @@ class RadioGroup extends React.Component {
             <Radio
               checked={radio.checked ? 'checked' : null}
               containerId={id}
-              disabled={disabled}
+              disabled={disabled || radio.disabled}
               id={radio.id}
               key={radio.id}
               label={radio.label}
