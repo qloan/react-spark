@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React, { Fragment } from 'react'
 import Button from '../../Button'
@@ -5,7 +6,7 @@ import Link from '../../Link'
 import Icon from '../../Icon/Icon'
 import Dropdown from '../../Dropdown'
 import BUTTON_VARIANTS from '../../Button/variants'
-import { sparkComponentClassName } from '../../../util'
+import { sparkComponentClassName, sparkBaseClassName } from '../../../util'
 
 class NavItem extends React.Component {
   static propTypes = {
@@ -28,6 +29,13 @@ class NavItem extends React.Component {
   get hasLinks() {
     const { link } = this.props
     return !!(link.links && link.links.length)
+  }
+
+  get linkClassName() {
+    return classnames(
+      sparkComponentClassName('Masthead', 'link'),
+      sparkBaseClassName('Link', null, 'plain')
+    )
   }
 
   render = () => {
@@ -62,9 +70,8 @@ class NavItem extends React.Component {
             ) : (
               <Link
                 href={href}
-                plain
                 variant={variant}
-                className={sparkComponentClassName('Masthead', 'link')}
+                className={this.linkClassName}
               >
                 {text || <Icon name={icon} size={Icon.size.L} color='base' />}
               </Link>

@@ -1,9 +1,9 @@
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import LINK_VARIANTS from './variants'
-import { sparkBaseClassName } from '../../util'
+import LINK_VARIANTS from './variants';
+import { sparkBaseClassName } from '../../util';
 
 class Link extends React.Component {
   static defaultProps = {
@@ -15,20 +15,17 @@ class Link extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     disabled: PropTypes.bool,
-    variant: PropTypes.oneOf(Object.values(LINK_VARIANTS)),
-    plain: PropTypes.bool
+    variant: PropTypes.oneOf(Object.values(LINK_VARIANTS))
   };
 
   get className() {
-    const { className, disabled, variant, plain } = this.props
+    const { className, disabled, variant } = this.props
 
     const disabledClass = sparkBaseClassName('Link', null, 'disabled')
     const variantClass = sparkBaseClassName('Link', null, variant)
-    const plainClass = sparkBaseClassName('Link', null, 'plain')
 
     return classNames(sparkBaseClassName('Link'), {
       [disabledClass]: disabled,
-      [plainClass]: plain,
       [variantClass]: variant !== LINK_VARIANTS.INLINE,
       [className]: className
     })
