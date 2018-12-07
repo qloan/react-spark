@@ -41,6 +41,12 @@ class WideNavigationItem extends React.Component {
     )
   };
 
+  get dropdownlinkClassName() {
+    return classnames(
+      sparkComponentClassName('Masthead', 'link'),
+      sparkComponentClassName('Masthead', 'link', 'big-nav')
+    )
+  }
   get linkClassName() {
     return classnames(
       sparkComponentClassName('Masthead', 'link'),
@@ -75,8 +81,7 @@ class WideNavigationItem extends React.Component {
           <Fragment>
             <Dropdown.DropdownLink
               variant='plain'
-              masthead
-              className={this.linkClassName}
+              className={this.dropdownlinkClassName}
               href={href}
               text={text}
               id={this.toggleId}
@@ -86,12 +91,7 @@ class WideNavigationItem extends React.Component {
             </Dropdown.DropdownLinksContainer>
           </Fragment>
         ) : (
-          <Link
-            variant='plain'
-            masthead
-            className={sparkComponentClassName('Masthead', 'link', 'big-nav')}
-            href={href}
-          >
+          <Link variant='plain' className={this.linkClassName} href={href}>
             {text}
           </Link>
         )}

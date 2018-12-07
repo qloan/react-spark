@@ -39,7 +39,6 @@ class NavItem extends React.Component {
           <Fragment>
             <Dropdown.DropdownLink
               variant='plain'
-              masthead
               href={href}
               text={text}
               icon={icon}
@@ -61,7 +60,12 @@ class NavItem extends React.Component {
                 {text}
               </Button>
             ) : (
-              <Link href={href} plain variant={variant} masthead>
+              <Link
+                href={href}
+                plain
+                variant={variant}
+                className={sparkComponentClassName('Masthead', 'link')}
+              >
                 {text || <Icon name={icon} size={Icon.size.L} color='base' />}
               </Link>
             )}

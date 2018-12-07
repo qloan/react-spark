@@ -39,7 +39,7 @@ class MastheadExample extends React.Component {
     ],
     mainLinks: [
       { buttonVariant: 'secondary', href: '#', text: 'Sign In' },
-      { buttonVariant: 'green', href: '#', text: 'See My Options' }
+      { buttonVariant: 'primary', href: '#', text: 'See My Options' }
     ],
 
     wideNavigationLinks: [

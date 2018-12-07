@@ -28,7 +28,6 @@ class DropdownLink extends React.Component {
     return (
       <Link
         variant='plain'
-        masthead
         aria-haspopup={true}
         role='combobox'
         data-sprk-dropdown-trigger={id}
