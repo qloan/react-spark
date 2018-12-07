@@ -1,8 +1,8 @@
-import React from 'react'
-import { Masthead } from 'react-spark'
+import React from 'react';
+import { Masthead } from 'react-spark';
 
-import './Masthead.scss'
-import logo from '../../../assets/images/logo.png'
+import './Masthead.scss';
+import logo from '../../../assets/images/logo.png';
 
 class MastheadExample extends React.Component {
   narrowNavigationLinks = [
@@ -98,6 +98,34 @@ class MastheadExample extends React.Component {
         </p>
 
         <br />
+        <h4>Logged In</h4>
+        <br />
+
+        <Masthead className='extra-class' id='masthead-logged-in'>
+          <Masthead.Content className='extra-class' data-extra-attribute>
+            <Masthead.Hamburger className='extra-class' data-extra-attribute />
+            <Masthead.Logo
+              className='extra-class'
+              data-extra-attribute
+              href='/masthead'
+              imgAlt='Placeholder'
+              imgSrc={logo}
+              screenReaderText='Go to the home page'
+            />
+            <Masthead.LittleNav
+              className='extra-class'
+              data-extra-attribute
+              siteLinks={this.loggedIn.siteLinks}
+              links={this.loggedIn.secondaryNavLinks}
+            />
+          </Masthead.Content>
+          <Masthead.NarrowNav
+            className='extra-class'
+            data-extra-attribute
+            links={this.narrowNavigationLinks}
+          />
+        </Masthead>
+        <br />
         <h4>Logged Out & Big Navigation</h4>
         <br />
 
@@ -128,35 +156,6 @@ class MastheadExample extends React.Component {
             data-extra-attribute
             links={this.loggedOut.wideNavigationLinks}
           />
-          <Masthead.NarrowNav
-            className='extra-class'
-            data-extra-attribute
-            links={this.narrowNavigationLinks}
-          />
-        </Masthead>
-
-        <br />
-        <h4>Logged In</h4>
-        <br />
-
-        <Masthead className='extra-class' id='masthead-logged-in'>
-          <Masthead.Content className='extra-class' data-extra-attribute>
-            <Masthead.Hamburger className='extra-class' data-extra-attribute />
-            <Masthead.Logo
-              className='extra-class'
-              data-extra-attribute
-              href='/masthead'
-              imgAlt='Placeholder'
-              imgSrc={logo}
-              screenReaderText='Go to the home page'
-            />
-            <Masthead.LittleNav
-              className='extra-class'
-              data-extra-attribute
-              siteLinks={this.loggedIn.siteLinks}
-              links={this.loggedIn.secondaryNavLinks}
-            />
-          </Masthead.Content>
           <Masthead.NarrowNav
             className='extra-class'
             data-extra-attribute

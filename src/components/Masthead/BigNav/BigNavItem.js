@@ -1,15 +1,17 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
+import { dropdowns } from '@sparkdesignsystem/spark-core/components/dropdown'
 import React from 'react'
 import Icon from '../../Icon/Icon'
 import Link from '../../Link/Link'
+
 import {
   sparkClassName,
   sparkComponentClassName,
   sparkObjectClassName
 } from '../../../util'
 
-class BigNavItem extends React.Component {
+class WideNavigationItem extends React.Component {
   static defaultProps = {
     active: false
   };
@@ -52,6 +54,10 @@ class BigNavItem extends React.Component {
     ].join(' ')
   }
 
+  componentDidMount = () => {
+    dropdowns()
+  };
+
   /**
    * @returns {boolean}
    */
@@ -63,12 +69,18 @@ class BigNavItem extends React.Component {
     const { active, href, text, links, id } = this.props
     const toggleId = id + '-nav-item-toggle'
     let conditionalLiProps = {}
+    let conditionalDivProps = {}
 
     if (this.hasLinks) {
       conditionalLiProps = {
         ...conditionalLiProps,
         'aria-haspopup': true,
-        role: 'combobox'
+        role: 'combobox',
+        'data-sprk-dropdown-trigger': toggleId
+      }
+      conditionalDivProps = {
+        ...conditionalDivProps,
+        'data-sprk-dropdown': toggleId
       }
     }
 
@@ -79,7 +91,6 @@ class BigNavItem extends React.Component {
           masthead
           className={sparkComponentClassName('Masthead', 'link', 'big-nav')}
           href={href}
-          data-sprk-dropdown-trigger={toggleId}
           {...conditionalLiProps}
         >
           {text}
@@ -88,7 +99,7 @@ class BigNavItem extends React.Component {
         {this.hasLinks && (
           <div
             className={this.subMenuContainerClassName}
-            data-sprk-dropdown={toggleId}
+            {...conditionalDivProps}
           >
             <ul className={sparkComponentClassName('Dropdown', 'links')}>
               {links.map((sublink, i) => (
@@ -113,4 +124,4 @@ class BigNavItem extends React.Component {
   };
 }
 
-export default BigNavItem
+export default WideNavigationItem

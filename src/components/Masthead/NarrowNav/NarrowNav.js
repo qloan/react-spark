@@ -2,7 +2,7 @@ import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import NarrowNavigationItem from './NarrowNavigationItem'
+import NarrowNavItem from './NarrowNavItem'
 import {
   sparkBaseClassName,
   sparkClassName,
@@ -45,25 +45,6 @@ class NarrowNav extends React.Component {
     ].join(' ')
   }
 
-  renderItems = () => {
-    const { links } = this.props
-
-    return links.map((link, i) => {
-      const id = `masthead-narrow-nav-item-${i}`
-
-      return (
-        <NarrowNavigationItem
-          active={link.active}
-          href={link.href}
-          key={i} // Maybe use id?
-          id={id}
-          links={link.links}
-          text={link.text}
-        />
-      )
-    })
-  };
-
   render = () => {
     const { className, links, ...props } = this.props
 
@@ -74,7 +55,18 @@ class NarrowNav extends React.Component {
         data-sprk-mobile-nav='mobileNav'
         {...props}
       >
-        <ul className={this.ulClassName}>{this.renderItems()}</ul>
+        <ul className={this.ulClassName}>
+          {links.map((link, i) => (
+            <NarrowNavItem
+              active={link.active}
+              href={link.href}
+              key={`masthead-narrow-nav-item-${i}`}
+              id={`masthead-narrow-nav-item-${i}`}
+              links={link.links}
+              text={link.text}
+            />
+          ))}
+        </ul>
       </nav>
     )
   };
