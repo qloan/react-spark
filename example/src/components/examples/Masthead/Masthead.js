@@ -37,9 +37,9 @@ class MastheadExample extends React.Component {
       { href: '#', text: 'About Us' },
       { href: '#', text: 'Reviews' }
     ],
-    secondaryNavLinks: [
+    mainLinks: [
       { buttonVariant: 'secondary', href: '#', text: 'Sign In' },
-      { buttonVariant: 'primary', href: '#', text: 'See My Options' }
+      { buttonVariant: 'green', href: '#', text: 'See My Options' }
     ],
 
     wideNavigationLinks: [
@@ -82,11 +82,20 @@ class MastheadExample extends React.Component {
   };
   loggedIn = {
     siteLinks: [
+      // { href: '#/call', text: 'Continue', buttonVariant: 'primary' }
       { href: '#/call', text: '(555) 555-5555', variant: 'standalone' },
-      { href: '#/profile', text: 'My Profile' },
+      {
+        text: 'My Profile',
+        links: [
+          { href: '#', text: 'Item 1' },
+          { href: '#', text: 'Item 2' }
+        ]
+      },
       { href: '#/dashboard', text: 'Dashboard' }
     ],
-    secondaryNavLinks: [{ href: '#/user', icon: 'user' }]
+    mainLinks: [
+      { href: '#/user', icon: 'user', links: [{ href: '#', text: 'Sign Out' }] }
+    ]
   };
   render = () => (
     <>
@@ -112,7 +121,7 @@ class MastheadExample extends React.Component {
               className='extra-class'
               data-extra-attribute
               siteLinks={this.loggedIn.siteLinks}
-              links={this.loggedIn.secondaryNavLinks}
+              links={this.loggedIn.mainLinks}
             />
           </Masthead.Content>
           <Masthead.NarrowNav
@@ -123,6 +132,8 @@ class MastheadExample extends React.Component {
         </Masthead>
         <br />
         <h4>Logged Out & Big Navigation</h4>
+        <br />
+        <br />
         <br />
 
         <Masthead
@@ -144,7 +155,7 @@ class MastheadExample extends React.Component {
               className='extra-class'
               data-extra-attribute
               siteLinks={this.loggedOut.siteLinks}
-              links={this.loggedOut.secondaryNavLinks}
+              links={this.loggedOut.mainLinks}
             />
           </Masthead.Content>
           <Masthead.BigNav

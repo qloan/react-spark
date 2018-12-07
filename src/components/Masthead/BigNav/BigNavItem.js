@@ -1,16 +1,10 @@
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import { dropdowns } from '@sparkdesignsystem/spark-core/components/dropdown'
-import React, { Fragment } from 'react'
-import Icon from '../../Icon/Icon'
-import Link from '../../Link/Link'
-import Dropdown from '../../Dropdown'
-
-import {
-  sparkClassName,
-  sparkComponentClassName,
-  sparkObjectClassName
-} from '../../../util'
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import { dropdowns } from '@sparkdesignsystem/spark-core/components/dropdown';
+import React, { Fragment } from 'react';
+import Link from '../../Link/Link';
+import Dropdown from '../../Dropdown';
+import { sparkComponentClassName, sparkObjectClassName } from '../../../util';
 
 class WideNavigationItem extends React.Component {
   static defaultProps = {
@@ -28,7 +22,8 @@ class WideNavigationItem extends React.Component {
         text: PropTypes.string.isRequired
       })
     ),
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
+    id: PropTypes.string.isRequired
   };
 
   getClassName = active => {
@@ -46,6 +41,13 @@ class WideNavigationItem extends React.Component {
     )
   };
 
+  get linkClassName() {
+    return classnames(
+      sparkComponentClassName('Masthead', 'link'),
+      sparkComponentClassName('Masthead', 'link', 'big-nav')
+    )
+  }
+
   componentDidMount = () => {
     if (!window.initDropdowns) {
       dropdowns()
@@ -61,7 +63,7 @@ class WideNavigationItem extends React.Component {
   }
 
   get toggleId() {
-    return this.props.id + '-nav-item-toggle'
+    return this.props.id + '-nav-item-toggle';
   }
 
   render = () => {
@@ -74,15 +76,12 @@ class WideNavigationItem extends React.Component {
             <Dropdown.DropdownLink
               variant='plain'
               masthead
-              className={sparkComponentClassName('Masthead', 'link', 'big-nav')}
+              className={this.linkClassName}
               href={href}
               text={text}
               id={this.toggleId}
             />
-            <Dropdown.DropdownLinksContainer
-              className={this.subMenuContainerClassName}
-              id={this.toggleId}
-            >
+            <Dropdown.DropdownLinksContainer id={this.toggleId}>
               <Dropdown.DropdownLinks links={links} />
             </Dropdown.DropdownLinksContainer>
           </Fragment>

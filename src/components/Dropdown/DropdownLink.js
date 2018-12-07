@@ -1,16 +1,18 @@
 import { dropdowns } from '@sparkdesignsystem/spark-core/components/dropdown'
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { Fragment } from 'react'
 import Icon from '../Icon/Icon'
 import Link from '../Link/Link'
-import { sparkComponentClassName } from '../../util'
 
 class DropdownLink extends React.Component {
   static defaultProps = {};
 
   static propTypes = {
     id: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired
+    text: PropTypes.string,
+    className: PropTypes.string,
+    href: PropTypes.string,
+    icon: PropTypes.string
   };
 
   componentDidMount() {
@@ -21,20 +23,25 @@ class DropdownLink extends React.Component {
   }
 
   render = () => {
-    const { text, id } = this.props
+    const { text, icon, id, className, href } = this.props
 
     return (
       <Link
         variant='plain'
         masthead
-        className={sparkComponentClassName('Masthead', 'link', 'big-nav')}
-        href='#'
         aria-haspopup={true}
         role='combobox'
         data-sprk-dropdown-trigger={id}
+        className={className}
+        href={href}
       >
-        {text}
-        <Icon name='chevron-down' color='base' />
+        {icon ? (
+          <Icon name={icon} size={Icon.size.L} color='base' />
+        ) : (
+          <Fragment>
+            {text} <Icon name='chevron-down' color='base' />
+          </Fragment>
+        )}
       </Link>
     )
   };

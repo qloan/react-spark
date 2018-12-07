@@ -44,7 +44,7 @@ class BigNav extends React.Component {
         key={i}
         links={link.links}
         text={link.text}
-        id={i}
+        id={i.toString()}
       />
     ))
   };
