@@ -11,7 +11,7 @@ import {
   sparkComponentClassName
 } from '../../../util/index'
 
-class NarrowNavigationItem extends React.Component {
+class NarrowNavItem extends React.Component {
   liRef = React.createRef()
 
   static propTypes = {
@@ -143,4 +143,4 @@ class NarrowNavigationItem extends React.Component {
   }
 }
 
-export default NarrowNavigationItem
+export default NarrowNavItem

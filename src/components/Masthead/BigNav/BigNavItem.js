@@ -9,7 +9,7 @@ import {
   sparkObjectClassName
 } from '../../../util'
 
-class WideNavigationItem extends React.Component {
+class BigNavItem extends React.Component {
   static defaultProps = {
     active: false
   };
@@ -113,4 +113,4 @@ class WideNavigationItem extends React.Component {
   };
 }
 
-export default WideNavigationItem
+export default BigNavItem

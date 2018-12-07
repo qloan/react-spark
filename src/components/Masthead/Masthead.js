@@ -8,10 +8,9 @@ import React from 'react'
 import Content from './Content'
 import Hamburger from './Hamburger'
 import Logo from './Logo'
-import NarrowNavigation from './NarrowNavigation'
-import WideNavigation from './WideNavigation'
-import SecondaryNav from './SecondaryNav/SecondaryNav'
-import SiteLinks from './SecondaryNav/SiteLinks'
+import NarrowNav from './NarrowNav'
+import BigNav from './BigNav'
+import LittleNav from './LittleNav/LittleNav'
 
 import { sparkComponentClassName, sparkObjectClassName } from '../../util'
 
@@ -54,11 +53,21 @@ class Masthead extends React.Component {
   };
 }
 
+/**
+ * DEPRECATED START
+ */
+Masthead.SecondaryNav = LittleNav
+Masthead.WideNavigation = BigNav
+Masthead.NarrowNavigation = NarrowNav
+/**
+ * DEPRECATED END
+ */
+
 Masthead.Content = Content
 Masthead.Hamburger = Hamburger
 Masthead.Logo = Logo
-Masthead.NarrowNavigation = NarrowNavigation
-Masthead.SecondaryNav = SecondaryNav
-Masthead.WideNavigation = WideNavigation
+Masthead.BigNav = BigNav
+Masthead.LittleNav = LittleNav
+Masthead.NarrowNav = NarrowNav
 
 export default Masthead

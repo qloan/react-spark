@@ -1,8 +1,8 @@
-import React from 'react';
-import { Masthead } from 'react-spark';
+import React from 'react'
+import { Masthead } from 'react-spark'
 
-import './Masthead.scss';
-import logo from '../../../assets/images/logo.png';
+import './Masthead.scss'
+import logo from '../../../assets/images/logo.png'
 
 class MastheadExample extends React.Component {
   narrowNavigationLinks = [
@@ -116,19 +116,19 @@ class MastheadExample extends React.Component {
               imgSrc={logo}
               screenReaderText='Go to the home page'
             />
-            <Masthead.SecondaryNav
+            <Masthead.LittleNav
               className='extra-class'
               data-extra-attribute
-              links={this.loggedOut.secondaryNavLinks}
               siteLinks={this.loggedOut.siteLinks}
+              links={this.loggedOut.secondaryNavLinks}
             />
           </Masthead.Content>
-          <Masthead.WideNavigation
+          <Masthead.BigNav
             className='extra-class'
             data-extra-attribute
             links={this.loggedOut.wideNavigationLinks}
           />
-          <Masthead.NarrowNavigation
+          <Masthead.NarrowNav
             className='extra-class'
             data-extra-attribute
             links={this.narrowNavigationLinks}
@@ -150,14 +150,14 @@ class MastheadExample extends React.Component {
               imgSrc={logo}
               screenReaderText='Go to the home page'
             />
-            <Masthead.SecondaryNav
+            <Masthead.LittleNav
               className='extra-class'
               data-extra-attribute
-              links={this.loggedIn.secondaryNavLinks}
               siteLinks={this.loggedIn.siteLinks}
+              links={this.loggedIn.secondaryNavLinks}
             />
           </Masthead.Content>
-          <Masthead.NarrowNavigation
+          <Masthead.NarrowNav
             className='extra-class'
             data-extra-attribute
             links={this.narrowNavigationLinks}

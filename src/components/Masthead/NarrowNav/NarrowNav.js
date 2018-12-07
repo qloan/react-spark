@@ -1,15 +1,15 @@
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import NarrowNavigationItem from './NarrowNavigationItem';
+import NarrowNavigationItem from './NarrowNavigationItem'
 import {
   sparkBaseClassName,
   sparkClassName,
   sparkComponentClassName
-} from '../../../util/index';
+} from '../../../util/index'
 
-class NarrowNavigation extends React.Component {
+class NarrowNav extends React.Component {
   static propTypes = {
     links: PropTypes.arrayOf(
       PropTypes.shape({
@@ -80,4 +80,4 @@ class NarrowNavigation extends React.Component {
   };
 }
 
-export default NarrowNavigation
+export default NarrowNav
