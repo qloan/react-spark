@@ -51,7 +51,7 @@ class NavItem extends React.Component {
             </Dropdown.DropdownLinksContainer>
           </Fragment>
         ) : (
-          <div>
+          <Fragment>
             {buttonVariant ? (
               <Button
                 href={href}
@@ -65,7 +65,7 @@ class NavItem extends React.Component {
                 {text || <Icon name={icon} size={Icon.size.L} color='base' />}
               </Link>
             )}
-          </div>
+          </Fragment>
         )}
       </li>
     )
