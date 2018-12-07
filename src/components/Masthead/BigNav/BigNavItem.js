@@ -1,9 +1,10 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import { dropdowns } from '@sparkdesignsystem/spark-core/components/dropdown'
-import React from 'react'
+import React, { Fragment } from 'react'
 import Icon from '../../Icon/Icon'
 import Link from '../../Link/Link'
+import Dropdown from '../../Dropdown'
 
 import {
   sparkClassName,
@@ -45,15 +46,6 @@ class WideNavigationItem extends React.Component {
     )
   };
 
-  get subMenuContainerClassName() {
-    return [
-      sparkComponentClassName('Dropdown'),
-      sparkClassName('utility', 'Width', null, '100'),
-      sparkClassName('utility', 'TextAlign', null, 'left'),
-      sparkClassName('utility', 'Display', null, 'none')
-    ].join(' ')
-  }
-
   componentDidMount = () => {
     if (!window.initDropdowns) {
       dropdowns()
@@ -68,59 +60,41 @@ class WideNavigationItem extends React.Component {
     return !!(this.props.links && this.props.links.length)
   }
 
-  render = () => {
-    const { active, href, text, links, id } = this.props
-    const toggleId = id + '-nav-item-toggle'
-    let conditionalLiProps = {}
-    let conditionalDivProps = {}
+  get toggleId() {
+    return this.props.id + '-nav-item-toggle'
+  }
 
-    if (this.hasLinks) {
-      conditionalLiProps = {
-        ...conditionalLiProps,
-        'aria-haspopup': true,
-        role: 'combobox',
-        'data-sprk-dropdown-trigger': toggleId
-      }
-      conditionalDivProps = {
-        ...conditionalDivProps,
-        'data-sprk-dropdown': toggleId
-      }
-    }
+  render = () => {
+    const { active, href, text, links } = this.props
 
     return (
       <li className={this.getClassName(active)} ref={this.liRef}>
-        <Link
-          variant='plain'
-          masthead
-          className={sparkComponentClassName('Masthead', 'link', 'big-nav')}
-          href={href}
-          {...conditionalLiProps}
-        >
-          {text}
-          {this.hasLinks && <Icon name='chevron-down' color='base' />}
-        </Link>
-        {this.hasLinks && (
-          <div
-            className={this.subMenuContainerClassName}
-            {...conditionalDivProps}
+        {this.hasLinks ? (
+          <Fragment>
+            <Dropdown.DropdownLink
+              variant='plain'
+              masthead
+              className={sparkComponentClassName('Masthead', 'link', 'big-nav')}
+              href={href}
+              text={text}
+              id={this.toggleId}
+            />
+            <Dropdown.DropdownLinksContainer
+              className={this.subMenuContainerClassName}
+              id={this.toggleId}
+            >
+              <Dropdown.DropdownLinks links={links} />
+            </Dropdown.DropdownLinksContainer>
+          </Fragment>
+        ) : (
+          <Link
+            variant='plain'
+            masthead
+            className={sparkComponentClassName('Masthead', 'link', 'big-nav')}
+            href={href}
           >
-            <ul className={sparkComponentClassName('Dropdown', 'links')}>
-              {links.map((sublink, i) => (
-                <li
-                  className={sparkComponentClassName('Dropdown', 'item')}
-                  role='option'
-                  key={i}
-                >
-                  <a
-                    className={sparkComponentClassName('Dropdown', 'link')}
-                    href={sublink.href}
-                  >
-                    {sublink.text}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {text}
+          </Link>
         )}
       </li>
     )
