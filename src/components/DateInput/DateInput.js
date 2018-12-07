@@ -182,6 +182,7 @@ class DateInput extends React.Component {
       width,
       ...props
     } = this.props
+    const valueProp = this.props.value == null ? {} : {value: this.props.value}
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
@@ -200,6 +201,7 @@ class DateInput extends React.Component {
             placeholder={placeholder}
             ref={this.inputRef}
             type='text'
+            {...valueProp}
             {...props}
           />
           <div
