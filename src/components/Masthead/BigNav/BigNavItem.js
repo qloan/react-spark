@@ -55,7 +55,10 @@ class WideNavigationItem extends React.Component {
   }
 
   componentDidMount = () => {
-    dropdowns()
+    if (!window.initDropdowns) {
+      dropdowns()
+      window.initDropdowns = true
+    }
   };
 
   /**

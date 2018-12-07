@@ -1,18 +1,18 @@
 // TODO: Add support for search in <Masthead.Secondary>
 
-import { masthead } from '@sparkdesignsystem/spark-core/components/masthead'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { masthead } from '@sparkdesignsystem/spark-core/components/masthead';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import Content from './Content'
-import Hamburger from './Hamburger'
-import Logo from './Logo'
-import NarrowNav from './NarrowNav'
-import BigNav from './BigNav'
-import LittleNav from './LittleNav/LittleNav'
+import Content from './Content';
+import Hamburger from './Hamburger';
+import Logo from './Logo';
+import NarrowNav from './NarrowNav';
+import BigNav from './BigNav';
+import LittleNav from './LittleNav/LittleNav';
 
-import { sparkComponentClassName, sparkObjectClassName } from '../../util'
+import { sparkComponentClassName, sparkObjectClassName } from '../../util';
 
 class Masthead extends React.Component {
   static defaultProps = {
@@ -24,7 +24,10 @@ class Masthead extends React.Component {
   };
 
   componentDidMount = () => {
-    masthead()
+    if (!window.initMasthead) {
+      masthead()
+      window.initMasthead = true
+    }
   };
 
   get className() {

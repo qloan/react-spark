@@ -22,9 +22,10 @@ class Accordion extends React.Component {
   }
 
   componentDidMount() {
-    // TODO: this only works with one accordion on the page. Need to be fixed
-    //  for multiple accordions
-    toggle()
+    if (!window.initToggles) {
+      toggle()
+      window.initToggles = true
+    }
   }
 
   get className() {

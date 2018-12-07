@@ -1,8 +1,8 @@
-import React from 'react';
-import { Masthead } from 'react-spark';
+import React from 'react'
+import { Masthead } from 'react-spark'
 
-import './Masthead.scss';
-import logo from '../../../assets/images/logo.png';
+import './Masthead.scss'
+import logo from '../../../assets/images/logo.png'
 
 class MastheadExample extends React.Component {
   narrowNavigationLinks = [
@@ -92,10 +92,6 @@ class MastheadExample extends React.Component {
     <>
       <div className='ReactSparkExample-Masthead'>
         <h2>Masthead</h2>
-        <p>
-          Note: toggle in example app does not currently work with two mastheads
-          on one page. Remove one temporarily to see it function correctly
-        </p>
 
         <br />
         <h4>Logged In</h4>
