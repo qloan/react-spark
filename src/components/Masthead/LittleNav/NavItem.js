@@ -16,6 +16,7 @@ class NavItem extends React.Component {
       href: PropTypes.string,
       text: PropTypes.string,
       variant: PropTypes.string,
+      target: PropTypes.string,
       icon: PropTypes.string,
       links: PropTypes.arrayOf(
         PropTypes.shape({
@@ -39,7 +40,15 @@ class NavItem extends React.Component {
   }
 
   render = () => {
-    const { buttonVariant, href, text, variant, icon, links } = this.props.link
+    const {
+      buttonVariant,
+      href,
+      text,
+      variant,
+      icon,
+      links,
+      target
+    } = this.props.link
     const { id } = this.props
     return (
       <li>
@@ -50,6 +59,7 @@ class NavItem extends React.Component {
               href={href}
               text={text}
               icon={icon}
+              target={target}
               id={id}
               className={sparkComponentClassName('Masthead', 'link')}
             />
@@ -72,6 +82,7 @@ class NavItem extends React.Component {
                 href={href}
                 variant={variant}
                 className={this.linkClassName}
+                target={target}
               >
                 {text || <Icon name={icon} size={Icon.size.L} color='base' />}
               </Link>

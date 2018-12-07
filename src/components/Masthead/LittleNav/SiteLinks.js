@@ -37,7 +37,7 @@ class SiteLinks extends React.Component {
     return (
       <ul className={this.className} {...props}>
         {links.map((link, i) => (
-          <NavItem key={i} link={link} id={`${i}-site-links-toggle`} />
+          <NavItem key={i} link={link} id={`site-links-toggle-${i}`} />
         ))}
       </ul>
     )

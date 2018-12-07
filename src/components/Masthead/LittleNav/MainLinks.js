@@ -1,20 +1,23 @@
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import BUTTON_VARIANTS from '../../Button/variants';
-import NavItem from './NavItem';
-import { sparkClassName, sparkObjectClassName } from '../../../util';
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import BUTTON_VARIANTS from '../../Button/variants'
+import NavItem from './NavItem'
+import { sparkClassName, sparkObjectClassName } from '../../../util'
 
 class MainLinks extends React.Component {
+  static defaultProps = {
+    links: []
+  };
   static propTypes = {
     links: PropTypes.arrayOf(
       PropTypes.shape({
         buttonVariant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
-        href: PropTypes.string.isRequired,
+        href: PropTypes.string,
         text: PropTypes.string,
         icon: PropTypes.string
       })
-    ).isRequired
+    )
   };
 
   get className() {
@@ -37,7 +40,7 @@ class MainLinks extends React.Component {
     return (
       <ul className={this.className} {...props}>
         {links.map((link, i) => (
-          <NavItem key={i} link={link} id={`${i}-main-links-toggle`} />
+          <NavItem key={i} link={link} id={`main-links-toggle-${i}`} />
         ))}
       </ul>
     )

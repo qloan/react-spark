@@ -1,21 +1,33 @@
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import SiteLinks from './SiteLinks'
-import MainLinks from './MainLinks'
-import BUTTON_VARIANTS from '../../Button/variants'
-import { sparkComponentClassName, sparkObjectClassName } from '../../../util'
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import SiteLinks from './SiteLinks';
+import MainLinks from './MainLinks';
+import BUTTON_VARIANTS from '../../Button/variants';
+import { sparkComponentClassName, sparkObjectClassName } from '../../../util';
 
 class LittleNav extends React.Component {
+  static defaultProps = {
+    siteLinks: [],
+    links: []
+  };
   static propTypes = {
-    links: PropTypes.arrayOf(
+    siteLinks: PropTypes.arrayOf(
       PropTypes.shape({
         buttonVariant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
-        href: PropTypes.string.isRequired,
+        href: PropTypes.string,
         text: PropTypes.string,
         icon: PropTypes.string
       })
-    ).isRequired
+    ),
+    links: PropTypes.arrayOf(
+      PropTypes.shape({
+        buttonVariant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
+        href: PropTypes.string,
+        text: PropTypes.string,
+        icon: PropTypes.string
+      })
+    )
   };
 
   get className() {

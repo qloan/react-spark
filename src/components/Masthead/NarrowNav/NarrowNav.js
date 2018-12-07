@@ -1,24 +1,25 @@
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import NarrowNavItem from './NarrowNavItem'
+import NarrowNavItem from './NarrowNavItem';
 import {
   sparkBaseClassName,
   sparkClassName,
   sparkComponentClassName
-} from '../../../util/index'
+} from '../../../util/index';
 
 class NarrowNav extends React.Component {
   static propTypes = {
     links: PropTypes.arrayOf(
       PropTypes.shape({
-        active: PropTypes.bool.isRequired,
-        href: PropTypes.string.isRequired,
+        active: PropTypes.bool,
+        href: PropTypes.string,
         links: PropTypes.arrayOf(
           PropTypes.shape({
             href: PropTypes.string.isRequired,
-            text: PropTypes.string.isRequired
+            text: PropTypes.string.isRequired,
+            target: PropTypes.string
           })
         ),
         text: PropTypes.string.isRequired
