@@ -241,10 +241,10 @@ class Inputs extends React.Component {
       <h2>Inputs</h2>
 
       {/* TODO: Add table of contents */}
-      {/*{this.renderTextInputs()}*/}
-      {/*{this.renderCheckboxes()}*/}
-      {/*{this.renderSelects()}*/}
-      {/*{this.renderTextAreas()}*/}
+      {this.renderTextInputs()}
+      {this.renderCheckboxes()}
+      {this.renderSelects()}
+      {this.renderTextAreas()}
       {this.renderDateInputs()}
     </>
   )
