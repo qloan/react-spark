@@ -11,7 +11,6 @@ class Checkbox extends React.Component {
   }
 
   static propTypes = {
-    containerId: PropTypes.string.isRequired,
     checked: PropTypes.bool,
     disabled: PropTypes.bool,
     id: PropTypes.string.isRequired,
@@ -26,12 +25,12 @@ class Checkbox extends React.Component {
   }
 
   render = () => {
-    const { containerId, checked, disabled, id, label, ...rest } = this.props
+    const {checked, disabled, id, label, ...rest} = this.props
 
     return (
       <SelectionContainer label={label}>
         <input
-          aria-describedby={`${containerId}--error-container`}
+          aria-describedby={`${id}--error-container`}
           checked={checked}
           data-id={id}
           disabled={disabled}

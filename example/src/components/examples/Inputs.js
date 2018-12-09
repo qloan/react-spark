@@ -315,19 +315,18 @@ class Inputs extends React.Component {
   )
 
   renderToc = () => (<>
-      <h3>Table of Contents</h3>
+    <h3>Table of Contents</h3>
 
-      <List element='ul'>
-        <li><Link href='#text-inputs'>Text inputs</Link></li>
-        <li><Link href='#checkboxes'>Checkboxes</Link></li>
-        <li><Link href='#selects'>Selects</Link></li>
-        <li><Link href='#text-areas'>Text areas</Link></li>
-        <li><Link href='#ssn-inputs'>SSN inputs</Link></li>
-        <li><Link href='#monetary-inputs'>Monetary inputs</Link></li>
-        <li><Link href='#date-inputs'>Date inputs</Link></li>
-      </List>
-    </>
-  )
+    <List element='ul'>
+      <li><Link href='#text-inputs'>Text inputs</Link></li>
+      <li><Link href='#checkboxes'>Checkboxes</Link></li>
+      <li><Link href='#selects'>Selects</Link></li>
+      <li><Link href='#text-areas'>Text areas</Link></li>
+      <li><Link href='#ssn-inputs'>SSN inputs</Link></li>
+      <li><Link href='#monetary-inputs'>Monetary inputs</Link></li>
+      <li><Link href='#date-inputs'>Date inputs</Link></li>
+    </List>
+  </>)
 
   render = () => (<>
     <h2>Inputs</h2>

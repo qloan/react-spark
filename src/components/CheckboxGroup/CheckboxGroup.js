@@ -65,7 +65,6 @@ class CheckboxGroup extends React.Component {
           <SelectionContainer>
             {checkboxes.map(checkbox => (
               <Checkbox
-                containerId={id}
                 disabled={disabled}
                 id={checkbox.id}
                 key={checkbox.id}
