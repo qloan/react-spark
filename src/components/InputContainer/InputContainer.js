@@ -23,7 +23,7 @@ class InputContainer extends React.Component {
   }
 
   get className() {
-    const { className } = this.props
+    const {className} = this.props
 
     return classNames(
       sparkBaseClassName('InputContainer'),
@@ -42,7 +42,7 @@ class InputContainer extends React.Component {
   }
 
   renderHelperContent = () => {
-    const { helper } = this.props
+    const {helper} = this.props
 
     if (!helper) return null
 
@@ -52,7 +52,7 @@ class InputContainer extends React.Component {
   }
 
   renderLabelContent = () => {
-    const { id, label } = this.props
+    const {id, label} = this.props
 
     return (
       <label htmlFor={id} className={sparkClassName('base', 'Label')}>
@@ -62,17 +62,26 @@ class InputContainer extends React.Component {
   }
 
   render = () => {
-    const {children, id, positionLabelUpper, ...props} = this.props
+    const {
+      children,
+      className,
+      error,
+      helper,
+      label,
+      id,
+      positionLabelUpper,
+      ...props
+    } = this.props
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
         <div className={this.className} {...props}>
-          {positionLabelUpper && this.renderLabelContent(this.props)}
+          {positionLabelUpper && this.renderLabelContent()}
           {children}
           <div
             className={sparkBaseClassName('InputContainer', 'input-border')}
           />
-          {!positionLabelUpper && this.renderLabelContent(this.props)}
+          {!positionLabelUpper && this.renderLabelContent()}
           <div
             className={sparkBaseClassName('ErrorContainer')}
             id={`${id}--error-container`}
