@@ -7,6 +7,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 import {
+  setAndDispatchInput,
   sparkBaseClassName,
   sparkClassName,
   sparkComponentClassName,
@@ -57,13 +58,6 @@ class DateInput extends React.Component {
     )
   }
 
-  componentDidUpdate = () => {
-    const {value} = this.props
-
-    // Mask value if this component is controlled
-    if (value != null && value !== this.maskedValue) this.maskValue()
-  }
-
   componentDidMount = () => {
     const inputElement = this.inputRef.current
 
@@ -73,6 +67,13 @@ class DateInput extends React.Component {
     if (this.props.value == null) {
       inputElement.addEventListener('input', this.handleInput)
     }
+  }
+
+  componentDidUpdate = () => {
+    const {value} = this.props
+
+    // Mask value if this component is controlled
+    if (value != null && value !== this.maskedValue) this.maskValue()
   }
 
   componentWillUnmount() {
@@ -117,14 +118,7 @@ class DateInput extends React.Component {
    * Set input value to masked value and fire input event
    */
   maskValue = () => {
-    const inputElement = this.inputRef.current
-    const inputEvent = new window.Event('input', {bubbles: true})
-    const nativeInputValueSetter = Object
-      .getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')
-      .set
-
-    nativeInputValueSetter.call(inputElement, this.maskedValue)
-    inputElement.dispatchEvent(inputEvent)
+    setAndDispatchInput(this.inputRef.current, this.maskedValue)
   }
 
   renderErrorContent = () => {
@@ -182,7 +176,7 @@ class DateInput extends React.Component {
       width,
       ...props
     } = this.props
-    const valueProp = this.props.value == null ? {} : {value: this.props.value}
+    const valueProp = value == null ? {} : {value}
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
