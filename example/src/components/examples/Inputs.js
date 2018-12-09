@@ -3,6 +3,7 @@ import {
   CheckboxGroup,
   DateInput,
   DatePicker,
+  MonetaryInput,
   Select,
   SsnInput,
   TextArea,
@@ -14,8 +15,9 @@ class Inputs extends React.Component {
   state = {
     dateInputValue: '01/23/2018',
     datePickerValue: '',
-    textInputWithValueValue: 'value',
-    ssnInputValue: ''
+    monetaryInputValue: '0',
+    ssnInputValue: '',
+    textInputWithValueValue: 'value'
   }
 
   handleDateInputChange = event => {
@@ -24,6 +26,10 @@ class Inputs extends React.Component {
 
   handleDatePickerChange = event => {
     this.setState({datePickerValue: event.target.value})
+  }
+
+  handleMonetaryInputChange = event => {
+    this.setState({monetaryInputValue: event.target.value})
   }
 
   handleSsnInputChange = event => {
@@ -140,6 +146,34 @@ class Inputs extends React.Component {
       id='date-picker-disabled'
       label='Date'
       width={100}
+    />
+  </>)
+
+  renderMonetaryInputs = () => (<>
+    <h3>Monetary Input</h3>
+
+    <p>Normal monetary input:</p>
+    <MonetaryInput
+      className='extra-class'
+      data-extra-attribute
+      id='monetary-normal'
+      label='Payment'
+      onChange={this.handleMonetaryInputChange}
+      value={this.state.monetaryInputValue}
+    />
+
+    <p>Monetary input with error:</p>
+    <MonetaryInput
+      error='There is an error on this field.'
+      id='monetary-error'
+      label='Payment'
+    />
+
+    <p>Disabled monetary input:</p>
+    <MonetaryInput
+      disabled
+      id='monetary-disabled'
+      label='Payment'
     />
   </>)
 
@@ -272,6 +306,7 @@ class Inputs extends React.Component {
     {this.renderSelects()}
     {this.renderTextAreas()}
     {this.renderSsns()}
+    {this.renderMonetaryInputs()}
     {this.renderDateInputs()}
   </>)
 }
