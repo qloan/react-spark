@@ -4,6 +4,7 @@ import {
   DateInput,
   DatePicker,
   Select,
+  SsnInput,
   TextArea,
   TextInput,
   Type
@@ -13,7 +14,8 @@ class Inputs extends React.Component {
   state = {
     dateInputValue: '01/23/2018',
     datePickerValue: '',
-    textInputWithValueValue: 'value'
+    textInputWithValueValue: 'value',
+    ssnInputValue: ''
   }
 
   handleDateInputChange = event => {
@@ -22,6 +24,10 @@ class Inputs extends React.Component {
 
   handleDatePickerChange = event => {
     this.setState({datePickerValue: event.target.value})
+  }
+
+  handleSsnInputChange = event => {
+    this.setState({ssnInputValue: event.target.value})
   }
 
   handleTextInputChange = event => {
@@ -157,6 +163,35 @@ class Inputs extends React.Component {
     </>)
   }
 
+  renderSsns = () => (<>
+    <h3>SSN Inputs</h3>
+
+    <p>Normal SSN input:</p>
+    <SsnInput
+      className='extra-class'
+      data-extra-attribute
+      id='ssn-normal'
+      onChange={this.handleSsnInputChange}
+      value={this.state.ssnInputValue}
+    />
+
+    <p>SSN input with error:</p>
+    <SsnInput
+      className='extra-class'
+      data-extra-attribute
+      error='There is an error in this field.'
+      id='ssn-error'
+    />
+
+    <p>Disabled SSN input:</p>
+    <SsnInput
+      className='extra-class'
+      data-extra-attribute
+      disabled
+      id='ssn-disabled'
+    />
+  </>)
+
   renderTextInputs = () => (<>
     <h3>Text inputs</h3>
 
@@ -236,6 +271,7 @@ class Inputs extends React.Component {
     {this.renderCheckboxes()}
     {this.renderSelects()}
     {this.renderTextAreas()}
+    {this.renderSsns()}
     {this.renderDateInputs()}
   </>)
 }
