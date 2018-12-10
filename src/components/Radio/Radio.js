@@ -4,18 +4,18 @@ import React from 'react'
 import SelectionContainer from '../SelectionContainer'
 import { sparkBaseClassName } from '../../util/index'
 
-class Checkbox extends React.Component {
+class Radio extends React.Component {
   static defaultProps = {
     checked: false,
     disabled: false
   }
 
   static propTypes = {
+    containerId: PropTypes.string.isRequired,
     checked: PropTypes.bool,
     disabled: PropTypes.bool,
     id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    name: PropTypes.string
+    label: PropTypes.string.isRequired
   }
 
   get labelClassName() {
@@ -33,20 +33,21 @@ class Checkbox extends React.Component {
       id,
       label,
       name,
+      onChange,
       value,
       ...rest
     } = this.props
 
     return (
-      <SelectionContainer label={label}>
+      <SelectionContainer>
         <input
-          aria-describedby={`${id}--error-container`}
+          aria-describedby={`${containerId}--error-container`}
           checked={checked}
-          data-id={id}
           disabled={disabled}
           id={id}
           name={name}
-          type='checkbox'
+          onChange={onChange}
+          type='radio'
           value={value}
           {...rest}
         />
@@ -58,4 +59,4 @@ class Checkbox extends React.Component {
   }
 }
 
-export default Checkbox
+export default Radio

@@ -13,7 +13,7 @@ class SelectionContainer extends React.Component {
   }
 
   render = () => {
-    const {children} = this.props
+    const { children } = this.props
 
     return (
       <div className={sparkBaseClassName('SelectionContainer')}>{children}</div>

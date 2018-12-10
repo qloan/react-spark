@@ -1,39 +1,38 @@
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import Checkbox from '../Checkbox'
 import ErrorText from '../ErrorText'
 import Fieldset from '../Fieldset'
+import InputContainer from '../InputContainer'
 import Label from '../Label'
 import Legend from '../Legend'
-import InputContainer from '../InputContainer'
+import Radio from '../Radio'
 
 import { sparkBaseClassName } from '../../util'
 
-class CheckboxGroup extends React.Component {
+class RadioGroup extends React.Component {
   static defaultProps = {
     disabled: false,
     error: null,
+    label: '',
     onChange: () => {
       console.log('onChange not implemented')
-    },
-    value: []
+    }
   }
 
   static propTypes = {
-    checkboxes: PropTypes.arrayOf(
+    radios: PropTypes.arrayOf(
       PropTypes.shape({
         id: PropTypes.string,
         label: PropTypes.string.isRequired,
-        value: PropTypes.any
+        value: PropTypes.any.isRequired
       })
     ).isRequired,
     disabled: PropTypes.bool,
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    onChange: PropTypes.func,
-    value: PropTypes.arrayOf(PropTypes.any).isRequired
+    label: PropTypes.string,
+    onChange: PropTypes.func
   }
 
   get labelClassName() {
@@ -56,40 +55,46 @@ class CheckboxGroup extends React.Component {
 
   render = () => {
     const {
-      checkboxes,
       className,
       disabled,
       id,
       label,
-      onChange,
       name,
-      value,
-      ...props
+      onChange,
+      radios,
+      value
     } = this.props
 
     return (
-      <InputContainer className={className} {...props}>
+      <InputContainer>
         <Fieldset>
           <Legend>
             <Label>{label}</Label>
           </Legend>
-          {checkboxes.map(checkbox => (
-            <Checkbox
-              checked={value.indexOf(checkbox.value) !== -1}
+          {radios.map(radio => (
+            <Radio
+              className={className}
+              checked={radio.value === value}
               containerId={id}
-              disabled={disabled || checkbox.disabled}
-              id={checkbox.id}
-              key={checkbox.id}
-              label={checkbox.label}
+              disabled={disabled || radio.disabled}
+              id={radio.id}
+              key={radio.id}
+              label={radio.label}
               name={name}
               onChange={onChange}
-              value={checkbox.value || ''}
+              value={radio.value || ''}
             />
           ))}
         </Fieldset>
+        <div
+          className={sparkBaseClassName('ErrorContainer')}
+          id={`${id}--error-container`}
+        >
+          {this.renderErrorContent()}
+        </div>
       </InputContainer>
     )
   }
 }
 
-export default CheckboxGroup
+export default RadioGroup
