@@ -72,6 +72,7 @@ class Button extends React.Component {
       fullWidthAtSmallViewport,
       href,
       spinner,
+      variant,
       ...rest
     } = this.props
 

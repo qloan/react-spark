@@ -22,7 +22,7 @@ const Layout = () => (
     <CenteredColumn
       className='extra-class'
       data-extra-attribute
-      style={{ 'background-color': '#ccc', height: '4rem' }}
+      style={{ 'backgroundColor': '#ccc', height: '4rem' }}
     />
 
     <p>Flag object:</p>

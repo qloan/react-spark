@@ -19,8 +19,10 @@ class Accordion extends React.Component {
   }
 
   componentDidMount() {
-    //  for multiple accordions
-    toggle()
+    if (!window.initToggles) {
+      toggle()
+      window.initToggles = true
+    }
   }
 
   get className() {

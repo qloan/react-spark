@@ -1,15 +1,15 @@
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import WideNavigationItem from './WideNavigationItem';
+import BigNavItem from './BigNavItem'
 import {
   sparkComponentClassName,
   sparkObjectClassName
-} from '../../../util/index';
-import List from '../../List/List';
+} from '../../../util'
+import List from '../../List/List'
 
-class WideNavigation extends React.Component {
+class BigNav extends React.Component {
   static propTypes = {
     links: PropTypes.arrayOf(
       PropTypes.shape({
@@ -38,13 +38,13 @@ class WideNavigation extends React.Component {
     const { links } = this.props
 
     return links.map((link, i) => (
-      <WideNavigationItem
+      <BigNavItem
         active={link.active}
         href={link.href}
         key={i}
         links={link.links}
         text={link.text}
-        id={i}
+        id={i.toString()}
       />
     ))
   };
@@ -71,4 +71,4 @@ class WideNavigation extends React.Component {
   };
 }
 
-export default WideNavigation
+export default BigNav

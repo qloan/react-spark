@@ -33,7 +33,6 @@ class Modals extends React.Component {
       <Modal
         ariaDescribedby='modalChoiceContent'
         ariaLabelledby='modalChoiceHeading'
-        className='Test'
         dataId='modal-choice-1'
         id={'exampleChoiceModal'}
         show={this.state.showChoiceModal}

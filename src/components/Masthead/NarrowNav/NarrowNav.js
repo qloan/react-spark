@@ -2,23 +2,24 @@ import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import NarrowNavigationItem from './NarrowNavigationItem';
+import NarrowNavItem from './NarrowNavItem';
 import {
   sparkBaseClassName,
   sparkClassName,
   sparkComponentClassName
 } from '../../../util/index';
 
-class NarrowNavigation extends React.Component {
+class NarrowNav extends React.Component {
   static propTypes = {
     links: PropTypes.arrayOf(
       PropTypes.shape({
-        active: PropTypes.bool.isRequired,
-        href: PropTypes.string.isRequired,
+        active: PropTypes.bool,
+        href: PropTypes.string,
         links: PropTypes.arrayOf(
           PropTypes.shape({
             href: PropTypes.string.isRequired,
-            text: PropTypes.string.isRequired
+            text: PropTypes.string.isRequired,
+            target: PropTypes.string
           })
         ),
         text: PropTypes.string.isRequired
@@ -45,25 +46,6 @@ class NarrowNavigation extends React.Component {
     ].join(' ')
   }
 
-  renderItems = () => {
-    const { links } = this.props
-
-    return links.map((link, i) => {
-      const id = `masthead-narrow-nav-item-${i}`
-
-      return (
-        <NarrowNavigationItem
-          active={link.active}
-          href={link.href}
-          key={i} // Maybe use id?
-          id={id}
-          links={link.links}
-          text={link.text}
-        />
-      )
-    })
-  };
-
   render = () => {
     const { className, links, ...props } = this.props
 
@@ -74,10 +56,21 @@ class NarrowNavigation extends React.Component {
         data-sprk-mobile-nav='mobileNav'
         {...props}
       >
-        <ul className={this.ulClassName}>{this.renderItems()}</ul>
+        <ul className={this.ulClassName}>
+          {links.map((link, i) => (
+            <NarrowNavItem
+              active={link.active}
+              href={link.href}
+              key={`masthead-narrow-nav-item-${i}`}
+              id={`masthead-narrow-nav-item-${i}`}
+              links={link.links}
+              text={link.text}
+            />
+          ))}
+        </ul>
       </nav>
     )
   };
 }
 
-export default NarrowNavigation
+export default NarrowNav

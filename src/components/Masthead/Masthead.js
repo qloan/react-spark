@@ -1,19 +1,18 @@
 // TODO: Add support for search in <Masthead.Secondary>
 
-import { masthead } from '@sparkdesignsystem/spark-core/components/masthead'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { masthead } from '@sparkdesignsystem/spark-core/components/masthead';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import Content from './Content'
-import Hamburger from './Hamburger'
-import Logo from './Logo'
-import NarrowNavigation from './NarrowNavigation'
-import WideNavigation from './WideNavigation'
-import Secondary from './Secondary'
-import SecondaryNav from './SecondaryNav'
+import Content from './Content';
+import Hamburger from './Hamburger';
+import Logo from './Logo';
+import NarrowNav from './NarrowNav';
+import BigNav from './BigNav';
+import LittleNav from './LittleNav/LittleNav';
 
-import { sparkComponentClassName, sparkObjectClassName } from '../../util'
+import { sparkComponentClassName, sparkObjectClassName } from '../../util';
 
 class Masthead extends React.Component {
   static defaultProps = {
@@ -25,7 +24,10 @@ class Masthead extends React.Component {
   };
 
   componentDidMount = () => {
-    masthead()
+    if (!window.initMasthead) {
+      masthead()
+      window.initMasthead = true
+    }
   };
 
   get className() {
@@ -41,26 +43,34 @@ class Masthead extends React.Component {
     const { children, className, ...props } = this.props
 
     return (
-      <div data-sprk-main>
-        <header
-          className={this.className}
-          role='banner'
-          data-sprk-masthead
-          {...props}
-        >
-          {children}
-        </header>
-      </div>
+      <header
+        data-sprk-main
+        className={this.className}
+        role='banner'
+        data-sprk-masthead
+        {...props}
+      >
+        {children}
+      </header>
     )
   };
 }
 
+/**
+ * DEPRECATED START
+ */
+Masthead.SecondaryNav = LittleNav
+Masthead.WideNavigation = BigNav
+Masthead.NarrowNavigation = NarrowNav
+/**
+ * DEPRECATED END
+ */
+
 Masthead.Content = Content
 Masthead.Hamburger = Hamburger
 Masthead.Logo = Logo
-Masthead.NarrowNavigation = NarrowNavigation
-Masthead.Secondary = Secondary
-Masthead.SecondaryNav = SecondaryNav
-Masthead.WideNavigation = WideNavigation
+Masthead.BigNav = BigNav
+Masthead.LittleNav = LittleNav
+Masthead.NarrowNav = NarrowNav
 
 export default Masthead

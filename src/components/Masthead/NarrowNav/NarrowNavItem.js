@@ -11,17 +11,19 @@ import {
   sparkComponentClassName
 } from '../../../util/index'
 
-class NarrowNavigationItem extends React.Component {
+class NarrowNavItem extends React.Component {
   liRef = React.createRef()
 
   static propTypes = {
-    active: PropTypes.bool.isRequired,
-    href: PropTypes.string.isRequired,
+    active: PropTypes.bool,
+    href: PropTypes.string,
     id: PropTypes.string.isRequired,
     links: PropTypes.arrayOf(PropTypes.shape({
       href: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired
+      text: PropTypes.string.isRequired,
+      target: PropTypes.string
     })),
+    target: PropTypes.string,
     text: PropTypes.string.isRequired
   }
 
@@ -94,7 +96,7 @@ class NarrowNavigationItem extends React.Component {
   )
 
   render = () => {
-    const {active, href, id, links, text} = this.props
+    const {active, href, id, links, text, target} = this.props
 
     let conditionalAnchorProps = {}
 
@@ -115,6 +117,7 @@ class NarrowNavigationItem extends React.Component {
         <a
           className={sparkComponentClassName('Accordion', 'summary')}
           href={href}
+          target={target}
           {...conditionalAnchorProps}
         >
           <span className={this.spanClassName}>{text}</span>
@@ -131,6 +134,7 @@ class NarrowNavigationItem extends React.Component {
                 <a
                   className={this.subMenuLinkClassName}
                   href={sublink.href}
+                  target={sublink.target}
                 >
                   {sublink.text}
                 </a>
@@ -143,4 +147,4 @@ class NarrowNavigationItem extends React.Component {
   }
 }
 
-export default NarrowNavigationItem
+export default NarrowNavItem

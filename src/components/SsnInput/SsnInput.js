@@ -1,4 +1,6 @@
-import { formatDate } from '@sparkdesignsystem/spark-core/base/dateInput'
+import {
+  formatSSN
+} from '@sparkdesignsystem/spark-core/base/ssnInput'
 import {
   bindUIEvents as bindTextInputUiEvents
 } from '@sparkdesignsystem/spark-core/base/textInput'
@@ -9,36 +11,39 @@ import React from 'react'
 import {
   setAndDispatchInput,
   sparkBaseClassName,
-  sparkClassName,
-  sparkComponentClassName,
-  sparkWidthClassName
+  sparkClassName
 } from '../../util'
 
-class DateInput extends React.Component {
+class SsnInput extends React.Component {
   static defaultProps = {
+    className: null,
     disabled: false,
     error: null,
-    mask: formatDate,
-    pattern: '^(((0[1358]|1[02])([\\/-]?)(0[1-9]|[12]\\d|3[01])|(0[469]|11)([\\/-]?)(0[1-9]|[12]\\d|30)|02(\\/?)((0?\\d)|[12]\\d))(\\4|\\7|\\9)[12]\\d{3})?$',
-    placeholder: 'MM/DD/YYYY',
+    label: 'Social Security #',
+    pattern: '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$',
+    placeholder: '000-00-0000',
+    showSsnLabel: 'Show SSN',
     value: null,
-    width: null
+    width: 100
   }
-
-  inputContainerRef = React.createRef()
 
   inputRef = React.createRef()
 
   static propTypes = {
+    className: PropTypes.string,
     disabled: PropTypes.bool,
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    mask: PropTypes.func,
+    label: PropTypes.string,
     pattern: PropTypes.string,
     placeholder: PropTypes.string,
+    showSsnLabel: PropTypes.string,
     value: PropTypes.string,
     width: PropTypes.number
+  }
+
+  state = {
+    showSsn: false
   }
 
   get className() {
@@ -46,7 +51,9 @@ class DateInput extends React.Component {
     const errorClassName = error
       ? sparkBaseClassName('TextInput', null, 'error')
       : null
-    const widthClassName = width ? sparkWidthClassName(width) : null
+    const widthClassName = width
+      ? sparkClassName('utility', `Width-${width}`)
+      : null
 
     return classnames(
       sparkBaseClassName('TextInput'),
@@ -66,6 +73,8 @@ class DateInput extends React.Component {
     // Add event listener if this component is uncontrolled
     if (this.props.value == null) {
       inputElement.addEventListener('input', this.handleInput)
+    } else {
+      this.maskValue()
     }
   }
 
@@ -73,22 +82,7 @@ class DateInput extends React.Component {
     const {value} = this.props
 
     // Mask value if this component is controlled
-    if (value != null && value !== this.maskedValue) this.maskValue()
-  }
-
-  componentWillUnmount() {
-    // Add event listener if this component is uncontrolled
-    if (this.props.value == null) {
-      this.inputRef.current.removeEventListener('input', this.handleInput)
-    }
-  }
-
-  get exclamationSvgClassName() {
-    return [
-      sparkComponentClassName('Icon'),
-      sparkComponentClassName('Icon', null, 'm'),
-      sparkBaseClassName('ErrorIcon')
-    ].join(' ')
+    if (value !== null && value !== this.maskedValue) this.maskValue()
   }
 
   handleInput = event => {
@@ -100,17 +94,19 @@ class DateInput extends React.Component {
     }
   }
 
+  handleShowSsnChange = event => this.setState({showSsn: event.target.checked})
+
   get maskedValue() {
-    const {mask, pattern, value} = this.props
+    const {pattern, value} = this.props
     const inputElement = this.inputRef.current
     const patternRegex = new RegExp(pattern)
 
     if (value == null) { // This component is uncontrolled
       return patternRegex.test(inputElement.value)
-        ? mask(inputElement.value)
+        ? formatSSN(inputElement.value)
         : inputElement.value
-    } else { // This component is controlled
-      return patternRegex.test(value) ? mask(value) : value
+    } else {
+      return patternRegex.test(value) ? formatSSN(value) : value
     }
   }
 
@@ -121,6 +117,20 @@ class DateInput extends React.Component {
     setAndDispatchInput(this.inputRef.current, this.maskedValue)
   }
 
+  get selectionContainerClassName() {
+    return [
+      sparkBaseClassName('SelectionContainer'),
+      sparkBaseClassName('InputContainer', 'visibility-toggle')
+    ].join(' ')
+  }
+
+  get showSsnLabelClassName() {
+    return [
+      sparkBaseClassName('Label'),
+      sparkBaseClassName('Label', null, 'inline')
+    ].join(' ')
+  }
+
   renderErrorContent = () => {
     const {error} = this.props
 
@@ -128,39 +138,11 @@ class DateInput extends React.Component {
 
     return (
       <React.Fragment>
-        {this.renderExclamationSvg()}
+        {/* TODO: Render SVG */}
         <div className={sparkBaseClassName('ErrorText')}>{error}</div>
       </React.Fragment>
     )
   }
-
-  renderExclamationSvg = () => (
-    <svg
-      className={this.exclamationSvgClassName}
-      height='100%'
-      viewBox='0 0 64 64'
-      width='100%'
-      xmlns='http://www.w3.org/2000/svg'
-    >
-      <g fillRule='evenodd' transform='translate(1 1)'>
-        <circle
-          className='exclamation-filled-circle'
-          cx='27'
-          cy='27'
-          r='27'
-        />
-        <g transform='translate(26 13)'>
-          <circle
-            className='exclamation-filled-i-dot'
-            cx='1'
-            cy='27.5'
-            r='1'
-          />
-          <path className='exclamation-filled-i-path' d='M0 0h2v22H0z' />
-        </g>
-      </g>
-    </svg>
-  )
 
   render = () => {
     const {
@@ -169,46 +151,58 @@ class DateInput extends React.Component {
       error,
       id,
       label,
-      mask,
       pattern,
       placeholder,
+      showSsnLabel,
       value,
       width,
       ...props
     } = this.props
+    const {showSsn} = this.state
     const valueProp = value == null ? {} : {value}
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
-        <div
-          className={sparkBaseClassName('InputContainer')}
-          ref={this.inputContainerRef}
-        >
+        <div className={sparkBaseClassName('InputContainer')}>
           <input
             aria-describedby={`${id}--error-container`}
-            aria-invalid={!!error}
             className={this.className}
-            data-id={id}
             disabled={disabled}
             id={id}
             pattern={pattern}
             placeholder={placeholder}
             ref={this.inputRef}
-            type='text'
+            type={showSsn ? 'text' : 'password'}
             {...valueProp}
             {...props}
           />
           <div
-            className={sparkBaseClassName('InputContainer', 'input-border')} />
+            className={sparkBaseClassName('InputContainer', 'input-border')}
+          />
           <label
-            className={sparkBaseClassName('Label')}
             htmlFor={id}
+            className={sparkBaseClassName('Label')}
           >
             {label}
           </label>
+          <div className={this.selectionContainerClassName}>
+            <input
+              checked={showSsn}
+              disabled={disabled}
+              id={`${id}-show-ssn`}
+              onChange={this.handleShowSsnChange}
+              type='checkbox'
+            />
+            <label
+              className={this.showSsnLabelClassName}
+              htmlFor={`${id}-show-ssn`}
+            >
+              {showSsnLabel}
+            </label>
+          </div>
           <div
             className={sparkBaseClassName('ErrorContainer')}
-            id={`${id}-error-container`}
+            id={`${id}--error-container`}
           >
             {this.renderErrorContent()}
           </div>
@@ -218,4 +212,4 @@ class DateInput extends React.Component {
   }
 }
 
-export default DateInput
+export default SsnInput

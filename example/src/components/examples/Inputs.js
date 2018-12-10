@@ -4,22 +4,48 @@ import {
   DateInput,
   DatePicker,
   RadioGroup,
+  Divider,
+  Link,
+  List,
+  MonetaryInput,
   Select,
+  SsnInput,
   TextArea,
-  TextInput
+  TextInput,
+  Type
 } from 'react-spark'
 
 class Inputs extends React.Component {
   state = {
+    dateInputValue: '01/23/2018',
+    datePickerValue: '',
+    monetaryInputValue: '0',
+    ssnInputValue: '',
     textInputWithValueValue: 'value'
   }
 
-  handleTextInputChange = e => {
-    this.setState({ textInputWithValueValue: e.value })
+  handleDateInputChange = event => {
+    this.setState({ dateInputValue: event.target.value })
+  }
+
+  handleDatePickerChange = event => {
+    this.setState({ datePickerValue: event.target.value })
+  }
+
+  handleMonetaryInputChange = event => {
+    this.setState({ monetaryInputValue: event.target.value })
+  }
+
+  handleSsnInputChange = event => {
+    this.setState({ ssnInputValue: event.target.value })
+  }
+
+  handleTextInputChange = event => {
+    this.setState({ textInputWithValueValue: event.target.value })
   }
 
   renderCheckboxes = () => (
-    <>
+    <div id='checkboxes'>
       <h3>Checkbox Group</h3>
       <p>Normal checkbox group:</p>
       <CheckboxGroup
@@ -96,11 +122,11 @@ class Inputs extends React.Component {
         id={'checkbox-disabled'}
         label='Checkbox Group Label'
       />
-    </>
+    </div>
   )
 
   renderRadios = () => (
-    <>
+    <div id='radios'>
       <h3>Radio Group</h3>
       <RadioGroup
         radios={[
@@ -134,17 +160,20 @@ class Inputs extends React.Component {
           {
             id: 'radio-error-1',
             label: 'Radio Item 1',
-            name: 'radio-error-1'
+            name: 'radio-error-1',
+            value: '1'
           },
           {
             id: 'radio-error-2',
             label: 'Radio Item 2',
-            name: 'radio-error-1'
+            name: 'radio-error-1',
+            value: '2'
           },
           {
             id: 'radio-error-3',
             label: 'Radio Item 3',
-            name: 'radio-error-1'
+            name: 'radio-error-1',
+            value: '3'
           }
         ]}
         error='There is an error on this field.'
@@ -157,28 +186,31 @@ class Inputs extends React.Component {
           {
             id: 'radio-disabled-1',
             label: 'Radio Item 1',
-            name: 'radio-disabled-1'
+            name: 'radio-disabled-1',
+            value: '4'
           },
           {
             id: 'radio-disabled-2',
             label: 'Radio Item 2',
-            name: 'radio-disabled-1'
+            name: 'radio-disabled-1',
+            value: '5'
           },
           {
             id: 'radio-disabled-3',
             label: 'Radio Item 3',
-            name: 'radio-disabled-1'
+            name: 'radio-disabled-1',
+            value: '6'
           }
         ]}
         disabled
         id={'radio-disabled'}
         label='Radio Group Disabled'
       />
-    </>
+    </div>
   )
 
   renderDateInputs = () => (
-    <>
+    <div id='date-inputs'>
       <h3>Date Inputs</h3>
 
       <p>Normal:</p>
@@ -187,6 +219,8 @@ class Inputs extends React.Component {
         data-extra-attribute
         id='date-input-normal'
         label='Date'
+        onChange={this.handleDateInputChange}
+        value={this.state.dateInputValue}
         width={100}
       />
 
@@ -195,15 +229,21 @@ class Inputs extends React.Component {
         className='extra-class'
         data-extra-attribute
         error='There is an error on this field.'
-        id='date-input-normal'
+        id='date-input-error'
         label='Date'
         width={100}
       />
 
       <p>Disabled:</p>
+
       <DateInput disabled id='date-input-disabled' label='Date' width={100} />
 
       <h3>Date Picker</h3>
+
+      <Type.BodyOne>
+        WARNING: Input/change events don't yet work on{' '}
+        <code>&lt;DatePicker&gt;</code>.
+      </Type.BodyOne>
 
       <p>Normal:</p>
       <DatePicker
@@ -211,6 +251,8 @@ class Inputs extends React.Component {
         data-extra-attribute
         id='date-picker-normal'
         label='Date'
+        onChange={this.handleDatePickerChange}
+        value={this.state.datePickerValue}
         width={100}
       />
 
@@ -219,14 +261,41 @@ class Inputs extends React.Component {
         className='extra-class'
         data-extra-attribute
         error='There is an error on this field.'
-        id='date-input-normal'
+        id='date-picker-error'
         label='Date'
         width={100}
       />
 
       <p>Disabled:</p>
-      <DatePicker disabled id='date-picker-normal' label='Date' width={100} />
-    </>
+
+      <DatePicker disabled id='date-picker-disabled' label='Date' width={100} />
+    </div>
+  )
+
+  renderMonetaryInputs = () => (
+    <div id='monetary-inputs'>
+      <h3>Monetary Input</h3>
+
+      <p>Normal monetary input:</p>
+      <MonetaryInput
+        className='extra-class'
+        data-extra-attribute
+        id='monetary-normal'
+        label='Payment'
+        onChange={this.handleMonetaryInputChange}
+        value={this.state.monetaryInputValue}
+      />
+
+      <p>Monetary input with error:</p>
+      <MonetaryInput
+        error='There is an error on this field.'
+        id='monetary-error'
+        label='Payment'
+      />
+
+      <p>Disabled monetary input:</p>
+      <MonetaryInput disabled id='monetary-disabled' label='Payment' />
+    </div>
   )
 
   renderSelects = () => {
@@ -236,7 +305,7 @@ class Inputs extends React.Component {
     ]
 
     return (
-      <>
+      <div id='selects'>
         <h3>Select:</h3>
 
         <Select
@@ -247,12 +316,43 @@ class Inputs extends React.Component {
           options={options}
           width={100}
         />
-      </>
+      </div>
     )
   }
 
+  renderSsns = () => (
+    <div id='ssn-inputs'>
+      <h3>SSN Inputs</h3>
+
+      <p>Normal SSN input:</p>
+      <SsnInput
+        className='extra-class'
+        data-extra-attribute
+        id='ssn-normal'
+        onChange={this.handleSsnInputChange}
+        value={this.state.ssnInputValue}
+      />
+
+      <p>SSN input with error:</p>
+      <SsnInput
+        className='extra-class'
+        data-extra-attribute
+        error='There is an error in this field.'
+        id='ssn-error'
+      />
+
+      <p>Disabled SSN input:</p>
+      <SsnInput
+        className='extra-class'
+        data-extra-attribute
+        disabled
+        id='ssn-disabled'
+      />
+    </div>
+  )
+
   renderTextInputs = () => (
-    <>
+    <div id='text-inputs'>
       <h3>Text inputs</h3>
 
       <p>Text input:</p>
@@ -296,11 +396,11 @@ class Inputs extends React.Component {
         label='Text Input Label'
         width={100}
       />
-    </>
+    </div>
   )
 
   renderTextAreas = () => (
-    <>
+    <div id='text-areas'>
       <h3>Text Areas</h3>
 
       <p>Text area:</p>
@@ -323,6 +423,39 @@ class Inputs extends React.Component {
         label='TextArea Label'
         width={100}
       />
+    </div>
+  )
+
+  renderToc = () => (
+    <>
+      <h3>Table of Contents</h3>
+
+      <List element='ul'>
+        <li>
+          <Link href='#text-inputs'>Text inputs</Link>
+        </li>
+        <li>
+          <Link href='#checkboxes'>Checkboxes</Link>
+        </li>
+        <li>
+          <Link href='#radios'>Radios</Link>
+        </li>
+        <li>
+          <Link href='#selects'>Selects</Link>
+        </li>
+        <li>
+          <Link href='#text-areas'>Text areas</Link>
+        </li>
+        <li>
+          <Link href='#ssn-inputs'>SSN inputs</Link>
+        </li>
+        <li>
+          <Link href='#monetary-inputs'>Monetary inputs</Link>
+        </li>
+        <li>
+          <Link href='#date-inputs'>Date inputs</Link>
+        </li>
+      </List>
     </>
   )
 
@@ -330,12 +463,17 @@ class Inputs extends React.Component {
     <>
       <h2>Inputs</h2>
 
-      {/* TODO: Add table of contents */}
+      <Divider />
+      {this.renderToc()}
+      <Divider />
+
       {this.renderTextInputs()}
       {this.renderCheckboxes()}
       {this.renderRadios()}
       {this.renderSelects()}
       {this.renderTextAreas()}
+      {this.renderSsns()}
+      {this.renderMonetaryInputs()}
       {this.renderDateInputs()}
     </>
   )
