@@ -14,6 +14,7 @@ class RadioGroup extends React.Component {
   static defaultProps = {
     disabled: false,
     error: null,
+    label: '',
     onChange: () => {
       console.log('onChange not implemented')
     }
@@ -30,7 +31,7 @@ class RadioGroup extends React.Component {
     disabled: PropTypes.bool,
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
+    label: PropTypes.string,
     onChange: PropTypes.func
   }
 
@@ -53,7 +54,16 @@ class RadioGroup extends React.Component {
   }
 
   render = () => {
-    const { disabled, id, label, name, onChange, radios } = this.props
+    const {
+      className,
+      disabled,
+      id,
+      label,
+      name,
+      onChange,
+      radios,
+      value
+    } = this.props
 
     return (
       <InputContainer>
@@ -63,7 +73,8 @@ class RadioGroup extends React.Component {
           </Legend>
           {radios.map(radio => (
             <Radio
-              checked={radio.checked ? 'checked' : null}
+              className={className}
+              checked={radio.value === value}
               containerId={id}
               disabled={disabled || radio.disabled}
               id={radio.id}

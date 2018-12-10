@@ -34,7 +34,7 @@ module.exports = {
   output: {
     filename: 'react-spark-bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    libraryTarget: 'commonjs2',
+    libraryTarget: 'umd',
     library: 'react-spark'
   },
   module: {

@@ -43,7 +43,6 @@ class Radio extends React.Component {
         <input
           aria-describedby={`${containerId}--error-container`}
           checked={checked}
-          data-id={id}
           disabled={disabled}
           id={id}
           name={name}

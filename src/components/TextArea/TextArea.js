@@ -28,23 +28,20 @@ class TextArea extends React.Component {
   }
 
   get className() {
-    const {className, error, width} = this.props
+    const { className, error, width } = this.props
 
     const baseClass = sparkBaseClassName('TextInput')
     const errorClass = sparkBaseClassName('TextInput', null, 'error')
     const widthClass = sparkWidthClassName(width)
 
-    return classNames(
-      baseClass, {
-        [errorClass]: error,
-        [widthClass]: width,
-        [className]: className
-      }
-    )
+    return classNames(baseClass, className, {
+      [errorClass]: error,
+      [widthClass]: width
+    })
   }
 
   render = () => {
-    const {className, disabled, error, id, label, ...props} = this.props
+    const { className, disabled, error, id, label, ...props } = this.props
 
     return (
       <InputContainer
