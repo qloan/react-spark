@@ -1,9 +1,7 @@
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-
 import { sparkComponentClassName } from '../../util'
-
 import Icon from '../Icon'
 import Stack from '../Stack'
 
@@ -11,23 +9,19 @@ class AccordionHeader extends React.Component {
   static defaultProps = {
     analytics: '',
     children: null
-  }
+  };
 
   static propTypes = {
     analytics: PropTypes.string,
     children: PropTypes.node,
     control: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired
-  }
+  };
 
   get className() {
-    const {className} = this.props
+    const { className } = this.props
     const baseClass = sparkComponentClassName('Accordion', 'summary')
-
-    return classNames(
-      baseClass,
-      {[className]: className}
-    )
+    return classNames(baseClass, { [className]: className })
   }
 
   render = () => {
@@ -67,7 +61,7 @@ class AccordionHeader extends React.Component {
         </Stack>
       </a>
     )
-  }
+  };
 }
 
 export default AccordionHeader
