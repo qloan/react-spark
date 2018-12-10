@@ -8,8 +8,9 @@ class DropdownLinks extends React.Component {
   static propTypes = {
     links: PropTypes.arrayOf(
       PropTypes.shape({
-        href: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired
+        href: PropTypes.string,
+        text: PropTypes.string.isRequired,
+        onClick: PropTypes.func
       })
     )
   };
@@ -28,6 +29,7 @@ class DropdownLinks extends React.Component {
             <a
               className={sparkComponentClassName('Dropdown', 'link')}
               href={sublink.href}
+              onClick={sublink.onClick}
             >
               {sublink.text}
             </a>

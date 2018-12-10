@@ -11,24 +11,6 @@ class LittleNav extends React.Component {
     siteLinks: [],
     links: []
   };
-  static propTypes = {
-    siteLinks: PropTypes.arrayOf(
-      PropTypes.shape({
-        buttonVariant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
-        href: PropTypes.string,
-        text: PropTypes.string,
-        icon: PropTypes.string
-      })
-    ),
-    links: PropTypes.arrayOf(
-      PropTypes.shape({
-        buttonVariant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
-        href: PropTypes.string,
-        text: PropTypes.string,
-        icon: PropTypes.string
-      })
-    )
-  };
 
   get className() {
     const { className } = this.props

@@ -16,12 +16,6 @@ class WideNavigationItem extends React.Component {
   static propTypes = {
     active: PropTypes.bool,
     href: PropTypes.string.isRequired,
-    links: PropTypes.arrayOf(
-      PropTypes.shape({
-        href: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired
-      })
-    ),
     text: PropTypes.string.isRequired,
     id: PropTypes.string.isRequired
   };

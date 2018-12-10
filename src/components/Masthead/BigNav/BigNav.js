@@ -15,12 +15,6 @@ class BigNav extends React.Component {
       PropTypes.shape({
         active: PropTypes.bool.isRequired,
         href: PropTypes.string.isRequired,
-        links: PropTypes.arrayOf(
-          PropTypes.shape({
-            href: PropTypes.string.isRequired,
-            text: PropTypes.string.isRequired
-          })
-        ),
         text: PropTypes.string.isRequired
       })
     ).isRequired
@@ -50,7 +44,7 @@ class BigNav extends React.Component {
   };
 
   render = () => {
-    const { className, links, ...props } = this.props
+    const { className, ...props } = this.props
 
     return (
       <div className={sparkComponentClassName('Stack', 'item')} {...props}>

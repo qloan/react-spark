@@ -20,8 +20,9 @@ class NavItem extends React.Component {
       icon: PropTypes.string,
       links: PropTypes.arrayOf(
         PropTypes.shape({
-          href: PropTypes.string.isRequired,
-          text: PropTypes.string.isRequired
+          text: PropTypes.string.isRequired,
+          href: PropTypes.string,
+          onClick: PropTypes.func
         })
       )
     })

@@ -12,6 +12,7 @@ class SiteLinks extends React.Component {
         buttonVariant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
         href: PropTypes.string,
         text: PropTypes.string,
+        onClick: PropTypes.func,
         icon: PropTypes.string
       })
     ).isRequired

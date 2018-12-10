@@ -14,6 +14,7 @@ class MainLinks extends React.Component {
       PropTypes.shape({
         buttonVariant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
         href: PropTypes.string,
+        onClick: PropTypes.func,
         text: PropTypes.string,
         icon: PropTypes.string
       })
