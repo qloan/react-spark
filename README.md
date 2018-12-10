@@ -5,6 +5,7 @@
 Usage examples of `react-spark` components can be found in `example/src/App.js`.
 
 ---
+
 ## Useful Sources
 
 This project was generated with [`create-react-library`](https://www.npmjs.com/package/create-react-library)
@@ -14,17 +15,17 @@ Code examples of working components [`here`](http://half-education.surge.sh)
 See current progress [`here`](https://github.com/qloan/react-spark/projects/1)
 
 ## Available Components
-* [`Alerts`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Alerts.js)
-* [`Buttons`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Buttons.js)
-* [`Cards`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Cards.js)
-* [`Dictionaries`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Dictionaries.js)
-* [`Inputs`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Inputs.js)
-* [`Links`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Links.js)
-* [`Masthead`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Masthead.js)
-* [`Modals`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Modals.js)
-* [`Select`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Select.js)
-* [`Tables`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Tables.js)
 
+- [`Alerts`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Alerts.js)
+- [`Buttons`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Buttons.js)
+- [`Cards`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Cards.js)
+- [`Dictionaries`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Dictionaries.js)
+- [`Inputs`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Inputs.js)
+- [`Links`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Links.js)
+- [`Masthead`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Masthead.js)
+- [`Modals`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Modals.js)
+- [`Select`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Select.js)
+- [`Tables`](https://github.com/qloan/react-spark/blob/feat/redesign-phase1/example/src/components/examples/Tables.js)
 
 ## Development
 
@@ -32,7 +33,7 @@ Local development is broken into two parts (ideally using two tabs).
 
 1. create a .env file in example/ and add this as the contents
 
-```SKIP_PREFLIGHT_CHECK=true```
+`SKIP_PREFLIGHT_CHECK=true`
 
 2. Now run rollup to watch your `src/` module and automatically recompile it into `dist/` whenever you make changes.
 
@@ -49,3 +50,5 @@ npm start # runs create-react-app dev server
 ```
 
 Now, anytime you make a change to your library in `src/` or to the example app's `example/src`, `create-react-app` will live-reload your local dev server so you can iterate on your component in real-time.
+
+foo
