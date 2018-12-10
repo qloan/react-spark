@@ -1,13 +1,13 @@
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import classnames from "classnames";
+import PropTypes from "prop-types";
+import React from "react";
 
-import NarrowNavItem from './NarrowNavItem';
+import NarrowNavItem from "./NarrowNavItem";
 import {
   sparkBaseClassName,
   sparkClassName,
   sparkComponentClassName
-} from '../../../util/index';
+} from "../../../util/index";
 
 class NarrowNav extends React.Component {
   static propTypes = {
@@ -28,49 +28,46 @@ class NarrowNav extends React.Component {
   };
 
   get className() {
-    const { className } = this.props
+    const { className } = this.props;
 
     return classnames(
-      sparkComponentClassName('Masthead', 'narrow-nav'),
-      sparkClassName('utility', 'Display', null, 'none'),
+      sparkComponentClassName("Masthead", "narrow-nav"),
+      sparkClassName("utility", "Display", null, "none"),
       { [className]: className }
-    )
+    );
   }
 
   get ulClassName() {
     return [
-      sparkComponentClassName('Accordion'),
-      sparkComponentClassName('Accordion', null, 'navigation'),
-      sparkBaseClassName('List'),
-      sparkBaseClassName('List', null, 'bare')
-    ].join(' ')
+      sparkComponentClassName("Accordion"),
+      sparkComponentClassName("Accordion", null, "navigation"),
+      sparkBaseClassName("List"),
+      sparkBaseClassName("List", null, "bare")
+    ].join(" ");
   }
 
   render = () => {
-    const { className, links, ...props } = this.props
+    const { className, links, ...props } = this.props;
 
     return (
       <nav
-        role='navigation'
+        role="navigation"
         className={this.className}
-        data-sprk-mobile-nav='mobileNav'
+        data-sprk-mobile-nav="mobileNav"
         {...props}
       >
         <ul className={this.ulClassName}>
           {links.map((link, i) => (
             <NarrowNavItem
-              active={link.active}
-              href={link.href}
               key={`masthead-narrow-nav-item-${i}`}
               id={`masthead-narrow-nav-item-${i}`}
-              links={link.links}
-              text={link.text}
+              link={link}
             />
           ))}
         </ul>
       </nav>
-    )
+    );
   };
 }
 
-export default NarrowNav
+export default NarrowNav;
