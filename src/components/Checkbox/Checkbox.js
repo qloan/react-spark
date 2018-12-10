@@ -38,7 +38,7 @@ class Checkbox extends React.Component {
     } = this.props
 
     return (
-      <SelectionContainer>
+      <SelectionContainer label={label}>
         <input
           aria-describedby={`${id}--error-container`}
           checked={checked}
