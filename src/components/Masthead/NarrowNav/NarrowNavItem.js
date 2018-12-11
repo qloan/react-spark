@@ -8,7 +8,8 @@ import List from "../../List/List";
 import {
   sparkClassName,
   sparkBaseClassName,
-  sparkComponentClassName
+  sparkComponentClassName,
+  sparkObjectClassName
 } from "../../../util/index";
 
 class NarrowNavItem extends React.Component {
@@ -43,16 +44,42 @@ class NarrowNavItem extends React.Component {
   }
 
   getLiClassName = active => {
+    const { buttonVariant } = this.props.link;
     const activeClassName = sparkComponentClassName(
       "Accordion",
       "item",
       "active"
     );
-
+    const boxClass = sparkObjectClassName("Box");
     return classnames(sparkComponentClassName("Accordion", "item"), {
-      [activeClassName]: active
+      [activeClassName]: active,
+      [boxClass]: buttonVariant
     });
   };
+
+  get linkClassName() {
+    const { buttonVariant } = this.props.link;
+    const accordionClass = sparkComponentClassName("Accordion", "summary");
+    const baseButtonClass = sparkComponentClassName("Button");
+    const compactButtonClass = sparkComponentClassName(
+      "Button",
+      null,
+      "compact"
+    );
+    const buttonVariantClass = sparkComponentClassName(
+      "Button",
+      null,
+      buttonVariant
+    );
+    const stretchClass = sparkComponentClassName("Button", null, "full@sm");
+    return classnames({
+      [accordionClass]: !buttonVariant,
+      [baseButtonClass]: buttonVariant,
+      [buttonVariantClass]: buttonVariant,
+      [stretchClass]: buttonVariant,
+      [compactButtonClass]: buttonVariant
+    });
+  }
 
   get spanClassName() {
     return [
@@ -63,12 +90,11 @@ class NarrowNavItem extends React.Component {
 
   render = () => {
     const { active, href, links, text, target, onClick } = this.props.link;
-    const id = this.props.id;
     let conditionalAnchorProps = {};
 
     if (this.hasLinks) {
       conditionalAnchorProps = {
-        "aria-controls": id,
+        "aria-controls": this.props.id,
         "data-sprk-toggle": "trigger",
         "data-sprk-toggle-type": "accordion"
       };
@@ -81,7 +107,7 @@ class NarrowNavItem extends React.Component {
         data-sprk-toggle="container"
       >
         <a
-          className={sparkComponentClassName("Accordion", "summary")}
+          className={this.linkClassName}
           href={href}
           target={target}
           onClick={onClick}
@@ -97,7 +123,7 @@ class NarrowNavItem extends React.Component {
             className={sparkComponentClassName("Accordion", "details")}
             variant="bare"
             data-sprk-toggle="content"
-            id={id}
+            id={this.props.id}
           >
             {links.map((sublink, i) => (
               <li key={i}>
