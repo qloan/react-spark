@@ -2,7 +2,7 @@ import { bindToggleUIEvents } from "@sparkdesignsystem/spark-core/components/tog
 import classnames from "classnames";
 import PropTypes from "prop-types";
 import React from "react";
-
+import Icon from "../../Icon/Icon";
 import {
   sparkClassName,
   sparkBaseClassName,
@@ -37,7 +37,7 @@ class NarrowNavItem extends React.Component {
    * @returns {boolean}
    */
   get hasLinks() {
-    return !!(this.props.links && this.props.links.length);
+    return !!(this.props.link.links && this.props.link.links.length);
   }
 
   getLiClassName = active => {
@@ -75,30 +75,6 @@ class NarrowNavItem extends React.Component {
     ].join(" ");
   }
 
-  get svgClassName() {
-    return [
-      sparkComponentClassName("Icon"),
-      sparkComponentClassName("Icon", null, "l"),
-      sparkComponentClassName("Accordion", "icon")
-    ].join(" ");
-  }
-
-  renderChevronSvg = () => (
-    <svg
-      className={this.svgClassName}
-      data-sprk-toggle="icon"
-      viewBox="0 0 64 64"
-      width="100%"
-      height="100%"
-    >
-      <path
-        d="M17.4 25.7L32 40.3l14.6-14.6"
-        fill="none"
-        strokeMiterlimit="10"
-      />
-    </svg>
-  );
-
   render = () => {
     const { active, href, links, text, target, onClick } = this.props.link;
     const id = this.props.id;
@@ -123,7 +99,9 @@ class NarrowNavItem extends React.Component {
           {...conditionalAnchorProps}
         >
           <span className={this.spanClassName}>{text}</span>
-          {this.hasLinks && this.renderChevronSvg()}
+          {this.hasLinks && (
+            <Icon name="chevron-down" size={Icon.size.L} color="base" />
+          )}
         </a>
         {this.hasLinks && (
           <ul
