@@ -1,8 +1,9 @@
-import { dropdowns } from '@sparkdesignsystem/spark-core/components/dropdown'
-import PropTypes from 'prop-types'
-import React, { Fragment } from 'react'
-import Icon from '../Icon/Icon'
-import Link from '../Link/Link'
+import PropTypes from "prop-types";
+import React, { Fragment } from "react";
+import classNames from 'classnames';
+import Icon from "../Icon/Icon";
+import { bindUIEvents } from "@sparkdesignsystem/spark-core/components/dropdown";
+import { sparkBaseClassName } from "../../util";
 
 class DropdownLink extends React.Component {
   static defaultProps = {};
@@ -15,35 +16,48 @@ class DropdownLink extends React.Component {
     icon: PropTypes.string
   };
 
+  ref = React.createRef();
+
+  get linkClassName() {
+    const { className } = this.props;
+    return classNames(
+      sparkBaseClassName("Link"),
+      sparkBaseClassName("Link", null, "plain"),
+      {
+        [className]: className
+      }
+    );
+  }
+
   componentDidMount() {
-    if (!window.initDropdowns) {
-      dropdowns()
-      window.initDropdowns = true
-    }
+    bindUIEvents(this.ref.current);
   }
 
   render = () => {
-    const { text, icon, id, className, href } = this.props
+    const { text, icon, id, href } = this.props;
 
     return (
-      <Link
-        variant='plain'
+      <a
         aria-haspopup={true}
-        role='combobox'
+        role="combobox"
         data-sprk-dropdown-trigger={id}
-        className={className}
+        className={this.linkClassName}
         href={href}
+        ref={this.ref}
       >
         {icon ? (
-          <Icon name={icon} size={Icon.size.L} color='base' />
+          <Icon name={icon} size={Icon.size.L} color="base" />
         ) : (
           <Fragment>
-            {text} <Icon name='chevron-down' color='base' />
+            <span data-sprk-dropdown-trigger-text-container role="combobox">
+              {text}
+            </span>
+            <Icon name="chevron-down" color="base" />
           </Fragment>
         )}
-      </Link>
-    )
+      </a>
+    );
   };
 }
 
-export default DropdownLink
+export default DropdownLink;
