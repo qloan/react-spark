@@ -3,6 +3,8 @@ import classnames from "classnames";
 import PropTypes from "prop-types";
 import React from "react";
 import Icon from "../../Icon/Icon";
+import Link from "../../Link/Link";
+import List from "../../List/List";
 import {
   sparkClassName,
   sparkBaseClassName,
@@ -52,26 +54,10 @@ class NarrowNavItem extends React.Component {
     });
   };
 
-  get subMenuLinkClassName() {
-    return [
-      sparkBaseClassName("Link"),
-      sparkBaseClassName("Link", null, "standalone"),
-      sparkClassName("utility", "pam")
-    ].join(" ");
-  }
-
   get spanClassName() {
     return [
       sparkBaseClassName("TypeBodyTwo"),
       sparkComponentClassName("Accordion", "heading")
-    ].join(" ");
-  }
-
-  get subMenuUlClassName() {
-    return [
-      sparkBaseClassName("List"),
-      sparkBaseClassName("List", null, "bare"),
-      sparkComponentClassName("Accordion", "details")
     ].join(" ");
   }
 
@@ -82,7 +68,6 @@ class NarrowNavItem extends React.Component {
 
     if (this.hasLinks) {
       conditionalAnchorProps = {
-        ...conditionalAnchorProps,
         "aria-controls": id,
         "data-sprk-toggle": "trigger",
         "data-sprk-toggle-type": "accordion"
@@ -90,7 +75,11 @@ class NarrowNavItem extends React.Component {
     }
 
     return (
-      <li className={this.getLiClassName(active)} ref={this.liRef}>
+      <li
+        className={this.getLiClassName(active)}
+        ref={this.liRef}
+        data-sprk-toggle="container"
+      >
         <a
           className={sparkComponentClassName("Accordion", "summary")}
           href={href}
@@ -104,24 +93,26 @@ class NarrowNavItem extends React.Component {
           )}
         </a>
         {this.hasLinks && (
-          <ul
-            className={this.subMenuUlClassName}
+          <List
+            className={sparkComponentClassName("Accordion", "details")}
+            variant="bare"
             data-sprk-toggle="content"
             id={id}
           >
             {links.map((sublink, i) => (
               <li key={i}>
-                <a
-                  className={this.subMenuLinkClassName}
+                <Link
+                  className={sparkClassName("utility", "pam")}
+                  variant="standalone"
                   href={sublink.href}
                   target={sublink.target}
                   onClick={sublink.onClick}
                 >
                   {sublink.text}
-                </a>
+                </Link>
               </li>
             ))}
-          </ul>
+          </List>
         )}
       </li>
     );
