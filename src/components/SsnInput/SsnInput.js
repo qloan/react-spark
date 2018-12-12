@@ -1,9 +1,5 @@
-import {
-  formatSSN
-} from '@sparkdesignsystem/spark-core/base/ssnInput'
-import {
-  bindUIEvents as bindTextInputUiEvents
-} from '@sparkdesignsystem/spark-core/base/textInput'
+import { formatSSN } from '@sparkdesignsystem/spark-core/base/ssnInput'
+import { bindUIEvents as bindTextInputUiEvents } from '@sparkdesignsystem/spark-core/base/textInput'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -14,13 +10,15 @@ import {
   sparkClassName
 } from '../../util'
 
+export const ssnInputValidationRegex =
+  '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$'
 class SsnInput extends React.Component {
   static defaultProps = {
     className: null,
     disabled: false,
     error: null,
     label: 'Social Security #',
-    pattern: '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$',
+    pattern: ssnInputValidationRegex,
     placeholder: '000-00-0000',
     showSsnLabel: 'Show SSN',
     value: null,
@@ -47,7 +45,7 @@ class SsnInput extends React.Component {
   }
 
   get className() {
-    const {className, error, width} = this.props
+    const { className, error, width } = this.props
     const errorClassName = error
       ? sparkBaseClassName('TextInput', null, 'error')
       : null
@@ -55,14 +53,11 @@ class SsnInput extends React.Component {
       ? sparkClassName('utility', `Width-${width}`)
       : null
 
-    return classnames(
-      sparkBaseClassName('TextInput'),
-      {
-        [errorClassName]: errorClassName,
-        [widthClassName]: widthClassName,
-        [className]: className
-      }
-    )
+    return classnames(sparkBaseClassName('TextInput'), {
+      [errorClassName]: errorClassName,
+      [widthClassName]: widthClassName,
+      [className]: className
+    })
   }
 
   componentDidMount = () => {
@@ -79,14 +74,24 @@ class SsnInput extends React.Component {
   }
 
   componentDidUpdate = () => {
-    const {value} = this.props
+    const { value } = this.props
 
     // Mask value if this component is controlled
     if (value !== null && value !== this.maskedValue) this.maskValue()
   }
 
+  handleChange = event => {
+    event.target.value = event.target.value.replace(/-/g, '')
+    this.props.onChange(event)
+  }
+
+  handleBlur = event => {
+    event.target.value = event.target.value.replace(/-/g, '')
+    this.props.onBlur(event)
+  }
+
   handleInput = event => {
-    const {value} = this.props
+    const { value } = this.props
 
     // Mask value if this component is uncontrolled
     if (value == null && event.target.value !== this.maskedValue) {
@@ -94,14 +99,16 @@ class SsnInput extends React.Component {
     }
   }
 
-  handleShowSsnChange = event => this.setState({showSsn: event.target.checked})
+  handleShowSsnChange = event =>
+    this.setState({ showSsn: event.target.checked })
 
   get maskedValue() {
-    const {pattern, value} = this.props
+    const { pattern, value } = this.props
     const inputElement = this.inputRef.current
     const patternRegex = new RegExp(pattern)
 
-    if (value == null) { // This component is uncontrolled
+    if (value == null) {
+      // This component is uncontrolled
       return patternRegex.test(inputElement.value)
         ? formatSSN(inputElement.value)
         : inputElement.value
@@ -132,7 +139,7 @@ class SsnInput extends React.Component {
   }
 
   renderErrorContent = () => {
-    const {error} = this.props
+    const { error } = this.props
 
     if (!error) return null
 
@@ -158,8 +165,8 @@ class SsnInput extends React.Component {
       width,
       ...props
     } = this.props
-    const {showSsn} = this.state
-    const valueProp = value == null ? {} : {value}
+    const { showSsn } = this.state
+    const valueProp = value == null ? {} : { value: formatSSN(value) }
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
@@ -175,14 +182,13 @@ class SsnInput extends React.Component {
             type={showSsn ? 'text' : 'password'}
             {...valueProp}
             {...props}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
           />
           <div
             className={sparkBaseClassName('InputContainer', 'input-border')}
           />
-          <label
-            htmlFor={id}
-            className={sparkBaseClassName('Label')}
-          >
+          <label htmlFor={id} className={sparkBaseClassName('Label')}>
             {label}
           </label>
           <div className={this.selectionContainerClassName}>

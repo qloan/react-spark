@@ -29,7 +29,10 @@ export { default as RadioGroup } from './components/RadioGroup'
 export { default as MonetaryInput } from './components/MonetaryInput'
 export { default as Select } from './components/Select'
 export { default as SelectionContainer } from './components/SelectionContainer'
-export { default as SsnInput } from './components/SsnInput'
+export {
+  default as SsnInput,
+  ssnInputValidationRegex
+} from './components/SsnInput'
 export { default as Stack } from './components/Stack'
 export { default as Table } from './components/Table'
 export { default as TextArea } from './components/TextArea'
