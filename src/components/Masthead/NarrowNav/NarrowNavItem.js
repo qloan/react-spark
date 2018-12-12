@@ -91,6 +91,7 @@ class NarrowNavItem extends React.Component {
   render = () => {
     const { active, href, links, text, target, onClick } = this.props.link;
     let conditionalAnchorProps = {};
+    let conditionalLiProps = {};
 
     if (this.hasLinks) {
       conditionalAnchorProps = {
@@ -98,13 +99,16 @@ class NarrowNavItem extends React.Component {
         "data-sprk-toggle": "trigger",
         "data-sprk-toggle-type": "accordion"
       };
+      conditionalLiProps = {
+        "data-sprk-toggle": "container"
+      };
     }
 
     return (
       <li
         className={this.getLiClassName(active)}
         ref={this.liRef}
-        data-sprk-toggle="container"
+        {...conditionalLiProps}
       >
         <a
           className={this.linkClassName}
