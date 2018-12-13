@@ -7,7 +7,7 @@ class ModalHeading extends React.Component {
   static defaultProps = {};
 
   static propTypes = {
-    id: PropTypes.string.isRequired,
+    id: PropTypes.string,
     children: PropTypes.node.isRequired
   };
 
