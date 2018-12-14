@@ -1,9 +1,5 @@
-import {
-  formatMonetary
-} from '@sparkdesignsystem/spark-core/base/monetaryInput'
-import {
-  bindUIEvents as bindTextInputUiEvents
-} from '@sparkdesignsystem/spark-core/base/textInput'
+import { formatMonetary } from '@sparkdesignsystem/spark-core/base/monetaryInput'
+import { bindUIEvents as bindTextInputUiEvents } from '@sparkdesignsystem/spark-core/base/textInput'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -42,7 +38,7 @@ class MonetaryInput extends React.Component {
   }
 
   get className() {
-    const {className, error, width} = this.props
+    const { className, error, width } = this.props
     const errorClassName = error
       ? sparkBaseClassName('TextInput', null, 'error')
       : null
@@ -66,14 +62,26 @@ class MonetaryInput extends React.Component {
 
     bindTextInputUiEvents(inputElement)
 
-    if (this.props.value != null) {
+    if (this.props.value !== '') {
       this.maskValue()
     }
   }
 
-  handleBlur = () => {
+  unmaskValue = value => {
+    return value.match(/[\d.]/g).join('')
+  }
+
+  handleBlur = e => {
     this.maskValue()
-    this.props.onBlur()
+    // e.target.value = this.unmaskValue(e.target.value)
+
+    this.props.onBlur(e)
+  }
+
+  handleChange = e => {
+    // e.target.value = this.unmaskValue(e.target.value)
+
+    this.props.onChange(e)
   }
 
   get labelClassName() {
@@ -84,11 +92,12 @@ class MonetaryInput extends React.Component {
   }
 
   get maskedValue() {
-    const {pattern, value} = this.props
+    const { pattern, value } = this.props
     const inputElement = this.inputRef.current
     const patternRegex = new RegExp(pattern)
 
-    if (value == null) { // This component is uncontrolled
+    if (value === '') {
+      // This component is uncontrolled
       return patternRegex.test(inputElement.value)
         ? formatMonetary(inputElement.value)
         : inputElement.value
@@ -108,11 +117,14 @@ class MonetaryInput extends React.Component {
    * Set input value to masked value and fire input event
    */
   maskValue = () => {
-    setAndDispatchInput(this.inputRef.current, this.maskedValue)
+    const maskedValue = this.maskedValue
+    setAndDispatchInput(this.inputRef.current, maskedValue)
+
+    return maskedValue
   }
 
   renderErrorContent = () => {
-    const {error} = this.props
+    const { error } = this.props
 
     if (!error) return null
 
@@ -132,6 +144,7 @@ class MonetaryInput extends React.Component {
       id,
       label,
       onBlur,
+      onChange,
       pattern,
       type,
       value,
@@ -146,9 +159,9 @@ class MonetaryInput extends React.Component {
       if (disabled) {
         // Format value because `this.maskValue()` doesn't work if the input is
         // disabled
-        valueProp = {value: formatMonetary(value)}
+        valueProp = { value: formatMonetary(value) }
       } else {
-        valueProp = {value}
+        valueProp = { value }
       }
     }
 
@@ -161,17 +174,20 @@ class MonetaryInput extends React.Component {
               className={this.className}
               disabled={disabled}
               id={id}
-              onBlur={this.handleBlur}
               pattern={pattern}
               ref={this.inputRef}
               type={type}
               {...valueProp}
               {...props}
+              onChange={this.handleChange}
+              onBlur={this.handleBlur}
             />
             <div
               className={sparkBaseClassName('InputContainer', 'input-border')}
             />
-            <label className={this.labelClassName} htmlFor={id}>{label}</label>
+            <label className={this.labelClassName} htmlFor={id}>
+              {label}
+            </label>
           </div>
           <div
             className={sparkBaseClassName('ErrorContainer')}

@@ -26,7 +26,7 @@ export { default as ModalBody } from './components/Modal/ModalBody'
 export { default as ModalHeader } from './components/Modal/ModalHeader'
 export { default as Radio } from './components/Radio'
 export { default as RadioGroup } from './components/RadioGroup'
-export { default as MonetaryInput } from './components/MonetaryInput'
+export { default as MoneyInput } from './components/MonetaryInput'
 export { default as Select } from './components/Select'
 export { default as SelectionContainer } from './components/SelectionContainer'
 export {
