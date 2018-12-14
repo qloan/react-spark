@@ -39,6 +39,7 @@ class Modals extends React.Component {
         type='choice'
         confirmText={'confirm'}
         cancelText={'cancel'}
+        title="Choice Modal"
         onCancel={() => { this.setState({ showChoiceModal: !this.state.showChoiceModal }) }}
         onConfirm={() => { console.log('confirmed'); this.setState({ showChoiceModal: !this.state.showChoiceModal }) }}
         onClose={() => { this.setState({ showChoiceModal: !this.state.showChoiceModal }) }
@@ -66,6 +67,7 @@ class Modals extends React.Component {
         ariaDescribedby='modalInfoContent'
         dataId='modal-info-1'
         show={this.state.showInfoModal}
+        title="Info Modal"
         onClose={() => { this.setState({ showInfoModal: !this.state.showInfoModal }) }}
       >
         <Stack>
@@ -95,6 +97,7 @@ class Modals extends React.Component {
         ariaDescribedby='modalInfoContent2'
         dataId='modal-info-2'
         show={this.state.showInfoModal2}
+        title="Info Modal"
         onClose={() => { this.setState({ showInfoModal2: !this.state.showInfoModal2 }) }}
       >
         <Card>
@@ -146,6 +149,7 @@ class Modals extends React.Component {
         type='wait'
         ariaLabelledby='modalWaitHeading'
         ariaDescribedby='modalWaitContent'
+        title="Wait Modal"
         dataId='modal-wait-1'
         show={this.state.showWaitModal}
       >

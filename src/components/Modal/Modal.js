@@ -17,8 +17,7 @@ import Stack from "../Stack";
 
 class Modal extends Component {
   static defaultProps = {
-    hasCloseButton: true,
-    title: "Please Wait"
+    hasCloseButton: true
   };
   static propTypes = {
     ariaDescribedby: PropTypes.string,
@@ -113,56 +112,53 @@ class Modal extends Component {
       type,
       ...props
     } = this.props;
+    
     return (
-      <div className="sprk-u-JavaScript">
+      //  This needs to be fixed, their method looks for this attribute and sets focus to it
+      <div ref={this.mainRef} className={sparkClassName("utility", "JavaScript")}>
         <div data-sprk-modal-trigger={id} />{" "}
-        {/* This needs to be fixed, their method looks for this attribute and sets focus to it */}
-        <div id={id} ref={this.mainRef}>
-          <div
-            aria-describedby={ariaDescribedby}
-            aria-labelledby={ariaLabelledby}
-            aria-modal="true"
-            className={this.className}
-            data-id={dataId}
-            data-sprk-modal-type={type}
-            data-sprk-modal={id}
-            ref={this.modalRef}
-            role="dialog"
-            tabIndex="-1"
-            {...props}
-          >
-            <Stack itemSpacing={"large"}>
-              <ModalHeader
-                hasCloseButton={
-                  type !== MODAL_VARIANTS.WAIT ? hasCloseButton : false
-                }
-                id={ariaLabelledby}
-                modalName={id}
-                onClose={onClose}
-                title={title}
+        <div
+          aria-describedby={ariaDescribedby}
+          aria-labelledby={ariaLabelledby}
+          aria-modal="true"
+          className={this.className}
+          data-id={dataId}
+          data-sprk-modal-type={type}
+          data-sprk-modal={id}
+          ref={this.modalRef}
+          role="dialog"
+          tabIndex="-1"
+          {...props}
+        >
+          <Stack itemSpacing={"large"}>
+            <ModalHeader
+              hasCloseButton={
+                type !== MODAL_VARIANTS.WAIT ? hasCloseButton : false
+              }
+              onClose={onClose}
+              title={title}
+            />
+            <ModalBody>
+              {type === MODAL_VARIANTS.WAIT && <Spinner />}
+              {children}
+            </ModalBody>
+            {type === MODAL_VARIANTS.CHOICE && (
+              <ModalFooter
+                cancelText={cancelText}
+                confirmText={confirmText}
+                modalId={id}
+                onCancel={onCancel}
+                onConfirm={onConfirm}
               />
-              <ModalBody>
-                {type === MODAL_VARIANTS.WAIT && <Spinner />}
-                {children}
-              </ModalBody>
-              {type === MODAL_VARIANTS.CHOICE && (
-                <ModalFooter
-                  cancelText={cancelText}
-                  confirmText={confirmText}
-                  modalId={id}
-                  onCancel={onCancel}
-                  onConfirm={onConfirm}
-                />
-              )}
-            </Stack>
-          </div>
-          <ModalMask
-            className={sparkClassName("utility", "Display", null, "none")}
-            maskRef={this.maskRef}
-            closeOnClick={type !== MODAL_VARIANTS.WAIT}
-            onClose={onClose}
-          />
+            )}
+          </Stack>
         </div>
+        <ModalMask
+          className={sparkClassName("utility", "Display", null, "none")}
+          maskRef={this.maskRef}
+          closeOnClick={type !== MODAL_VARIANTS.WAIT}
+          onClose={onClose}
+        />
       </div>
     );
   };
