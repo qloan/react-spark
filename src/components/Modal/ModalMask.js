@@ -16,8 +16,14 @@ class ModalMask extends React.Component {
       return classNames(baseClass, {[className]: className})
     }
 
+    handleMaskEvent = (e, closeOnClick = true, onClose) => {
+      if(closeOnClick){
+        onClose();
+      }
+    };
+
     render = () => {
-      const { maskRef, ...props } = this.props
+      const { maskRef, closeOnClick = true, onClose, ...props } = this.props
       return (
 
         <div
@@ -26,6 +32,7 @@ class ModalMask extends React.Component {
           className={this.className}
           tabIndex='-1'
           ref={maskRef}
+          onClick={e => this.handleMaskEvent(e, closeOnClick, onClose)}
         />
       )
     };

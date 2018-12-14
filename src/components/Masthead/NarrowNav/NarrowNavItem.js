@@ -2,11 +2,14 @@ import { bindToggleUIEvents } from "@sparkdesignsystem/spark-core/components/tog
 import classnames from "classnames";
 import PropTypes from "prop-types";
 import React from "react";
-
+import Icon from "../../Icon/Icon";
+import Link from "../../Link/Link";
+import List from "../../List/List";
 import {
   sparkClassName,
   sparkBaseClassName,
-  sparkComponentClassName
+  sparkComponentClassName,
+  sparkObjectClassName
 } from "../../../util/index";
 
 class NarrowNavItem extends React.Component {
@@ -37,27 +40,45 @@ class NarrowNavItem extends React.Component {
    * @returns {boolean}
    */
   get hasLinks() {
-    return !!(this.props.links && this.props.links.length);
+    return !!(this.props.link.links && this.props.link.links.length);
   }
 
   getLiClassName = active => {
+    const { buttonVariant } = this.props.link;
     const activeClassName = sparkComponentClassName(
       "Accordion",
       "item",
       "active"
     );
-
+    const boxClass = sparkObjectClassName("Box");
     return classnames(sparkComponentClassName("Accordion", "item"), {
-      [activeClassName]: active
+      [activeClassName]: active,
+      [boxClass]: buttonVariant
     });
   };
 
-  get subMenuLinkClassName() {
-    return [
-      sparkBaseClassName("Link"),
-      sparkBaseClassName("Link", null, "standalone"),
-      sparkClassName("utility", "pam")
-    ].join(" ");
+  get linkClassName() {
+    const { buttonVariant } = this.props.link;
+    const accordionClass = sparkComponentClassName("Accordion", "summary");
+    const baseButtonClass = sparkComponentClassName("Button");
+    const compactButtonClass = sparkComponentClassName(
+      "Button",
+      null,
+      "compact"
+    );
+    const buttonVariantClass = sparkComponentClassName(
+      "Button",
+      null,
+      buttonVariant
+    );
+    const stretchClass = sparkComponentClassName("Button", null, "full@sm");
+    return classnames({
+      [accordionClass]: !buttonVariant,
+      [baseButtonClass]: buttonVariant,
+      [buttonVariantClass]: buttonVariant,
+      [stretchClass]: buttonVariant,
+      [compactButtonClass]: buttonVariant
+    });
   }
 
   get spanClassName() {
@@ -67,83 +88,61 @@ class NarrowNavItem extends React.Component {
     ].join(" ");
   }
 
-  get subMenuUlClassName() {
-    return [
-      sparkBaseClassName("List"),
-      sparkBaseClassName("List", null, "bare"),
-      sparkComponentClassName("Accordion", "details")
-    ].join(" ");
-  }
-
-  get svgClassName() {
-    return [
-      sparkComponentClassName("Icon"),
-      sparkComponentClassName("Icon", null, "l"),
-      sparkComponentClassName("Accordion", "icon")
-    ].join(" ");
-  }
-
-  renderChevronSvg = () => (
-    <svg
-      className={this.svgClassName}
-      data-sprk-toggle="icon"
-      viewBox="0 0 64 64"
-      width="100%"
-      height="100%"
-    >
-      <path
-        d="M17.4 25.7L32 40.3l14.6-14.6"
-        fill="none"
-        strokeMiterlimit="10"
-      />
-    </svg>
-  );
-
   render = () => {
     const { active, href, links, text, target, onClick } = this.props.link;
-    const id = this.props.id;
     let conditionalAnchorProps = {};
+    let conditionalLiProps = {};
 
     if (this.hasLinks) {
       conditionalAnchorProps = {
-        ...conditionalAnchorProps,
-        "aria-controls": id,
+        "aria-controls": this.props.id,
         "data-sprk-toggle": "trigger",
         "data-sprk-toggle-type": "accordion"
+      };
+      conditionalLiProps = {
+        "data-sprk-toggle": "container"
       };
     }
 
     return (
-      <li className={this.getLiClassName(active)} ref={this.liRef}>
+      <li
+        className={this.getLiClassName(active)}
+        ref={this.liRef}
+        {...conditionalLiProps}
+      >
         <a
-          className={sparkComponentClassName("Accordion", "summary")}
+          className={this.linkClassName}
           href={href}
           target={target}
           onClick={onClick}
           {...conditionalAnchorProps}
         >
           <span className={this.spanClassName}>{text}</span>
-          {this.hasLinks && this.renderChevronSvg()}
+          {this.hasLinks && (
+            <Icon name="chevron-down" size={Icon.size.L} color="base" />
+          )}
         </a>
         {this.hasLinks && (
-          <ul
-            className={this.subMenuUlClassName}
+          <List
+            className={sparkComponentClassName("Accordion", "details")}
+            variant="bare"
             data-sprk-toggle="content"
-            id={id}
+            id={this.props.id}
           >
             {links.map((sublink, i) => (
               <li key={i}>
-                <a
-                  className={this.subMenuLinkClassName}
+                <Link
+                  className={sparkClassName("utility", "pam")}
+                  variant="standalone"
                   href={sublink.href}
                   target={sublink.target}
                   onClick={sublink.onClick}
                 >
                   {sublink.text}
-                </a>
+                </Link>
               </li>
             ))}
-          </ul>
+          </List>
         )}
       </li>
     );
