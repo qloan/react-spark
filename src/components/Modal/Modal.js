@@ -89,6 +89,10 @@ class Modal extends Component {
     }
   };
 
+  componentWillUnmount = () => {
+    this.hide();
+  }
+
   render = () => {
     const {
       ariaDescribedby,
