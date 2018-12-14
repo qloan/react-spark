@@ -15,7 +15,7 @@ class PasswordInput extends React.Component {
     onChange: () => console.log('onChange not implemented'),
     pattern: /./,
     showSsnLabel: 'Show Password',
-    value: null,
+    value: '',
     width: 100
   }
 
@@ -107,7 +107,7 @@ class PasswordInput extends React.Component {
       ...props
     } = this.props
     const { showPassword } = this.state
-    const valueProp = value == null ? {} : { value }
+    const valueProp = value == '' ? {} : { value }
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
@@ -139,7 +139,7 @@ class PasswordInput extends React.Component {
               type='checkbox'
             />
             <label
-              className={this.showSsnLabelClassName}
+              className={this.showLabelClassName}
               htmlFor={`${id}-show-password`}
             >
               {showSsnLabel}
