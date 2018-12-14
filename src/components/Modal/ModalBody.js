@@ -14,9 +14,7 @@ class ModalBody extends React.Component {
     const baseClass = sparkComponentClassName('Modal', 'body')
     const stackClass = sparkObjectClassName('Stack')
     const stackItemClass = sparkObjectClassName('Stack', 'item')
-    const stackSpacingClass = sparkObjectClassName('Stack', null, 'medium')
-
-    return classNames(baseClass, stackClass, stackItemClass, stackSpacingClass)
+    return classNames(baseClass, stackClass, stackItemClass)
   }
 
   render = () => {
