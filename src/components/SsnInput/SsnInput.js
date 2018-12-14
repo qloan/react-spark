@@ -21,7 +21,7 @@ class SsnInput extends React.Component {
     pattern: ssnInputValidationRegex,
     placeholder: '000-00-0000',
     showSsnLabel: 'Show SSN',
-    value: null,
+    value: '',
     width: 100
   }
 
@@ -66,7 +66,7 @@ class SsnInput extends React.Component {
     bindTextInputUiEvents(inputElement)
 
     // Add event listener if this component is uncontrolled
-    if (this.props.value == null) {
+    if (this.props.value === '') {
       inputElement.addEventListener('input', this.handleInput)
     } else {
       this.maskValue()
@@ -77,7 +77,7 @@ class SsnInput extends React.Component {
     const { value } = this.props
 
     // Mask value if this component is controlled
-    if (value !== null && value !== this.maskedValue) this.maskValue()
+    if (value !== '' && value !== this.maskedValue) this.maskValue()
   }
 
   handleChange = event => {
