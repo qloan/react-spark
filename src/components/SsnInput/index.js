@@ -1,1 +1,1 @@
-export { default } from './SsnInput'
+export { default, ssnInputValidationRegex } from './SsnInput'

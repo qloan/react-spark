@@ -26,10 +26,14 @@ export { default as ModalBody } from './components/Modal/ModalBody'
 export { default as ModalHeader } from './components/Modal/ModalHeader'
 export { default as Radio } from './components/Radio'
 export { default as RadioGroup } from './components/RadioGroup'
-export { default as MonetaryInput } from './components/MonetaryInput'
+export { default as MoneyInput } from './components/MonetaryInput'
+export { default as PasswordInput } from './components/PasswordInput'
 export { default as Select } from './components/Select'
 export { default as SelectionContainer } from './components/SelectionContainer'
-export { default as SsnInput } from './components/SsnInput'
+export {
+  default as SsnInput,
+  ssnInputValidationRegex
+} from './components/SsnInput'
 export { default as Spinner } from './components/Spinner'
 export { default as Stack } from './components/Stack'
 export { default as Table } from './components/Table'

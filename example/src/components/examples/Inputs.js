@@ -7,7 +7,8 @@ import {
   Divider,
   Link,
   List,
-  MonetaryInput,
+  PasswordInput,
+  MoneyInput,
   Select,
   SsnInput,
   TextArea,
@@ -277,7 +278,7 @@ class Inputs extends React.Component {
       <h3>Monetary Input</h3>
 
       <p>Normal monetary input:</p>
-      <MonetaryInput
+      <MoneyInput
         className='extra-class'
         data-extra-attribute
         id='monetary-normal'
@@ -287,14 +288,14 @@ class Inputs extends React.Component {
       />
 
       <p>Monetary input with error:</p>
-      <MonetaryInput
+      <MoneyInput
         error='There is an error on this field.'
         id='monetary-error'
         label='Payment'
       />
 
       <p>Disabled monetary input:</p>
-      <MonetaryInput disabled id='monetary-disabled' label='Payment' />
+      <MoneyInput disabled id='monetary-disabled' label='Payment' />
     </div>
   )
 
@@ -455,8 +456,26 @@ class Inputs extends React.Component {
         <li>
           <Link href='#date-inputs'>Date inputs</Link>
         </li>
+        <li>
+          <Link href='#password-inputs'>Password inputs</Link>
+        </li>
       </List>
     </>
+  )
+
+  renderPasswords = () => (
+    <div id='password-inputs'>
+      <h3>Password inputs</h3>
+      <p>Normal Password Field:</p>
+      <PasswordInput id='password-input' name='password-normal' />
+
+      <p>Disabled Password Field:</p>
+      <PasswordInput
+        disabled
+        id='password-input-disabled'
+        name='password-normal-disabled'
+      />
+    </div>
   )
 
   render = () => (
@@ -475,6 +494,7 @@ class Inputs extends React.Component {
       {this.renderSsns()}
       {this.renderMonetaryInputs()}
       {this.renderDateInputs()}
+      {this.renderPasswords()}
     </>
   )
 }

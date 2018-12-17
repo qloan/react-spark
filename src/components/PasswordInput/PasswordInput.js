@@ -1,26 +1,20 @@
-import { formatSSN } from '@sparkdesignsystem/spark-core/base/ssnInput'
 import { bindUIEvents as bindTextInputUiEvents } from '@sparkdesignsystem/spark-core/base/textInput'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import {
-  setAndDispatchInput,
-  sparkBaseClassName,
-  sparkClassName
-} from '../../util'
+import { sparkBaseClassName, sparkClassName } from '../../util'
 
-export const ssnInputValidationRegex =
-  '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$'
-class SsnInput extends React.Component {
+class PasswordInput extends React.Component {
   static defaultProps = {
     className: null,
     disabled: false,
     error: null,
-    label: 'Social Security #',
-    pattern: ssnInputValidationRegex,
-    placeholder: '000-00-0000',
-    showSsnLabel: 'Show SSN',
+    label: 'Password',
+    onBlur: () => console.log('onBlur not implemented'),
+    onChange: () => console.log('onChange not implemented'),
+    pattern: /./,
+    showSsnLabel: 'Show Password',
     value: '',
     width: 100
   }
@@ -33,6 +27,8 @@ class SsnInput extends React.Component {
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
     label: PropTypes.string,
+    onBlur: PropTypes.func,
+    onChange: PropTypes.func,
     pattern: PropTypes.string,
     placeholder: PropTypes.string,
     showSsnLabel: PropTypes.string,
@@ -64,65 +60,10 @@ class SsnInput extends React.Component {
     const inputElement = this.inputRef.current
 
     bindTextInputUiEvents(inputElement)
-
-    // Add event listener if this component is uncontrolled
-    if (this.props.value === '') {
-      inputElement.addEventListener('input', this.handleInput)
-    } else {
-      this.maskValue()
-    }
   }
 
-  componentDidUpdate = () => {
-    const { value } = this.props
-
-    // Mask value if this component is controlled
-    if (value !== '' && value !== this.maskedValue) this.maskValue()
-  }
-
-  handleChange = event => {
-    event.target.value = event.target.value.replace(/-/g, '')
-    this.props.onChange(event)
-  }
-
-  handleBlur = event => {
-    event.target.value = event.target.value.replace(/-/g, '')
-    this.props.onBlur(event)
-  }
-
-  handleInput = event => {
-    const { value } = this.props
-
-    // Mask value if this component is uncontrolled
-    if (value == null && event.target.value !== this.maskedValue) {
-      this.maskValue()
-    }
-  }
-
-  handleShowSsnChange = event =>
-    this.setState({ showSsn: event.target.checked })
-
-  get maskedValue() {
-    const { pattern, value } = this.props
-    const inputElement = this.inputRef.current
-    const patternRegex = new RegExp(pattern)
-
-    if (value == null) {
-      // This component is uncontrolled
-      return patternRegex.test(inputElement.value)
-        ? formatSSN(inputElement.value)
-        : inputElement.value
-    } else {
-      return patternRegex.test(value) ? formatSSN(value) : value
-    }
-  }
-
-  /**
-   * Set input value to masked value and fire input event
-   */
-  maskValue = () => {
-    setAndDispatchInput(this.inputRef.current, this.maskedValue)
-  }
+  handleShowPasswordChange = event =>
+    this.setState({ showPassword: event.target.checked })
 
   get selectionContainerClassName() {
     return [
@@ -165,8 +106,8 @@ class SsnInput extends React.Component {
       width,
       ...props
     } = this.props
-    const { showSsn } = this.state
-    const valueProp = value == null ? {} : { value: formatSSN(value) }
+    const { showPassword } = this.state
+    const valueProp = value == '' ? {} : { value }
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
@@ -179,11 +120,9 @@ class SsnInput extends React.Component {
             pattern={pattern}
             placeholder={placeholder}
             ref={this.inputRef}
-            type={showSsn ? 'text' : 'password'}
+            type={showPassword ? 'text' : 'password'}
             {...valueProp}
             {...props}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
           />
           <div
             className={sparkBaseClassName('InputContainer', 'input-border')}
@@ -193,15 +132,15 @@ class SsnInput extends React.Component {
           </label>
           <div className={this.selectionContainerClassName}>
             <input
-              checked={showSsn}
+              checked={showPassword}
               disabled={disabled}
-              id={`${id}-show-ssn`}
-              onChange={this.handleShowSsnChange}
+              id={`${id}-show-password`}
+              onChange={this.handleShowPasswordChange}
               type='checkbox'
             />
             <label
-              className={this.showSsnLabelClassName}
-              htmlFor={`${id}-show-ssn`}
+              className={this.showLabelClassName}
+              htmlFor={`${id}-show-password`}
             >
               {showSsnLabel}
             </label>
@@ -218,4 +157,4 @@ class SsnInput extends React.Component {
   }
 }
 
-export default SsnInput
+export default PasswordInput
