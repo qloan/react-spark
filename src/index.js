@@ -34,6 +34,7 @@ export {
   default as SsnInput,
   ssnInputValidationRegex
 } from './components/SsnInput'
+export { default as Spinner } from './components/Spinner'
 export { default as Stack } from './components/Stack'
 export { default as Table } from './components/Table'
 export { default as TextArea } from './components/TextArea'
