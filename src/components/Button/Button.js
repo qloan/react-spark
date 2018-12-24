@@ -1,7 +1,7 @@
 import {
   setSpinning,
   cancelSpinning
-} from '@sparkdesignsystem/spark-core/es5/spinners'
+} from '@sparkdesignsystem/spark-core/components/spinners'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
