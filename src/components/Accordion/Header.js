@@ -1,9 +1,9 @@
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import { sparkComponentClassName } from '../../util'
-import Icon from '../Icon'
-import Stack from '../Stack'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { sparkComponentClassName } from '../../util';
+import Icon from '../Icon';
+import Stack from '../Stack';
 
 class AccordionHeader extends React.Component {
   static defaultProps = {
@@ -37,7 +37,6 @@ class AccordionHeader extends React.Component {
     return (
       <a
         aria-controls={control}
-        aria-expanded='false'
         className={this.className}
         data-analytics={analytics}
         data-id={id}
@@ -46,19 +45,13 @@ class AccordionHeader extends React.Component {
         href='#'
         {...props}
       >
-        <Stack>
-          <Stack.Item>{children}</Stack.Item>
-        </Stack>
-        <Stack endColumn>
-          <Stack.Item>
-            <Icon
-              name='chevron-down-circle'
-              size='l'
-              toggle='accordionIconUseElement'
-              variant='Accordion'
-            />
-          </Stack.Item>
-        </Stack>
+        {children}
+        <Icon
+          name='chevron-down-circle'
+          size='l'
+          toggle='accordionIconUseElement'
+          variant='Accordion'
+        />
       </a>
     )
   };
