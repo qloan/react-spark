@@ -6,7 +6,6 @@ import React from 'react'
 import { sparkClassName, sparkWidthClassName } from '../../util'
 import InputContainer from './../InputContainer/InputContainer'
 import Icon from './../Icon'
-import { isContext } from 'vm'
 
 class Select extends React.Component {
   static defaultProps = {

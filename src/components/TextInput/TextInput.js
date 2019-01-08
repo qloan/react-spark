@@ -1,14 +1,11 @@
-import {
-  bindUIEvents,
-  runValidation
-} from '@sparkdesignsystem/spark-core/base/requiredTextInput'
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/requiredTextInput';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import InputContainer from './../InputContainer/InputContainer'
+import InputContainer from './../InputContainer/InputContainer';
 
-import { sparkClassName, sparkWidthClassName } from '../../util'
+import { sparkClassName, sparkWidthClassName } from '../../util';
 
 class TextInput extends React.Component {
   static defaultProps = {
@@ -32,7 +29,6 @@ class TextInput extends React.Component {
   };
 
   componentDidMount = () => {
-    runValidation(this.inputRef.current)
     bindUIEvents(this.inputRef.current)
   };
 

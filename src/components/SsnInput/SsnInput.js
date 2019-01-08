@@ -1,16 +1,16 @@
-import { formatSSN } from '@sparkdesignsystem/spark-core/base/ssnInput';
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { formatSSN } from '@sparkdesignsystem/spark-core/base/ssnInput'
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
 
 import {
   setAndDispatchInput,
   sparkBaseClassName,
   sparkClassName
-} from '../../util';
+} from '../../util'
 
 export const ssnInputValidationRegex =
-  '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$';
+  '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$'
 class SsnInput extends React.Component {
   static defaultProps = {
     className: null,
@@ -79,12 +79,16 @@ class SsnInput extends React.Component {
 
   handleChange = event => {
     event.target.value = event.target.value.replace(/-/g, '')
-    this.props.onChange ? this.props.onChange(event) : null
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(event)
+    }
   };
 
   handleBlur = event => {
     event.target.value = event.target.value.replace(/-/g, '')
-    this.props.onBlur ? this.props.onBlur(event) : null
+    if (typeof this.props.onBlur === 'function') {
+      this.props.onBlur(event)
+    }
   };
 
   handleInput = event => {
