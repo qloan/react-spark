@@ -1,4 +1,7 @@
-import { formatSSN } from '@sparkdesignsystem/spark-core/base/ssnInput'
+import {
+  formatSSN,
+  bindUIEvents
+} from '@sparkdesignsystem/spark-core/base/ssnInput'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -61,7 +64,7 @@ class SsnInput extends React.Component {
 
   componentDidMount = () => {
     const inputElement = this.inputRef.current
-
+    bindUIEvents(inputElement)
     // Add event listener if this component is uncontrolled
     if (this.props.value === '') {
       inputElement.addEventListener('input', this.handleInput)
