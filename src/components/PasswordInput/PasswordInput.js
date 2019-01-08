@@ -1,9 +1,9 @@
-import { bindUIEvents as bindTextInputUiEvents } from '@sparkdesignsystem/spark-core/base/textInput'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { bindUIEvents as bindTextInputUiEvents } from '@sparkdesignsystem/spark-core/base/requiredTextInput';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { sparkBaseClassName, sparkClassName } from '../../util'
+import { sparkBaseClassName, sparkClassName } from '../../util';
 
 class PasswordInput extends React.Component {
   static defaultProps = {
@@ -17,9 +17,9 @@ class PasswordInput extends React.Component {
     showSsnLabel: 'Show Password',
     value: '',
     width: 100
-  }
+  };
 
-  inputRef = React.createRef()
+  inputRef = React.createRef();
 
   static propTypes = {
     className: PropTypes.string,
@@ -34,11 +34,11 @@ class PasswordInput extends React.Component {
     showSsnLabel: PropTypes.string,
     value: PropTypes.string,
     width: PropTypes.number
-  }
+  };
 
   state = {
     showSsn: false
-  }
+  };
 
   get className() {
     const { className, error, width } = this.props
@@ -60,10 +60,10 @@ class PasswordInput extends React.Component {
     const inputElement = this.inputRef.current
 
     bindTextInputUiEvents(inputElement)
-  }
+  };
 
   handleShowPasswordChange = event =>
-    this.setState({ showPassword: event.target.checked })
+    this.setState({ showPassword: event.target.checked });
 
   get selectionContainerClassName() {
     return [
@@ -90,7 +90,7 @@ class PasswordInput extends React.Component {
         <div className={sparkBaseClassName('ErrorText')}>{error}</div>
       </React.Fragment>
     )
-  }
+  };
 
   render = () => {
     const {
@@ -111,7 +111,10 @@ class PasswordInput extends React.Component {
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
-        <div className={sparkBaseClassName('InputContainer')}>
+        <div
+          className={sparkBaseClassName('InputContainer')}
+          ref={this.inputRef}
+        >
           <input
             aria-describedby={`${id}--error-container`}
             className={this.className}
@@ -119,7 +122,6 @@ class PasswordInput extends React.Component {
             id={id}
             pattern={pattern}
             placeholder={placeholder}
-            ref={this.inputRef}
             type={showPassword ? 'text' : 'password'}
             {...valueProp}
             {...props}
@@ -154,7 +156,7 @@ class PasswordInput extends React.Component {
         </div>
       </div>
     )
-  }
+  };
 }
 
 export default PasswordInput

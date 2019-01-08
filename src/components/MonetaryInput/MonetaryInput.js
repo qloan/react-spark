@@ -1,5 +1,7 @@
-import { formatMonetary } from '@sparkdesignsystem/spark-core/base/monetaryInput'
-import { bindUIEvents as bindTextInputUiEvents } from '@sparkdesignsystem/spark-core/base/textInput'
+import {
+  bindUIEvents,
+  formatMonetary
+} from '@sparkdesignsystem/spark-core/base/monetaryInput'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -20,9 +22,9 @@ class MonetaryInput extends React.Component {
     type: 'tel',
     value: null,
     width: 100
-  }
+  };
 
-  inputRef = React.createRef()
+  inputRef = React.createRef();
 
   static propTypes = {
     className: PropTypes.string,
@@ -35,7 +37,7 @@ class MonetaryInput extends React.Component {
     type: PropTypes.string,
     value: PropTypes.string,
     width: PropTypes.number
-  }
+  };
 
   get className() {
     const { className, error, width } = this.props
@@ -48,7 +50,7 @@ class MonetaryInput extends React.Component {
 
     return classnames(
       sparkBaseClassName('TextInput'),
-      sparkBaseClassName('TextInput', null, 'monetary'),
+      sparkBaseClassName('TextInput', null, 'has-text-icon'),
       {
         [errorClassName]: errorClassName,
         [widthClassName]: widthClassName,
@@ -60,29 +62,29 @@ class MonetaryInput extends React.Component {
   componentDidMount = () => {
     const inputElement = this.inputRef.current
 
-    bindTextInputUiEvents(inputElement)
+    bindUIEvents(inputElement)
 
     if (this.props.value !== '') {
       this.maskValue()
     }
-  }
+  };
 
   unmaskValue = value => {
     return value.match(/[\d.]/g).join('')
-  }
+  };
 
   handleBlur = e => {
     this.maskValue()
     // e.target.value = this.unmaskValue(e.target.value)
 
     this.props.onBlur(e)
-  }
+  };
 
   handleChange = e => {
     // e.target.value = this.unmaskValue(e.target.value)
 
     this.props.onChange(e)
-  }
+  };
 
   get labelClassName() {
     return [
@@ -109,7 +111,7 @@ class MonetaryInput extends React.Component {
   get iconContainerClassName() {
     return [
       sparkBaseClassName('TextInputIconContainer'),
-      sparkBaseClassName('TextInputIconContainer', null, 'monetary')
+      sparkBaseClassName('TextInputIconContainer', null, 'has-text-icon')
     ].join(' ')
   }
 
@@ -118,10 +120,9 @@ class MonetaryInput extends React.Component {
    */
   maskValue = () => {
     const maskedValue = this.maskedValue
-    setAndDispatchInput(this.inputRef.current, maskedValue)
 
     return maskedValue
-  }
+  };
 
   renderErrorContent = () => {
     const { error } = this.props
@@ -134,7 +135,7 @@ class MonetaryInput extends React.Component {
         <div className={sparkBaseClassName('ErrorText')}>{error}</div>
       </React.Fragment>
     )
-  }
+  };
 
   render = () => {
     const {
@@ -167,15 +168,23 @@ class MonetaryInput extends React.Component {
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
-        <div className={sparkBaseClassName('InputContainer')}>
-          <div className={this.iconContainerClassName}>
+        <div
+          className={sparkBaseClassName('InputContainer')}
+          data-sprk-input='monetary'
+        >
+          <div
+            className={this.iconContainerClassName}
+            ref={this.inputRef}
+          >
+            <label className={this.labelClassName} htmlFor={id}>
+              {label}
+            </label>
             <input
               aria-describedby={`${id}--error-container`}
               className={this.className}
               disabled={disabled}
               id={id}
               pattern={pattern}
-              ref={this.inputRef}
               type={type}
               {...valueProp}
               {...props}
@@ -185,9 +194,6 @@ class MonetaryInput extends React.Component {
             <div
               className={sparkBaseClassName('InputContainer', 'input-border')}
             />
-            <label className={this.labelClassName} htmlFor={id}>
-              {label}
-            </label>
           </div>
           <div
             className={sparkBaseClassName('ErrorContainer')}
@@ -198,7 +204,7 @@ class MonetaryInput extends React.Component {
         </div>
       </div>
     )
-  }
+  };
 }
 
 export default MonetaryInput

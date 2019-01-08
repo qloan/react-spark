@@ -1,36 +1,32 @@
-import { formatDate } from '@sparkdesignsystem/spark-core/base/dateInput'
-import {
-  bindUIEvents as bindDatePickerUiEvents
-} from '@sparkdesignsystem/spark-core/base/datePicker'
-import {
-  bindUIEvents as bindTextInputUiEvents
-} from '@sparkdesignsystem/spark-core/base/textInput'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { formatDate } from '@sparkdesignsystem/spark-core/base/dateInput';
+import { bindUIEvents as bindDatePickerUiEvents } from '@sparkdesignsystem/spark-core/base/datePicker';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import {
   sparkBaseClassName,
   sparkClassName,
   sparkComponentClassName,
   sparkWidthClassName
-} from '../../util'
+} from '../../util';
 
 class DatePicker extends React.Component {
   static defaultProps = {
     disabled: false,
     error: null,
     mask: formatDate,
-    pattern: '^(((0[1358]|1[02])([\\/-]?)(0[1-9]|[12]\\d|3[01])|(0[469]|11)([\\/-]?)(0[1-9]|[12]\\d|30)|02(\\/?)((0?\\d)|[12]\\d))(\\4|\\7|\\9)[12]\\d{3})?$',
+    pattern:
+      '^(((0[1358]|1[02])([\\/-]?)(0[1-9]|[12]\\d|3[01])|(0[469]|11)([\\/-]?)(0[1-9]|[12]\\d|30)|02(\\/?)((0?\\d)|[12]\\d))(\\4|\\7|\\9)[12]\\d{3})?$',
     placeholder: 'MM/DD/YYYY',
     tinyDatePickerConfig: {},
     value: null,
     width: null
-  }
+  };
 
-  inputContainerRef = React.createRef()
+  inputContainerRef = React.createRef();
 
-  inputRef = React.createRef()
+  inputRef = React.createRef();
 
   static propTypes = {
     disabled: PropTypes.bool,
@@ -43,7 +39,7 @@ class DatePicker extends React.Component {
     tinyDatePickerConfig: PropTypes.object,
     value: PropTypes.string,
     width: PropTypes.number
-  }
+  };
 
   get calendarSvgClassName() {
     return [
@@ -54,7 +50,7 @@ class DatePicker extends React.Component {
   }
 
   get className() {
-    const {className, error, width} = this.props
+    const { className, error, width } = this.props
     const errorClassName = error
       ? sparkBaseClassName('TextInput', null, 'error')
       : null
@@ -80,20 +76,19 @@ class DatePicker extends React.Component {
       this.inputContainerRef.current,
       this.props.tinyDatePickerConfig
     )
-    bindTextInputUiEvents(this.inputRef.current)
 
     // Add event listener if this component is uncontrolled
     if (this.props.value == null) {
       inputElement.addEventListener('input', this.handleInput)
     }
-  }
+  };
 
   componentDidUpdate = () => {
-    const {value} = this.props
+    const { value } = this.props
 
     // Mask value if this component is controlled
     if (value != null && value !== this.maskedValue) this.maskValue()
-  }
+  };
 
   componentWillUnmount() {
     // Add event listener if this component is uncontrolled
@@ -111,24 +106,26 @@ class DatePicker extends React.Component {
   }
 
   handleInput = event => {
-    const {value} = this.props
+    const { value } = this.props
 
     // Mask value if this component is uncontrolled
     if (value == null && event.target.value !== this.maskedValue) {
       this.maskValue()
     }
-  }
+  };
 
   get maskedValue() {
-    const {mask, pattern, value} = this.props
+    const { mask, pattern, value } = this.props
     const inputElement = this.inputRef.current
     const patternRegex = new RegExp(pattern)
 
-    if (value == null) { // This component is uncontrolled
+    if (value == null) {
+      // This component is uncontrolled
       return patternRegex.test(inputElement.value)
         ? mask(inputElement.value)
         : inputElement.value
-    } else { // This component is controlled
+    } else {
+      // This component is controlled
       return patternRegex.test(value) ? mask(value) : value
     }
   }
@@ -138,14 +135,15 @@ class DatePicker extends React.Component {
    */
   maskValue = () => {
     const inputElement = this.inputRef.current
-    const inputEvent = new window.Event('input', {bubbles: true})
-    const nativeInputValueSetter = Object
-      .getOwnPropertyDescriptor(window.HTMLInputElement.prototype, 'value')
-      .set
+    const inputEvent = new window.Event('input', { bubbles: true })
+    const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+      window.HTMLInputElement.prototype,
+      'value'
+    ).set
 
     nativeInputValueSetter.call(inputElement, this.maskedValue)
     inputElement.dispatchEvent(inputEvent)
-  }
+  };
 
   renderCalendarSvg = () => (
     <svg
@@ -156,13 +154,12 @@ class DatePicker extends React.Component {
       height='100%'
     >
       <path fill='none' d='M7.1 7.1H57V57H7.1z' />
-      <path
-        d='M6.4 16.6H58M15.5 25.5h3v3h-3zm10 0h3v3h-3zm10 0h3v3h-3zm10 0h3v3h-3zm-30 10h3v3h-3zm10 0h3v3h-3zm10 0h3v3h-3zm10 0h3v3h-3zm-30 10h3v3h-3zm10 0h3v3h-3zm10 0h3v3h-3zm10 0h3v3h-3z' />
+      <path d='M6.4 16.6H58M15.5 25.5h3v3h-3zm10 0h3v3h-3zm10 0h3v3h-3zm10 0h3v3h-3zm-30 10h3v3h-3zm10 0h3v3h-3zm10 0h3v3h-3zm10 0h3v3h-3zm-30 10h3v3h-3zm10 0h3v3h-3zm10 0h3v3h-3zm10 0h3v3h-3z' />
     </svg>
-  )
+  );
 
   renderErrorContent = () => {
-    const {error} = this.props
+    const { error } = this.props
 
     if (!error) return null
 
@@ -172,7 +169,7 @@ class DatePicker extends React.Component {
         <div className={sparkBaseClassName('ErrorText')}>{error}</div>
       </React.Fragment>
     )
-  }
+  };
 
   renderExclamationSvg = () => (
     <svg
@@ -183,24 +180,14 @@ class DatePicker extends React.Component {
       xmlns='http://www.w3.org/2000/svg'
     >
       <g fillRule='evenodd' transform='translate(1 1)'>
-        <circle
-          className='exclamation-filled-circle'
-          cx='27'
-          cy='27'
-          r='27'
-        />
+        <circle className='exclamation-filled-circle' cx='27' cy='27' r='27' />
         <g transform='translate(26 13)'>
-          <circle
-            className='exclamation-filled-i-dot'
-            cx='1'
-            cy='27.5'
-            r='1'
-          />
+          <circle className='exclamation-filled-i-dot' cx='1' cy='27.5' r='1' />
           <path className='exclamation-filled-i-path' d='M0 0h2v22H0z' />
         </g>
       </g>
     </svg>
-  )
+  );
 
   render = () => {
     const {
@@ -217,7 +204,8 @@ class DatePicker extends React.Component {
       width,
       ...props
     } = this.props
-    const valueProp = this.props.value == null ? {} : {value: this.props.value}
+    const valueProp =
+      this.props.value == null ? {} : { value: this.props.value }
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
@@ -242,11 +230,9 @@ class DatePicker extends React.Component {
               {...props}
             />
             <div
-              className={sparkBaseClassName('InputContainer', 'input-border')} />
-            <label
-              className={sparkBaseClassName('Label')}
-              htmlFor={id}
-            >
+              className={sparkBaseClassName('InputContainer', 'input-border')}
+            />
+            <label className={sparkBaseClassName('Label')} htmlFor={id}>
               {label}
             </label>
           </div>
@@ -259,7 +245,7 @@ class DatePicker extends React.Component {
         </div>
       </div>
     )
-  }
+  };
 }
 
 export default DatePicker

@@ -10,7 +10,7 @@ class InputContainer extends React.Component {
   static defaultProps = {
     children: null,
     positionLabelUpper: false
-  }
+  };
 
   static propTypes = {
     children: PropTypes.node,
@@ -20,46 +20,41 @@ class InputContainer extends React.Component {
     id: PropTypes.string,
     label: PropTypes.string,
     positionLabelUpper: PropTypes.bool
-  }
+  };
 
   get className() {
-    const {className} = this.props
+    const { className } = this.props
 
-    return classNames(
-      sparkBaseClassName('InputContainer'),
-      {[className]: className}
-    )
+    return classNames(sparkBaseClassName('InputContainer'), {
+      [className]: className
+    })
   }
 
   renderErrorContent = () => {
-    const {error} = this.props
+    const { error } = this.props
 
     if (!error) return null
 
-    return (
-      <ErrorText>{error}</ErrorText>
-    )
-  }
+    return <ErrorText>{error}</ErrorText>
+  };
 
   renderHelperContent = () => {
-    const {helper} = this.props
+    const { helper } = this.props
 
     if (!helper) return null
 
-    return (
-      <HelperText>{helper}</HelperText>
-    )
-  }
+    return <HelperText>{helper}</HelperText>
+  };
 
   renderLabelContent = () => {
-    const {id, label} = this.props
+    const { id, label } = this.props
 
     return (
       <label htmlFor={id} className={sparkClassName('base', 'Label')}>
         {label}
       </label>
     )
-  }
+  };
 
   render = () => {
     const {
@@ -70,12 +65,13 @@ class InputContainer extends React.Component {
       label,
       id,
       positionLabelUpper,
+      inputRef,
       ...props
     } = this.props
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
-        <div className={this.className} {...props}>
+        <div className={this.className} ref={inputRef} {...props}>
           {positionLabelUpper && this.renderLabelContent()}
           {children}
           <div
@@ -92,7 +88,7 @@ class InputContainer extends React.Component {
         </div>
       </div>
     )
-  }
+  };
 }
 
 export default InputContainer

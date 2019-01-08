@@ -29,7 +29,7 @@ export default class App extends Component {
   render = () => {
     return (
       <Router>
-        <>
+        <div style={{ padding: '15px' }}>
           <h1>react-spark</h1>
           <SVG
             src='https://spark-assets.netlify.com/spark-core-icons.svg'
@@ -55,7 +55,7 @@ export default class App extends Component {
           <Route path='/tables' component={Tables} />
           <Route path='/toggles' component={Toggles} />
           <Route path='/typography' component={Typography} />
-        </>
+        </div>
       </Router>
     )
   };

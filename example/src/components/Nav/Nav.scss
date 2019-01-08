@@ -16,14 +16,12 @@
 
       > a {
         @extend .sprk-b-Link;
-        @extend .sprk-b-Link--standalone;
 
-        padding: $space-inset-xs;
+        padding: 15px;
 
         &.active {
           background-color: red;
-          box-shadow: $btn-shadow;
-          color: $white;
+          color: white;
         }
       }
     }

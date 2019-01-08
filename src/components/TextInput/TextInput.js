@@ -1,7 +1,7 @@
 import {
   bindUIEvents,
-  valueTest
-} from '@sparkdesignsystem/spark-core/base/textInput'
+  runValidation
+} from '@sparkdesignsystem/spark-core/base/requiredTextInput'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -17,9 +17,9 @@ class TextInput extends React.Component {
     helper: null,
     type: 'text',
     width: 100
-  }
+  };
 
-  inputRef = React.createRef()
+  inputRef = React.createRef();
 
   static propTypes = {
     disabled: PropTypes.bool,
@@ -29,12 +29,12 @@ class TextInput extends React.Component {
     label: PropTypes.string.isRequired,
     width: PropTypes.number,
     value: PropTypes.any
-  }
+  };
 
   componentDidMount = () => {
-    valueTest(this.inputRef.current)
+    runValidation(this.inputRef.current)
     bindUIEvents(this.inputRef.current)
-  }
+  };
 
   get className() {
     const { className, error, width, value, helper } = this.props
@@ -71,7 +71,13 @@ class TextInput extends React.Component {
     } = this.props
 
     return (
-      <InputContainer error={error} helper={helper} id={id} label={label}>
+      <InputContainer
+        error={error}
+        helper={helper}
+        id={id}
+        label={label}
+        inputRef={this.inputRef}
+      >
         <input
           className={this.className}
           disabled={disabled}
@@ -79,12 +85,11 @@ class TextInput extends React.Component {
           data-id={id}
           type={type}
           aria-describedby={`${id}--error-container`}
-          ref={this.inputRef}
           {...props}
         />
       </InputContainer>
     )
-  }
+  };
 }
 
 export default TextInput

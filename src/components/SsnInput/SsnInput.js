@@ -1,17 +1,16 @@
-import { formatSSN } from '@sparkdesignsystem/spark-core/base/ssnInput'
-import { bindUIEvents as bindTextInputUiEvents } from '@sparkdesignsystem/spark-core/base/textInput'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { formatSSN } from '@sparkdesignsystem/spark-core/base/ssnInput';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 import {
   setAndDispatchInput,
   sparkBaseClassName,
   sparkClassName
-} from '../../util'
+} from '../../util';
 
 export const ssnInputValidationRegex =
-  '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$'
+  '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$';
 class SsnInput extends React.Component {
   static defaultProps = {
     className: null,
@@ -23,9 +22,9 @@ class SsnInput extends React.Component {
     showSsnLabel: 'Show SSN',
     value: '',
     width: 100
-  }
+  };
 
-  inputRef = React.createRef()
+  inputRef = React.createRef();
 
   static propTypes = {
     className: PropTypes.string,
@@ -38,11 +37,11 @@ class SsnInput extends React.Component {
     showSsnLabel: PropTypes.string,
     value: PropTypes.string,
     width: PropTypes.number
-  }
+  };
 
   state = {
     showSsn: false
-  }
+  };
 
   get className() {
     const { className, error, width } = this.props
@@ -63,32 +62,30 @@ class SsnInput extends React.Component {
   componentDidMount = () => {
     const inputElement = this.inputRef.current
 
-    bindTextInputUiEvents(inputElement)
-
     // Add event listener if this component is uncontrolled
     if (this.props.value === '') {
       inputElement.addEventListener('input', this.handleInput)
     } else {
       this.maskValue()
     }
-  }
+  };
 
   componentDidUpdate = () => {
     const { value } = this.props
 
     // Mask value if this component is controlled
     if (value !== '' && value !== this.maskedValue) this.maskValue()
-  }
+  };
 
   handleChange = event => {
     event.target.value = event.target.value.replace(/-/g, '')
-    this.props.onChange(event)
-  }
+    this.props.onChange ? this.props.onChange(event) : null
+  };
 
   handleBlur = event => {
     event.target.value = event.target.value.replace(/-/g, '')
-    this.props.onBlur(event)
-  }
+    this.props.onBlur ? this.props.onBlur(event) : null
+  };
 
   handleInput = event => {
     const { value } = this.props
@@ -97,10 +94,10 @@ class SsnInput extends React.Component {
     if (value == null && event.target.value !== this.maskedValue) {
       this.maskValue()
     }
-  }
+  };
 
   handleShowSsnChange = event =>
-    this.setState({ showSsn: event.target.checked })
+    this.setState({ showSsn: event.target.checked });
 
   get maskedValue() {
     const { pattern, value } = this.props
@@ -122,7 +119,7 @@ class SsnInput extends React.Component {
    */
   maskValue = () => {
     setAndDispatchInput(this.inputRef.current, this.maskedValue)
-  }
+  };
 
   get selectionContainerClassName() {
     return [
@@ -149,7 +146,7 @@ class SsnInput extends React.Component {
         <div className={sparkBaseClassName('ErrorText')}>{error}</div>
       </React.Fragment>
     )
-  }
+  };
 
   render = () => {
     const {
@@ -170,7 +167,10 @@ class SsnInput extends React.Component {
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
-        <div className={sparkBaseClassName('InputContainer')}>
+        <div
+          className={sparkBaseClassName('InputContainer')}
+          ref={this.inputRef}
+        >
           <input
             aria-describedby={`${id}--error-container`}
             className={this.className}
@@ -178,7 +178,6 @@ class SsnInput extends React.Component {
             id={id}
             pattern={pattern}
             placeholder={placeholder}
-            ref={this.inputRef}
             type={showSsn ? 'text' : 'password'}
             {...valueProp}
             {...props}
@@ -215,7 +214,7 @@ class SsnInput extends React.Component {
         </div>
       </div>
     )
-  }
+  };
 }
 
 export default SsnInput
