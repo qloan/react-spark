@@ -1,9 +1,9 @@
-import passwordInput from '@sparkdesignsystem/spark-core/base/passwordInput'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-
-import { sparkBaseClassName, sparkClassName } from '../../util'
+import passwordInput from '@sparkdesignsystem/spark-core/base/passwordInput';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import InputContainer from './../InputContainer/InputContainer';
+import { sparkBaseClassName, sparkClassName } from '../../util';
 
 class PasswordInput extends React.Component {
   static defaultProps = {
@@ -14,7 +14,7 @@ class PasswordInput extends React.Component {
     onBlur: () => console.log('onBlur not implemented'),
     onChange: () => console.log('onChange not implemented'),
     pattern: /./,
-    showSsnLabel: 'Show Password',
+    showPasswordLabel: 'Show Password',
     value: '',
     width: 100
   };
@@ -29,13 +29,13 @@ class PasswordInput extends React.Component {
     onChange: PropTypes.func,
     pattern: PropTypes.string,
     placeholder: PropTypes.string,
-    showSsnLabel: PropTypes.string,
+    showPasswordLabel: PropTypes.string,
     value: PropTypes.string,
     width: PropTypes.number
   };
 
   state = {
-    showSsn: false
+    showPassword: false
   };
 
   get className() {
@@ -68,26 +68,6 @@ class PasswordInput extends React.Component {
     ].join(' ')
   }
 
-  get showSsnLabelClassName() {
-    return [
-      sparkBaseClassName('Label'),
-      sparkBaseClassName('Label', null, 'inline')
-    ].join(' ')
-  }
-
-  renderErrorContent = () => {
-    const { error } = this.props
-
-    if (!error) return null
-
-    return (
-      <React.Fragment>
-        {/* TODO: Render SVG */}
-        <div className={sparkBaseClassName('ErrorText')}>{error}</div>
-      </React.Fragment>
-    )
-  };
-
   render = () => {
     const {
       className,
@@ -97,60 +77,52 @@ class PasswordInput extends React.Component {
       label,
       pattern,
       placeholder,
-      showSsnLabel,
+      showPasswordLabel,
       value,
       width,
+      helper,
       ...props
     } = this.props
     const { showPassword } = this.state
     const valueProp = value == '' ? {} : { value }
 
     return (
-      <div className={sparkClassName('utility', 'JavaScript')}>
-        <div
-          className={sparkBaseClassName('InputContainer')}
-          data-sprk-input='password'
-        >
-          <label htmlFor={id} className={sparkBaseClassName('Label')}>
-            {label}
-          </label>
+      <InputContainer
+        error={error}
+        helper={helper}
+        id={id}
+        label={label}
+        inputRef={this.inputRef}
+        data-sprk-input='password'
+      >
+        <input
+          aria-describedby={`${id}--error-container`}
+          className={this.className}
+          disabled={disabled}
+          id={id}
+          pattern={pattern}
+          placeholder={placeholder}
+          type={showPassword ? 'text' : 'password'}
+          {...valueProp}
+          {...props}
+        />
+        <div className={sparkBaseClassName('InputContainer', 'input-border')} />
+        <div className={this.selectionContainerClassName}>
           <input
-            aria-describedby={`${id}--error-container`}
-            className={this.className}
+            checked={showPassword}
             disabled={disabled}
-            id={id}
-            pattern={pattern}
-            placeholder={placeholder}
-            type={showPassword ? 'text' : 'password'}
-            {...valueProp}
-            {...props}
+            id={`${id}-show-password`}
+            onChange={this.handleShowPasswordChange}
+            type='checkbox'
           />
-          <div
-            className={sparkBaseClassName('InputContainer', 'input-border')}
-          />
-          <div className={this.selectionContainerClassName}>
-            <input
-              checked={showPassword}
-              disabled={disabled}
-              id={`${id}-show-password`}
-              onChange={this.handleShowPasswordChange}
-              type='checkbox'
-            />
-            <label
-              className={this.showLabelClassName}
-              htmlFor={`${id}-show-password`}
-            >
-              {showSsnLabel}
-            </label>
-          </div>
-          <div
-            className={sparkBaseClassName('ErrorContainer')}
-            id={`${id}--error-container`}
+          <label
+            className={this.showLabelClassName}
+            htmlFor={`${id}-show-password`}
           >
-            {this.renderErrorContent()}
-          </div>
+            {showPasswordLabel}
+          </label>
         </div>
-      </div>
+      </InputContainer>
     )
   };
 }

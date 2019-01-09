@@ -5,12 +5,8 @@ import {
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-
-import {
-  setAndDispatchInput,
-  sparkBaseClassName,
-  sparkClassName
-} from '../../util'
+import InputContainer from './../InputContainer/InputContainer'
+import { sparkBaseClassName, sparkClassName } from '../../util'
 
 export const ssnInputValidationRegex =
   '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$'
@@ -65,19 +61,6 @@ class SsnInput extends React.Component {
   componentDidMount = () => {
     const inputElement = this.inputRef.current
     bindUIEvents(inputElement)
-    // Add event listener if this component is uncontrolled
-    if (this.props.value === '') {
-      inputElement.addEventListener('input', this.handleInput)
-    } else {
-      this.maskValue()
-    }
-  };
-
-  componentDidUpdate = () => {
-    const { value } = this.props
-
-    // Mask value if this component is controlled
-    if (value !== '' && value !== this.maskedValue) this.maskValue()
   };
 
   handleChange = event => {
@@ -91,15 +74,6 @@ class SsnInput extends React.Component {
     event.target.value = event.target.value.replace(/-/g, '')
     if (typeof this.props.onBlur === 'function') {
       this.props.onBlur(event)
-    }
-  };
-
-  handleInput = event => {
-    const { value } = this.props
-
-    // Mask value if this component is uncontrolled
-    if (value == null && event.target.value !== this.maskedValue) {
-      this.maskValue()
     }
   };
 
@@ -121,13 +95,6 @@ class SsnInput extends React.Component {
     }
   }
 
-  /**
-   * Set input value to masked value and fire input event
-   */
-  maskValue = () => {
-    setAndDispatchInput(this.inputRef.current, this.maskedValue)
-  };
-
   get selectionContainerClassName() {
     return [
       sparkBaseClassName('SelectionContainer'),
@@ -142,19 +109,6 @@ class SsnInput extends React.Component {
     ].join(' ')
   }
 
-  renderErrorContent = () => {
-    const { error } = this.props
-
-    if (!error) return null
-
-    return (
-      <React.Fragment>
-        {/* TODO: Render SVG */}
-        <div className={sparkBaseClassName('ErrorText')}>{error}</div>
-      </React.Fragment>
-    )
-  };
-
   render = () => {
     const {
       className,
@@ -167,59 +121,50 @@ class SsnInput extends React.Component {
       showSsnLabel,
       value,
       width,
+      helper,
       ...props
     } = this.props
     const { showSsn } = this.state
     const valueProp = value == null ? {} : { value: formatSSN(value) }
 
     return (
-      <div className={sparkClassName('utility', 'JavaScript')}>
-        <div
-          className={sparkBaseClassName('InputContainer')}
-          ref={this.inputRef}
-        >
+      <InputContainer
+        error={error}
+        helper={helper}
+        id={id}
+        label={label}
+        inputRef={this.inputRef}
+      >
+        <input
+          aria-describedby={`${id}--error-container`}
+          className={this.className}
+          disabled={disabled}
+          id={id}
+          pattern={pattern}
+          placeholder={placeholder}
+          type={showSsn ? 'text' : 'password'}
+          {...valueProp}
+          {...props}
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+        />
+        <div className={sparkBaseClassName('InputContainer', 'input-border')} />
+        <div className={this.selectionContainerClassName}>
           <input
-            aria-describedby={`${id}--error-container`}
-            className={this.className}
+            checked={showSsn}
             disabled={disabled}
-            id={id}
-            pattern={pattern}
-            placeholder={placeholder}
-            type={showSsn ? 'text' : 'password'}
-            {...valueProp}
-            {...props}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
+            id={`${id}-show-ssn`}
+            onChange={this.handleShowSsnChange}
+            type='checkbox'
           />
-          <div
-            className={sparkBaseClassName('InputContainer', 'input-border')}
-          />
-          <label htmlFor={id} className={sparkBaseClassName('Label')}>
-            {label}
-          </label>
-          <div className={this.selectionContainerClassName}>
-            <input
-              checked={showSsn}
-              disabled={disabled}
-              id={`${id}-show-ssn`}
-              onChange={this.handleShowSsnChange}
-              type='checkbox'
-            />
-            <label
-              className={this.showSsnLabelClassName}
-              htmlFor={`${id}-show-ssn`}
-            >
-              {showSsnLabel}
-            </label>
-          </div>
-          <div
-            className={sparkBaseClassName('ErrorContainer')}
-            id={`${id}--error-container`}
+          <label
+            className={this.showSsnLabelClassName}
+            htmlFor={`${id}-show-ssn`}
           >
-            {this.renderErrorContent()}
-          </div>
+            {showSsnLabel}
+          </label>
         </div>
-      </div>
+      </InputContainer>
     )
   };
 }
