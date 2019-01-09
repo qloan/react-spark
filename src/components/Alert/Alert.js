@@ -1,6 +1,8 @@
 import { alerts } from '@sparkdesignsystem/spark-core/components/alerts'
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
+
 import ALERT_VARIANTS from './variants'
 import { sparkComponentClassName } from '../../util'
 
@@ -21,14 +23,15 @@ class Alert extends React.Component {
   ref = React.createRef()
 
   get className() {
-    const { alertType } = this.props
-
+    const {alertType, className} = this.props
     const baseClass = sparkComponentClassName('Alert')
     const variantClass = sparkComponentClassName('Alert', null, alertType)
-    return [
+
+    return classnames(
       baseClass,
-      variantClass
-    ].join(' ')
+      variantClass,
+      {[className]: className}
+    )
   }
 
   componentDidMount = () => {
@@ -40,14 +43,18 @@ class Alert extends React.Component {
   }
 
   render = () => {
-    const { alertType, dismissible, idString, analyticsString, children, variant, ...rest } = this.props
+    const {
+      alertType,
+      analyticsString,
+      children,
+      className,
+      dismissible,
+      idString,
+      variant,
+      ...rest
+    } = this.props
 
-    return <div
-      className={this.className}
-      {...rest}
-    >
-      {children}
-    </div>
+    return <div className={this.className} {...rest}>{children}</div>
   }
 }
 

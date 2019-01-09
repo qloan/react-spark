@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -17,16 +18,19 @@ class Card extends React.Component {
   }
 
   get className() {
-    return [
+    const {className} = this.props
+
+    return classnames(
       sparkComponentClassName('Card'),
-      sparkObjectClassName('Stack')
-    ].join(' ')
+      sparkObjectClassName('Stack'),
+      {[className]: className}
+    )
   }
 
   render = () => {
-    const {children} = this.props
+    const {children, className, ...props} = this.props
 
-    return <div className={this.className}>{children}</div>
+    return <div className={this.className} {...props}>{children}</div>
   }
 }
 

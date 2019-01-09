@@ -8,8 +8,8 @@ const Grid = () => (
     <h2>Grid</h2>
 
     <p>Stack:</p>
-    <Stack>
-      <Stack.Item />
+    <Stack className='extra-class' data-extra-attribute>
+      <Stack.Item className='extra-class' data-extra-attribute />
       <Stack.Item />
     </Stack>
 

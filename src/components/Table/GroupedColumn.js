@@ -1,7 +1,8 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import { sparkClassName } from '../../util'
+import { sparkBaseClassName } from '../../util'
 
 class GroupedColumn extends React.Component {
   static defaultProps = {
@@ -12,12 +13,19 @@ class GroupedColumn extends React.Component {
     children: PropTypes.node
   }
 
+  get className() {
+    const {className} = this.props
+
+    return classnames(
+      sparkBaseClassName('Table', null, 'grouped-column'),
+      {[className]: className}
+    )
+  }
+
   render = () => {
-    const {children} = this.props
+    const {children, className, ...props} = this.props
 
-    const className = sparkClassName('base', 'Table', null, 'grouped-column')
-
-    return (<th className={className}>{children}</th>)
+    return <th className={this.className} {...props}>{children}</th>
   }
 }
 

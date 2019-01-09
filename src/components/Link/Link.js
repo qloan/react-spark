@@ -1,59 +1,45 @@
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import LINK_VARIANTS from './variants'
-import { sparkClassName } from '../../util'
+import LINK_VARIANTS from './variants';
+import { sparkBaseClassName } from '../../util';
 
 class Link extends React.Component {
   static defaultProps = {
     children: null,
     disabled: false,
-    standalone: false,
     variant: LINK_VARIANTS.INLINE
-  }
+  };
 
   static propTypes = {
     children: PropTypes.node,
     disabled: PropTypes.bool,
-    standalone: PropTypes.bool,
     variant: PropTypes.oneOf(Object.values(LINK_VARIANTS))
-  }
+  };
 
   get className() {
-    const {disabled, variant} = this.props
+    const { className, disabled, variant } = this.props
 
-    const baseClass = sparkClassName('base', 'Link')
-    const disabledClass = sparkClassName('base', 'Link', null, 'disabled')
-    const variantClass = sparkClassName('base', 'Link', null, variant)
+    const disabledClass = sparkBaseClassName('Link', null, 'disabled')
+    const variantClass = sparkBaseClassName('Link', null, variant)
 
-    return classNames(
-      baseClass,
-      {
-        [disabledClass]: disabled,
-        [variantClass]: variant !== LINK_VARIANTS.INLINE
-      }
-    )
+    return classNames(sparkBaseClassName('Link'), {
+      [disabledClass]: disabled,
+      [variantClass]: variant !== LINK_VARIANTS.INLINE,
+      [className]: className
+    })
   }
 
   render = () => {
-    const {
-      children,
-      disabled,
-      standalone,
-      variant,
-      ...rest
-    } = this.props
+    const { children, className, disabled, variant, ...props } = this.props
 
     return (
-      <a
-        className={this.className}
-        {...rest}
-      >
+      <a className={this.className} {...props}>
         {children}
       </a>
     )
-  }
+  };
 }
 
 export default Link

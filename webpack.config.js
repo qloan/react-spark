@@ -41,7 +41,10 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: [/node_modules\/(?!(@sparkdesignsystem)\/).*/, /dist/],
+        include: [
+          path.resolve(__dirname, 'src'),
+          path.resolve(__dirname, 'node_modules/@sparkdesignsystem')
+        ],
         use: ['babel-loader']
       }
     ]

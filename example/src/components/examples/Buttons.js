@@ -8,13 +8,16 @@ class Buttons extends React.Component {
     <h2>Buttons</h2>
 
     <p>Default:</p>
-    <Button>Default</Button>
+    <Button className='extra-class' data-extra-attribute>Default</Button>
+
+    <p>Default with href:</p>
+    <Button href='#'>Default</Button>
 
     <p>Secondary:</p>
-    <Button variant={'secondary'}>Secondary</Button>
+    <Button variant='secondary'>Secondary</Button>
 
     <p>Secondary:</p>
-    <Button variant={'tertiary'}>Tertiary</Button>
+    <Button variant='tertiary'>Tertiary</Button>
 
     <p>Disabled:</p>
     <Button disabled>Disabled</Button>

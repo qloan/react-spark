@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types'
-import React from 'react'
+import React, { Fragment } from 'react'
 
+import Icon from '../Icon'
 import { sparkBaseClassName } from '../../util'
 
 class ErrorText extends React.Component {
@@ -13,12 +14,13 @@ class ErrorText extends React.Component {
   }
 
   render = () => {
-    const {children} = this.props
+    const { children } = this.props
 
     return (
-      <div className={sparkBaseClassName('ErrorText')}>
-        {children}
-      </div>
+      <Fragment>
+        <Icon name='exclamation-filled-circle' select />
+        <div className={sparkBaseClassName('ErrorText')}>{children}</div>
+      </Fragment>
     )
   }
 }

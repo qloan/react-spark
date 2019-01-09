@@ -1,3 +1,4 @@
+import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -12,11 +13,20 @@ class CenteredColumn extends React.Component {
     children: PropTypes.node
   }
 
+  get className() {
+    const {className} = this.props
+
+    return classnames(
+      sparkObjectClassName('CenteredColumn'),
+      {[className]: className}
+    )
+  }
+
   render = () => {
-    const {children} = this.props
+    const {children, className, ...props} = this.props
 
     return (
-      <div className={sparkObjectClassName('CenteredColumn')}>
+      <div className={this.className} {...props}>
         {children}
       </div>
     )

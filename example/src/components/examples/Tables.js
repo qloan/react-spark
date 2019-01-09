@@ -2,8 +2,10 @@ import React from 'react'
 import { Button, Table } from 'react-spark'
 
 const Tables = () => (<>
+  <h1>Tables</h1>
+
   <p>Standard</p>
-  <Table>
+  <Table className='extra-class' data-extra-attribute>
     <thead>
       <tr>
         <th>Column Heading</th>
@@ -110,7 +112,9 @@ const Tables = () => (<>
         <th rowSpan='2'>Column Heading</th>
       </tr>
       <tr>
-        <Table.GroupedColumn>SubHeading</Table.GroupedColumn>
+        <Table.GroupedColumn className='extra-class' data-extra-attribute>
+          SubHeading
+        </Table.GroupedColumn>
         <Table.GroupedColumn>SubHeading</Table.GroupedColumn>
         <Table.GroupedColumn>SubHeading</Table.GroupedColumn>
       </tr>
@@ -151,7 +155,7 @@ const Tables = () => (<>
   <Table variant='row-comparison'>
     <thead>
       <tr>
-        <Table.Th empty />
+        <Table.Th className='extra-class' data-extra-attribute empty />
         <th>Column Heading</th>
         <th>Column Heading</th>
         <th>Column Heading</th>

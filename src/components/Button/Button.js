@@ -1,8 +1,8 @@
-import classNames from 'classnames'
 import {
   setSpinning,
   cancelSpinning
-} from '@sparkdesignsystem/spark-core/es5/spinners'
+} from '@sparkdesignsystem/spark-core/components/spinners'
+import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
@@ -13,6 +13,7 @@ class Button extends React.Component {
   static defaultProps = {
     disabled: false,
     fullWidthAtSmallViewport: false,
+    href: null,
     spinner: false,
     variant: 'primary'
   }
@@ -21,6 +22,7 @@ class Button extends React.Component {
     children: PropTypes.node.isRequired,
     disabled: PropTypes.bool,
     fullWidthAtSmallViewport: PropTypes.bool,
+    href: PropTypes.string,
     spinner: PropTypes.bool,
     variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS))
   }
@@ -28,22 +30,19 @@ class Button extends React.Component {
   ref = React.createRef()
 
   get className() {
-    const { disabled, fullWidthAtSmallViewport, variant } = this.props
+    const {className, disabled, fullWidthAtSmallViewport, variant} = this.props
 
     const baseClass = sparkComponentClassName('Button')
     const variantClass = sparkComponentClassName('Button', null, variant)
     const disabledClass = sparkClassName('is', 'Disabled')
-    const fullWidthAtSmallViewportClass = sparkComponentClassName(
-      'Button',
-      null,
-      'full',
-      'sm'
-    )
+    const fullWidthAtSmallViewportClass =
+      sparkComponentClassName('Button', null, 'full', 'sm')
 
     return classNames(baseClass, {
       [variantClass]: variant !== BUTTON_VARIANTS.PRIMARY,
       [disabledClass]: disabled,
-      [fullWidthAtSmallViewportClass]: fullWidthAtSmallViewport
+      [fullWidthAtSmallViewportClass]: fullWidthAtSmallViewport,
+      [className]: className
     })
   }
 
@@ -54,7 +53,8 @@ class Button extends React.Component {
   }
 
   componentDidUpdate = prevProps => {
-    const { props, ref } = this
+    const {props, ref} = this
+
     if (prevProps.spinner !== props.spinner) {
       if (props.spinner) {
         setSpinning(ref.current, {})
@@ -67,21 +67,32 @@ class Button extends React.Component {
   render = () => {
     const {
       children,
+      className,
       disabled,
       fullWidthAtSmallViewport,
+      href,
       spinner,
+      variant,
       ...rest
     } = this.props
-    return (
-      <button
-        className={this.className}
-        disabled={disabled}
-        ref={this.ref}
-        {...rest}
-      >
-        {children}
-      </button>
-    )
+
+    let Element
+
+    let props = {
+      className: this.className,
+      disabled: disabled,
+      ref: this.ref,
+      ...rest
+    }
+
+    if (href) {
+      Element = 'a'
+      props.href = href
+    } else {
+      Element = 'button'
+    }
+
+    return <Element {...props}>{children}</Element>
   }
 }
 

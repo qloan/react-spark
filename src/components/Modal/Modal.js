@@ -1,35 +1,41 @@
-import React, { Component, Fragment } from 'react'
-import MODAL_VARIANTS from './variants'
-import PropTypes from 'prop-types'
-import classNames from 'classnames'
 import {
-  modals,
   showModal,
   hideModal
-} from '@sparkdesignsystem/spark-core/components/modals'
-import { sparkComponentClassName } from '../../util'
-import sparkClassName from '../../util/sparkClassName'
-import ModalHeader from './ModalHeader'
-import ModalBody from './ModalBody'
-import ModalFooter from './ModalFooter'
+} from "@sparkdesignsystem/spark-core/components/modals";
+import classnames from "classnames";
+import PropTypes from "prop-types";
+import React, { Component } from "react";
+
+import { sparkClassName, sparkComponentClassName } from "../../util";
+import MODAL_VARIANTS from "./variants";
+import ModalBody from "./ModalBody";
+import ModalFooter from "./ModalFooter";
+import ModalHeader from "./ModalHeader";
+import ModalMask from "./ModalMask";
+import Spinner from "../Spinner";
+import Stack from "../Stack";
 
 class Modal extends Component {
   static defaultProps = {
-    type: MODAL_VARIANTS.CHOICE,
-    variant: 'wait'
+    hasCloseButton: true
   };
-
   static propTypes = {
-    type: PropTypes.oneOf(Object.values(MODAL_VARIANTS)),
-    confirmText: PropTypes.string,
+    ariaDescribedby: PropTypes.string,
+    ariaLabelledby: PropTypes.string,
     cancelText: PropTypes.string,
+    children: PropTypes.node,
     confirmAnalyticsString: PropTypes.string,
+    confirmText: PropTypes.string,
+    dataId: PropTypes.string,
+    hasCloseButton: PropTypes.bool,
+    id: PropTypes.string.isRequired,
     idString: PropTypes.string,
-    onHide: PropTypes.func,
-    confirmClick: PropTypes.func,
-    cancelClick: PropTypes.func,
+    onCancel: PropTypes.func,
+    onClose: PropTypes.func,
+    onConfirm: PropTypes.func,
     show: PropTypes.bool.isRequired,
-    children: PropTypes.node
+    title: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(Object.values(MODAL_VARIANTS)).isRequired
   };
 
   mainRef = React.createRef();
@@ -37,203 +43,124 @@ class Modal extends Component {
   modalRef = React.createRef();
 
   get className() {
-    const { variant } = this.props
-    const baseClass =
-      sparkComponentClassName('Modal') + ' ' +
-      sparkClassName('utility', 'Display', null, 'none')
+    const { className, type } = this.props;
+    return classnames(
+      sparkComponentClassName("Modal"),
+      sparkClassName("utility", "Display", null, "none"),
+      sparkComponentClassName("Modal", null, type),
+      { [className]: className }
+    );
+  }
 
-    const variantClass = sparkComponentClassName('Modal') + ' ' +
-      sparkClassName('component', 'Modal', null, variant) + ' ' +
-      sparkClassName('utility', 'Display', null, 'none')
+  hide() {
+    hideModal(
+      this.modalRef.current,
+      this.maskRef.current,
+      this.mainRef.current
+    );
+  }
 
-    // return [
-    //   baseClass
-    //   // variantClass
-    // ].join(' ')
+  show() {
+    showModal(
+      this.modalRef.current,
+      this.maskRef.current,
+      this.mainRef.current
+    );
+  }
 
-    return classNames(baseClass, {
-      [variantClass]: variant !== MODAL_VARIANTS.CHOICE
-    })
+  toggle() {
+    const { show } = this.props;
+    if (show) {
+      this.show();
+    } else {
+      this.hide();
+    }
   }
 
   componentDidMount = () => {
-    const { show } = this.props
-
-    if (show) {
-      showModal(
-        this.modalRef.current,
-        this.maskRef.current,
-        this.mainRef.current
-      )
-    } else {
-      hideModal(
-        this.modalRef.current,
-        this.maskRef.current,
-        this.mainRef.current
-      )
-    }
+    this.toggle();
   };
 
   componentDidUpdate = prevProps => {
-    const { show } = this.props
+    const { show } = this.props;
     if (prevProps.show !== show) {
-      if (show) {
-        showModal(
-          this.modalRef.current,
-          this.maskRef.current,
-          this.mainRef.current
-        )
-      } else {
-        hideModal(
-          this.modalRef.current,
-          this.maskRef.current,
-          this.mainRef.current
-        )
-      }
+      this.toggle();
     }
   };
 
-  modalChoiceLogic = () => {
-
+  componentWillUnmount = () => {
+    this.hide();
   }
 
   render = () => {
     const {
-      type,
-      confirmText,
+      ariaDescribedby,
+      ariaLabelledby,
       cancelText,
-      confirmAnalyticsString,
-      idString,
-      onHide,
-      confirmClick,
-      cancelClick,
       children,
-      variant,
-      body,
-      footer,
-      ...rest
-    } = this.props
-
-    if (type === MODAL_VARIANTS.CHOICE) {
-      console.log('CHOICE')
-    } else if (type === MODAL_VARIANTS.INFO) {
-      console.log('INFO')
-    } else if (type === MODAL_VARIANTS.WAIT) {
-      console.log('WAIT')
-    }
-
+      confirmAnalyticsString,
+      confirmText,
+      dataId,
+      hasCloseButton,
+      id,
+      idString,
+      onCancel,
+      onClose,
+      onConfirm,
+      show,
+      title,
+      type,
+      ...props
+    } = this.props;
+    
     return (
-    // <div ref={this.mainRef}>
-    //   <div className={this.className}
-    //     {...rest}
-    //     ref={this.modalRef}
-    //     role='dialog'
-    //     tabIndex='-1'
-    //     aria-labelledby='modalChoiceHeading'
-    //     aria-modal='true'
-    //     aria-describedby='modalChoiceContent'
-    //     data-sprk-modal='exampleChoiceModal'
-    //     data-id='modal-choice-1'
-    //   >
-    //     <div className='sprk-o-Stack sprk-o-Stack--large'>
-    //       <ModalHeader close={() => hideModal(
-    //         this.modalRef.current,
-    //         this.maskRef.current,
-    //         this.mainRef.current
-    //       )} />
-    //       {children}
-    //       <ModalBody>{body}</ModalBody>
-    //       <ModalFooter close={() => hideModal(
-    //         this.modalRef.current,
-    //         this.maskRef.current,
-    //         this.mainRef.current
-    //       )}>{footer}</ModalFooter>
-    //     </div>
-    //   </div>
-    //   <div
-    //     data-sprk-modal-mask='true'
-    //     className='sprk-c-ModalMask sprk-u-Display--none'
-    //     tabIndex='-1'
-    //     ref={this.maskRef}
-    //   />
-    // </div>
-
-      <div ref={this.mainRef}>
+      //  This needs to be fixed, their method looks for this attribute and sets focus to it
+      <div ref={this.mainRef} className={sparkClassName("utility", "JavaScript")}>
+        <div data-sprk-modal-trigger={id} />{" "}
         <div
+          aria-describedby={ariaDescribedby}
+          aria-labelledby={ariaLabelledby}
+          aria-modal="true"
           className={this.className}
-          {...rest}
+          data-id={dataId}
+          data-sprk-modal-type={type}
+          data-sprk-modal={id}
           ref={this.modalRef}
-          role='dialog'
-          tabIndex='-1'
-          aria-labelledby='modalInfoHeading'
-          aria-modal='true'
-          aria-describedby='modalInfoContent'
-          data-sprk-modal='exampleInfoModal'
-          data-id='modal-info-1'
+          role="dialog"
+          tabIndex="-1"
+          {...props}
         >
-          <div className='sprk-o-Stack sprk-o-Stack--large'>
-            <ModalHeader close={() => hideModal(
-              this.modalRef.current,
-              this.maskRef.current,
-              this.mainRef.current
-            )} />
-            {children}
-            <ModalBody>{body}</ModalBody>
-          </div>
+          <Stack itemSpacing={"large"}>
+            <ModalHeader
+              hasCloseButton={
+                type !== MODAL_VARIANTS.WAIT ? hasCloseButton : false
+              }
+              onClose={onClose}
+              title={title}
+            />
+            <ModalBody>
+              {type === MODAL_VARIANTS.WAIT && <Spinner />}
+              {children}
+            </ModalBody>
+            {type === MODAL_VARIANTS.CHOICE && (
+              <ModalFooter
+                cancelText={cancelText}
+                confirmText={confirmText}
+                modalId={id}
+                onCancel={onCancel}
+                onConfirm={onConfirm}
+              />
+            )}
+          </Stack>
         </div>
-        <div
-          data-sprk-modal-mask='true'
-          className='sprk-c-ModalMask sprk-u-Display--none'
-          tabIndex='-1'
-          ref={this.maskRef}
+        <ModalMask
+          className={sparkClassName("utility", "Display", null, "none")}
+          maskRef={this.maskRef}
+          closeOnClick={type !== MODAL_VARIANTS.WAIT}
+          onClose={onClose}
         />
       </div>
-
-    // <div ref={this.mainRef}>
-    //   <div
-    //     className={this.className}
-    //     {...rest}
-    //     ref={this.modalRef}
-    //     // className='sprk-c-Modal sprk-c-Modal--wait sprk-u-Display--none'
-    //     role='dialog'
-    //     tabIndex='-1'
-    //     aria-labelledby='modalWaitHeading'
-    //     aria-modal='true'
-    //     aria-describedby='modalWaitContent'
-    //     data-sprk-modal='exampleWaitModal'
-    //     data-sprk-modal-type='wait'
-    //     data-id='modal-wait-1'
-    //   >
-    //     <div className='sprk-o-Stack sprk-o-Stack--large'>
-    //       <ModalHeader close={() => hideModal(
-    //         this.modalRef.current,
-    //         this.maskRef.current,
-    //         this.mainRef.current
-    //       )} />
-    //       <div className='sprk-o-Stack__item sprk-c-Modal__header'>
-    //         <h2 className='sprk-c-Modal__heading sprk-b-TypeDisplayFive' id='modalWaitHeading'>
-    //         Please Wait...
-    //         </h2>
-    //       </div>
-    //       {children}
-    //       {/* <ModalBody>{body}</ModalBody> */}
-    //       <div className='sprk-o-Stack__item sprk-c-Modal__body sprk-o-Stack sprk-o-Stack--medium'>
-    //         <div className='sprk-o-Stack__item sprk-c-Spinner sprk-c-Spinner--circle sprk-c-Spinner--large sprk-c-Spinner--dark' />
-    //         <p className='sprk-o-Stack__item sprk-b-TypeBodyTwo' id='modalWaitContent'>
-    //         This modal will close shortly for demonstration purposes.
-    //         </p>
-    //       </div>
-    //     </div>
-    //   </div>
-    //   <div
-    //     data-sprk-modal-mask='true'
-    //     className='sprk-c-ModalMask sprk-u-Display--none'
-    //     tabIndex='-1'
-    //     ref={this.maskRef}
-    //   />
-    // </div>
-    )
+    );
   };
 }
-
-export default Modal
+export default Modal;

@@ -1,6 +1,11 @@
-nav {
+@import '~@sparkdesignsystem/spark-core/settings/colors';
+@import '~@sparkdesignsystem/spark-core/settings/settings';
+@import '~@sparkdesignsystem/spark-core/base/links';
+
+.ReactSparkExample-Nav {
   > ul {
     display: flex;
+    flex-wrap: wrap;
 
     > li {
       list-style: none;
@@ -10,8 +15,13 @@ nav {
       }
 
       > a {
+        @extend .sprk-b-Link;
+
+        padding: 15px;
+
         &.active {
-          font-weight: bold;
+          background-color: red;
+          color: white;
         }
       }
     }

@@ -1,19 +1,20 @@
-import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/selectInput'
+import { requiredSelect } from '@sparkdesignsystem/spark-core/base/requiredSelect'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import { sparkClassName, sparkWidthClassName } from '../../util'
 import InputContainer from './../InputContainer/InputContainer'
+import Icon from './../Icon'
 
 class Select extends React.Component {
   static defaultProps = {
     disabled: false,
     error: null,
     width: 100
-  }
+  };
 
-  selectRef = React.createRef()
+  selectRef = React.createRef();
 
   static propTypes = {
     disabled: PropTypes.bool,
@@ -23,14 +24,14 @@ class Select extends React.Component {
     name: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.object),
     width: PropTypes.number
-  }
+  };
 
   componentDidMount = () => {
-    bindUIEvents(this.selectRef.current)
-  }
+    requiredSelect()
+  };
 
   get className() {
-    const { error, width } = this.props
+    const { className, error, width } = this.props
 
     const baseClass = sparkClassName('base', 'Select')
     const errorClass = sparkClassName('base', 'TextInput', null, 'error')
@@ -38,15 +39,30 @@ class Select extends React.Component {
 
     return classNames(baseClass, {
       [errorClass]: error,
-      [widthClass]: width
+      [widthClass]: width,
+      [className]: className
     })
   }
 
   render = () => {
-    const { disabled, error, id, label, name, options, ...rest } = this.props
+    const {
+      className,
+      disabled,
+      error,
+      id,
+      label,
+      name,
+      options,
+      ...props
+    } = this.props
 
     return (
-      <InputContainer error={error} id={id} label={label}>
+      <InputContainer
+        error={error}
+        id={id}
+        label={label}
+        inputRef={this.selectRef}
+      >
         <select
           aria-describedby={`${id}--error-container`}
           className={this.className}
@@ -55,31 +71,18 @@ class Select extends React.Component {
           disabled={disabled}
           id={id}
           name={name}
-          ref={this.selectRef}
-          {...rest}
+          {...props}
         >
-          {options.map(
-            ({ disabled = false, value, selected = false, text }) => (
-              <option disabled={disabled} value={value} selected={selected}>
-                {text}
-              </option>
-            )
-          )}
+          {options.map(({ disabled = false, value, text }, index) => (
+            <option disabled={disabled} value={value} key={index}>
+              {text}
+            </option>
+          ))}
         </select>
-        {/* todo: create svg component */}
-        <svg
-          className={
-            sparkClassName('component', 'Icon') +
-            ' ' +
-            sparkClassName('base', 'SelectContainer', 'icon')
-          }
-          viewBox='0 0 64 64'
-        >
-          <use xlinkHref='#chevron-down' />
-        </svg>
+        <Icon name='chevron-down' select color='base' size={Icon.size.L} />
       </InputContainer>
     )
-  }
+  };
 }
 
 export default Select

@@ -11,11 +11,11 @@ class Checkbox extends React.Component {
   }
 
   static propTypes = {
-    containerId: PropTypes.string.isRequired,
     checked: PropTypes.bool,
     disabled: PropTypes.bool,
     id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired
+    label: PropTypes.string.isRequired,
+    name: PropTypes.string
   }
 
   get labelClassName() {
@@ -26,17 +26,28 @@ class Checkbox extends React.Component {
   }
 
   render = () => {
-    const { containerId, checked, disabled, id, label, ...rest } = this.props
+    const {
+      containerId,
+      checked,
+      disabled,
+      id,
+      label,
+      name,
+      value,
+      ...rest
+    } = this.props
 
     return (
       <SelectionContainer label={label}>
         <input
-          aria-describedby={`${containerId}--error-container`}
+          aria-describedby={`${id}--error-container`}
           checked={checked}
           data-id={id}
           disabled={disabled}
           id={id}
+          name={name}
           type='checkbox'
+          value={value}
           {...rest}
         />
         <label className={this.labelClassName} htmlFor={id}>

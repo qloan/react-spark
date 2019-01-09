@@ -5,8 +5,10 @@ const Dictionaries = () => (<>
   <h2>Dictionaries</h2>
 
   <p>Standard</p>
-  <Dictionary>
+  <Dictionary className='extra-class' data-extra-attribute>
     <Dictionary.Item
+      className='extra-class'
+      data-extra-attribute
       itemKey={'Email Address'}
       itemValue={'sparkdesignsystem@quickenloans.com'}
     />

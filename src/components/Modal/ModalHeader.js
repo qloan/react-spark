@@ -1,44 +1,50 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { sparkComponentClassName } from '../../util'
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
+import { sparkComponentClassName, sparkObjectClassName } from "../../util";
+import ModalHeading from "./ModalHeading";
+import Icon from "../Icon";
 
 class ModalHeader extends React.Component {
-  static defaultProps = {};
+  static defaultProps = {
+    onClose: () => {
+      console.log("closed");
+    }
+  };
 
   static propTypes = {
-    close: PropTypes.func
+    onClose: PropTypes.func,
+    id: PropTypes.string,
+    title: PropTypes.string,
+    hasCloseButton: PropTypes.bool
   };
 
   get className() {
-    const baseClass = sparkComponentClassName('Modal', 'header')
+    const baseClass = sparkComponentClassName("Modal", "header");
+    const stackItemClass = sparkObjectClassName("Stack", "item");
 
-    return [baseClass].join('')
+    return classNames(baseClass, stackItemClass);
   }
 
   render = () => {
-    const { close } = this.props
+    const { onClose, id, title, hasCloseButton } = this.props;
     return (
-      <div className={this.className}>
-        {/* //todo: use react spark button/ */}
-        <button
-          className='sprk-c-Modal__icon'
-          data-sprk-modal-cancel='exampleChoiceModal'
-          aria-label='Close Modal'
-          onClick={() => close()}
-        >
-          Close
-          <svg
-            className='sprk-c-Icon sprk-c-Icon--l sprk-c-Icon--current-color'
-            viewBox='0 0 64 64'
-            aria-hidden='true'
-            focusable='false'
+      <header className={this.className}>
+        <ModalHeading id={id}>{title}</ModalHeading>
+        {hasCloseButton && (
+          <button
+            onClick={onClose}
+            className="sprk-c-Modal__icon"
+            data-sprk-modal-cancel={id}
+            type="button"
+            aria-label="Close Modal"
           >
-            <use xlinkHref='#close-circle' />
-          </svg>
-        </button>
-      </div>
-    )
+            <Icon name="close-circle" size={Icon.size.L} />
+          </button>
+        )}
+      </header>
+    );
   };
 }
 
-export default ModalHeader
+export default ModalHeader;

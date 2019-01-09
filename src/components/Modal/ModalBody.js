@@ -1,27 +1,26 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { sparkComponentClassName } from '../../util'
+import classNames from 'classnames'
+import { sparkComponentClassName, sparkObjectClassName } from '../../util'
 
 class ModalBody extends React.Component {
-  static defaultProps = {
-  }
+  static defaultProps = {};
 
   static propTypes = {
-  }
+    children: PropTypes.node
+  };
 
-  get className () {
+  get className() {
     const baseClass = sparkComponentClassName('Modal', 'body')
-
-    return [
-      baseClass
-    ].join(' ')
+    const stackClass = sparkObjectClassName('Stack')
+    const stackItemClass = sparkObjectClassName('Stack', 'item')
+    return classNames(baseClass, stackClass, stackItemClass)
   }
 
   render = () => {
-    return (
-      <div className={this.className} />
-    )
-  }
+    const { children } = this.props
+    return <div className={this.className}>{children}</div>
+  };
 }
 
 export default ModalBody

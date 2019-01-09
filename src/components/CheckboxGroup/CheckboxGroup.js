@@ -7,25 +7,33 @@ import Fieldset from '../Fieldset'
 import Label from '../Label'
 import Legend from '../Legend'
 import InputContainer from '../InputContainer'
-import SelectionContainer from '../SelectionContainer'
 
 import { sparkBaseClassName } from '../../util'
 
 class CheckboxGroup extends React.Component {
   static defaultProps = {
     disabled: false,
-    error: null
+    error: null,
+    onChange: () => {
+      console.log('onChange not implemented')
+    },
+    value: []
   }
 
   static propTypes = {
-    checkboxes: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired
-    })).isRequired,
+    checkboxes: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.string,
+        label: PropTypes.string.isRequired,
+        value: PropTypes.any
+      })
+    ).isRequired,
     disabled: PropTypes.bool,
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired
+    label: PropTypes.string.isRequired,
+    onChange: PropTypes.func,
+    value: PropTypes.arrayOf(PropTypes.any).isRequired
   }
 
   get labelClassName() {
@@ -36,7 +44,7 @@ class CheckboxGroup extends React.Component {
   }
 
   renderErrorContent = () => {
-    const {error} = this.props
+    const { error } = this.props
 
     if (!error) return null
 
@@ -47,32 +55,38 @@ class CheckboxGroup extends React.Component {
   }
 
   render = () => {
-    const {checkboxes, disabled, id, label} = this.props
+    const {
+      checkboxes,
+      className,
+      disabled,
+      id,
+      label,
+      onChange,
+      name,
+      value,
+      ...props
+    } = this.props
 
     return (
-      <InputContainer>
+      <InputContainer className={className} {...props}>
         <Fieldset>
           <Legend>
             <Label>{label}</Label>
           </Legend>
-          <SelectionContainer>
-            {checkboxes.map(checkbox => (
-              <Checkbox
-                containerId={id}
-                disabled={disabled}
-                id={checkbox.id}
-                key={checkbox.id}
-                label={checkbox.label}
-              />
-            ))}
-          </SelectionContainer>
+          {checkboxes.map(checkbox => (
+            <Checkbox
+              checked={value.indexOf(checkbox.value) !== -1}
+              containerId={id}
+              disabled={disabled || checkbox.disabled}
+              id={checkbox.id}
+              key={checkbox.id}
+              label={checkbox.label}
+              name={name}
+              onChange={onChange}
+              value={checkbox.value || ''}
+            />
+          ))}
         </Fieldset>
-        <div
-          className={sparkBaseClassName('ErrorContainer')}
-          id={`${id}--error-container`}
-        >
-          {this.renderErrorContent()}
-        </div>
       </InputContainer>
     )
   }
