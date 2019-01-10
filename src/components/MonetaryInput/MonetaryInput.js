@@ -1,12 +1,12 @@
 import {
   bindUIEvents,
   formatMonetary
-} from '@sparkdesignsystem/spark-core/base/monetaryInput'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import InputContainer from './../InputContainer/InputContainer'
-import { sparkBaseClassName, sparkClassName } from '../../util'
+} from '@sparkdesignsystem/spark-core/base/monetaryInput';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import InputContainer from './../InputContainer/InputContainer';
+import { sparkBaseClassName, sparkClassName } from '../../util';
 
 class MonetaryInput extends React.Component {
   static defaultProps = {
@@ -151,14 +151,15 @@ class MonetaryInput extends React.Component {
         error={error}
         helper={helper}
         id={id}
-        label={label}
         inputRef={this.inputRef}
         data-sprk-input='monetary'
       >
         <div className={this.iconContainerClassName} ref={this.inputRef}>
-          <label className={this.labelClassName} htmlFor={id}>
-            {label}
-          </label>
+          {label && (
+            <label className={this.labelClassName} htmlFor={id}>
+              {label}
+            </label>
+          )}
           <input
             aria-describedby={`${id}--error-container`}
             className={this.className}
