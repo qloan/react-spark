@@ -36,7 +36,7 @@ class Button extends React.Component {
     const variantClass = sparkComponentClassName('Button', null, variant)
     const disabledClass = sparkClassName('is', 'Disabled')
     const fullWidthAtSmallViewportClass =
-      sparkComponentClassName('Button', null, 'full', 'sm')
+      sparkComponentClassName('Button', null, 'full', 'xs')
 
     return classNames(baseClass, {
       [variantClass]: variant !== BUTTON_VARIANTS.PRIMARY,
