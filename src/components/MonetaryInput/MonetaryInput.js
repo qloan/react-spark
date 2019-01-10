@@ -5,12 +5,8 @@ import {
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-
-import {
-  setAndDispatchInput,
-  sparkBaseClassName,
-  sparkClassName
-} from '../../util'
+import InputContainer from './../InputContainer/InputContainer'
+import { sparkBaseClassName, sparkClassName } from '../../util'
 
 class MonetaryInput extends React.Component {
   static defaultProps = {
@@ -61,12 +57,7 @@ class MonetaryInput extends React.Component {
 
   componentDidMount = () => {
     const inputElement = this.inputRef.current
-
     bindUIEvents(inputElement)
-
-    if (this.props.value !== '') {
-      this.maskValue()
-    }
   };
 
   unmaskValue = value => {
@@ -74,16 +65,15 @@ class MonetaryInput extends React.Component {
   };
 
   handleBlur = e => {
-    this.maskValue()
-    // e.target.value = this.unmaskValue(e.target.value)
-
-    this.props.onBlur(e)
+    if (typeof this.props.onBlur === 'function') {
+      this.props.onBlur(e)
+    }
   };
 
   handleChange = e => {
-    // e.target.value = this.unmaskValue(e.target.value)
-
-    this.props.onChange(e)
+    if (typeof this.props.onChange === 'function') {
+      this.props.onChange(e)
+    }
   };
 
   get labelClassName() {
@@ -115,15 +105,6 @@ class MonetaryInput extends React.Component {
     ].join(' ')
   }
 
-  /**
-   * Set input value to masked value and fire input event
-   */
-  maskValue = () => {
-    const maskedValue = this.maskedValue
-
-    return maskedValue
-  };
-
   renderErrorContent = () => {
     const { error } = this.props
 
@@ -150,6 +131,7 @@ class MonetaryInput extends React.Component {
       type,
       value,
       width,
+      helper,
       ...props
     } = this.props
     let valueProp
@@ -158,8 +140,6 @@ class MonetaryInput extends React.Component {
       valueProp = {}
     } else {
       if (disabled) {
-        // Format value because `this.maskValue()` doesn't work if the input is
-        // disabled
         valueProp = { value: formatMonetary(value) }
       } else {
         valueProp = { value }
@@ -167,42 +147,35 @@ class MonetaryInput extends React.Component {
     }
 
     return (
-      <div className={sparkClassName('utility', 'JavaScript')}>
-        <div
-          className={sparkBaseClassName('InputContainer')}
-          data-sprk-input='monetary'
-        >
+      <InputContainer
+        error={error}
+        helper={helper}
+        id={id}
+        label={label}
+        inputRef={this.inputRef}
+        data-sprk-input='monetary'
+      >
+        <div className={this.iconContainerClassName} ref={this.inputRef}>
+          <label className={this.labelClassName} htmlFor={id}>
+            {label}
+          </label>
+          <input
+            aria-describedby={`${id}--error-container`}
+            className={this.className}
+            disabled={disabled}
+            id={id}
+            pattern={pattern}
+            type={type}
+            {...valueProp}
+            {...props}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
+          />
           <div
-            className={this.iconContainerClassName}
-            ref={this.inputRef}
-          >
-            <label className={this.labelClassName} htmlFor={id}>
-              {label}
-            </label>
-            <input
-              aria-describedby={`${id}--error-container`}
-              className={this.className}
-              disabled={disabled}
-              id={id}
-              pattern={pattern}
-              type={type}
-              {...valueProp}
-              {...props}
-              onChange={this.handleChange}
-              onBlur={this.handleBlur}
-            />
-            <div
-              className={sparkBaseClassName('InputContainer', 'input-border')}
-            />
-          </div>
-          <div
-            className={sparkBaseClassName('ErrorContainer')}
-            id={`${id}--error-container`}
-          >
-            {this.renderErrorContent()}
-          </div>
+            className={sparkBaseClassName('InputContainer', 'input-border')}
+          />
         </div>
-      </div>
+      </InputContainer>
     )
   };
 }
