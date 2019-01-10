@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-import SVG from 'react-inlinesvg';
+import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
+import SVG from 'react-inlinesvg'
 import {
   Accordions,
   Alerts,
@@ -20,10 +20,10 @@ import {
   Tables,
   Toggles,
   Typography
-} from './components/examples';
-import Nav from './components/Nav';
-
-import './App.scss';
+} from './components/examples'
+import Nav from './components/Nav'
+import './App.scss'
+import sparkIcons from './assets/images/D-SparkCoreIcons.svg'
 
 export default class App extends Component {
   render = () => {
@@ -32,7 +32,7 @@ export default class App extends Component {
         <div style={{ padding: '15px' }}>
           <h1>react-spark</h1>
           <SVG
-            src='https://spark-assets.netlify.com/spark-core-icons.svg'
+            src={sparkIcons}
             uniquifyIDs={false}
           />
           <Nav />
