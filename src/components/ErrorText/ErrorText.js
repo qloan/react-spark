@@ -1,28 +1,30 @@
 import PropTypes from 'prop-types'
-import React, { Fragment } from 'react'
-
+import React from 'react'
 import Icon from '../Icon'
 import { sparkBaseClassName } from '../../util'
 
 class ErrorText extends React.Component {
   static defaultProps = {
     children: null
-  }
+  };
 
   static propTypes = {
     children: PropTypes.node
-  }
+  };
 
   render = () => {
-    const { children } = this.props
+    const { id, children } = this.props
 
     return (
-      <Fragment>
+      <div
+        className={sparkBaseClassName('ErrorContainer')}
+        id={`${id}--error-container`}
+      >
         <Icon name='exclamation-filled-circle' select />
         <div className={sparkBaseClassName('ErrorText')}>{children}</div>
-      </Fragment>
+      </div>
     )
-  }
+  };
 }
 
 export default ErrorText

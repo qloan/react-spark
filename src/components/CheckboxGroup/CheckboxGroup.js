@@ -43,17 +43,6 @@ class CheckboxGroup extends React.Component {
     ].join(' ')
   }
 
-  renderErrorContent = () => {
-    const { error } = this.props
-
-    if (!error) return null
-
-    return (
-      // TODO: Icon SVG
-      <ErrorText>{error}</ErrorText>
-    )
-  }
-
   render = () => {
     const {
       checkboxes,

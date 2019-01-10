@@ -1,10 +1,9 @@
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-
-import ErrorText from '../ErrorText'
-import HelperText from '../HelperText'
-import { sparkBaseClassName, sparkClassName } from '../../util'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import ErrorText from '../ErrorText';
+import HelperText from '../HelperText';
+import { sparkBaseClassName, sparkClassName } from '../../util';
 
 class InputContainer extends React.Component {
   static defaultProps = {
@@ -30,14 +29,6 @@ class InputContainer extends React.Component {
     })
   }
 
-  renderErrorContent = () => {
-    const { error } = this.props
-
-    if (!error) return null
-
-    return <ErrorText>{error}</ErrorText>
-  };
-
   render = () => {
     const {
       children,
@@ -62,12 +53,7 @@ class InputContainer extends React.Component {
             className={sparkBaseClassName('InputContainer', 'input-border')}
           />
           {helper && <HelperText>{helper}</HelperText>}
-          <div
-            className={sparkBaseClassName('ErrorContainer')}
-            id={`${id}--error-container`}
-          >
-            {this.renderErrorContent()}
-          </div>
+          {error && <ErrorText id={id}>{error}</ErrorText>}
         </div>
       </div>
     )
