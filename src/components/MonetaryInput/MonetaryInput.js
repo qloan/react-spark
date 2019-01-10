@@ -1,12 +1,16 @@
 import {
   bindUIEvents,
   formatMonetary
-} from '@sparkdesignsystem/spark-core/base/monetaryInput';
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import InputContainer from './../InputContainer/InputContainer';
-import { sparkBaseClassName, sparkClassName } from '../../util';
+} from '@sparkdesignsystem/spark-core/base/monetaryInput'
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import InputContainer from './../InputContainer/InputContainer'
+import {
+  sparkBaseClassName,
+  sparkClassName,
+  setAndDispatchInput
+} from '../../util'
 
 class MonetaryInput extends React.Component {
   static defaultProps = {
@@ -56,8 +60,10 @@ class MonetaryInput extends React.Component {
   }
 
   componentDidMount = () => {
-    const inputElement = this.inputRef.current
-    bindUIEvents(inputElement)
+    bindUIEvents(this.inputRef.current)
+    // if (this.props.value !== '') {
+    //   this.maskValue()
+    // }
   };
 
   unmaskValue = value => {
@@ -65,12 +71,16 @@ class MonetaryInput extends React.Component {
   };
 
   handleBlur = e => {
+    // this.maskValue()
+    // e.target.value = this.unmaskValue(e.target.value)
+
     if (typeof this.props.onBlur === 'function') {
       this.props.onBlur(e)
     }
   };
 
   handleChange = e => {
+    // e.target.value = this.unmaskValue(e.target.value)
     if (typeof this.props.onChange === 'function') {
       this.props.onChange(e)
     }
@@ -105,18 +115,15 @@ class MonetaryInput extends React.Component {
     ].join(' ')
   }
 
-  renderErrorContent = () => {
-    const { error } = this.props
+  /**
+   * Set input value to masked value and fire input event
+   */
+  // maskValue = () => {
+  //   const maskedValue = this.maskedValue
+  //   setAndDispatchInput(this.inputRef.current, maskedValue)
 
-    if (!error) return null
-
-    return (
-      <React.Fragment>
-        {/* TODO: Render SVG */}
-        <div className={sparkBaseClassName('ErrorText')}>{error}</div>
-      </React.Fragment>
-    )
-  };
+  //   return maskedValue
+  // };
 
   render = () => {
     const {
@@ -140,6 +147,8 @@ class MonetaryInput extends React.Component {
       valueProp = {}
     } else {
       if (disabled) {
+        // Format value because `this.maskValue()` doesn't work if the input is
+        // disabled
         valueProp = { value: formatMonetary(value) }
       } else {
         valueProp = { value }
@@ -171,9 +180,6 @@ class MonetaryInput extends React.Component {
             {...props}
             onChange={this.handleChange}
             onBlur={this.handleBlur}
-          />
-          <div
-            className={sparkBaseClassName('InputContainer', 'input-border')}
           />
         </div>
       </InputContainer>

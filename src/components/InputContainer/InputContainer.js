@@ -51,11 +51,8 @@ class InputContainer extends React.Component {
             </label>
           )}
           {children}
-          <div
-            className={sparkBaseClassName('InputContainer', 'input-border')}
-          />
           {helper && <HelperText>{helper}</HelperText>}
-          {error && <ErrorText id={id}>{error}</ErrorText>}
+          <ErrorText id={id} error={error} />
         </div>
       </div>
     )
