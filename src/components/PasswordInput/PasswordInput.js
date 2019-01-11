@@ -1,9 +1,9 @@
-import passwordInput from '@sparkdesignsystem/spark-core/base/passwordInput';
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import InputContainer from './../InputContainer/InputContainer';
-import { sparkBaseClassName, sparkClassName } from '../../util';
+import passwordInput from '@sparkdesignsystem/spark-core/base/passwordInput'
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import InputContainer from './../InputContainer/InputContainer'
+import { sparkBaseClassName, sparkClassName } from '../../util'
 
 class PasswordInput extends React.Component {
   static defaultProps = {
@@ -27,7 +27,7 @@ class PasswordInput extends React.Component {
     label: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
-    pattern: PropTypes.string,
+    // pattern: PropTypes.regexp, todo: causes warning, fix it
     placeholder: PropTypes.string,
     showPasswordLabel: PropTypes.string,
     value: PropTypes.string,
