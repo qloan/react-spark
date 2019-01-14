@@ -32,11 +32,11 @@
     "dist"
   ],
   "dependencies": {
-    "@sparkdesignsystem/spark-core": "9.0.0",
-    "@sparkdesignsystem/spark-extras": "3.1.8",
-    "@sparkdesignsystem/spark-card": "4.0.1",
-    "@sparkdesignsystem/spark-highlight-board": "4.0.1",
-    "@sparkdesignsystem/spark-description-table": "3.1.8",
+    "@sparkdesignsystem/spark-core": "10.0.0",
+    "@sparkdesignsystem/spark-extras": "3.1.8-alpha.7",
+    "@sparkdesignsystem/spark-card": "4.0.2",
+    "@sparkdesignsystem/spark-highlight-board": "4.0.2",
+    "@sparkdesignsystem/spark-description-table": "3.1.8-alpha.7",
     "babel-eslint": "^8.2.5",
     "babel-loader": "7.1.2",
     "babel-plugin-external-helpers": "^6.22.0",
