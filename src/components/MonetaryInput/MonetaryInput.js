@@ -33,6 +33,7 @@ class MonetaryInput extends React.Component {
     pattern: PropTypes.string,
     type: PropTypes.string,
     value: PropTypes.string,
+    helper: PropTypes.string,
     width: PropTypes.number
   };
 
@@ -69,24 +70,12 @@ class MonetaryInput extends React.Component {
     }
   };
 
-  unmaskValue = value => {
-    return value.replace(/\b0+/g, '').replace(/\D+/g, '')
-  };
-
   handleBlur = e => {
-    e.target.value = this.unmaskValue(e.target.value)
     this.props.onBlur(e)
   };
 
   handleChange = e => {
-    e.target.value = this.unmaskValue(e.target.value)
     this.props.onChange(e)
-  };
-
-  onFocus = e => {
-    if (e.target.value) {
-      this.handleChange(e)
-    }
   };
 
   get labelClassName() {
@@ -126,7 +115,6 @@ class MonetaryInput extends React.Component {
       id,
       label,
       onBlur,
-      onChange,
       pattern,
       type,
       value,

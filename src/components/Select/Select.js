@@ -1,11 +1,11 @@
-import { requiredSelect } from '@sparkdesignsystem/spark-core/base/requiredSelect'
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { requiredSelect } from '@sparkdesignsystem/spark-core/base/requiredSelect';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { sparkClassName, sparkWidthClassName } from '../../util'
-import InputContainer from './../InputContainer/InputContainer'
-import Icon from './../Icon'
+import { sparkClassName, sparkWidthClassName } from '../../util';
+import InputContainer from './../InputContainer/InputContainer';
+import Icon from './../Icon';
 
 class Select extends React.Component {
   static defaultProps = {
@@ -79,7 +79,7 @@ class Select extends React.Component {
             </option>
           ))}
         </select>
-        <Icon name='chevron-down' select color='base' />
+        <Icon name='chevron-down' select color='base' size={Icon.size.L} />
       </InputContainer>
     )
   };

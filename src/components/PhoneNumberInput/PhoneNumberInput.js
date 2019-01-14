@@ -15,7 +15,7 @@ class PhoneNumberInput extends React.Component {
     error: null,
     onBlur: () => {},
     onChange: () => {},
-    pattern: '^[0-9]*$',
+    pattern: '(^(\\+\\d{1,2}\\s)?((\\(\\d{3}\\))|\\d{3})[\\s.-]?\\d{3}[\\s.-]?\\d{4}$)|^$',
     type: 'tel',
     value: '',
     width: 100,
@@ -73,12 +73,10 @@ class PhoneNumberInput extends React.Component {
   };
 
   handleBlur = e => {
-    e.target.value = this.unmaskValue(e.target.value)
     this.props.onBlur(e)
   };
 
   handleChange = e => {
-    e.target.value = this.unmaskValue(e.target.value)
     this.props.onChange(e)
   };
 
@@ -99,6 +97,7 @@ class PhoneNumberInput extends React.Component {
 
   onFocus = e => {
     if (e.target.value) {
+      e.target.value = this.unmaskValue(e.target.value)
       this.handleChange(e)
     }
   };
