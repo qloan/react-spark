@@ -1,24 +1,25 @@
 import {
   bindUIEvents,
-  formatMonetary
-} from '@sparkdesignsystem/spark-core/base/monetaryInput'
+  formatPhone
+} from '@sparkdesignsystem/spark-core/base/phoneInput'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-import InputContainer from './../InputContainer/InputContainer'
+import InputContainer from '../InputContainer/InputContainer'
 import { sparkBaseClassName, sparkClassName } from '../../util'
 
-class MonetaryInput extends React.Component {
+class PhoneNumberInput extends React.Component {
   static defaultProps = {
     className: null,
     disabled: false,
     error: null,
     onBlur: () => {},
     onChange: () => {},
-    pattern: '(^\\$?(\\d+|\\d{1,3}(,\\d{3})*)(\\.\\d+)?$)|^$',
+    pattern: '^[0-9]*$',
     type: 'tel',
     value: '',
-    width: 100
+    width: 100,
+    placeholder: '(000) 000-0000'
   };
 
   inputRef = React.createRef();
@@ -33,7 +34,9 @@ class MonetaryInput extends React.Component {
     pattern: PropTypes.string,
     type: PropTypes.string,
     value: PropTypes.string,
-    width: PropTypes.number
+    width: PropTypes.number,
+    helper: PropTypes.string,
+    placeholder: PropTypes.string
   };
 
   get className() {
@@ -45,24 +48,20 @@ class MonetaryInput extends React.Component {
       ? sparkClassName('utility', `Width-${width}`)
       : null
 
-    return classnames(
-      sparkBaseClassName('TextInput'),
-      sparkBaseClassName('TextInput', null, 'has-text-icon'),
-      {
-        [errorClassName]: errorClassName,
-        [widthClassName]: widthClassName,
-        [className]: className
-      }
-    )
+    return classnames(sparkBaseClassName('TextInput'), {
+      [errorClassName]: errorClassName,
+      [widthClassName]: widthClassName,
+      [className]: className
+    })
   }
 
   componentDidMount = () => {
     bindUIEvents(this.inputRef.current)
     const { value } = this.props
-    if (value && value.length > 0) {
+    if (value && value.length === 10) {
       const event = {
         target: {
-          value: formatMonetary(value)
+          value: formatPhone(value)
         }
       }
       this.props.onChange(event)
@@ -70,7 +69,7 @@ class MonetaryInput extends React.Component {
   };
 
   unmaskValue = value => {
-    return value.replace(/\b0+/g, '').replace(/\D+/g, '')
+    return value.replace(/\D+/g, '')
   };
 
   handleBlur = e => {
@@ -83,26 +82,6 @@ class MonetaryInput extends React.Component {
     this.props.onChange(e)
   };
 
-  onFocus = e => {
-    if (e.target.value) {
-      this.handleChange(e)
-    }
-  };
-
-  get labelClassName() {
-    return [
-      sparkBaseClassName('Label'),
-      sparkBaseClassName('Label', null, 'monetary')
-    ].join(' ')
-  }
-
-  get iconContainerClassName() {
-    return [
-      sparkBaseClassName('TextInputIconContainer'),
-      sparkBaseClassName('TextInputIconContainer', null, 'has-text-icon')
-    ].join(' ')
-  }
-
   valueProp() {
     const { value, disabled } = this.props
     let valueProp
@@ -110,13 +89,19 @@ class MonetaryInput extends React.Component {
       valueProp = {}
     } else {
       if (disabled) {
-        valueProp = { value: formatMonetary(value) }
+        valueProp = { value: formatPhone(value) || '' }
       } else {
         valueProp = { value }
       }
     }
     return valueProp
   }
+
+  onFocus = e => {
+    if (e.target.value) {
+      this.handleChange(e)
+    }
+  };
 
   render = () => {
     const {
@@ -126,12 +111,12 @@ class MonetaryInput extends React.Component {
       id,
       label,
       onBlur,
-      onChange,
       pattern,
       type,
       value,
       width,
       helper,
+      placeholder,
       ...props
     } = this.props
 
@@ -139,33 +124,28 @@ class MonetaryInput extends React.Component {
       <InputContainer
         error={error}
         helper={helper}
+        label={label}
         id={id}
         inputRef={this.inputRef}
-        data-sprk-input='monetary'
+        data-sprk-input='phone'
       >
-        <div className={this.iconContainerClassName} ref={this.inputRef}>
-          {label && (
-            <label className={this.labelClassName} htmlFor={id}>
-              {label}
-            </label>
-          )}
-          <input
-            aria-describedby={`${id}--error-container`}
-            className={this.className}
-            disabled={disabled}
-            id={id}
-            pattern={pattern}
-            type={type}
-            {...this.valueProp()}
-            {...props}
-            onChange={this.handleChange}
-            onBlur={this.handleBlur}
-            onFocus={this.onFocus}
-          />
-        </div>
+        <input
+          aria-describedby={`${id}--error-container`}
+          className={this.className}
+          disabled={disabled}
+          id={id}
+          pattern={pattern}
+          type={type}
+          placeholder={placeholder}
+          {...this.valueProp()}
+          {...props}
+          onChange={this.handleChange}
+          onBlur={this.handleBlur}
+          onFocus={this.onFocus}
+        />
       </InputContainer>
     )
   };
 }
 
-export default MonetaryInput
+export default PhoneNumberInput

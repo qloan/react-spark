@@ -28,6 +28,7 @@ export { default as Radio } from './components/Radio'
 export { default as RadioGroup } from './components/RadioGroup'
 export { default as MoneyInput } from './components/MonetaryInput'
 export { default as PasswordInput } from './components/PasswordInput'
+export { default as PhoneNumberInput } from './components/PhoneNumberInput'
 export { default as Select } from './components/Select'
 export { default as SelectionContainer } from './components/SelectionContainer'
 export {

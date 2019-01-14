@@ -13,37 +13,43 @@ import {
   SsnInput,
   TextArea,
   TextInput,
-  Type
+  Type,
+  PhoneNumberInput
 } from 'react-spark'
 
 class Inputs extends React.Component {
   state = {
     dateInputValue: '01/23/2018',
     datePickerValue: '',
-    monetaryInputValue: '0',
+    monetaryInputValue: '3453',
+    phoneNumberInputValue: '4531231234',
     ssnInputValue: '',
     textInputWithValueValue: 'value'
-  }
+  };
 
   handleDateInputChange = event => {
     this.setState({ dateInputValue: event.target.value })
-  }
+  };
 
   handleDatePickerChange = event => {
     this.setState({ datePickerValue: event.target.value })
-  }
+  };
 
   handleMonetaryInputChange = event => {
     this.setState({ monetaryInputValue: event.target.value })
-  }
+  };
+
+  handlePhoneNumberInputChange = event => {
+    this.setState({ phoneNumberInputValue: event.target.value })
+  };
 
   handleSsnInputChange = event => {
     this.setState({ ssnInputValue: event.target.value })
-  }
+  };
 
   handleTextInputChange = event => {
     this.setState({ textInputWithValueValue: event.target.value })
-  }
+  };
 
   renderCheckboxes = () => (
     <div id='checkboxes'>
@@ -124,7 +130,7 @@ class Inputs extends React.Component {
         label='Checkbox Group Label'
       />
     </div>
-  )
+  );
 
   renderRadios = () => (
     <div id='radios'>
@@ -208,7 +214,7 @@ class Inputs extends React.Component {
         label='Radio Group Disabled'
       />
     </div>
-  )
+  );
 
   renderDateInputs = () => (
     <div id='date-inputs'>
@@ -271,7 +277,7 @@ class Inputs extends React.Component {
 
       <DatePicker disabled id='date-picker-disabled' label='Date' width={100} />
     </div>
-  )
+  );
 
   renderMonetaryInputs = () => (
     <div id='monetary-inputs'>
@@ -287,7 +293,7 @@ class Inputs extends React.Component {
         value={this.state.monetaryInputValue}
       />
 
-      <p>Monetary input with error:</p>
+      {/* <p>Monetary input with error:</p>
       <MoneyInput
         error='There is an error on this field.'
         id='monetary-error'
@@ -295,9 +301,9 @@ class Inputs extends React.Component {
       />
 
       <p>Disabled monetary input:</p>
-      <MoneyInput disabled id='monetary-disabled' label='Payment' />
+      <MoneyInput disabled id='monetary-disabled' label='Payment' /> */}
     </div>
-  )
+  );
 
   renderSelects = () => {
     const options = [
@@ -319,7 +325,7 @@ class Inputs extends React.Component {
         />
       </div>
     )
-  }
+  };
 
   renderSsns = () => (
     <div id='ssn-inputs'>
@@ -350,7 +356,7 @@ class Inputs extends React.Component {
         id='ssn-disabled'
       />
     </div>
-  )
+  );
 
   renderTextInputs = () => (
     <div id='text-inputs'>
@@ -398,7 +404,7 @@ class Inputs extends React.Component {
         width={100}
       />
     </div>
-  )
+  );
 
   renderTextAreas = () => (
     <div id='text-areas'>
@@ -425,7 +431,7 @@ class Inputs extends React.Component {
         width={100}
       />
     </div>
-  )
+  );
 
   renderToc = () => (
     <>
@@ -459,9 +465,12 @@ class Inputs extends React.Component {
         <li>
           <Link href='#password-inputs'>Password inputs</Link>
         </li>
+        <li>
+          <Link href='#phone-inputs'>Phone inputs</Link>
+        </li>
       </List>
     </>
-  )
+  );
 
   renderPasswords = () => (
     <div id='password-inputs'>
@@ -476,7 +485,29 @@ class Inputs extends React.Component {
         name='password-normal-disabled'
       />
     </div>
-  )
+  );
+  renderPhoneNumbers = () => (
+    <div id='phone-inputs'>
+      <h3>Phone inputs</h3>
+      <p>Normal Phone Field</p>
+      <br />
+      <PhoneNumberInput
+        id='phone-normal'
+        name='phone-normal'
+        label='Phone Number'
+        value={this.state.phoneNumberInputValue}
+        onChange={this.handlePhoneNumberInputChange}
+      />
+      <p>Disabled Phone Field</p>
+      <br />
+      <PhoneNumberInput
+        disabled
+        id='phone-disabled'
+        name='phone-disabled'
+        label='Phone Number'
+      />
+    </div>
+  );
 
   render = () => (
     <>
@@ -495,8 +526,9 @@ class Inputs extends React.Component {
       {this.renderMonetaryInputs()}
       {this.renderDateInputs()}
       {this.renderPasswords()}
+      {this.renderPhoneNumbers()}
     </>
-  )
+  );
 }
 
 export default Inputs
