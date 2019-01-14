@@ -79,7 +79,7 @@ class Select extends React.Component {
             </option>
           ))}
         </select>
-        <Icon name='chevron-down' select color='base' size={Icon.size.L} />
+        <Icon name='chevron-down' select color='base' />
       </InputContainer>
     )
   };
