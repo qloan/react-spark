@@ -106,7 +106,6 @@ class PasswordInput extends React.Component {
           {...valueProp}
           {...props}
         />
-        <div className={sparkBaseClassName('InputContainer', 'input-border')} />
         <div className={this.selectionContainerClassName}>
           <input
             checked={showPassword}

@@ -35,11 +35,12 @@ class SsnInput extends React.Component {
     placeholder: PropTypes.string,
     showSsnLabel: PropTypes.string,
     value: PropTypes.string,
+    helper: PropTypes.string,
     width: PropTypes.number
   };
 
   state = {
-    showSsn: false
+    type: 'password'
   };
 
   get className() {
@@ -78,7 +79,7 @@ class SsnInput extends React.Component {
   };
 
   handleShowSsnChange = event =>
-    this.setState({ showSsn: event.target.checked });
+    this.setState({ type: event.target.checked ? 'text' : 'password' });
 
   get maskedValue() {
     const { pattern, value } = this.props
@@ -124,9 +125,9 @@ class SsnInput extends React.Component {
       helper,
       ...props
     } = this.props
-    const { showSsn } = this.state
+    const { type } = this.state
     const valueProp = value == null ? {} : { value: formatSSN(value) }
-
+    // console.log('*** ' + type)
     return (
       <InputContainer
         error={error}
@@ -134,6 +135,7 @@ class SsnInput extends React.Component {
         id={id}
         label={label}
         inputRef={this.inputRef}
+        data-sprk-input='ssn'
       >
         <input
           aria-describedby={`${id}--error-container`}
@@ -142,16 +144,14 @@ class SsnInput extends React.Component {
           id={id}
           pattern={pattern}
           placeholder={placeholder}
-          type={showSsn ? 'text' : 'password'}
           {...valueProp}
           {...props}
+          type={type}
           onChange={this.handleChange}
           onBlur={this.handleBlur}
         />
-        <div className={sparkBaseClassName('InputContainer', 'input-border')} />
         <div className={this.selectionContainerClassName}>
           <input
-            checked={showSsn}
             disabled={disabled}
             id={`${id}-show-ssn`}
             onChange={this.handleShowSsnChange}
