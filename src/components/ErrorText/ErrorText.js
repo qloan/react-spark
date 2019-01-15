@@ -7,18 +7,18 @@ class ErrorText extends React.Component {
     const { id, error } = this.props
 
     return (
-      error && (
-        <div
-          // TODO: THIS CLASS SHOULD BE HERE BUT IT DISSAPEARS FOR SOME REASON
-          // className={sparkBaseClassName('ErrorContainer')}
-          id={`${id}--error-container`}
-        >
+      <div
+        // TODO: THIS CLASS SHOULD BE HERE BUT IT DISSAPEARS FOR SOME REASON
+        // className={sparkBaseClassName('ErrorContainer')}
+        id={`${id}--error-container`}
+      >
+        {error && (
           <div className={sparkBaseClassName('ErrorText')}>
             <Icon name='exclamation-filled' className='sprk-b-ErrorIcon' />
             {error}
           </div>
-        </div>
-      )
+        )}
+      </div>
     )
   };
 }

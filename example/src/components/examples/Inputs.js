@@ -293,7 +293,7 @@ class Inputs extends React.Component {
         value={this.state.monetaryInputValue}
       />
 
-      {/* <p>Monetary input with error:</p>
+      <p>Monetary input with error:</p>
       <MoneyInput
         error='There is an error on this field.'
         id='monetary-error'
@@ -301,7 +301,7 @@ class Inputs extends React.Component {
       />
 
       <p>Disabled monetary input:</p>
-      <MoneyInput disabled id='monetary-disabled' label='Payment' /> */}
+      <MoneyInput disabled id='monetary-disabled' label='Payment' />
     </div>
   );
 
