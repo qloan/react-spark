@@ -51,8 +51,8 @@ class InputContainer extends React.Component {
             </label>
           )}
           {children}
-          {helper && <HelperText>{helper}</HelperText>}
           <ErrorText id={id} error={error} />
+          {helper && <HelperText>{helper}</HelperText>}
         </div>
       </div>
     )

@@ -78,6 +78,17 @@ class MonetaryInput extends React.Component {
     this.props.onChange(e)
   };
 
+  unmaskValue = value => {
+    return Number(value.replace(/[^0-9.-]+/g, ''))
+  };
+
+  onFocus = e => {
+    if (e.target.value) {
+      e.target.value = this.unmaskValue(e.target.value)
+      this.handleChange(e)
+    }
+  };
+
   get labelClassName() {
     return [
       sparkBaseClassName('Label'),
