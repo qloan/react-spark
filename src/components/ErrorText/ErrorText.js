@@ -9,14 +9,11 @@ class ErrorText extends React.Component {
     return (
       error && (
         <div
-          // TODO: THIS CLASS SHOULD BE HERE BUT IT DISSAPEARS FOR SOME REASON
-          // className={sparkBaseClassName('ErrorContainer')}
+          className={sparkBaseClassName('ErrorContainer-Custom')}
           id={`${id}--error-container`}
         >
-          <div className={sparkBaseClassName('ErrorText')}>
-            <Icon name='exclamation-filled' className='sprk-b-ErrorIcon' />
-            {error}
-          </div>
+          <Icon name='exclamation-filled' className='sprk-b-ErrorIcon' />
+          <div className={sparkBaseClassName('ErrorText')}>{error}</div>
         </div>
       )
     )

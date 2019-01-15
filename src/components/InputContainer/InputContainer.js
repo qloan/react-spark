@@ -1,9 +1,9 @@
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import ErrorText from '../ErrorText';
-import HelperText from '../HelperText';
-import { sparkBaseClassName, sparkClassName } from '../../util';
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import ErrorText from '../ErrorText'
+import HelperText from '../HelperText'
+import { sparkBaseClassName, sparkClassName } from '../../util'
 
 class InputContainer extends React.Component {
   static defaultProps = {

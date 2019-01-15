@@ -9,13 +9,14 @@ import { sparkBaseClassName, sparkComponentClassName } from '../../util'
  */
 class Icon extends React.Component {
   static size = {
+    M: 'm',
     L: 'l',
     XL: 'xl',
     XXL: 'xxl'
   };
 
   static defaultProps = {
-    size: '',
+    size: 'm',
     variant: '',
     toggle: ''
   };
