@@ -5,10 +5,14 @@ import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core/components/tog
 
 class AccordionItem extends React.Component {
   get className() {
-    const { className } = this.props
+    const { className, open } = this.props
     const baseClass = sparkComponentClassName('Accordion', 'item')
+    const openClass = sparkComponentClassName('Accordion', 'item--open')
 
-    return classNames(baseClass, { [className]: className })
+    return classNames(baseClass, {
+      [className]: className,
+      [openClass]: open
+    })
   }
 
   ref = React.createRef();
