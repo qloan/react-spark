@@ -69,6 +69,13 @@ class PasswordInput extends React.Component {
     ].join(' ')
   }
 
+  get showLabelClassName() {
+    return [
+      sparkBaseClassName('Label'),
+      sparkBaseClassName('Label', null, 'inline')
+    ].join(' ')
+  }
+
   render = () => {
     const {
       className,
