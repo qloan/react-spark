@@ -1,12 +1,12 @@
-import PropTypes from 'prop-types'
-import React, { Fragment } from 'react'
-import classNames from 'classnames'
-import Icon from '../Icon/Icon'
-import { bindUIEvents } from '@sparkdesignsystem/spark-core/components/dropdown'
-import { sparkBaseClassName } from '../../util'
+import PropTypes from 'prop-types';
+import React, { Fragment } from 'react';
+import classNames from 'classnames';
+import Icon from '../Icon/Icon';
+import { bindUIEvents } from '@sparkdesignsystem/spark-core/components/dropdown';
+import { sparkBaseClassName } from '../../util';
 
 class DropdownLink extends React.Component {
-  static defaultProps = {}
+  static defaultProps = {};
 
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -14,9 +14,9 @@ class DropdownLink extends React.Component {
     className: PropTypes.string,
     href: PropTypes.string,
     icon: PropTypes.string
-  }
+  };
 
-  ref = React.createRef()
+  ref = React.createRef();
 
   get linkClassName() {
     const { className } = this.props
@@ -48,6 +48,7 @@ class DropdownLink extends React.Component {
         className={this.linkClassName}
         href={href}
         ref={this.ref}
+        style={{ textDecoration: 'none' }}
       >
         {icon ? (
           <Icon name={icon} size={Icon.size.L} color='base' />
@@ -61,7 +62,7 @@ class DropdownLink extends React.Component {
         )}
       </a>
     )
-  }
+  };
 }
 
 export default DropdownLink

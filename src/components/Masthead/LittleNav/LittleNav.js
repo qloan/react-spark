@@ -1,10 +1,8 @@
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import SiteLinks from './SiteLinks';
-import MainLinks from './MainLinks';
-import BUTTON_VARIANTS from '../../Button/variants';
-import { sparkComponentClassName, sparkObjectClassName } from '../../../util';
+import classnames from 'classnames'
+import React from 'react'
+import SiteLinks from './SiteLinks'
+import MainLinks from './MainLinks'
+import { sparkComponentClassName, sparkObjectClassName } from '../../../util'
 
 class LittleNav extends React.Component {
   static defaultProps = {
@@ -16,13 +14,12 @@ class LittleNav extends React.Component {
     const { className } = this.props
     return classnames(
       sparkComponentClassName('Masthead', 'little-nav'),
-      sparkObjectClassName('Stack'),
       sparkObjectClassName('Stack', 'item'),
-      sparkObjectClassName('Stack', null, 'large'),
-      sparkObjectClassName('Stack', null, 'split@s'),
-      sparkObjectClassName('Stack', null, 'end-row'),
-      sparkObjectClassName('Box'),
       sparkObjectClassName('Stack', 'item', 'flex@xxs'),
+      sparkObjectClassName('Stack'),
+      sparkObjectClassName('Stack', null, 'misc-a'),
+      sparkObjectClassName('Stack', null, 'split@xxs'),
+      sparkObjectClassName('Stack', null, 'end-row'),
       {
         [className]: className
       }
