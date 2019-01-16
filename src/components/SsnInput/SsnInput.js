@@ -1,15 +1,15 @@
 import {
   formatSSN,
   bindUIEvents
-} from '@sparkdesignsystem/spark-core/base/ssnInput'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import InputContainer from './../InputContainer/InputContainer'
-import { sparkBaseClassName, sparkClassName } from '../../util'
+} from '@sparkdesignsystem/spark-core/base/ssnInput';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import InputContainer from './../InputContainer/InputContainer';
+import { sparkBaseClassName, sparkClassName } from '../../util';
 
 export const ssnInputValidationRegex =
-  '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$'
+  '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$';
 class SsnInput extends React.Component {
   static defaultProps = {
     className: null,
@@ -37,10 +37,6 @@ class SsnInput extends React.Component {
     value: PropTypes.string,
     helper: PropTypes.string,
     width: PropTypes.number
-  };
-
-  state = {
-    type: 'password'
   };
 
   get className() {
@@ -77,9 +73,6 @@ class SsnInput extends React.Component {
       this.props.onBlur(event)
     }
   };
-
-  handleShowSsnChange = event =>
-    this.setState({ type: event.target.checked ? 'text' : 'password' });
 
   get maskedValue() {
     const { pattern, value } = this.props
@@ -125,9 +118,7 @@ class SsnInput extends React.Component {
       helper,
       ...props
     } = this.props
-    const { type } = this.state
     const valueProp = value == null ? {} : { value: formatSSN(value) }
-    // console.log('*** ' + type)
     return (
       <InputContainer
         error={error}
@@ -146,17 +137,12 @@ class SsnInput extends React.Component {
           placeholder={placeholder}
           {...valueProp}
           {...props}
-          type={type}
+          type='password'
           onChange={this.handleChange}
           onBlur={this.handleBlur}
         />
         <div className={this.selectionContainerClassName}>
-          <input
-            disabled={disabled}
-            id={`${id}-show-ssn`}
-            onChange={this.handleShowSsnChange}
-            type='checkbox'
-          />
+          <input disabled={disabled} id={`${id}-show-ssn`} type='checkbox' />
           <label
             className={this.showSsnLabelClassName}
             htmlFor={`${id}-show-ssn`}

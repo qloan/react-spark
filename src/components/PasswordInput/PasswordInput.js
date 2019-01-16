@@ -13,7 +13,7 @@ class PasswordInput extends React.Component {
     label: 'Password',
     onBlur: () => console.log('onBlur not implemented'),
     onChange: () => console.log('onChange not implemented'),
-    pattern: /./,
+    pattern: '/./',
     showPasswordLabel: 'Show Password',
     value: '',
     width: 100
@@ -27,8 +27,9 @@ class PasswordInput extends React.Component {
     label: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
-    // pattern: PropTypes.regexp, todo: causes warning, fix it
+    pattern: PropTypes.regexp,
     placeholder: PropTypes.string,
+    helper: PropTypes.string,
     showPasswordLabel: PropTypes.string,
     value: PropTypes.string,
     width: PropTypes.number
@@ -108,7 +109,6 @@ class PasswordInput extends React.Component {
         />
         <div className={this.selectionContainerClassName}>
           <input
-            checked={showPassword}
             disabled={disabled}
             id={`${id}-show-password`}
             onChange={this.handleShowPasswordChange}
