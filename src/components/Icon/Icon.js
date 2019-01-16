@@ -34,7 +34,7 @@ class Icon extends React.Component {
     const baseClass = sparkComponentClassName('Icon')
     const sizeClass = sparkComponentClassName('Icon', null, size)
     const toggleClass = sparkComponentClassName('Icon', null, 'toggle')
-    const colorClass = sparkComponentClassName('Icon', null, 'stroke-current-color')
+    const colorClass = sparkComponentClassName('Icon', null, 'current-color')
     const variantClass = sparkComponentClassName(variant, 'icon')
     const selectClass = sparkBaseClassName('SelectContainer', 'icon')
 

@@ -1,9 +1,9 @@
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import BUTTON_VARIANTS from '../../Button/variants'
-import NavItem from './NavItem'
-import { sparkClassName, sparkObjectClassName } from '../../../util'
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import BUTTON_VARIANTS from '../../Button/variants';
+import NavItem from './NavItem';
+import { sparkClassName, sparkObjectClassName } from '../../../util';
 
 class MainLinks extends React.Component {
   static defaultProps = {
@@ -26,9 +26,8 @@ class MainLinks extends React.Component {
     return classnames(
       sparkObjectClassName('Stack', 'item'),
       sparkObjectClassName('HorizontalList'),
-      sparkObjectClassName('HorizontalList', null, 'spacing-large'),
+      sparkObjectClassName('HorizontalList', null, 'spacing-medium'),
       sparkObjectClassName('Stack', null, 'center-column'),
-      sparkClassName('utility', 'Position', null, 'relative'),
       {
         [className]: className
       }
