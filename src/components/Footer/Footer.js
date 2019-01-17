@@ -1,8 +1,8 @@
-import PropTypes from 'prop-types'
-import classnames from 'classnames'
-import React from 'react'
-import Box from '../Box/Box'
-import { sparkClassName } from '../../util'
+import PropTypes from 'prop-types';
+import classnames from 'classnames';
+import React from 'react';
+import Box from '../Box/Box';
+import { sparkClassName } from '../../util';
 
 class Footer extends React.Component {
   static propTypes = {
@@ -11,15 +11,10 @@ class Footer extends React.Component {
   };
 
   get className() {
-    const { size } = this.props
-    const baseClass = sparkClassName('object', 'Stack')
-    const locationClass = sparkClassName('object', 'CenteredColumn')
-    const sizeClass = sparkClassName('object', 'Stack', null, size)
-
     return classnames(
-      baseClass,
-      { [locationClass]: true },
-      { [sizeClass]: Boolean(size) }
+      sparkClassName('object', 'CenteredColumn'),
+      sparkClassName('object', 'Stack'),
+      sparkClassName('object', 'Stack', null, 'misc-b')
     )
   }
 
