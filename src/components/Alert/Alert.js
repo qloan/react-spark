@@ -1,8 +1,7 @@
-import { alerts } from '@sparkdesignsystem/spark-core/components/alerts'
+import { alerts } from '@sparkdesignsystem/spark-core'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-
 import ALERT_VARIANTS from './variants'
 import { sparkComponentClassName } from '../../util'
 

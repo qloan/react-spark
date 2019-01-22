@@ -1,9 +1,9 @@
-import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
-import classNames from 'classnames';
-import Icon from '../Icon/Icon';
-import { bindUIEvents } from '@sparkdesignsystem/spark-core/components/dropdown';
-import { sparkBaseClassName } from '../../util';
+import PropTypes from 'prop-types'
+import React, { Fragment } from 'react'
+import classNames from 'classnames'
+import Icon from '../Icon/Icon'
+import { bindDropdownUIEvents } from '@sparkdesignsystem/spark-core'
+import { sparkBaseClassName } from '../../util'
 
 class DropdownLink extends React.Component {
   static defaultProps = {};
@@ -31,7 +31,7 @@ class DropdownLink extends React.Component {
 
   componentDidMount() {
     try {
-      bindUIEvents(this.ref.current)
+      bindDropdownUIEvents(this.ref.current)
     } catch (e) {
       console.log('Failed to bind events')
     }

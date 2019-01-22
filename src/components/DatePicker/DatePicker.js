@@ -1,5 +1,5 @@
-import { formatDate } from '@sparkdesignsystem/spark-core/base/dateInput';
-import { bindUIEvents as bindDatePickerUiEvents } from '@sparkdesignsystem/spark-core/base/datePicker';
+import { formatDate } from '@sparkdesignsystem/spark-core';
+import { bindDatePickerUIEvents } from '@sparkdesignsystem/spark-core';
 import classnames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -10,7 +10,6 @@ import {
   sparkComponentClassName,
   sparkWidthClassName
 } from '../../util';
-
 class DatePicker extends React.Component {
   static defaultProps = {
     disabled: false,
@@ -72,7 +71,7 @@ class DatePicker extends React.Component {
   componentDidMount = () => {
     const inputElement = this.inputRef.current
 
-    bindDatePickerUiEvents(
+    bindDatePickerUIEvents(
       this.inputContainerRef.current,
       this.props.tinyDatePickerConfig
     )

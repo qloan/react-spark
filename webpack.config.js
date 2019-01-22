@@ -42,8 +42,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         include: [
-          path.resolve(__dirname, 'src'),
-          path.resolve(__dirname, 'node_modules/@sparkdesignsystem')
+          path.resolve(__dirname, 'src')
         ],
         use: ['babel-loader']
       }

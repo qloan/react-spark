@@ -1,7 +1,7 @@
 import {
-  bindUIEvents,
+  bindMonetaryUIEvents,
   formatMonetary
-} from '@sparkdesignsystem/spark-core/base/monetaryInput'
+} from '@sparkdesignsystem/spark-core'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -58,7 +58,7 @@ class MonetaryInput extends React.Component {
   }
 
   componentDidMount = () => {
-    bindUIEvents(this.inputRef.current)
+    bindMonetaryUIEvents(this.inputRef.current)
     const { value } = this.props
     if (value && value.length > 0) {
       const event = {

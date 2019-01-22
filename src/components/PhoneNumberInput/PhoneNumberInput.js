@@ -1,7 +1,7 @@
 import {
-  bindUIEvents,
+  bindPhoneInputUIEvents,
   formatPhone
-} from '@sparkdesignsystem/spark-core/base/phoneInput'
+} from '@sparkdesignsystem/spark-core'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -56,7 +56,7 @@ class PhoneNumberInput extends React.Component {
   }
 
   componentDidMount = () => {
-    bindUIEvents(this.inputRef.current)
+    bindPhoneInputUIEvents(this.inputRef.current)
     const { value } = this.props
     if (value && value.length === 10) {
       const event = {

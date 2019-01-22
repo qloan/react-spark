@@ -1,4 +1,4 @@
-import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/requiredTextInput'
+import { bindRequiredTextInputUIEvents } from '@sparkdesignsystem/spark-core'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -29,7 +29,7 @@ class TextInput extends React.Component {
   };
 
   componentDidMount = () => {
-    bindUIEvents(this.inputRef.current)
+    bindRequiredTextInputUIEvents(this.inputRef.current)
   };
 
   get className() {

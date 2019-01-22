@@ -1,6 +1,6 @@
 // TODO: Add support for search in <Masthead.Secondary>
 
-import { masthead } from '@sparkdesignsystem/spark-core/components/masthead'
+import { masthead } from '@sparkdesignsystem/spark-core'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'

@@ -1,7 +1,7 @@
 import classNames from 'classnames'
 import React from 'react'
 import { sparkComponentClassName } from '../../util'
-import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core/components/toggle'
+import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core'
 
 class AccordionItem extends React.Component {
   get className() {

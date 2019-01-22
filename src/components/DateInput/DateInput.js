@@ -1,4 +1,4 @@
-import { formatDate } from '@sparkdesignsystem/spark-core/base/dateInput'
+import { formatDate } from '@sparkdesignsystem/spark-core'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'

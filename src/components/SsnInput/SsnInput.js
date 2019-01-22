@@ -1,15 +1,12 @@
-import {
-  formatSSN,
-  bindUIEvents
-} from '@sparkdesignsystem/spark-core/base/ssnInput';
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import InputContainer from './../InputContainer/InputContainer';
-import { sparkBaseClassName, sparkClassName } from '../../util';
+import { bindSSNInputUIEvents, formatSSN } from '@sparkdesignsystem/spark-core'
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import InputContainer from './../InputContainer/InputContainer'
+import { sparkBaseClassName, sparkClassName } from '../../util'
 
 export const ssnInputValidationRegex =
-  '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$';
+  '(^(?!666|000|9\\d{2})\\d{3}([-]{0,1})(?!00)\\d{2}\\1(?!0{4})\\2\\d{4}$)|^$'
 class SsnInput extends React.Component {
   static defaultProps = {
     className: null,
@@ -57,7 +54,7 @@ class SsnInput extends React.Component {
 
   componentDidMount = () => {
     const inputElement = this.inputRef.current
-    bindUIEvents(inputElement)
+    bindSSNInputUIEvents(inputElement)
   };
 
   handleChange = event => {

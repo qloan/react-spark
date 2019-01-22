@@ -1,16 +1,14 @@
-import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core/components/toggle'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import Icon from '../../Icon/Icon'
-import Link from '../../Link/Link'
-import List from '../../List/List'
+import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Icon from '../../Icon/Icon';
+import List from '../../List/List';
 import {
-  sparkClassName,
   sparkBaseClassName,
   sparkComponentClassName,
   sparkObjectClassName
-} from '../../../util/index'
+} from '../../../util/index';
 
 class NarrowNavItem extends React.Component {
   liRef = React.createRef();
@@ -143,7 +141,10 @@ class NarrowNavItem extends React.Component {
                 className={sparkComponentClassName('MastheadAccordion', 'item')}
               >
                 <a
-                  className={sparkComponentClassName('MastheadAccordion', 'summary')}
+                  className={sparkComponentClassName(
+                    'MastheadAccordion',
+                    'summary'
+                  )}
                   href={sublink.href}
                   target={sublink.target}
                   onClick={sublink.onClick}

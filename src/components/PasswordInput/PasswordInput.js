@@ -1,4 +1,4 @@
-import passwordInput from '@sparkdesignsystem/spark-core/base/passwordInput'
+import { passwordInput } from '@sparkdesignsystem/spark-core'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -27,7 +27,7 @@ class PasswordInput extends React.Component {
     label: PropTypes.string,
     onBlur: PropTypes.func,
     onChange: PropTypes.func,
-    pattern: PropTypes.regexp,
+    pattern: PropTypes.string,
     placeholder: PropTypes.string,
     helper: PropTypes.string,
     showPasswordLabel: PropTypes.string,
