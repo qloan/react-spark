@@ -19,7 +19,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "deploy": "npm run build; surge build/",
-    "postinstall": "npm run build",
+    "postinstall": "bash postinstall.sh",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
