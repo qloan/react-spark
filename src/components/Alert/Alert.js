@@ -1,45 +1,42 @@
-import { alerts } from '@sparkdesignsystem/spark-core'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import ALERT_VARIANTS from './variants'
-import { sparkComponentClassName } from '../../util'
+import { alerts } from '@sparkdesignsystem/spark-core';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import ALERT_VARIANTS from './variants';
+import { sparkComponentClassName } from '../../util';
+import Icon from '../Icon/index';
 
 class Alert extends React.Component {
   static defaultProps = {
     alertType: ALERT_VARIANTS.INFORMATION,
     dismissible: false
-  }
+  };
 
   static propTypes = {
     alertType: PropTypes.oneOf(Object.values(ALERT_VARIANTS)),
     dismissible: PropTypes.bool.isRequired,
-    idString: PropTypes.string.isRequired,
-    analyticsString: PropTypes.string.isRequired,
+    idString: PropTypes.string,
+    analyticsString: PropTypes.string,
     children: PropTypes.node.isRequired
-  }
+  };
 
-  ref = React.createRef()
+  ref = React.createRef();
 
   get className() {
-    const {alertType, className} = this.props
+    const { alertType, className } = this.props
     const baseClass = sparkComponentClassName('Alert')
     const variantClass = sparkComponentClassName('Alert', null, alertType)
 
-    return classnames(
-      baseClass,
-      variantClass,
-      {[className]: className}
-    )
+    return classnames(baseClass, variantClass, { [className]: className })
   }
 
   componentDidMount = () => {
-    const {dismissible} = this.props
+    const { dismissible } = this.props
 
     if (dismissible) {
       alerts(this.ref.current, {})
     }
-  }
+  };
 
   render = () => {
     const {
@@ -53,8 +50,23 @@ class Alert extends React.Component {
       ...rest
     } = this.props
 
-    return <div className={this.className} {...rest}>{children}</div>
-  }
+    return (
+      <div className={this.className} {...rest}>
+        <div className={sparkComponentClassName('Alert', 'content')}>
+          {alertType === ALERT_VARIANTS.INFORMATION && (
+            <Icon name='bell' size={Icon.size.L} />
+          )}
+          {alertType === ALERT_VARIANTS.SUCCESS && (
+            <Icon name='check-mark' size={Icon.size.L} />
+          )}
+          {alertType === ALERT_VARIANTS.FAIL && (
+            <Icon name='exclamation' size={Icon.size.L} />
+          )}
+          {children}
+        </div>
+      </div>
+    )
+  };
 }
 
 export default Alert
