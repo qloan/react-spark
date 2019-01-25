@@ -1,9 +1,9 @@
-import { passwordInput } from '@sparkdesignsystem/spark-core'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import InputContainer from './../InputContainer/InputContainer'
-import { sparkBaseClassName, sparkClassName } from '../../util'
+import { passwordInput } from '@sparkdesignsystem/spark-core';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import InputContainer from './../InputContainer/InputContainer';
+import { sparkBaseClassName, sparkClassName } from '../../util';
 
 class PasswordInput extends React.Component {
   static defaultProps = {
@@ -35,10 +35,6 @@ class PasswordInput extends React.Component {
     width: PropTypes.number
   };
 
-  state = {
-    showPassword: false
-  };
-
   get className() {
     const { className, error, width } = this.props
     const errorClassName = error
@@ -58,9 +54,6 @@ class PasswordInput extends React.Component {
   componentDidMount = () => {
     passwordInput()
   };
-
-  handleShowPasswordChange = event =>
-    this.setState({ showPassword: event.target.checked });
 
   get selectionContainerClassName() {
     return [
@@ -91,7 +84,6 @@ class PasswordInput extends React.Component {
       helper,
       ...props
     } = this.props
-    const { showPassword } = this.state
     const valueProp = value == '' ? {} : { value }
 
     return (
@@ -110,17 +102,12 @@ class PasswordInput extends React.Component {
           id={id}
           pattern={pattern}
           placeholder={placeholder}
-          type={showPassword ? 'text' : 'password'}
+          type='password'
           {...valueProp}
           {...props}
         />
         <div className={this.selectionContainerClassName}>
-          <input
-            disabled={disabled}
-            id={`${id}-show-password`}
-            onChange={this.handleShowPasswordChange}
-            type='checkbox'
-          />
+          <input id={`${id}-show-password`} type='checkbox' />
           <label
             className={this.showLabelClassName}
             htmlFor={`${id}-show-password`}
