@@ -42,3 +42,4 @@ export { default as TextArea } from './components/TextArea'
 export { default as TextInput } from './components/TextInput'
 export { default as Toggle } from './components/Toggle'
 export { default as Type } from './components/Type'
+export polyfills from '@sparkdesignsystem/spark-core/es5/sparkCorePolyfills';
