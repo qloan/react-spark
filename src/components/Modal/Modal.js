@@ -32,7 +32,9 @@ class Modal extends Component {
     onConfirm: PropTypes.func,
     show: PropTypes.bool.isRequired,
     title: PropTypes.string.isRequired,
-    type: PropTypes.oneOf(Object.values(MODAL_VARIANTS)).isRequired
+    type: PropTypes.oneOf(
+      Object.keys(MODAL_VARIANTS).map(itm => MODAL_VARIANTS[itm])
+    ).isRequired
   };
 
   mainRef = React.createRef();

@@ -1,13 +1,10 @@
-import {
-  setSpinning,
-  cancelSpinning
-} from '@sparkdesignsystem/spark-core'
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import { setSpinning, cancelSpinning } from '@sparkdesignsystem/spark-core';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import BUTTON_VARIANTS from './variants'
-import { sparkClassName, sparkComponentClassName } from '../../util'
+import BUTTON_VARIANTS from './variants';
+import { sparkClassName, sparkComponentClassName } from '../../util';
 
 class Button extends React.Component {
   static defaultProps = {
@@ -16,7 +13,7 @@ class Button extends React.Component {
     href: null,
     spinner: false,
     variant: 'primary'
-  }
+  };
 
   static propTypes = {
     children: PropTypes.node.isRequired,
@@ -24,19 +21,30 @@ class Button extends React.Component {
     fullWidthAtSmallViewport: PropTypes.bool,
     href: PropTypes.string,
     spinner: PropTypes.bool,
-    variant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS))
-  }
+    variant: PropTypes.oneOf(
+      Object.keys(BUTTON_VARIANTS).map(itm => BUTTON_VARIANTS[itm])
+    )
+  };
 
-  ref = React.createRef()
+  ref = React.createRef();
 
   get className() {
-    const {className, disabled, fullWidthAtSmallViewport, variant} = this.props
+    const {
+      className,
+      disabled,
+      fullWidthAtSmallViewport,
+      variant
+    } = this.props
 
     const baseClass = sparkComponentClassName('Button')
     const variantClass = sparkComponentClassName('Button', null, variant)
     const disabledClass = sparkClassName('is', 'Disabled')
-    const fullWidthAtSmallViewportClass =
-      sparkComponentClassName('Button', null, 'full', 'xs')
+    const fullWidthAtSmallViewportClass = sparkComponentClassName(
+      'Button',
+      null,
+      'full',
+      'xs'
+    )
 
     return classNames(baseClass, {
       [variantClass]: variant !== BUTTON_VARIANTS.PRIMARY,
@@ -50,10 +58,10 @@ class Button extends React.Component {
     if (this.props.spinner) {
       setSpinning(this.ref.current, {})
     }
-  }
+  };
 
   componentDidUpdate = prevProps => {
-    const {props, ref} = this
+    const { props, ref } = this
 
     if (prevProps.spinner !== props.spinner) {
       if (props.spinner) {
@@ -62,7 +70,7 @@ class Button extends React.Component {
         cancelSpinning(ref.current, {})
       }
     }
-  }
+  };
 
   render = () => {
     const {
@@ -86,14 +94,14 @@ class Button extends React.Component {
     }
 
     if (href) {
-      Element = 'a'
+      Element = 'a';
       props.href = href
     } else {
-      Element = 'button'
+      Element = 'button';
     }
 
     return <Element {...props}>{children}</Element>
-  }
+  };
 }
 
 export default Button

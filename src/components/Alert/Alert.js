@@ -13,7 +13,9 @@ class Alert extends React.Component {
   };
 
   static propTypes = {
-    alertType: PropTypes.oneOf(Object.values(ALERT_VARIANTS)),
+    alertType: PropTypes.oneOf(
+      Object.keys(ALERT_VARIANTS).map(itm => ALERT_VARIANTS[itm])
+    ),
     dismissible: PropTypes.bool.isRequired,
     idString: PropTypes.string,
     analyticsString: PropTypes.string,

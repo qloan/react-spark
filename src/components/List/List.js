@@ -1,9 +1,8 @@
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-
-import LIST_VARIANTS from './variants'
-import { sparkBaseClassName, sparkClassName } from '../../util'
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import LIST_VARIANTS from './variants';
+import { sparkBaseClassName, sparkClassName } from '../../util';
 
 class List extends React.Component {
   static defaultProps = {
@@ -15,7 +14,9 @@ class List extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     element: PropTypes.oneOf(['ol', 'ul']).isRequired,
-    variant: PropTypes.oneOf(Object.values(LIST_VARIANTS))
+    variant: PropTypes.oneOf(
+      Object.keys(LIST_VARIANTS).map(itm => LIST_VARIANTS[itm])
+    )
   };
 
   get className() {

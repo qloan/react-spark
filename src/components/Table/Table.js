@@ -19,7 +19,9 @@ class Table extends React.Component {
     children: PropTypes.node,
     spacing: PropTypes.oneOf(['medium']), // TODO: Check on this
     striped: PropTypes.bool,
-    variant: PropTypes.oneOf(Object.values(TABLE_VARIANTS))
+    variant: PropTypes.oneOf(
+      Object.keys(TABLE_VARIANTS).map(itm => TABLE_VARIANTS[itm])
+    )
   };
 
   get containerClassName() {

@@ -12,7 +12,9 @@ class NavItem extends React.Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
     link: PropTypes.shape({
-      buttonVariant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
+      buttonVariant: PropTypes.oneOf(
+        Object.keys(BUTTON_VARIANTS).map(itm => BUTTON_VARIANTS[itm])
+      ),
       href: PropTypes.string,
       text: PropTypes.string,
       variant: PropTypes.string,
