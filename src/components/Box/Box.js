@@ -49,4 +49,4 @@ class Box extends React.Component {
   };
 }
 
-export default Box
+export default Box;

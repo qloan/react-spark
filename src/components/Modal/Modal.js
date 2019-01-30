@@ -81,7 +81,7 @@ class Modal extends Component {
   };
 
   componentDidUpdate = prevProps => {
-    const { show } = this.props
+    const { show } = this.props;
     if (prevProps.show !== show) {
       this.toggle()
     }

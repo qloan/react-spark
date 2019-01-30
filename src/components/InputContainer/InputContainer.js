@@ -56,7 +56,7 @@ class InputContainer extends React.Component {
         </div>
       </div>
     )
-  };
+  }
 }
 
 export default InputContainer
