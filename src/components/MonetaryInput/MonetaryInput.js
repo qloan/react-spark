@@ -1,14 +1,12 @@
-import { formatMonetary } from '@sparkdesignsystem/spark-core/base/monetaryInput'
-import { bindUIEvents as bindTextInputUiEvents } from '@sparkdesignsystem/spark-core/base/textInput'
+import {
+  bindMonetaryUIEvents,
+  formatMonetary
+} from '@sparkdesignsystem/spark-core'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-
-import {
-  setAndDispatchInput,
-  sparkBaseClassName,
-  sparkClassName
-} from '../../util'
+import InputContainer from './../InputContainer/InputContainer'
+import { sparkBaseClassName, sparkClassName } from '../../util'
 
 class MonetaryInput extends React.Component {
   static defaultProps = {
@@ -16,13 +14,14 @@ class MonetaryInput extends React.Component {
     disabled: false,
     error: null,
     onBlur: () => {},
+    onChange: () => {},
     pattern: '(^\\$?(\\d+|\\d{1,3}(,\\d{3})*)(\\.\\d+)?$)|^$',
     type: 'tel',
-    value: null,
+    value: '',
     width: 100
-  }
+  };
 
-  inputRef = React.createRef()
+  inputRef = React.createRef();
 
   static propTypes = {
     className: PropTypes.string,
@@ -34,8 +33,9 @@ class MonetaryInput extends React.Component {
     pattern: PropTypes.string,
     type: PropTypes.string,
     value: PropTypes.string,
+    helper: PropTypes.string,
     width: PropTypes.number
-  }
+  };
 
   get className() {
     const { className, error, width } = this.props
@@ -48,7 +48,7 @@ class MonetaryInput extends React.Component {
 
     return classnames(
       sparkBaseClassName('TextInput'),
-      sparkBaseClassName('TextInput', null, 'monetary'),
+      sparkBaseClassName('TextInput', null, 'has-text-icon'),
       {
         [errorClassName]: errorClassName,
         [widthClassName]: widthClassName,
@@ -58,31 +58,36 @@ class MonetaryInput extends React.Component {
   }
 
   componentDidMount = () => {
-    const inputElement = this.inputRef.current
-
-    bindTextInputUiEvents(inputElement)
-
-    if (this.props.value !== '') {
-      this.maskValue()
+    bindMonetaryUIEvents(this.inputRef.current)
+    const { value } = this.props
+    if (value && value.length > 0) {
+      const event = {
+        target: {
+          value: formatMonetary(value)
+        }
+      }
+      this.props.onChange(event)
     }
-  }
-
-  unmaskValue = value => {
-    return value.match(/[\d.]/g).join('')
-  }
+  };
 
   handleBlur = e => {
-    this.maskValue()
-    // e.target.value = this.unmaskValue(e.target.value)
-
     this.props.onBlur(e)
-  }
+  };
 
   handleChange = e => {
-    // e.target.value = this.unmaskValue(e.target.value)
-
     this.props.onChange(e)
-  }
+  };
+
+  unmaskValue = value => {
+    return Number(value.replace(/[^0-9.-]+/g, ''))
+  };
+
+  onFocus = e => {
+    if (e.target.value) {
+      e.target.value = this.unmaskValue(e.target.value)
+      this.handleChange(e)
+    }
+  };
 
   get labelClassName() {
     return [
@@ -91,49 +96,26 @@ class MonetaryInput extends React.Component {
     ].join(' ')
   }
 
-  get maskedValue() {
-    const { pattern, value } = this.props
-    const inputElement = this.inputRef.current
-    const patternRegex = new RegExp(pattern)
-
-    if (value === '') {
-      // This component is uncontrolled
-      return patternRegex.test(inputElement.value)
-        ? formatMonetary(inputElement.value)
-        : inputElement.value
-    } else {
-      return patternRegex.test(value) ? formatMonetary(value) : value
-    }
-  }
-
   get iconContainerClassName() {
     return [
       sparkBaseClassName('TextInputIconContainer'),
-      sparkBaseClassName('TextInputIconContainer', null, 'monetary')
+      sparkBaseClassName('TextInputIconContainer', null, 'has-text-icon')
     ].join(' ')
   }
 
-  /**
-   * Set input value to masked value and fire input event
-   */
-  maskValue = () => {
-    const maskedValue = this.maskedValue
-    setAndDispatchInput(this.inputRef.current, maskedValue)
-
-    return maskedValue
-  }
-
-  renderErrorContent = () => {
-    const { error } = this.props
-
-    if (!error) return null
-
-    return (
-      <React.Fragment>
-        {/* TODO: Render SVG */}
-        <div className={sparkBaseClassName('ErrorText')}>{error}</div>
-      </React.Fragment>
-    )
+  valueProp() {
+    const { value, disabled } = this.props
+    let valueProp
+    if (value == null) {
+      valueProp = {}
+    } else {
+      if (disabled) {
+        valueProp = { value: formatMonetary(value) }
+      } else {
+        valueProp = { value }
+      }
+    }
+    return valueProp
   }
 
   render = () => {
@@ -144,61 +126,45 @@ class MonetaryInput extends React.Component {
       id,
       label,
       onBlur,
-      onChange,
       pattern,
       type,
       value,
       width,
+      helper,
       ...props
     } = this.props
-    let valueProp
-
-    if (value == null) {
-      valueProp = {}
-    } else {
-      if (disabled) {
-        // Format value because `this.maskValue()` doesn't work if the input is
-        // disabled
-        valueProp = { value: formatMonetary(value) }
-      } else {
-        valueProp = { value }
-      }
-    }
 
     return (
-      <div className={sparkClassName('utility', 'JavaScript')}>
-        <div className={sparkBaseClassName('InputContainer')}>
-          <div className={this.iconContainerClassName}>
-            <input
-              aria-describedby={`${id}--error-container`}
-              className={this.className}
-              disabled={disabled}
-              id={id}
-              pattern={pattern}
-              ref={this.inputRef}
-              type={type}
-              {...valueProp}
-              {...props}
-              onChange={this.handleChange}
-              onBlur={this.handleBlur}
-            />
-            <div
-              className={sparkBaseClassName('InputContainer', 'input-border')}
-            />
+      <InputContainer
+        error={error}
+        helper={helper}
+        id={id}
+        inputRef={this.inputRef}
+        data-sprk-input='monetary'
+      >
+        <div className={this.iconContainerClassName} ref={this.inputRef}>
+          {label && (
             <label className={this.labelClassName} htmlFor={id}>
               {label}
             </label>
-          </div>
-          <div
-            className={sparkBaseClassName('ErrorContainer')}
-            id={`${id}--error-container`}
-          >
-            {this.renderErrorContent()}
-          </div>
+          )}
+          <input
+            aria-describedby={`${id}--error-container`}
+            className={this.className}
+            disabled={disabled}
+            id={id}
+            pattern={pattern}
+            type={type}
+            {...this.valueProp()}
+            {...props}
+            onChange={this.handleChange}
+            onBlur={this.handleBlur}
+            onFocus={this.onFocus}
+          />
         </div>
-      </div>
+      </InputContainer>
     )
-  }
+  };
 }
 
 export default MonetaryInput

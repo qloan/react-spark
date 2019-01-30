@@ -1,7 +1,4 @@
-import { formatDate } from '@sparkdesignsystem/spark-core/base/dateInput'
-import {
-  bindUIEvents as bindTextInputUiEvents
-} from '@sparkdesignsystem/spark-core/base/textInput'
+import { formatDate } from '@sparkdesignsystem/spark-core'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -19,15 +16,16 @@ class DateInput extends React.Component {
     disabled: false,
     error: null,
     mask: formatDate,
-    pattern: '^(((0[1358]|1[02])([\\/-]?)(0[1-9]|[12]\\d|3[01])|(0[469]|11)([\\/-]?)(0[1-9]|[12]\\d|30)|02(\\/?)((0?\\d)|[12]\\d))(\\4|\\7|\\9)[12]\\d{3})?$',
+    pattern:
+      '^(((0[1358]|1[02])([\\/-]?)(0[1-9]|[12]\\d|3[01])|(0[469]|11)([\\/-]?)(0[1-9]|[12]\\d|30)|02(\\/?)((0?\\d)|[12]\\d))(\\4|\\7|\\9)[12]\\d{3})?$',
     placeholder: 'MM/DD/YYYY',
     value: null,
     width: null
-  }
+  };
 
-  inputContainerRef = React.createRef()
+  inputContainerRef = React.createRef();
 
-  inputRef = React.createRef()
+  inputRef = React.createRef();
 
   static propTypes = {
     disabled: PropTypes.bool,
@@ -39,42 +37,36 @@ class DateInput extends React.Component {
     placeholder: PropTypes.string,
     value: PropTypes.string,
     width: PropTypes.number
-  }
+  };
 
   get className() {
-    const {className, error, width} = this.props
+    const { className, error, width } = this.props
     const errorClassName = error
       ? sparkBaseClassName('TextInput', null, 'error')
       : null
     const widthClassName = width ? sparkWidthClassName(width) : null
 
-    return classnames(
-      sparkBaseClassName('TextInput'),
-      {
-        [errorClassName]: errorClassName,
-        [widthClassName]: widthClassName,
-        [className]: className
-      }
-    )
+    return classnames(sparkBaseClassName('TextInput'), {
+      [errorClassName]: errorClassName,
+      [widthClassName]: widthClassName,
+      [className]: className
+    })
   }
 
   componentDidMount = () => {
     const inputElement = this.inputRef.current
-
-    bindTextInputUiEvents(inputElement)
-
     // Add event listener if this component is uncontrolled
     if (this.props.value == null) {
       inputElement.addEventListener('input', this.handleInput)
     }
-  }
+  };
 
   componentDidUpdate = () => {
-    const {value} = this.props
+    const { value } = this.props
 
     // Mask value if this component is controlled
     if (value != null && value !== this.maskedValue) this.maskValue()
-  }
+  };
 
   componentWillUnmount() {
     // Add event listener if this component is uncontrolled
@@ -92,24 +84,26 @@ class DateInput extends React.Component {
   }
 
   handleInput = event => {
-    const {value} = this.props
+    const { value } = this.props
 
     // Mask value if this component is uncontrolled
     if (value == null && event.target.value !== this.maskedValue) {
       this.maskValue()
     }
-  }
+  };
 
   get maskedValue() {
-    const {mask, pattern, value} = this.props
+    const { mask, pattern, value } = this.props
     const inputElement = this.inputRef.current
     const patternRegex = new RegExp(pattern)
 
-    if (value == null) { // This component is uncontrolled
+    if (value == null) {
+      // This component is uncontrolled
       return patternRegex.test(inputElement.value)
         ? mask(inputElement.value)
         : inputElement.value
-    } else { // This component is controlled
+    } else {
+      // This component is controlled
       return patternRegex.test(value) ? mask(value) : value
     }
   }
@@ -119,10 +113,10 @@ class DateInput extends React.Component {
    */
   maskValue = () => {
     setAndDispatchInput(this.inputRef.current, this.maskedValue)
-  }
+  };
 
   renderErrorContent = () => {
-    const {error} = this.props
+    const { error } = this.props
 
     if (!error) return null
 
@@ -132,7 +126,7 @@ class DateInput extends React.Component {
         <div className={sparkBaseClassName('ErrorText')}>{error}</div>
       </React.Fragment>
     )
-  }
+  };
 
   renderExclamationSvg = () => (
     <svg
@@ -143,24 +137,14 @@ class DateInput extends React.Component {
       xmlns='http://www.w3.org/2000/svg'
     >
       <g fillRule='evenodd' transform='translate(1 1)'>
-        <circle
-          className='exclamation-filled-circle'
-          cx='27'
-          cy='27'
-          r='27'
-        />
+        <circle className='exclamation-filled-circle' cx='27' cy='27' r='27' />
         <g transform='translate(26 13)'>
-          <circle
-            className='exclamation-filled-i-dot'
-            cx='1'
-            cy='27.5'
-            r='1'
-          />
+          <circle className='exclamation-filled-i-dot' cx='1' cy='27.5' r='1' />
           <path className='exclamation-filled-i-path' d='M0 0h2v22H0z' />
         </g>
       </g>
     </svg>
-  )
+  );
 
   render = () => {
     const {
@@ -176,7 +160,7 @@ class DateInput extends React.Component {
       width,
       ...props
     } = this.props
-    const valueProp = value == null ? {} : {value}
+    const valueProp = value == null ? {} : { value }
 
     return (
       <div className={sparkClassName('utility', 'JavaScript')}>
@@ -199,11 +183,9 @@ class DateInput extends React.Component {
             {...props}
           />
           <div
-            className={sparkBaseClassName('InputContainer', 'input-border')} />
-          <label
-            className={sparkBaseClassName('Label')}
-            htmlFor={id}
-          >
+            className={sparkBaseClassName('InputContainer', 'input-border')}
+          />
+          <label className={sparkBaseClassName('Label')} htmlFor={id}>
             {label}
           </label>
           <div
@@ -215,7 +197,7 @@ class DateInput extends React.Component {
         </div>
       </div>
     )
-  }
+  };
 }
 
 export default DateInput

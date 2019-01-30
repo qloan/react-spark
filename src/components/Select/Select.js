@@ -1,4 +1,4 @@
-import { bindUIEvents } from '@sparkdesignsystem/spark-core/base/selectInput'
+import { requiredSelect } from '@sparkdesignsystem/spark-core'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
@@ -12,9 +12,9 @@ class Select extends React.Component {
     disabled: false,
     error: null,
     width: 100
-  }
+  };
 
-  selectRef = React.createRef()
+  selectRef = React.createRef();
 
   static propTypes = {
     disabled: PropTypes.bool,
@@ -24,11 +24,11 @@ class Select extends React.Component {
     name: PropTypes.string,
     options: PropTypes.arrayOf(PropTypes.object),
     width: PropTypes.number
-  }
+  };
 
   componentDidMount = () => {
-    bindUIEvents(this.selectRef.current)
-  }
+    requiredSelect()
+  };
 
   get className() {
     const { className, error, width } = this.props
@@ -57,7 +57,12 @@ class Select extends React.Component {
     } = this.props
 
     return (
-      <InputContainer error={error} id={id} label={label}>
+      <InputContainer
+        error={error}
+        id={id}
+        label={label}
+        inputRef={this.selectRef}
+      >
         <select
           aria-describedby={`${id}--error-container`}
           className={this.className}
@@ -66,7 +71,6 @@ class Select extends React.Component {
           disabled={disabled}
           id={id}
           name={name}
-          ref={this.selectRef}
           {...props}
         >
           {options.map(({ disabled = false, value, text }, index) => (
@@ -75,10 +79,10 @@ class Select extends React.Component {
             </option>
           ))}
         </select>
-        <Icon name='chevron-down' select />
+        <Icon name='chevron-down' select color='base' size={Icon.size.L} />
       </InputContainer>
     )
-  }
+  };
 }
 
 export default Select

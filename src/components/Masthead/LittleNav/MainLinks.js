@@ -12,7 +12,9 @@ class MainLinks extends React.Component {
   static propTypes = {
     links: PropTypes.arrayOf(
       PropTypes.shape({
-        buttonVariant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
+        buttonVariant: PropTypes.oneOf(
+          Object.keys(BUTTON_VARIANTS).map(itm => BUTTON_VARIANTS[itm])
+        ),
         href: PropTypes.string,
         onClick: PropTypes.func,
         text: PropTypes.string,
@@ -26,9 +28,8 @@ class MainLinks extends React.Component {
     return classnames(
       sparkObjectClassName('Stack', 'item'),
       sparkObjectClassName('HorizontalList'),
-      sparkObjectClassName('HorizontalList', null, 'spacing-large'),
+      sparkObjectClassName('HorizontalList', null, 'spacing-medium'),
       sparkObjectClassName('Stack', null, 'center-column'),
-      sparkClassName('utility', 'Position', null, 'relative'),
       {
         [className]: className
       }

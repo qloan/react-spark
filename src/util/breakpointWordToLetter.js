@@ -1,4 +1,5 @@
 const dictionary = new Map([
+  ['min', 'xxs'],
   ['tiny', 'xs'],
   ['small', 's'],
   ['medium', 'm'],

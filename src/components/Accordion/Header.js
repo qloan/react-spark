@@ -1,9 +1,9 @@
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { sparkComponentClassName } from '../../util';
-import Icon from '../Icon';
-import Stack from '../Stack';
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import { sparkComponentClassName } from '../../util'
+import Icon from '../Icon'
+import Stack from '../Stack'
 
 class AccordionHeader extends React.Component {
   static defaultProps = {
@@ -47,7 +47,7 @@ class AccordionHeader extends React.Component {
       >
         {children}
         <Icon
-          name='chevron-down-circle'
+          name='chevron-up-circle-two-color'
           size='l'
           toggle='accordionIconUseElement'
           variant='Accordion'

@@ -1,14 +1,18 @@
 import classNames from 'classnames'
 import React from 'react'
 import { sparkComponentClassName } from '../../util'
-import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core/components/toggle'
+import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core'
 
 class AccordionItem extends React.Component {
   get className() {
-    const { className } = this.props
+    const { className, open } = this.props
     const baseClass = sparkComponentClassName('Accordion', 'item')
+    const openClass = sparkComponentClassName('Accordion', 'item--open')
 
-    return classNames(baseClass, { [className]: className })
+    return classNames(baseClass, {
+      [className]: className,
+      [openClass]: open
+    })
   }
 
   ref = React.createRef();

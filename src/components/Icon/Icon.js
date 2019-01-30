@@ -1,21 +1,22 @@
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import { sparkBaseClassName, sparkComponentClassName } from '../../util';
+import { sparkBaseClassName, sparkComponentClassName } from '../../util'
 
 /**
  * In order for Icons to work you need to include a sprite SVG file at the top of your body tag.
  */
 class Icon extends React.Component {
   static size = {
+    M: 'm',
     L: 'l',
     XL: 'xl',
     XXL: 'xxl'
   };
 
   static defaultProps = {
-    size: '',
+    size: 'm',
     variant: '',
     toggle: ''
   };
@@ -51,7 +52,7 @@ class Icon extends React.Component {
     const { className, name, toggle, select, ...props } = this.props
     const toggleProps = {}
     if (toggle) {
-      toggleProps['data-sprk-toggle'] = 'icon';
+      toggleProps['data-sprk-toggle'] = 'icon'
     }
     return (
       <svg

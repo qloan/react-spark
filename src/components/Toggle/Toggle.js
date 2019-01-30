@@ -1,4 +1,4 @@
-import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core/components/toggle'
+import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core'
 import PropTypes from 'prop-types'
 import React from 'react'
 

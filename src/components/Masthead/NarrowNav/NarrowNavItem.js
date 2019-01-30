@@ -1,16 +1,14 @@
-import { bindToggleUIEvents } from "@sparkdesignsystem/spark-core/components/toggle";
-import classnames from "classnames";
-import PropTypes from "prop-types";
-import React from "react";
-import Icon from "../../Icon/Icon";
-import Link from "../../Link/Link";
-import List from "../../List/List";
+import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Icon from '../../Icon/Icon';
+import List from '../../List/List';
 import {
-  sparkClassName,
   sparkBaseClassName,
   sparkComponentClassName,
   sparkObjectClassName
-} from "../../../util/index";
+} from '../../../util/index';
 
 class NarrowNavItem extends React.Component {
   liRef = React.createRef();
@@ -33,75 +31,78 @@ class NarrowNavItem extends React.Component {
   };
 
   componentDidMount = () => {
-    if (this.hasLinks) bindToggleUIEvents(this.liRef.current);
+    if (this.hasLinks) bindToggleUIEvents(this.liRef.current)
   };
 
   /**
    * @returns {boolean}
    */
   get hasLinks() {
-    return !!(this.props.link.links && this.props.link.links.length);
+    return !!(this.props.link.links && this.props.link.links.length)
   }
 
   getLiClassName = active => {
-    const { buttonVariant } = this.props.link;
+    const { buttonVariant } = this.props.link
     const activeClassName = sparkComponentClassName(
-      "Accordion",
-      "item",
-      "active"
-    );
-    const boxClass = sparkObjectClassName("Box");
-    return classnames(sparkComponentClassName("Accordion", "item"), {
+      'Accordion',
+      'item',
+      'active'
+    )
+    const boxClass = sparkObjectClassName('Box')
+    return classnames(sparkComponentClassName('MastheadAccordion', 'item'), {
       [activeClassName]: active,
       [boxClass]: buttonVariant
-    });
+    })
   };
 
   get linkClassName() {
-    const { buttonVariant } = this.props.link;
-    const accordionClass = sparkComponentClassName("Accordion", "summary");
-    const baseButtonClass = sparkComponentClassName("Button");
+    const { buttonVariant } = this.props.link
+    const accordionClass = sparkComponentClassName(
+      'MastheadAccordion',
+      'summary'
+    )
+    const baseButtonClass = sparkComponentClassName('Button')
     const compactButtonClass = sparkComponentClassName(
-      "Button",
+      'Button',
       null,
-      "compact"
-    );
+      'compact'
+    )
     const buttonVariantClass = sparkComponentClassName(
-      "Button",
+      'Button',
       null,
       buttonVariant
-    );
-    const stretchClass = sparkComponentClassName("Button", null, "full@sm");
+    )
+    const stretchClass = sparkComponentClassName('Button', null, 'full@sm')
     return classnames({
       [accordionClass]: !buttonVariant,
       [baseButtonClass]: buttonVariant,
       [buttonVariantClass]: buttonVariant,
       [stretchClass]: buttonVariant,
       [compactButtonClass]: buttonVariant
-    });
+    })
   }
 
   get spanClassName() {
     return [
-      sparkBaseClassName("TypeBodyTwo"),
-      sparkComponentClassName("Accordion", "heading")
-    ].join(" ");
+      sparkBaseClassName('TypeBodyOne'),
+      sparkComponentClassName('MastheadAccordion', 'heading')
+    ].join(' ')
   }
 
   render = () => {
-    const { active, href, links, text, target, onClick } = this.props.link;
-    let conditionalAnchorProps = {};
-    let conditionalLiProps = {};
+    const { active, href, links, text, target, onClick } = this.props.link
+    let conditionalAnchorProps = {}
+    let conditionalLiProps = {}
 
     if (this.hasLinks) {
       conditionalAnchorProps = {
-        "aria-controls": this.props.id,
-        "data-sprk-toggle": "trigger",
-        "data-sprk-toggle-type": "accordion"
-      };
+        'aria-controls': this.props.id,
+        'data-sprk-toggle': 'trigger',
+        'data-sprk-toggle-type': 'accordion'
+      }
       conditionalLiProps = {
-        "data-sprk-toggle": "container"
-      };
+        'data-sprk-toggle': 'container'
+      }
     }
 
     return (
@@ -119,34 +120,44 @@ class NarrowNavItem extends React.Component {
         >
           <span className={this.spanClassName}>{text}</span>
           {this.hasLinks && (
-            <Icon name="chevron-down" size={Icon.size.L} color="base" />
+            <Icon
+              name='chevron-down'
+              size={Icon.size.L}
+              color='base'
+              className={sparkComponentClassName('MastheadAccordion', 'icon')}
+            />
           )}
         </a>
         {this.hasLinks && (
           <List
-            className={sparkComponentClassName("Accordion", "details")}
-            variant="bare"
-            data-sprk-toggle="content"
+            className={sparkComponentClassName('MastheadAccordion')}
+            variant='bare'
+            data-sprk-toggle='content'
             id={this.props.id}
           >
             {links.map((sublink, i) => (
-              <li key={i}>
-                <Link
-                  className={sparkClassName("utility", "pam")}
-                  variant="standalone"
+              <li
+                key={i}
+                className={sparkComponentClassName('MastheadAccordion', 'item')}
+              >
+                <a
+                  className={sparkComponentClassName(
+                    'MastheadAccordion',
+                    'summary'
+                  )}
                   href={sublink.href}
                   target={sublink.target}
                   onClick={sublink.onClick}
                 >
                   {sublink.text}
-                </Link>
+                </a>
               </li>
             ))}
           </List>
         )}
       </li>
-    );
+    )
   };
 }
 
-export default NarrowNavItem;
+export default NarrowNavItem

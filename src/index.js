@@ -28,6 +28,7 @@ export { default as Radio } from './components/Radio'
 export { default as RadioGroup } from './components/RadioGroup'
 export { default as MoneyInput } from './components/MonetaryInput'
 export { default as PasswordInput } from './components/PasswordInput'
+export { default as PhoneNumberInput } from './components/PhoneNumberInput'
 export { default as Select } from './components/Select'
 export { default as SelectionContainer } from './components/SelectionContainer'
 export {
@@ -41,3 +42,4 @@ export { default as TextArea } from './components/TextArea'
 export { default as TextInput } from './components/TextInput'
 export { default as Toggle } from './components/Toggle'
 export { default as Type } from './components/Type'
+export polyfills from '@sparkdesignsystem/spark-core/es5/sparkCorePolyfills';

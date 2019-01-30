@@ -1,14 +1,14 @@
-import PropTypes from 'prop-types'
-import React from 'react'
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import ErrorText from '../ErrorText'
-import Fieldset from '../Fieldset'
-import InputContainer from '../InputContainer'
-import Label from '../Label'
-import Legend from '../Legend'
-import Radio from '../Radio'
+import ErrorText from '../ErrorText';
+import Fieldset from '../Fieldset';
+import InputContainer from '../InputContainer';
+import Label from '../Label';
+import Legend from '../Legend';
+import Radio from '../Radio';
 
-import { sparkBaseClassName } from '../../util'
+import { sparkBaseClassName } from '../../util';
 
 class RadioGroup extends React.Component {
   static defaultProps = {
@@ -18,7 +18,7 @@ class RadioGroup extends React.Component {
     onChange: () => {
       console.log('onChange not implemented')
     }
-  }
+  };
 
   static propTypes = {
     radios: PropTypes.arrayOf(
@@ -33,24 +33,13 @@ class RadioGroup extends React.Component {
     id: PropTypes.string.isRequired,
     label: PropTypes.string,
     onChange: PropTypes.func
-  }
+  };
 
   get labelClassName() {
     return [
       sparkBaseClassName('Label'),
       sparkBaseClassName('Label', null, 'inline')
     ].join(' ')
-  }
-
-  renderErrorContent = () => {
-    const { error } = this.props
-
-    if (!error) return null
-
-    return (
-      // TODO: Icon SVG
-      <ErrorText>{error}</ErrorText>
-    )
   }
 
   render = () => {
@@ -62,11 +51,12 @@ class RadioGroup extends React.Component {
       name,
       onChange,
       radios,
-      value
+      value,
+      ...props
     } = this.props
 
     return (
-      <InputContainer>
+      <InputContainer id={id} {...props}>
         <Fieldset>
           <Legend>
             <Label>{label}</Label>
@@ -86,15 +76,9 @@ class RadioGroup extends React.Component {
             />
           ))}
         </Fieldset>
-        <div
-          className={sparkBaseClassName('ErrorContainer')}
-          id={`${id}--error-container`}
-        >
-          {this.renderErrorContent()}
-        </div>
       </InputContainer>
     )
-  }
+  };
 }
 
 export default RadioGroup

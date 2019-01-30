@@ -7,5 +7,7 @@ export default {
   HALF: 'half',
   THREE_FOURTHS: 'three-fourths',
   THREE_FIFTHS: 'three-fifths',
-  TWO_FIFTHS: 'two-fifths'
+  TWO_FIFTHS: 'two-fifths',
+  THREE_TENTHS: 'three-tenths',
+  SEVEN_TENTHS: 'seven-tenths'
 }

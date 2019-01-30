@@ -15,7 +15,9 @@ class Link extends React.Component {
   static propTypes = {
     children: PropTypes.node,
     disabled: PropTypes.bool,
-    variant: PropTypes.oneOf(Object.values(LINK_VARIANTS))
+    variant: PropTypes.oneOf(
+      Object.keys(LINK_VARIANTS).map(itm => LINK_VARIANTS[itm])
+    )
   };
 
   get className() {

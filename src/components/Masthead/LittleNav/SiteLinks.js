@@ -1,15 +1,17 @@
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import BUTTON_VARIANTS from '../../Button/variants'
-import NavItem from './NavItem'
-import { sparkComponentClassName, sparkObjectClassName } from '../../../util'
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import BUTTON_VARIANTS from '../../Button/variants';
+import NavItem from './NavItem';
+import { sparkComponentClassName, sparkObjectClassName } from '../../../util';
 
 class SiteLinks extends React.Component {
   static propTypes = {
     links: PropTypes.arrayOf(
       PropTypes.shape({
-        buttonVariant: PropTypes.oneOf(Object.values(BUTTON_VARIANTS)),
+        buttonVariant: PropTypes.oneOf(
+          Object.keys(BUTTON_VARIANTS).map(itm => BUTTON_VARIANTS[itm])
+        ),
         href: PropTypes.string,
         text: PropTypes.string,
         onClick: PropTypes.func,
