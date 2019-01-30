@@ -1,14 +1,15 @@
-import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core';
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import Icon from '../../Icon/Icon';
-import List from '../../List/List';
+import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core'
+import { hideMobileNavs } from '@sparkdesignsystem/spark-core'
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Icon from '../../Icon/Icon'
+import List from '../../List/List'
 import {
   sparkBaseClassName,
   sparkComponentClassName,
   sparkObjectClassName
-} from '../../../util/index';
+} from '../../../util/index'
 
 class NarrowNavItem extends React.Component {
   liRef = React.createRef();
@@ -29,6 +30,13 @@ class NarrowNavItem extends React.Component {
     target: PropTypes.string,
     text: PropTypes.string
   };
+
+  handleClick(func, e) {
+    hideMobileNavs()
+    if (typeof func === 'function') {
+      func(e)
+    }
+  }
 
   componentDidMount = () => {
     if (this.hasLinks) bindToggleUIEvents(this.liRef.current)
@@ -115,7 +123,7 @@ class NarrowNavItem extends React.Component {
           className={this.linkClassName}
           href={href}
           target={target}
-          onClick={onClick}
+          onClick={e => this.handleClick(onClick, e)}
           {...conditionalAnchorProps}
         >
           <span className={this.spanClassName}>{text}</span>
@@ -147,7 +155,7 @@ class NarrowNavItem extends React.Component {
                   )}
                   href={sublink.href}
                   target={sublink.target}
-                  onClick={sublink.onClick}
+                  onClick={e => this.handleClick(sublink.onClick, e)}
                 >
                   {sublink.text}
                 </a>
