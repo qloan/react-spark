@@ -48,6 +48,7 @@ class Checkbox extends React.Component {
           name={name}
           type='checkbox'
           value={value}
+          style={{ flex: '0 0 auto' }}
           {...rest}
         />
         <label className={this.labelClassName} htmlFor={id}>
