@@ -1,15 +1,15 @@
-import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core'
-import { hideMobileNavs } from '@sparkdesignsystem/spark-core'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import Icon from '../../Icon/Icon'
-import List from '../../List/List'
+import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core';
+import { hideMobileNavs } from '@sparkdesignsystem/spark-core';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import Icon from '../../Icon/Icon';
+import List from '../../List/List';
 import {
   sparkBaseClassName,
   sparkComponentClassName,
   sparkObjectClassName
-} from '../../../util/index'
+} from '../../../util/index';
 
 class NarrowNavItem extends React.Component {
   liRef = React.createRef();
@@ -31,7 +31,16 @@ class NarrowNavItem extends React.Component {
     text: PropTypes.string
   };
 
-  handleClick(func, e) {
+  handleMainClick(func, e) {
+    if (!this.hasLinks) {
+      hideMobileNavs()
+    }
+    if (typeof func === 'function') {
+      func(e)
+    }
+  }
+
+  handleSublinkClick(func, e) {
     hideMobileNavs()
     if (typeof func === 'function') {
       func(e)
@@ -123,7 +132,7 @@ class NarrowNavItem extends React.Component {
           className={this.linkClassName}
           href={href}
           target={target}
-          onClick={e => this.handleClick(onClick, e)}
+          onClick={e => this.handleMainClick(onClick, e)}
           {...conditionalAnchorProps}
         >
           <span className={this.spanClassName}>{text}</span>
@@ -155,7 +164,7 @@ class NarrowNavItem extends React.Component {
                   )}
                   href={sublink.href}
                   target={sublink.target}
-                  onClick={e => this.handleClick(sublink.onClick, e)}
+                  onClick={e => this.handleSublinkClick(sublink.onClick, e)}
                 >
                   {sublink.text}
                 </a>
