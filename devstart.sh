@@ -11,6 +11,5 @@ if [ "$1" = "clean" ]; then
 fi
 
 mkdir -p node_modules;
-cd node_modules;
-npm link react-spark;
 npm install;
+npm link react-spark;
