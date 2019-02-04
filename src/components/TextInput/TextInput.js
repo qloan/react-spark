@@ -1,10 +1,7 @@
-import { bindRequiredTextInputUIEvents } from '@sparkdesignsystem/spark-core'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-
 import InputContainer from './../InputContainer/InputContainer'
-
 import { sparkClassName, sparkWidthClassName } from '../../util'
 
 class TextInput extends React.Component {
@@ -26,10 +23,6 @@ class TextInput extends React.Component {
     label: PropTypes.string.isRequired,
     width: PropTypes.number,
     value: PropTypes.any
-  };
-
-  componentDidMount = () => {
-    bindRequiredTextInputUIEvents(this.inputRef.current)
   };
 
   get className() {
