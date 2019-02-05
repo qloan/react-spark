@@ -1,4 +1,5 @@
 import React from 'react'
+import Icon from '../Icon'
 import { sparkBaseClassName } from '../../util'
 
 class ErrorText extends React.Component {
@@ -6,12 +7,20 @@ class ErrorText extends React.Component {
     const { id, error } = this.props
 
     return (
-      <div
-        className={sparkBaseClassName('ErrorContainer')}
-        id={`${id}--error-container`}
-      >
-        <div className={sparkBaseClassName('ErrorText')}>{error}</div>
-      </div>
+      error && (
+        <div
+          style={{
+            msFlexAlign: 'center',
+            alignItems: 'center',
+            display: 'flex',
+            marginTop: '8px'
+          }}
+          id={`${id}--error-container`}
+        >
+          <Icon name='exclamation-filled' className='sprk-b-ErrorIcon' />
+          <div className={sparkBaseClassName('ErrorText')}>{error}</div>
+        </div>
+      )
     )
   };
 }
