@@ -1,13 +1,14 @@
 import {
   bindMonetaryUIEvents,
   formatMonetary
-} from '@sparkdesignsystem/spark-core'
-import classnames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
-import InputContainer from './../InputContainer/InputContainer'
-import { sparkBaseClassName, sparkClassName } from '../../util'
+} from '@sparkdesignsystem/spark-core';
+import classnames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
+import InputContainer from './../InputContainer/InputContainer';
+import { sparkBaseClassName, sparkClassName } from '../../util';
 
+export const pattern = /(^\$?(\d+|\d{1,3}(,\d{3})*)(\.\d+)?$)|^$/
 class MonetaryInput extends React.Component {
   static defaultProps = {
     className: null,
@@ -166,5 +167,7 @@ class MonetaryInput extends React.Component {
     )
   };
 }
+
+MonetaryInput.pattern = pattern
 
 export default MonetaryInput
