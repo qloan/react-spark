@@ -37,7 +37,7 @@ class Alert extends React.Component {
     let alert = this.ref.current;
     alert.classList.add('sprk-u-Display--none');
     // Notify parent component that alert was dismissed
-    this.props.handleAlertDismissed(_.includes(alert.classList, 'sprk-u-Display--none'));
+    this.props.handleAlertDismissed && this.props.handleAlertDismissed(_.includes(alert.classList, 'sprk-u-Display--none'));
   };
 
   render = () => {
