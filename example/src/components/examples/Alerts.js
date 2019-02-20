@@ -6,7 +6,7 @@ const Alerts = () => (<>
 
   <p>Information:</p>
   <Alert
-    alertType='info'
+    type='info'
     analyticsString='object.action.event'
     className='extra-class'
     data-extra-attribute
@@ -18,7 +18,7 @@ const Alerts = () => (<>
 
   <p>Success:</p>
   <Alert
-    alertType='success'
+    type='success'
     analyticsString='object.action.event'
     dismissible={true}
     idString='alert-success-1'
@@ -28,13 +28,13 @@ const Alerts = () => (<>
 
   <p>Fail:</p>
   <Alert
-    alertType='fail'
+    type='fail'
     analyticsString='object.action.event'
     dismissible={true}
     idString='alert-fail-1'
   >
     Failed alert
   </Alert>
-</>)
+</>);
 
 export default Alerts
