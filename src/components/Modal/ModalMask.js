@@ -17,7 +17,7 @@ class ModalMask extends React.Component {
     }
 
     handleMaskEvent = (e, closeOnClick = true, onClose) => {
-      if(closeOnClick){
+      if(closeOnClick && onClose){
         onClose();
       }
     };
