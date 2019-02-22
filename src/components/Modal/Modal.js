@@ -12,6 +12,8 @@ import ModalMask from './ModalMask';
 import Spinner from '../Spinner';
 import Stack from '../Stack';
 
+const escapeKey = 27;
+
 class Modal extends Component {
   static defaultProps = {
     hasCloseButton: true
@@ -40,6 +42,16 @@ class Modal extends Component {
   mainRef = React.createRef();
   maskRef = React.createRef();
   modalRef = React.createRef();
+
+
+  escapeModal = (event) => {
+    // console.log("Pressed " + event.keyCode);
+    // console.log(event);
+    if(event.keyCode === escapeKey && this.props.onClose && this.props.show) {
+      console.log("ESCAPE'D");
+      this.props.onClose();
+    }
+  }
 
   get className() {
     const { className, type } = this.props
@@ -78,6 +90,7 @@ class Modal extends Component {
 
   componentDidMount = () => {
     this.toggle()
+    document.addEventListener('keydown', this.escapeModal);
   };
 
   componentDidUpdate = prevProps => {
@@ -89,6 +102,7 @@ class Modal extends Component {
 
   componentWillUnmount = () => {
     this.hide()
+    document.removeEventListener('keydown', this.escapeModal);
   };
 
   render = () => {
