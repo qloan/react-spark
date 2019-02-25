@@ -45,10 +45,7 @@ class Modal extends Component {
 
 
   escapeModal = (event) => {
-    // console.log("Pressed " + event.keyCode);
-    // console.log(event);
     if(event.keyCode === escapeKey && this.props.onClose && this.props.show) {
-      console.log("ESCAPE'D");
       this.props.onClose();
     }
   }
