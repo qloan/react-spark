@@ -11,6 +11,10 @@ class Alert extends React.Component {
     dismissible: false
   }
 
+  static state = {
+    dismissed: false
+  }
+
   static propTypes = {
     type: PropTypes.oneOf(
       Object.keys(ALERT_VARIANTS).map(itm => ALERT_VARIANTS[itm])
