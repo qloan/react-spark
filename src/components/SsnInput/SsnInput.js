@@ -12,10 +12,10 @@ class SsnInput extends React.Component {
     className: null,
     disabled: false,
     error: null,
-    label: 'Social Security #',
+    label: 'Social Security Number',
     pattern: ssnInputValidationRegex,
     placeholder: '000-00-0000',
-    showSsnLabel: 'Show SSN',
+    showSsnLabel: 'Show Social Security Number',
     value: '',
     width: 100
   };
