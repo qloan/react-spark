@@ -66,8 +66,8 @@ npm start # runs rollup with watch flag
 
 ```bash
 # (in another tab)
-cd example
+cd example 
 npm start # runs create-react-app dev server
 ```
 
-Now, anytime you make a change to your library in `src/` or to the example app's `example/src`, `create-react-app` will live-reload your local dev server so you can iterate on your component in real-time.
+Now, anytime you make a change to your library in `src/` or to the example app's `example/src`, `create-react-app` will live-reload your local dev server so you can iterate on your component in real-time..
