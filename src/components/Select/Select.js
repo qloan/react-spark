@@ -11,7 +11,8 @@ class Select extends React.Component {
   static defaultProps = {
     disabled: false,
     error: null,
-    width: 100
+    width: 100,
+    helper: null 
   };
 
   selectRef = React.createRef();
