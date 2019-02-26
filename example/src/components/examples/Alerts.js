@@ -35,6 +35,6 @@ const Alerts = () => (<>
   >
     Failed alert
   </Alert>
-</>);
+</>)
 
 export default Alerts
