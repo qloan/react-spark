@@ -66,7 +66,7 @@ npm start # runs rollup with watch flag
 
 ```bash
 # (in another tab)
-cd example
+cd example 
 npm start # runs create-react-app dev server
 ```
 
