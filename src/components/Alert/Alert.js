@@ -32,7 +32,7 @@ class Alert extends React.Component {
     const variantClass = sparkComponentClassName('Alert', null, type)
     const displayClass = sparkClassName('utility', 'Display', null, 'none')
 
-    return classnames(baseClass, variantClass, { [className]: className, [displayClass]: this.state.dismissed })
+    return classnames(baseClass, variantClass, { [className]: className, [displayClass]: this.state && this.state.dismissed })
   }
 
   get classNameCloseIcon() {
