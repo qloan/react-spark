@@ -8,7 +8,8 @@ import Icon from '../Icon/index'
 class Alert extends React.Component {
   static defaultProps = {
     type: ALERT_VARIANTS.INFORMATION,
-    dismissible: false
+    dismissible: false,
+    handleAlertDismissed: () => {}
   }
 
   static state = {
@@ -44,7 +45,7 @@ class Alert extends React.Component {
 
   dismissAlert = () => {
     this.setState({dismissed: true}, () => {
-      this.props.handleAlertDismissed && this.props.handleAlertDismissed(true)
+      this.props.handleAlertDismissed(true)
     })
   }
 
