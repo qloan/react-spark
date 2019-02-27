@@ -62,7 +62,7 @@ Local development is broken into two parts (ideally using two tabs).
 npm start # runs rollup with watch flag
 ```
 
-3. Run the `example/` create-react-app that's linked to the local version of your module..
+3. Run the `example/` create-react-app that's linked to the local version of your module.
 
 ```bash
 # (in another tab)
