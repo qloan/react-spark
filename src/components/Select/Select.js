@@ -11,7 +11,8 @@ class Select extends React.Component {
   static defaultProps = {
     disabled: false,
     error: null,
-    width: 100
+    width: 100,
+    helper: "" 
   };
 
   selectRef = React.createRef();
@@ -19,6 +20,7 @@ class Select extends React.Component {
   static propTypes = {
     disabled: PropTypes.bool,
     error: PropTypes.string,
+    helper: PropTypes.string,
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
     name: PropTypes.string,
@@ -49,6 +51,7 @@ class Select extends React.Component {
       className,
       disabled,
       error,
+      helper,
       id,
       label,
       name,
@@ -59,6 +62,7 @@ class Select extends React.Component {
     return (
       <InputContainer
         error={error}
+        helper={helper}
         id={id}
         label={label}
         inputRef={this.selectRef}
