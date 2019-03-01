@@ -12,7 +12,7 @@ class Select extends React.Component {
     disabled: false,
     error: null,
     width: 100,
-    helper: null 
+    helper: "" 
   };
 
   selectRef = React.createRef();
