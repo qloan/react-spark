@@ -15,7 +15,7 @@ class InputContainer extends React.Component {
     children: PropTypes.node,
     className: PropTypes.string,
     error: PropTypes.string,
-    helper: PropTypes.string,
+    helper: PropTypes.node,
     id: PropTypes.string,
     label: PropTypes.string,
     positionLabelUpper: PropTypes.bool

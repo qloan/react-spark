@@ -34,7 +34,7 @@ class MonetaryInput extends React.Component {
     pattern: PropTypes.string,
     type: PropTypes.string,
     value: PropTypes.string,
-    helper: PropTypes.string,
+    helper: PropTypes.node,
     width: PropTypes.number
   };
 
