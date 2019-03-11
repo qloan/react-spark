@@ -1,22 +1,24 @@
-import { setSpinning, cancelSpinning } from '@sparkdesignsystem/spark-core';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import { setSpinning, cancelSpinning } from '@sparkdesignsystem/spark-core'
+import classNames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
 
-import BUTTON_VARIANTS from './variants';
-import { sparkClassName, sparkComponentClassName } from '../../util';
+import BUTTON_VARIANTS from './variants'
+import { sparkClassName, sparkComponentClassName } from '../../util'
 
 class Button extends React.Component {
   static defaultProps = {
+    className: null,
     disabled: false,
     fullWidthAtSmallViewport: false,
     href: null,
     spinner: false,
     variant: 'primary'
-  };
+  }
 
   static propTypes = {
     children: PropTypes.node.isRequired,
+    className: PropTypes.string,
     disabled: PropTypes.bool,
     fullWidthAtSmallViewport: PropTypes.bool,
     href: PropTypes.string,
@@ -24,11 +26,11 @@ class Button extends React.Component {
     variant: PropTypes.oneOf(
       Object.keys(BUTTON_VARIANTS).map(itm => BUTTON_VARIANTS[itm])
     )
-  };
+  }
 
-  ref = React.createRef();
+  ref = React.createRef()
 
-  get className() {
+  get className () {
     const {
       className,
       disabled,
@@ -58,7 +60,7 @@ class Button extends React.Component {
     if (this.props.spinner) {
       setSpinning(this.ref.current, {})
     }
-  };
+  }
 
   componentDidUpdate = prevProps => {
     const { props, ref } = this
@@ -70,7 +72,7 @@ class Button extends React.Component {
         cancelSpinning(ref.current, {})
       }
     }
-  };
+  }
 
   render = () => {
     const {
@@ -94,14 +96,14 @@ class Button extends React.Component {
     }
 
     if (href) {
-      Element = 'a';
+      Element = 'a'
       props.href = href
     } else {
-      Element = 'button';
+      Element = 'button'
     }
 
     return <Element {...props}>{children}</Element>
-  };
+  }
 }
 
 export default Button

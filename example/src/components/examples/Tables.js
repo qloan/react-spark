@@ -1,5 +1,5 @@
 import React from 'react'
-import { Button, Table } from 'react-spark'
+import { Button, Stack, Table } from 'react-spark'
 
 const Tables = () => (<>
   <h1>Tables</h1>
@@ -14,30 +14,17 @@ const Tables = () => (<>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
+      {[...Array(4).keys()].map(i => (
+        <tr key={i}>
+          {[...Array(3).keys()].map(j => (
+            <td key={j}>Data {j + 1}</td>
+          ))}
+        </tr>
+      ))}
     </tbody>
   </Table>
 
-  <p>Standard, striped</p>
+  <p>Striped</p>
   <Table striped>
     <thead>
       <tr>
@@ -47,26 +34,13 @@ const Tables = () => (<>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
+      {[...Array(4).keys()].map(i => (
+        <tr key={i}>
+          {[...Array(3).keys()].map(j => (
+            <td key={j}>Data {j + 1}</td>
+          ))}
+        </tr>
+      ))}
     </tbody>
   </Table>
 
@@ -80,26 +54,13 @@ const Tables = () => (<>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
+      {[...Array(4).keys()].map(i => (
+        <tr key={i}>
+          {[...Array(3).keys()].map(j => (
+            <td key={j}>Data {j + 1}</td>
+          ))}
+        </tr>
+      ))}
     </tbody>
   </Table>
 
@@ -112,42 +73,25 @@ const Tables = () => (<>
         <th rowSpan='2'>Column Heading</th>
       </tr>
       <tr>
-        <Table.GroupedColumn className='extra-class' data-extra-attribute>
+        <Table.Th
+          className='extra-class'
+          data-extra-attribute
+          groupedColumn
+        >
           SubHeading
-        </Table.GroupedColumn>
-        <Table.GroupedColumn>SubHeading</Table.GroupedColumn>
-        <Table.GroupedColumn>SubHeading</Table.GroupedColumn>
+        </Table.Th>
+        <Table.Th groupedColumn>SubHeading</Table.Th>
+        <Table.Th groupedColumn>SubHeading</Table.Th>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-        <td>Data 4</td>
-        <td>Data 5</td>
-      </tr>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-        <td>Data 4</td>
-        <td>Data 5</td>
-      </tr>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-        <td>Data 4</td>
-        <td>Data 5</td>
-      </tr>
-      <tr>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-        <td>Data 4</td>
-        <td>Data 5</td>
-      </tr>
+      {[...Array(4).keys()].map(i => (
+        <tr key={i}>
+          {[...Array(5).keys()].map(j => (
+            <td key={j}>Data {j + 1}</td>
+          ))}
+        </tr>
+      ))}
     </tbody>
   </Table>
 
@@ -162,60 +106,34 @@ const Tables = () => (<>
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th>Row Heading</th>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
-      <tr>
-        <th>Row Heading</th>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
-      <tr>
-        <th>Row Heading</th>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
-      <tr>
-        <th>Row Heading</th>
-        <td>Data 1</td>
-        <td>Data 2</td>
-        <td>Data 3</td>
-      </tr>
+      {[...Array(4).keys()].map(i => (
+        <tr key={i}>
+          <th>Row Heading</th>
+          {[...Array(3).keys()].map(j => (
+            <td key={j}>Data {j + 1}</td>
+          ))}
+        </tr>
+      ))}
     </tbody>
   </Table>
 
   <p>Secondary row comparison</p>
   <Table variant='secondary-row-comparison'>
     <tbody>
-      <tr>
-        <th>Row Heading</th>
-        <td>Data</td>
-        <td>Data</td>
-        <td>
-          <Button variant='secondary'>Learn More</Button>
-        </td>
-      </tr>
-      <tr>
-        <th>Row Heading</th>
-        <td>Data</td>
-        <td>Data</td>
-        <td>
-          <Button variant='secondary'>Learn More</Button>
-        </td>
-      </tr>
-      <tr>
-        <th>Row Heading</th>
-        <td>Data</td>
-        <td>Data</td>
-        <td>
-          <Button variant={'secondary'}>Learn More</Button>
-        </td>
-      </tr>
+      {[...Array(4).keys()].map(i => (
+        <tr key={i}>
+          <th>Row Heading</th>
+          <td>Data</td>
+          <td>Data</td>
+          <td>
+            <Stack endColumn>
+              <Stack.Item>
+                <Button variant='secondary'>Learn More</Button>
+              </Stack.Item>
+            </Stack>
+          </td>
+        </tr>
+      ))}
     </tbody>
   </Table>
 </>)
