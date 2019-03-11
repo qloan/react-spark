@@ -34,7 +34,7 @@ class Stack extends React.Component {
     )
   }
 
-  get className() {
+  get className () {
     const {
       centerColumn,
       centerRow,

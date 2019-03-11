@@ -19,8 +19,8 @@ class Th extends React.Component {
     groupedColumn: PropTypes.bool
   }
 
-  get className() {
-    const {className, empty, groupedColumn} = this.props
+  get className () {
+    const { className, empty, groupedColumn } = this.props
 
     const emptyHeadingClass = sparkBaseClassName('Table', 'empty-heading')
     const groupedColumnClass = sparkBaseClassName('Table', null, 'grouped-column')
@@ -33,7 +33,7 @@ class Th extends React.Component {
   }
 
   render = () => {
-    const {children, className, empty, groupedColumn, ...props} = this.props
+    const { children, className, empty, groupedColumn, ...props } = this.props
 
     return (
       <th className={this.className} {...props}>

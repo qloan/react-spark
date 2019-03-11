@@ -30,7 +30,7 @@ class Button extends React.Component {
 
   ref = React.createRef()
 
-  get className() {
+  get className () {
     const {
       className,
       disabled,
@@ -63,7 +63,7 @@ class Button extends React.Component {
   }
 
   componentDidUpdate = prevProps => {
-    const {props, ref} = this
+    const { props, ref } = this
 
     if (prevProps.spinner !== props.spinner) {
       if (props.spinner) {
