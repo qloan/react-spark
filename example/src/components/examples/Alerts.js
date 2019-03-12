@@ -6,32 +6,26 @@ const Alerts = () => (<>
 
   <p>Information:</p>
   <Alert
-    alertType='info'
-    analyticsString='object.action.event'
     className='extra-class'
     data-extra-attribute
     dismissible={false}
-    idString='alert-info-1'
+    type='info'
   >
     This is an info Spark alert!
   </Alert>
 
   <p>Success:</p>
   <Alert
-    alertType='success'
-    analyticsString='object.action.event'
     dismissible={true}
-    idString='alert-success-1'
+    type='success'
   >
     Successful alert
   </Alert>
 
   <p>Fail:</p>
   <Alert
-    alertType='fail'
-    analyticsString='object.action.event'
     dismissible={true}
-    idString='alert-fail-1'
+    type='fail'
   >
     Failed alert
   </Alert>
