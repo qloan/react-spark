@@ -6,16 +6,14 @@ import { sparkComponentClassName, sparkClassName } from '../../util'
 import Icon from '../Icon/index'
 
 class Alert extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dismissed: false
-    }
-  }
   static defaultProps = {
     type: ALERT_VARIANTS.INFORMATION,
     dismissible: false,
     handleAlertDismissed: () => {}
+  }
+
+  state = {
+    dismissed: false
   }
 
   static propTypes = {
