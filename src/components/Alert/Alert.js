@@ -51,7 +51,7 @@ class Alert extends React.Component {
   get iconClassName () {
     return [
       sparkComponentClassName('Alert', 'icon'),
-      sparkComponentClassName('Alert', null, 'stroke-current-color')
+      sparkComponentClassName('Icon', null, 'stroke-current-color')
     ].join(' ')
   }
 
@@ -72,14 +72,16 @@ class Alert extends React.Component {
     } = this.props
 
     return (
-      <div className={this.className} {...rest}>
+      <div className={this.className} role='alert' {...rest}>
         <div className={sparkComponentClassName('Alert', 'content')}>
           <Icon
             className={this.iconClassName}
             name={getIconNameFromVariant(type)}
             size={Icon.size.L}
           />
-          {children}
+          <div className={sparkComponentClassName('Alert', 'text')}>
+            {children}
+          </div>
         </div>
         {
           dismissible &&
@@ -89,7 +91,10 @@ class Alert extends React.Component {
             title='Dismiss'
             type='button'
           >
-            <Icon name='close' size={Icon.size.M} />
+            <Icon
+              className={sparkComponentClassName('Icon', null, 'stroke-current-color')}
+              name='close'
+            />
           </button>
         }
       </div>
