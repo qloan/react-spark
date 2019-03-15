@@ -8,33 +8,34 @@ import { sparkBaseClassName, sparkComponentClassName } from '../../util'
  * In order for Icons to work you need to include a sprite SVG file at the top of your body tag.
  */
 class Icon extends React.Component {
+  static defaultProps = {
+    className: null,
+    size: 'm',
+    toggle: '',
+    variant: ''
+  }
+
+  static propTypes = {
+    className: PropTypes.string,
+    name: PropTypes.string.isRequired,
+    select: PropTypes.bool,
+    size: PropTypes.string,
+    toggle: PropTypes.string,
+    variant: PropTypes.string
+  }
+
   static size = {
     M: 'm',
     L: 'l',
     XL: 'xl',
     XXL: 'xxl'
-  };
+  }
 
-  static defaultProps = {
-    size: 'm',
-    variant: '',
-    toggle: ''
-  };
-
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    size: PropTypes.string,
-    variant: PropTypes.string,
-    toggle: PropTypes.string,
-    select: PropTypes.bool
-  };
-
-  get className() {
-    const { className, select, size, toggle, variant, color } = this.props
+  get className () {
+    const { className, select, size, toggle, variant } = this.props
     const baseClass = sparkComponentClassName('Icon')
     const sizeClass = sparkComponentClassName('Icon', null, size)
     const toggleClass = sparkComponentClassName('Icon', null, 'toggle')
-    const colorClass = sparkComponentClassName('Icon', null, 'current-color')
     const variantClass = sparkComponentClassName(variant, 'icon')
     const selectClass = sparkBaseClassName('SelectContainer', 'icon')
 
@@ -43,7 +44,6 @@ class Icon extends React.Component {
       [sizeClass]: Boolean(size),
       [variantClass]: Boolean(variant),
       [selectClass]: Boolean(select),
-      [colorClass]: color === 'base',
       [className]: className
     })
   }
@@ -64,7 +64,7 @@ class Icon extends React.Component {
         <use xlinkHref={`#${name}`} data-sprk-toggle={toggle} />
       </svg>
     )
-  };
+  }
 }
 
 export default Icon

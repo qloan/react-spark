@@ -1,85 +1,100 @@
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
+
 import ALERT_VARIANTS from './variants'
-import { sparkComponentClassName, sparkClassName } from '../../util'
+import { sparkClassName, sparkComponentClassName } from '../../util'
 import Icon from '../Icon/index'
+import { getIconNameFromVariant } from './utils'
 
 class Alert extends React.Component {
   static defaultProps = {
-    type: ALERT_VARIANTS.INFORMATION,
+    className: null,
     dismissible: false,
-    handleAlertDismissed: () => {}
+    handleAlertDismissed: () => {},
+    type: ALERT_VARIANTS.INFORMATION
+  }
+
+  static propTypes = {
+    children: PropTypes.node.isRequired,
+    className: PropTypes.string,
+    dismissible: PropTypes.bool,
+    handleAlertDismissed: PropTypes.func,
+    type: PropTypes.oneOf(
+      Object.keys(ALERT_VARIANTS).map(itm => ALERT_VARIANTS[itm])
+    )
   }
 
   state = {
     dismissed: false
   }
 
-  static propTypes = {
-    type: PropTypes.oneOf(
-      Object.keys(ALERT_VARIANTS).map(itm => ALERT_VARIANTS[itm])
-    ),
-    dismissible: PropTypes.bool.isRequired,
-    idString: PropTypes.string,
-    analyticsString: PropTypes.string,
-    children: PropTypes.node.isRequired,
-    handleAlertDismissed: PropTypes.func
-  }
-
-  get className() {
-    const { type, className } = this.props
+  get className () {
+    const { className, type } = this.props
     const baseClass = sparkComponentClassName('Alert')
     const variantClass = sparkComponentClassName('Alert', null, type)
     const displayClass = sparkClassName('utility', 'Display', null, 'none')
 
-    return classnames(baseClass, variantClass, { [className]: className, [displayClass]: this.state.dismissed })
+    return classnames(baseClass, variantClass, {
+      [className]: className,
+      [displayClass]: this.state.dismissed
+    })
   }
 
-  get classNameCloseIcon() {
-    const baseClass = sparkComponentClassName('Alert', 'icon')
-    const variantClass = sparkComponentClassName('Alert', 'icon', 'dismiss')
+  get closeButtonClassName () {
+    return [
+      sparkComponentClassName('Alert', 'icon'),
+      sparkComponentClassName('Alert', 'icon', 'dismiss')
+    ].join(' ')
+  }
 
-    classnames(baseClass, variantClass)
+  get iconClassName () {
+    return [
+      sparkComponentClassName('Alert', 'icon'),
+      sparkComponentClassName('Icon', null, 'stroke-current-color')
+    ].join(' ')
   }
 
   dismissAlert = () => {
-    this.setState({dismissed: true}, () => {
+    this.setState({ dismissed: true }, () => {
       this.props.handleAlertDismissed(true)
     })
   }
 
   render = () => {
     const {
-      type,
-      analyticsString,
       children,
       className,
       dismissible,
-      idString,
-      variant,
       handleAlertDismissed,
+      type,
       ...rest
     } = this.props
 
     return (
-      <div className={this.className} {...rest}>
+      <div className={this.className} role='alert' {...rest}>
         <div className={sparkComponentClassName('Alert', 'content')}>
-          {type === ALERT_VARIANTS.INFORMATION && (
-            <Icon name='bell' size={Icon.size.L} />
-          )}
-          {type === ALERT_VARIANTS.SUCCESS && (
-            <Icon name='check-mark' size={Icon.size.L} />
-          )}
-          {type === ALERT_VARIANTS.FAIL && (
-            <Icon name='exclamation' size={Icon.size.L} />
-          )}
-          {children}
+          <Icon
+            className={this.iconClassName}
+            name={getIconNameFromVariant(type)}
+            size={Icon.size.L}
+          />
+          <div className={sparkComponentClassName('Alert', 'text')}>
+            {children}
+          </div>
         </div>
         {
           dismissible &&
-          <button className={this.classNameCloseIcon} type="button" title="Dismiss" onClick={this.dismissAlert}>
-            <Icon name="close" size={Icon.size.M}/>
+          <button
+            className={this.closeButtonClassName}
+            onClick={this.dismissAlert}
+            title='Dismiss'
+            type='button'
+          >
+            <Icon
+              className={sparkComponentClassName('Icon', null, 'stroke-current-color')}
+              name='close'
+            />
           </button>
         }
       </div>
