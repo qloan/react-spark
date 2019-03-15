@@ -1,10 +1,9 @@
-import { alerts } from '@sparkdesignsystem/spark-core'
 import classnames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
 
 import ALERT_VARIANTS from './variants'
-import { sparkComponentClassName } from '../../util'
+import { sparkClassName, sparkComponentClassName } from '../../util'
 import Icon from '../Icon/index'
 import { getIconNameFromVariant } from './utils'
 
@@ -12,6 +11,7 @@ class Alert extends React.Component {
   static defaultProps = {
     className: null,
     dismissible: false,
+    handleAlertDismissed: () => {},
     type: ALERT_VARIANTS.INFORMATION
   }
 
@@ -19,19 +19,33 @@ class Alert extends React.Component {
     children: PropTypes.node.isRequired,
     className: PropTypes.string,
     dismissible: PropTypes.bool,
+    handleAlertDismissed: PropTypes.func,
     type: PropTypes.oneOf(
       Object.keys(ALERT_VARIANTS).map(itm => ALERT_VARIANTS[itm])
     )
   }
 
-  ref = React.createRef()
+  state = {
+    dismissed: false
+  }
 
   get className () {
     const { className, type } = this.props
     const baseClass = sparkComponentClassName('Alert')
     const variantClass = sparkComponentClassName('Alert', null, type)
+    const displayClass = sparkClassName('utility', 'Display', null, 'none')
 
-    return classnames(baseClass, variantClass, { [className]: className })
+    return classnames(baseClass, variantClass, {
+      [className]: className,
+      [displayClass]: this.state.dismissed
+    })
+  }
+
+  get closeButtonClassName () {
+    return [
+      sparkComponentClassName('Alert', 'icon'),
+      sparkComponentClassName('Alert', 'icon', 'dismiss')
+    ].join(' ')
   }
 
   get iconClassName () {
@@ -41,20 +55,19 @@ class Alert extends React.Component {
     ].join(' ')
   }
 
-  componentDidMount = () => {
-    const { dismissible } = this.props
-
-    if (dismissible) {
-      alerts(this.ref.current, {})
-    }
+  dismissAlert = () => {
+    this.setState({ dismissed: true }, () => {
+      this.props.handleAlertDismissed(true)
+    })
   }
 
   render = () => {
     const {
-      type,
       children,
       className,
       dismissible,
+      handleAlertDismissed,
+      type,
       ...rest
     } = this.props
 
@@ -68,6 +81,17 @@ class Alert extends React.Component {
           />
           {children}
         </div>
+        {
+          dismissible &&
+          <button
+            className={this.closeButtonClassName}
+            onClick={this.dismissAlert}
+            title='Dismiss'
+            type='button'
+          >
+            <Icon name='close' size={Icon.size.M} />
+          </button>
+        }
       </div>
     )
   }
