@@ -28,7 +28,7 @@ class MainLinks extends React.Component {
     return classnames(
       sparkObjectClassName('Stack', 'item'),
       sparkObjectClassName('HorizontalList'),
-      sparkObjectClassName('HorizontalList', null, 'spacing-medium'),
+      sparkObjectClassName('HorizontalList', null, 'spacing-small'),
       sparkObjectClassName('Stack', null, 'center-column'),
       {
         [className]: className
