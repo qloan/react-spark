@@ -1,9 +1,9 @@
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import BUTTON_VARIANTS from '../../Button/variants';
-import NavItem from './NavItem';
-import { sparkComponentClassName, sparkObjectClassName } from '../../../util';
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import BUTTON_VARIANTS from '../../Button/variants'
+import NavItem from './NavItem'
+import { sparkComponentClassName, sparkObjectClassName } from '../../../util'
 
 class SiteLinks extends React.Component {
   static propTypes = {
@@ -26,7 +26,7 @@ class SiteLinks extends React.Component {
       sparkComponentClassName('Masthead', 'site-links'),
       sparkObjectClassName('Stack', 'item'),
       sparkObjectClassName('HorizontalList'),
-      sparkObjectClassName('HorizontalList', null, 'spacing-large'),
+      sparkObjectClassName('HorizontalList', null, 'spacing-medium'),
       sparkObjectClassName('Stack', 'item', 'center-column'),
       {
         [className]: className
