@@ -1,16 +1,17 @@
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
-import Button from '../../Button';
-import Link from '../../Link';
-import Icon from '../../Icon/Icon';
-import Dropdown from '../../Dropdown';
-import BUTTON_VARIANTS from '../../Button/variants';
-import { sparkComponentClassName, sparkBaseClassName } from '../../../util';
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React, { Fragment } from 'react'
+import Button from '../../Button'
+import Link from '../../Link'
+import Icon from '../../Icon/Icon'
+import Dropdown from '../../Dropdown'
+import BUTTON_VARIANTS from '../../Button/variants'
+import { sparkComponentClassName, sparkBaseClassName } from '../../../util'
 
 class NavItem extends React.Component {
   static propTypes = {
     id: PropTypes.string.isRequired,
+    right: PropTypes.bool,
     link: PropTypes.shape({
       buttonVariant: PropTypes.oneOf(
         Object.keys(BUTTON_VARIANTS).map(itm => BUTTON_VARIANTS[itm])
@@ -53,7 +54,7 @@ class NavItem extends React.Component {
       target,
       onClick
     } = this.props.link
-    const { id } = this.props
+    const { id, right } = this.props
     return (
       <li>
         {this.hasLinks ? (
@@ -67,7 +68,7 @@ class NavItem extends React.Component {
               id={id}
               className={sparkComponentClassName('Masthead', 'link')}
             />
-            <Dropdown.DropdownLinksContainer id={id}>
+            <Dropdown.DropdownLinksContainer id={id} className={right ? 'sprk-u-Right--zero' : ''}>
               <Dropdown.DropdownLinks links={links} />
             </Dropdown.DropdownLinksContainer>
           </Fragment>

@@ -42,7 +42,7 @@ class MainLinks extends React.Component {
     return (
       <ul className={this.className} {...props}>
         {links.map((link, i) => (
-          <NavItem key={i} link={link} id={`main-links-toggle-${i}`} />
+          <NavItem key={i} link={link} id={`main-links-toggle-${i}`} right={true} />
         ))}
       </ul>
     )
