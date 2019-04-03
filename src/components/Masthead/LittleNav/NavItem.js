@@ -6,7 +6,7 @@ import Link from '../../Link'
 import Icon from '../../Icon/Icon'
 import Dropdown from '../../Dropdown'
 import BUTTON_VARIANTS from '../../Button/variants'
-import { sparkComponentClassName, sparkBaseClassName } from '../../../util'
+import { sparkComponentClassName, sparkBaseClassName, sparkClassName } from '../../../util'
 
 class NavItem extends React.Component {
   static propTypes = {
@@ -68,7 +68,7 @@ class NavItem extends React.Component {
               id={id}
               className={sparkComponentClassName('Masthead', 'link')}
             />
-            <Dropdown.DropdownLinksContainer id={id} className={right ? 'sprk-u-Right--zero' : ''}>
+            <Dropdown.DropdownLinksContainer id={id} className={right ? sparkClassName('utility', 'Right', null, 'zero') : ''}>
               <Dropdown.DropdownLinks links={links} />
             </Dropdown.DropdownLinksContainer>
           </Fragment>
