@@ -190,7 +190,7 @@ class DateInput extends React.Component {
           </label>
           <div
             className={sparkBaseClassName('ErrorContainer')}
-            id={`${id}-error-container`}
+            id={`${id}--error-container`}
           >
             {this.renderErrorContent()}
           </div>
