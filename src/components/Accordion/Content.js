@@ -5,13 +5,19 @@ import React from 'react'
 import { sparkComponentClassName, sparkObjectClassName } from '../../util'
 
 class AccordionContent extends React.Component {
-  static defaultProps = {};
+  static defaultProps = {
+    children: null,
+    className: null
+  }
 
   static propTypes = {
+    children: PropTypes.node,
+    className: PropTypes.string,
+    // Must match the `control` prop of <Accordion.Header>
     id: PropTypes.string.isRequired
-  };
+  }
 
-  get className() {
+  get className () {
     const { className } = this.props
 
     return classNames(
@@ -28,11 +34,13 @@ class AccordionContent extends React.Component {
     return (
       <div id={id} data-sprk-toggle='content'>
         <div className={this.className} {...props}>
-          {children}
+          <div className={sparkComponentClassName('Stack', 'item')}>
+            {children}
+          </div>
         </div>
       </div>
     )
-  };
+  }
 }
 
 export default AccordionContent
