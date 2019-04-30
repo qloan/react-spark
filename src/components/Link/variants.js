@@ -1,3 +1,5 @@
 export default {
-  SIMPLE: 'simple'
+  INLINE: 'inline',
+  PLAIN: 'plain',
+  STANDALONE: 'standalone'
 }
