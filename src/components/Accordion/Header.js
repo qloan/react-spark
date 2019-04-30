@@ -1,40 +1,36 @@
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import React from 'react'
-
 import { sparkComponentClassName } from '../../util'
 import Icon from '../Icon'
-import Type from '../Type'
+import Stack from '../Stack'
 
 class AccordionHeader extends React.Component {
   static defaultProps = {
-    children: null,
-    className: null,
-    element: 'h3'
-  }
+    analytics: '',
+    children: null
+  };
 
   static propTypes = {
+    analytics: PropTypes.string,
     children: PropTypes.node,
-    className: PropTypes.string,
     control: PropTypes.string.isRequired,
-    element: PropTypes.string
-  }
+    id: PropTypes.string.isRequired
+  };
 
-  get className () {
+  get className() {
     const { className } = this.props
-
-    return classNames(
-      sparkComponentClassName('Accordion', 'summary'),
-      { [className]: className }
-    )
+    const baseClass = sparkComponentClassName('Accordion', 'summary')
+    return classNames(baseClass, { [className]: className })
   }
 
   render = () => {
     const {
+      analytics,
+      id,
       children,
       className,
       control,
-      element,
       ...props
     } = this.props
 
@@ -42,17 +38,14 @@ class AccordionHeader extends React.Component {
       <a
         aria-controls={control}
         className={this.className}
+        data-analytics={analytics}
+        data-id={id}
         data-sprk-toggle='trigger'
         data-sprk-toggle-type='accordion'
         href='#'
         {...props}
       >
-        <Type.DisplaySeven
-          className={sparkComponentClassName('Accordion', 'heading')}
-          element={element}
-        >
-          {children}
-        </Type.DisplaySeven>
+        {children}
         <Icon
           name='chevron-up-circle-two-color'
           size='l'
@@ -61,7 +54,7 @@ class AccordionHeader extends React.Component {
         />
       </a>
     )
-  }
+  };
 }
 
 export default AccordionHeader

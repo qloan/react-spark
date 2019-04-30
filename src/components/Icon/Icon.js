@@ -49,15 +49,7 @@ class Icon extends React.Component {
   }
 
   render = () => {
-    const {
-      className,
-      name,
-      select,
-      toggle,
-      variant,
-      ...props
-    } = this.props
-
+    const { className, name, toggle, select, ...props } = this.props
     const toggleProps = {}
     if (toggle) {
       toggleProps['data-sprk-toggle'] = 'icon'
