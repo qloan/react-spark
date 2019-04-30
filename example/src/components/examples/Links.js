@@ -1,46 +1,20 @@
 import React from 'react'
-import { Icon, Link, Stack, Type } from 'react-spark'
+import { Link } from 'react-spark'
 
-const Links = () => (
-  <Stack itemSpacing='large'>
-    <Stack.Item>
-      <Type.DisplayOne>Links</Type.DisplayOne>
-    </Stack.Item>
+const Links = () => (<>
+  <h2>Links</h2>
 
-    <Stack.Item>
-      <Type.DisplayThree>Base Link</Type.DisplayThree>
-      <Link
-        className='extra-class'
-        data-extra-attribute
-        href='#'
-      >
-        Base Link
-      </Link>
-    </Stack.Item>
+  <p>Inline:</p>
+  <Link className='extra-class' data-extra-attribute href='#'>Inline</Link>
 
-    <Stack.Item>
-      <Type.DisplayThree>Simple Link</Type.DisplayThree>
-      <Link href='#' variant='simple'>Simple Link</Link>
-    </Stack.Item>
+  <p>Plain:</p>
+  <Link href='#' variant='plain'>Plain</Link>
 
-    <Stack.Item>
-      <Type.DisplayThree>Icon with Text Link</Type.DisplayThree>
-      <Link
-        className='sprk-u-mrs'
-        hasIcon
-        href='#'
-        variant='simple'
-      >
-        <Icon name='communication' size='l' />
-        Message Us
-      </Link>
-    </Stack.Item>
+  <p>Standalone:</p>
+  <Link href='#' variant='standalone'>Standalone</Link>
 
-    <Stack.Item>
-      <Type.DisplayThree>Disabled</Type.DisplayThree>
-      <Link href='#' disabled>Disabled</Link>
-    </Stack.Item>
-  </Stack>
-)
+  <p>Disabled:</p>
+  <Link href='#' disabled>Disabled</Link>
+</>)
 
 export default Links
