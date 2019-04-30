@@ -1,44 +1,42 @@
-import classNames from 'classnames'
-import PropTypes from 'prop-types'
-import React from 'react'
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { sparkComponentClassName, sparkObjectClassName } from '../../util'
+import { sparkComponentClassName, sparkObjectClassName } from '../../util';
 
-import Content from './Content'
-import Header from './Header'
-import Item from './Item'
+import Item from './Item';
+import Header from './Header';
+import Content from './Content';
 
 class Accordion extends React.Component {
   static defaultProps = {
-    className: null
-  }
+    padding: false
+  };
 
   static propTypes = {
-    children: PropTypes.node.isRequired,
-    className: PropTypes.string
-  }
+    padding: PropTypes.bool
+  };
 
-  get className () {
-    const { className } = this.props
+  get className() {
+    const { className, padding } = this.props
+    const baseClass = sparkObjectClassName('VerticalList')
+    const paddingClass = sparkComponentClassName('Accordion')
 
-    return classNames(
-      [
-        sparkComponentClassName('Accordion'),
-        sparkObjectClassName('VerticalList')
-      ],
-      { [className]: className }
-    )
+    return classNames(baseClass, {
+      [paddingClass]: padding,
+      [className]: className
+    })
   }
 
   render = () => {
-    const { children, className, ...props } = this.props
+    const { children, className, padding, ...props } = this.props
 
     return (
       <ul className={this.className} {...props}>
         {children}
       </ul>
     )
-  }
+  };
 }
 
 Accordion.Item = Item
