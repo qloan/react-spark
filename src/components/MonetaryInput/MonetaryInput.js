@@ -115,8 +115,6 @@ class MonetaryInput extends React.Component {
       if (disabled) {
         valueProp = { value: formatMonetary(value) }
       } else {
-        console.log('Value', value)
-        console.log('noCents', noCents)
         valueProp = {
           value: value
             ? noCents
