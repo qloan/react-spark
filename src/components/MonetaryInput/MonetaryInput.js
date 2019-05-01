@@ -8,12 +8,6 @@ import React from 'react'
 import InputContainer from './../InputContainer/InputContainer'
 import { sparkBaseClassName, sparkClassName } from '../../util'
 
-function formatValue(value, noCents) {
-  console.log('Value', value)
-  console.log('noCents', noCents)
-  return value ? noCents ? String(parseInt(value)) : value : ''
-}
-
 export const pattern = /(^\$?(\d+|\d{1,3}(,\d{3})*)(\.\d+)?$)|^$/
 class MonetaryInput extends React.Component {
   static defaultProps = {
@@ -123,7 +117,13 @@ class MonetaryInput extends React.Component {
       } else {
         console.log('Value', value)
         console.log('noCents', noCents)
-        valueProp = { value: formatValue(value, noCents) }
+        valueProp = {
+          value: value
+            ? noCents
+              ? String(parseInt(value))
+              : value
+            : ''
+        }
       }
     }
     return valueProp
