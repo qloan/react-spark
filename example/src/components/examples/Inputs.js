@@ -338,14 +338,13 @@ class Inputs extends React.Component {
         id='ssn-normal'
         onChange={this.handleSsnInputChange}
         value={this.state.ssnInputValue}
-        error
       />
 
       <p>SSN input with error:</p>
       <SsnInput
-        // className='extra-class'
-        // data-extra-attribute
-        error
+        className='extra-class'
+        data-extra-attribute
+        error='There is an error in this field.'
         id='ssn-error'
       />
 
