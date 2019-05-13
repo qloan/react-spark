@@ -355,6 +355,12 @@ class Inputs extends React.Component {
         disabled
         id='ssn-disabled'
       />
+
+      <p>SSN input with helper text:</p>
+      <SsnInput
+        helper='helper text'
+        id='ssn-helper'
+      />
     </div>
   );
 
