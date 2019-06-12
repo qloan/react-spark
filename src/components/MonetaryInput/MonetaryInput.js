@@ -1,12 +1,12 @@
 import {
   bindMonetaryUIEvents,
   formatMonetary
-} from '@sparkdesignsystem/spark-core';
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import InputContainer from './../InputContainer/InputContainer';
-import { sparkBaseClassName, sparkClassName } from '../../util';
+} from '@sparkdesignsystem/spark-core'
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import InputContainer from './../InputContainer/InputContainer'
+import { sparkBaseClassName, sparkClassName } from '../../util'
 
 export const pattern = /(^\$?(\d+|\d{1,3}(,\d{3})*)(\.\d+)?$)|^$/
 class MonetaryInput extends React.Component {
@@ -19,7 +19,8 @@ class MonetaryInput extends React.Component {
     pattern: '(^\\$?(\\d+|\\d{1,3}(,\\d{3})*)(\\.\\d+)?$)|^$',
     type: 'tel',
     value: '',
-    width: 100
+    width: 100,
+    noCents: false
   };
 
   inputRef = React.createRef();
@@ -35,7 +36,8 @@ class MonetaryInput extends React.Component {
     type: PropTypes.string,
     value: PropTypes.string,
     helper: PropTypes.node,
-    width: PropTypes.number
+    width: PropTypes.number,
+    noCents: PropTypes.bool
   };
 
   get className() {
@@ -105,7 +107,7 @@ class MonetaryInput extends React.Component {
   }
 
   valueProp() {
-    const { value, disabled } = this.props
+    const { value, disabled, noCents } = this.props
     let valueProp
     if (value == null) {
       valueProp = {}
@@ -113,7 +115,13 @@ class MonetaryInput extends React.Component {
       if (disabled) {
         valueProp = { value: formatMonetary(value) }
       } else {
-        valueProp = { value }
+        valueProp = {
+          value: value
+            ? noCents
+              ? String(parseInt(value))
+              : value
+            : ''
+        }
       }
     }
     return valueProp
@@ -132,6 +140,7 @@ class MonetaryInput extends React.Component {
       value,
       width,
       helper,
+      noCents,
       ...props
     } = this.props
 
