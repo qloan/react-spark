@@ -28,7 +28,7 @@ class MainLinks extends React.Component {
     return classnames(
       sparkObjectClassName('Stack', 'item'),
       sparkObjectClassName('HorizontalList'),
-      sparkObjectClassName('HorizontalList', null, 'spacing-small'),
+      sparkObjectClassName('HorizontalList', null, 'spacing-medium'),
       sparkObjectClassName('Stack', null, 'center-column'),
       {
         [className]: className
@@ -42,7 +42,7 @@ class MainLinks extends React.Component {
     return (
       <ul className={this.className} {...props}>
         {links.map((link, i) => (
-          <NavItem key={i} link={link} id={`main-links-toggle-${i}`} right />
+          <NavItem key={i} link={link} id={`main-links-toggle-${i}`} />
         ))}
       </ul>
     )

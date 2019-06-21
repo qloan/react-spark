@@ -10,6 +10,7 @@ import Hamburger from './Hamburger'
 import Logo from './Logo'
 import NarrowNav from './NarrowNav'
 import BigNav from './BigNav'
+import SessionLinks from './SessionLinks'
 import LittleNav from './LittleNav/LittleNav'
 
 import { sparkComponentClassName, sparkObjectClassName } from '../../util'
@@ -71,6 +72,7 @@ Masthead.Hamburger = Hamburger
 Masthead.Logo = Logo
 Masthead.BigNav = BigNav
 Masthead.LittleNav = LittleNav
+Masthead.SessionLinks = SessionLinks
 Masthead.NarrowNav = NarrowNav
 
 export default Masthead
