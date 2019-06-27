@@ -12,6 +12,8 @@ class SessionLinks extends React.Component {
       sparkComponentClassName('Masthead', 'menu'),
       sparkClassName('object', 'Stack', 'item'),
       sparkClassName('object', 'Stack', 'item', 'center-column@xxs'),
+      'sprk-u-Float--right',
+      'session-link',
       {[className]: className}
     )
   }
@@ -42,8 +44,7 @@ class SessionLinks extends React.Component {
 function linkClassName(text) {
   return classnames(
     sparkComponentClassName('Link', null, 'plain'),
-    text.includes('Out') ? sparkClassName('utility', 'Display', null, 'none') : null,
-    ' session-link'
+    text.includes('Out') ? sparkClassName('utility', 'Display', null, 'none') : null
   )
 }
 
