@@ -1,48 +1,56 @@
 import classnames from 'classnames'
+import PropTypes from 'prop-types'
 import React from 'react'
 
 import { sparkClassName, sparkComponentClassName } from '../../util'
 
 class Hamburger extends React.Component {
-  get bottomBunClassName() {
-    return [
-      sparkComponentClassName('Menu', 'line'),
-      sparkComponentClassName('Menu', 'line', 'three')
-    ].join(' ')
-  }
+    static propTypes = {
+      onToggle: PropTypes.function
+    }
+    static defaultProps = {
+      onToggle: () => {}
+    }
 
-  get className() {
-    const {className} = this.props
+    get bottomBunClassName() {
+      return [
+        sparkComponentClassName('Menu', 'line'),
+        sparkComponentClassName('Menu', 'line', 'three')
+      ].join(' ')
+    }
 
-    return classnames(
-      sparkComponentClassName('Masthead', 'menu'),
-      sparkClassName('object', 'Stack', 'item'),
-      sparkClassName('object', 'Stack', 'item', 'center-column@xxs'),
-      {[className]: className}
-    )
-  }
+    get className() {
+      const {className} = this.props
 
-  get pattyClassName() {
-    return [
-      sparkComponentClassName('Menu', 'line'),
-      sparkComponentClassName('Menu', 'line', 'two')
-    ].join(' ')
-  }
+      return classnames(
+        sparkComponentClassName('Masthead', 'menu'),
+        sparkClassName('object', 'Stack', 'item'),
+        sparkClassName('object', 'Stack', 'item', 'center-column@xxs'),
+        {[className]: className}
+      )
+    }
 
-  get svgClassName() {
-    return [
-      sparkComponentClassName('Icon'),
-      sparkComponentClassName('Icon', null, 'l'),
-      sparkComponentClassName('Menu', 'icon')
-    ].join(' ')
-  }
+    get pattyClassName() {
+      return [
+        sparkComponentClassName('Menu', 'line'),
+        sparkComponentClassName('Menu', 'line', 'two')
+      ].join(' ')
+    }
 
-  get topBunClassName() {
-    return [
-      sparkComponentClassName('Menu', 'line'),
-      sparkComponentClassName('Menu', 'line', 'one')
-    ].join(' ')
-  }
+    get svgClassName() {
+      return [
+        sparkComponentClassName('Icon'),
+        sparkComponentClassName('Icon', null, 'l'),
+        sparkComponentClassName('Menu', 'icon')
+      ].join(' ')
+    }
+
+    get topBunClassName() {
+      return [
+        sparkComponentClassName('Menu', 'line'),
+        sparkComponentClassName('Menu', 'line', 'one')
+      ].join(' ')
+    }
 
   renderSvg = () => (
     <svg
@@ -60,8 +68,7 @@ class Hamburger extends React.Component {
   )
 
   render = () => {
-    const {className, ...props} = this.props
-
+    const {className, onToggle, ...props} = this.props
     return (
       <div className={this.className} {...props}>
         <button
@@ -69,6 +76,7 @@ class Hamburger extends React.Component {
           type='button'
           aria-expanded='false'
           data-sprk-mobile-nav-trigger='mobileNav'
+          onClick={onToggle}
         >
           <span className={sparkClassName('utility', 'ScreenReaderText')}>
             Toggle Navigation

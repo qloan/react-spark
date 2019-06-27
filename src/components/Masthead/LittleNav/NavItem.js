@@ -21,6 +21,7 @@ class NavItem extends React.Component {
       variant: PropTypes.string,
       target: PropTypes.string,
       icon: PropTypes.string,
+      chevron: PropTypes.bool,
       links: PropTypes.arrayOf(
         PropTypes.shape({
           text: PropTypes.string.isRequired,
@@ -52,7 +53,8 @@ class NavItem extends React.Component {
       icon,
       links,
       target,
-      onClick
+      onClick,
+      chevron
     } = this.props.link
     const { id, right } = this.props
     return (
@@ -66,6 +68,7 @@ class NavItem extends React.Component {
               icon={icon}
               target={target}
               id={id}
+              chevron={chevron}
               className={sparkComponentClassName('Masthead', 'link')}
             />
             <Dropdown.DropdownLinksContainer id={id} className={right ? sparkClassName('utility', 'Right', null, 'zero') : ''}>

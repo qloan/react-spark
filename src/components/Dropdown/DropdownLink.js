@@ -13,7 +13,8 @@ class DropdownLink extends React.Component {
     text: PropTypes.string,
     className: PropTypes.string,
     href: PropTypes.string,
-    icon: PropTypes.string
+    icon: PropTypes.string,
+    chevron: PropTypes.bool
   };
 
   ref = React.createRef();
@@ -38,7 +39,7 @@ class DropdownLink extends React.Component {
   }
 
   render = () => {
-    const { text, icon, id, href } = this.props
+    const { text, icon, chevron, id, href } = this.props
 
     return (
       <a
@@ -60,6 +61,7 @@ class DropdownLink extends React.Component {
             <Icon name='chevron-down' color='base' />
           </Fragment>
         )}
+        {chevron && (<Icon name='chevron-down' color='base' />)}
       </a>
     )
   };
