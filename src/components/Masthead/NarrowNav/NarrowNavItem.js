@@ -1,15 +1,15 @@
-import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core';
-import { hideMobileNavs } from '@sparkdesignsystem/spark-core';
-import classnames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
-import Icon from '../../Icon/Icon';
-import List from '../../List/List';
+import { bindToggleUIEvents } from '@sparkdesignsystem/spark-core'
+import { hideMobileNavs } from '@sparkdesignsystem/spark-core'
+import classnames from 'classnames'
+import PropTypes from 'prop-types'
+import React from 'react'
+import Icon from '../../Icon/Icon'
+import List from '../../List/List'
 import {
   sparkBaseClassName,
   sparkComponentClassName,
   sparkObjectClassName
-} from '../../../util/index';
+} from '../../../util/index'
 
 class NarrowNavItem extends React.Component {
   liRef = React.createRef();
@@ -24,6 +24,7 @@ class NarrowNavItem extends React.Component {
         text: PropTypes.string,
         href: PropTypes.string,
         target: PropTypes.string,
+        className: PropTypes.string,
         onClick: PropTypes.func
       })
     ),
@@ -107,7 +108,7 @@ class NarrowNavItem extends React.Component {
   }
 
   render = () => {
-    const { active, href, links, text, target, onClick } = this.props.link
+    const { active, href, links, text, target, className, onClick } = this.props.link
     let conditionalAnchorProps = {}
     let conditionalLiProps = {}
 
@@ -124,7 +125,7 @@ class NarrowNavItem extends React.Component {
 
     return (
       <li
-        className={this.getLiClassName(active)}
+        className={classnames(this.getLiClassName(active), className)}
         ref={this.liRef}
         {...conditionalLiProps}
       >
