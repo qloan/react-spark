@@ -29,9 +29,9 @@ class SsnInput extends React.Component {
       };
 
     handleChange = event => {
-    event.target.value = event.target.value.replace(/-/g, '')
+    event.target.value = event.target.value.replace(/-/g, '');
     if (typeof this.props.onChange === 'function') {
-      this.props.onChange(event)
+      this.props.onChange(event);
     }
   };
 
@@ -41,17 +41,20 @@ class SsnInput extends React.Component {
     error,
     helper,
     label,
-    onChange,
     value,
     ...rest
   } = this.props;
 
+  /*
+  * Formatting the ssn value only at 9 characters, this is to prevent (most of the time) the cursor from jumping
+  * to the end of the input field every time a character is removed.
+  * */
   return(
     <SprkRevealInput
       additionalClasses={className}
       errorMessage={error}
       helperText={helper}
-      formatter={formatSSN}
+      formatter={!error && value.length === 9 ? formatSSN : undefined}
       valid={!error}
       value={value}
       onChange={this.handleChange}    
