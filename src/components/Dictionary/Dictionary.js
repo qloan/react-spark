@@ -34,7 +34,7 @@ class Dictionary extends React.Component {
   }
 
   render = () => {
-    const { children, className, ...props } = this.props
+    const { children, className,bold, ...props } = this.props
 
     return (
       <div className={this.dictionaryClassName} {...props}>
