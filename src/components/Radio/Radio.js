@@ -44,6 +44,7 @@ class Radio extends React.Component {
           aria-describedby={`${containerId}--error-container`}
           checked={checked}
           disabled={disabled}
+          data-id={id}
           id={id}
           name={name}
           onChange={onChange}
