@@ -4,18 +4,18 @@ import { Toggle, Box } from 'react-spark'
 const Toggles = () => (
   <>
     <Box>
-      <h2>Toggle</h2>
+        <h2>Toggle</h2>
 
-      <br />
-      <Toggle
-        className='extra-class'
-        data-extra-attribute
-        id='disclaimerContainer'
-      >
-        <Toggle.Header className='extra-class' data-extra-attribute>
+        <br />
+        <Toggle
+            className='extra-class'
+            data-extra-attribute
+            id='disclaimerContainer'
+        >
+            <Toggle.Header className='extra-class' data-extra-attribute>
           My Disclaimer
-        </Toggle.Header>
-        <Toggle.Content className='extra-class' data-extra-attribute>
+          </Toggle.Header>
+            <Toggle.Content className='extra-class' data-extra-attribute>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -25,19 +25,19 @@ const Toggles = () => (
           the release of Letraset sheets containing Lorem Ipsum passages, and
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
-        </Toggle.Content>
+          </Toggle.Content>
       </Toggle>
 
-      <br />
-      <Toggle
-        className='extra-class'
-        data-extra-attribute
-        id='disclaimerContainer'
-      >
-        <Toggle.Header className='extra-class' data-extra-attribute>
+        <br />
+        <Toggle
+            className='extra-class'
+            data-extra-attribute
+            id='disclaimerContainer'
+        >
+            <Toggle.Header className='extra-class' data-extra-attribute>
           My Disclaimer
-        </Toggle.Header>
-        <Toggle.Content className='extra-class' data-extra-attribute>
+          </Toggle.Header>
+            <Toggle.Content className='extra-class' data-extra-attribute>
           Lorem Ipsum is simply dummy text of the printing and typesetting
           industry. Lorem Ipsum has been the industry's standard dummy text ever
           since the 1500s, when an unknown printer took a galley of type and
@@ -47,7 +47,7 @@ const Toggles = () => (
           the release of Letraset sheets containing Lorem Ipsum passages, and
           more recently with desktop publishing software like Aldus PageMaker
           including versions of Lorem Ipsum.
-        </Toggle.Content>
+          </Toggle.Content>
       </Toggle>
     </Box>
   </>
