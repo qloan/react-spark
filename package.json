@@ -13,6 +13,7 @@
   "scripts": {
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
+    "test:jest": "jest src/**/** --coverage",
     "build:webpack": "NODE_ENV='dev' webpack --config webpack.config.js",
     "start": "npm run start:webpack",
     "start:webpack": "NODE_ENV='dev' webpack --watch",
@@ -26,7 +27,8 @@
     "react-dom": "16.4.2"
   },
   "devDependencies": {
-    "chokidar": "^2.0.4"
+    "chokidar": "^2.0.4",
+    "jest": "^20.0.4"
   },
   "files": [
     "dist"
