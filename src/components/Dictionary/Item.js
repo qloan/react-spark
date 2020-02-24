@@ -35,11 +35,11 @@ class Item extends React.Component {
   }
 
   render = () => {
-    const {className, itemKey, itemValue,bold, ...props} = this.props
+    const {className, itemKey, itemValue, ...props} = this.props
 
     return (
       <div className={this.className} {...props}>
-        <dt className={this.keyClassName}><b>{itemKey}</b></dt>
+        <dt className={this.keyClassName}>{itemKey}</dt>
         <dd className={this.valueClassName}>{itemValue}</dd>
       </div>
     )
