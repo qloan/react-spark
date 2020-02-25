@@ -17,6 +17,7 @@ class MonetaryInput extends React.Component {
     onBlur: () => {},
     onChange: () => {},
     pattern: '(^\\$?(\\d+|\\d{1,3}(,\\d{3})*)(\\.\\d+)?$)|^$',
+    parentContainerClassName: null,
     type: 'tel',
     value: '',
     width: 100,
@@ -37,7 +38,8 @@ class MonetaryInput extends React.Component {
     value: PropTypes.string,
     helper: PropTypes.node,
     width: PropTypes.number,
-    noCents: PropTypes.bool
+    noCents: PropTypes.bool,
+    parentContainerClassName: PropTypes.string
   };
 
   get className() {
@@ -141,6 +143,7 @@ class MonetaryInput extends React.Component {
       width,
       helper,
       noCents,
+      parentContainerClassName,
       ...props
     } = this.props
 
@@ -150,6 +153,7 @@ class MonetaryInput extends React.Component {
         helper={helper}
         id={id}
         inputRef={this.inputRef}
+        className={parentContainerClassName}
         data-sprk-input='monetary'
       >
         <div className={this.iconContainerClassName} ref={this.inputRef}>
