@@ -24,9 +24,12 @@ class InputContainer extends React.Component {
   get className() {
       const { className } = this.props
 
-      return classNames(sparkBaseClassName('InputContainer'), {
-          [className]: className
-      })
+    if(className && className.includes("InputContainer")) {
+      return className;
+    }
+    return classNames(sparkBaseClassName('InputContainer'), {
+      [className]: className
+    })
   }
 
   render = () => {

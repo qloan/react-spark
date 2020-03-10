@@ -1,3 +1,4 @@
+export { SprkDatePickerInput } from '@sparkdesignsystem/spark-react';
 export { default as Accordion } from './components/Accordion'
 export { default as Alert } from './components/Alert'
 export { default as Box } from './components/Box'
