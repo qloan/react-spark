@@ -117,11 +117,12 @@ class MonetaryInput extends React.Component {
       if (disabled) {
         valueProp = { value: formatMonetary(value) }
       } else {
+        const filteredValue = value.replace(/[^0-9.]/g, '')
         valueProp = {
-          value: value
+          value: filteredValue
             ? noCents
-              ? String(parseInt(value))
-              : value
+              ? String(parseInt(filteredValue))
+              : filteredValue
             : ''
         }
       }
