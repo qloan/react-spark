@@ -2,6 +2,7 @@ import { SprkRevealInput } from '@sparkdesignsystem/spark-react'
 import React from 'react'
 import {formatSSN} from '@sparkdesignsystem/spark-core'
 import PropTypes from 'prop-types'
+import ErrorText from '../ErrorText'
 
 class SsnInput extends React.Component {
   static defaultProps = {
@@ -40,6 +41,7 @@ class SsnInput extends React.Component {
         className,
         error,
         helper,
+        id,
         label,
         value,
         ...rest
@@ -50,19 +52,25 @@ class SsnInput extends React.Component {
   * to the end of the input field every time a character is removed.
   * */
       return (
-        <SprkRevealInput
-          additionalClasses={className}
-          errorMessage={error}
-          helperText={helper}
-          formatter={!error && value.length === 9 ? formatSSN : undefined}
-          valid={!error}
-          value={value}
-          onChange={this.handleChange}
-          label={label}
-          toggleLabel='Show SSN'
-          name='ssn'
-          {...rest}
-        />
+        <React.Fragment>
+          <SprkRevealInput
+            additionalClasses={className}
+            helperText={helper}
+            formatter={!error && value.length === 9 ? formatSSN : undefined}
+            valid={!error}
+            value={value}
+            onChange={this.handleChange}
+            label={label}
+            toggleLabel='Show SSN'
+            name='ssn'
+            {...rest}
+          />
+          {error &&
+            <div style={{ marginTop: '-32px' }}>
+              <ErrorText id={id} error={error} />
+            </div>
+          }
+        </React.Fragment>
       )
     }
 }
