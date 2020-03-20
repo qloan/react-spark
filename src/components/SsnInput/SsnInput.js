@@ -63,6 +63,7 @@ class SsnInput extends React.Component {
             label={label}
             toggleLabel='Show SSN'
             name='ssn'
+            id={id}
             {...rest}
           />
           {error &&
