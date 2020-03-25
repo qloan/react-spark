@@ -36,7 +36,8 @@ class Modal extends Component {
     title: PropTypes.string.isRequired,
     type: PropTypes.oneOf(
       Object.keys(MODAL_VARIANTS).map(itm => MODAL_VARIANTS[itm])
-    ).isRequired
+    ).isRequired,
+    spinner: PropTypes.bool
   };
 
   mainRef = React.createRef();
@@ -120,6 +121,7 @@ class Modal extends Component {
       show,
       title,
       type,
+      spinner,
       ...props
     } = this.props
 
@@ -162,6 +164,7 @@ class Modal extends Component {
                 modalId={id}
                 onCancel={onCancel}
                 onConfirm={onConfirm}
+                spinner={spinner}
               />
             )}
           </Stack>
