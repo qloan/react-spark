@@ -18,7 +18,8 @@ class TextArea extends React.Component {
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
     label: PropTypes.string.isRequired,
-    width: PropTypes.number
+    width: PropTypes.number,
+    parentContainerClassName: PropTypes.string
   };
 
   get className() {
@@ -35,7 +36,7 @@ class TextArea extends React.Component {
   }
 
   render = () => {
-    const { className, disabled, error, id, label, ...props } = this.props
+    const { className, disabled, error, id, label, parentContainerClassName, ...props } = this.props
 
     return (
       <InputContainer
@@ -43,6 +44,7 @@ class TextArea extends React.Component {
         id={id}
         label={label}
         positionLabelUpper={true}
+        className={parentContainerClassName}
         inputRef={this.inputRef}
       >
         <textarea

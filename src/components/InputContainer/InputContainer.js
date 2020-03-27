@@ -47,7 +47,7 @@ class InputContainer extends React.Component {
 
       return (
         <div className={sparkClassName('utility', 'JavaScript')}>
-            <div className={this.className} ref={inputRef} {...props}>
+            <div className={className || this.className} ref={inputRef} {...props}>
                 {label && (
                   <label htmlFor={id} className={sparkClassName('base', 'Label')}>
                           {label}
