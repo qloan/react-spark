@@ -14,7 +14,8 @@ class ModalFooter extends React.Component {
     onCancel: PropTypes.func,
     confirmText: PropTypes.string,
     cancelText: PropTypes.string,
-    modalId: PropTypes.string
+    modalId: PropTypes.string,
+    spinner: PropTypes.bool
   }
 
   get className() {
@@ -24,13 +25,14 @@ class ModalFooter extends React.Component {
   }
 
   render = () => {
-    const { confirmText, cancelText, onConfirm, onCancel, modalId } = this.props
+    const { confirmText, cancelText, onConfirm, onCancel, modalId, spinner } = this.props
     return (
       <footer className={this.className}>
         <Button
           id={`${modalId}-button-confirm`}
           name='confirm'
           onClick={onConfirm}
+          spinner={spinner}
         >
           {confirmText}
         </Button>
@@ -42,6 +44,7 @@ class ModalFooter extends React.Component {
           data-sprk-modal-cancel={modalId}
           aria-label='Close Modal'
           onClick={onCancel}
+          disabled={spinner}
         >
           {cancelText}
         </Button>

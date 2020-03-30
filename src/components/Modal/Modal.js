@@ -36,7 +36,9 @@ class Modal extends Component {
     title: PropTypes.string.isRequired,
     type: PropTypes.oneOf(
       Object.keys(MODAL_VARIANTS).map(itm => MODAL_VARIANTS[itm])
-    ).isRequired
+    ).isRequired,
+    spinner: PropTypes.bool,
+    itemSpacing: PropTypes.string
   };
 
   mainRef = React.createRef();
@@ -45,7 +47,7 @@ class Modal extends Component {
 
 
   escapeModal = (event) => {
-    if(event.keyCode === escapeKey && this.props.onClose && this.props.show) {
+    if (event.keyCode === escapeKey && this.props.onClose && this.props.show) {
       this.props.onClose();
     }
   }
@@ -120,6 +122,8 @@ class Modal extends Component {
       show,
       title,
       type,
+      spinner,
+      itemSpacing,
       ...props
     } = this.props
 
@@ -143,7 +147,7 @@ class Modal extends Component {
           tabIndex='-1'
           {...props}
         >
-          <Stack itemSpacing={'large'}>
+          <Stack itemSpacing={itemSpacing ? itemSpacing : 'large'}>
             <ModalHeader
               hasCloseButton={
                 type !== MODAL_VARIANTS.WAIT ? hasCloseButton : false
@@ -162,6 +166,7 @@ class Modal extends Component {
                 modalId={id}
                 onCancel={onCancel}
                 onConfirm={onConfirm}
+                spinner={spinner}
               />
             )}
           </Stack>
