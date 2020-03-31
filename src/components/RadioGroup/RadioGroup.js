@@ -32,7 +32,8 @@ class RadioGroup extends React.Component {
     error: PropTypes.string,
     id: PropTypes.string.isRequired,
     label: PropTypes.string,
-    onChange: PropTypes.func
+    onChange: PropTypes.func,
+    parentContainerClassName: PropTypes.string
   };
 
   get labelClassName() {
@@ -52,11 +53,12 @@ class RadioGroup extends React.Component {
       onChange,
       radios,
       value,
+      parentContainerClassName,
       ...props
     } = this.props
 
     return (
-      <InputContainer id={id} {...props}>
+      <InputContainer id={id} className={parentContainerClassName} {...props}>
         <Fieldset>
           <Legend>
             <Label>{label}</Label>
