@@ -6,7 +6,8 @@ import Button from '../Button'
 class ModalFooter extends React.Component {
   static defaultProps = {
     confirmText: 'Confirm',
-    cancelText: 'Cancel'
+    cancelText: 'Cancel',
+    show: true
   };
 
   static propTypes = {
@@ -15,7 +16,8 @@ class ModalFooter extends React.Component {
     confirmText: PropTypes.string,
     cancelText: PropTypes.string,
     modalId: PropTypes.string,
-    spinner: PropTypes.bool
+    spinner: PropTypes.bool,
+    show: PropTypes.bool
   }
 
   get className() {
@@ -25,29 +27,31 @@ class ModalFooter extends React.Component {
   }
 
   render = () => {
-    const { confirmText, cancelText, onConfirm, onCancel, modalId, spinner } = this.props
+    const { confirmText, cancelText, onConfirm, onCancel, modalId, spinner, show } = this.props
     return (
       <footer className={this.className}>
-        <Button
-          id={`${modalId}-button-confirm`}
-          name='confirm'
-          onClick={onConfirm}
-          spinner={spinner}
-        >
-          {confirmText}
-        </Button>
+        {show && <div>
+          <Button
+            id={`${modalId}-button-confirm`}
+            name='confirm'
+            onClick={onConfirm}
+            spinner={spinner}
+          >
+            {confirmText}
+          </Button>
 
-        <Button
-          id={`${modalId}-button-cancel`}
-          name='cancel'
-          className='sprk-c-Button sprk-c-Button--tertiary'
-          data-sprk-modal-cancel={modalId}
-          aria-label='Close Modal'
-          onClick={onCancel}
-          disabled={spinner}
-        >
-          {cancelText}
-        </Button>
+          <Button
+            id={`${modalId}-button-cancel`}
+            name='cancel'
+            className='sprk-c-Button sprk-c-Button--tertiary'
+            data-sprk-modal-cancel={modalId}
+            aria-label='Close Modal'
+            onClick={onCancel}
+            disabled={spinner}
+          >
+            {cancelText}
+          </Button>
+        </div>}
       </footer>
     )
   };
