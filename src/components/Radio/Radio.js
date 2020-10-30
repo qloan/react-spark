@@ -15,7 +15,7 @@ class Radio extends React.Component {
     checked: PropTypes.bool,
     disabled: PropTypes.bool,
     id: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired
+    label: PropTypes.node.isRequired
   }
 
   get labelClassName() {
