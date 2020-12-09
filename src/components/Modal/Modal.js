@@ -16,7 +16,8 @@ const escapeKey = 27;
 
 class Modal extends Component {
   static defaultProps = {
-    hasCloseButton: true
+    hasCloseButton: true,
+    disableConfirm: false
   };
   static propTypes = {
     ariaDescribedby: PropTypes.string,
@@ -39,7 +40,8 @@ class Modal extends Component {
     ).isRequired,
     spinner: PropTypes.bool,
     itemSpacing: PropTypes.string,
-    showFooter: PropTypes.bool
+    showFooter: PropTypes.bool,
+    disableConfirm: PropTypes.bool
   };
 
   mainRef = React.createRef();
@@ -126,6 +128,7 @@ class Modal extends Component {
       spinner,
       itemSpacing,
       showFooter,
+      disableConfirm,
       ...props
     } = this.props
 
@@ -170,6 +173,7 @@ class Modal extends Component {
                 onConfirm={onConfirm}
                 spinner={spinner}
                 show={showFooter}
+                disableConfirm={disableConfirm}
               />
             )}
           </Stack>

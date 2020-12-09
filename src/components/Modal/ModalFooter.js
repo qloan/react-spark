@@ -7,7 +7,8 @@ class ModalFooter extends React.Component {
   static defaultProps = {
     confirmText: 'Confirm',
     cancelText: 'Cancel',
-    show: true
+    show: true,
+    disableConfirm: false
   };
 
   static propTypes = {
@@ -17,7 +18,8 @@ class ModalFooter extends React.Component {
     cancelText: PropTypes.string,
     modalId: PropTypes.string,
     spinner: PropTypes.bool,
-    show: PropTypes.bool
+    show: PropTypes.bool,
+    disableConfirm: PropTypes.bool
   }
 
   get className() {
@@ -27,7 +29,7 @@ class ModalFooter extends React.Component {
   }
 
   render = () => {
-    const { confirmText, cancelText, onConfirm, onCancel, modalId, spinner, show } = this.props
+    const { confirmText, cancelText, onConfirm, onCancel, modalId, spinner, show, disableConfirm } = this.props
     return (
       <footer className={this.className}>
         {show && <div>
@@ -36,6 +38,7 @@ class ModalFooter extends React.Component {
             name='confirm'
             onClick={onConfirm}
             spinner={spinner}
+            disabled={disableConfirm}
           >
             {confirmText}
           </Button>
