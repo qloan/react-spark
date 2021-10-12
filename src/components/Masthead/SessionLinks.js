@@ -28,6 +28,7 @@ class SessionLinks extends React.Component {
           return (
             <Link
               id={`session-links-${i}`}
+              key={`session-links-${i}`}
               href={href}
               variant={variant}
               onClick={onClick}
