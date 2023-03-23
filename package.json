@@ -14,19 +14,19 @@
     "test": "cross-env CI=1 react-scripts test --env=jsdom",
     "test:watch": "react-scripts test --env=jsdom",
     "test:jest": "jest src/**/** --coverage",
-    "build:webpack": "NODE_ENV='dev' webpack --config webpack.config.js",
+    "build:webpack": "NODE_ENV='dev' NODE_OPTIONS=--openssl-legacy-provider webpack --config webpack.config.js",
     "eslint": "eslint '**/*.js'",
     "eslint-fix": "eslint -fix '**/*.js'",
     "start": "npm run start:webpack",
-    "start:webpack": "NODE_ENV='dev' webpack --watch",
+    "start:webpack": "NODE_ENV='dev' NODE_OPTIONS=--openssl-legacy-provider webpack --watch",
     "predeploy": "cd example && npm install && npm run build",
     "deploy": "surge example/build",
     "postinstall": "npm run build:webpack"
   },
   "peerDependencies": {
-    "prop-types": "15.6.2",
-    "react": "16.4.2",
-    "react-dom": "16.4.2"
+    "prop-types": "15.8.1",
+    "react": "16.7.0",
+    "react-dom": "16.7.0"
   },
   "devDependencies": {
     "chokidar": "^2.0.4",
@@ -36,14 +36,13 @@
     "dist"
   ],
   "dependencies": {
-    "@sparkdesignsystem/spark-card": "4.0.1",
-    "@sparkdesignsystem/spark-core": "^9.0.0",
-    "@sparkdesignsystem/spark-description-table": "3.1.8",
+    "@sparkdesignsystem/spark-card": "4.0.3",
+    "@sparkdesignsystem/spark-core": "^10.1.1",
     "@sparkdesignsystem/spark-extras": "3.1.8",
-    "@sparkdesignsystem/spark-highlight-board": "4.0.1",
+    "@sparkdesignsystem/spark-highlight-board": "4.0.4",
     "@sparkdesignsystem/spark-react": "1.0.0",
-    "babel-eslint": "^10.1.0",
-    "babel-loader": "7.1.2",
+    "babel-eslint": "^9.0.0",
+    "babel-loader": "^7.1.5",
     "babel-plugin-external-helpers": "^6.22.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-react": "^6.24.1",
@@ -58,11 +57,12 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^3.1.0",
-    "node-sass": "^4.13.1",
+    "sass": "1.59.3",
     "prop-types": "^15.6.2",
-    "react": "16.4.2",
-    "react-dom": "16.4.2",
-    "react-scripts": "^1.1.4",
-    "webpack": "^3.9.1"
+    "react": "16.7.0",
+    "react-dom": "16.7.0",
+    "react-scripts": "2.1.1",
+    "webpack": "^4.46.0",
+    "webpack-cli": "^4.10.0"
   }
 }

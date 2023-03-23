@@ -33,6 +33,7 @@ module.exports = {
   devtool: nodeEnv === 'dev' ? 'eval' : 'source-map',
   output: {
     filename: 'react-spark-bundle.js',
+    hashFunction: 'sha512',
     path: path.resolve(__dirname, 'dist'),
     libraryTarget: 'umd',
     library: 'react-spark'
