@@ -5,7 +5,7 @@
   "private": true,
   "main": "./dist/index.js",
   "dependencies": {
-    "@sparkdesignsystem/spark-core": "9.0.0",
+    "@sparkdesignsystem/spark-core": "10.1.1",
     "@sparkdesignsystem/spark-extras": "3.1.8",
     "@sparkdesignsystem/spark-card": "4.0.1",
     "@sparkdesignsystem/spark-highlight-board": "4.0.1",
@@ -15,8 +15,7 @@
     "react-dom": "16.4.2",
     "react-inlinesvg": "^0.8.3",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.0.4",
-    "react-spark": "file:.."
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "react-scripts start",
