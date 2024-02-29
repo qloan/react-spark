@@ -30,7 +30,8 @@
   },
   "devDependencies": {
     "chokidar": "^2.0.4",
-    "jest": "^20.0.4"
+    "jest": "^20.0.4",
+    "terser-webpack-plugin": "5.3.10"
   },
   "files": [
     "dist"
@@ -58,11 +59,11 @@
     "eslint-plugin-promise": "^4.0.0",
     "eslint-plugin-react": "^7.10.0",
     "eslint-plugin-standard": "^3.1.0",
-    "node-sass": "^4.13.1",
     "prop-types": "^15.6.2",
     "react": "16.4.2",
     "react-dom": "16.4.2",
-    "react-scripts": "^1.1.4",
-    "webpack": "^3.9.1"
+    "react-scripts": "5.0.1",
+    "webpack": "^5.64.4",
+    "webpack-cli": "^5.1.4"
   }
 }
