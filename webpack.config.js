@@ -1,5 +1,6 @@
 const path = require('path')
 const webpack = require('webpack')
+const TerserPlugin = require('terser-webpack-plugin');
 
 const nodeEnv = process.env.NODE_ENV
 
@@ -16,19 +17,9 @@ if (nodeEnv === 'analyze') {
   plugins.push(new BundleAnalyzerPlugin())
 }
 
-if (nodeEnv === 'production' || nodeEnv === 'analyze') {
-  plugins.push(
-    new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    })
-  )
-  plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
-}
 
-module.exports = {
+
+const webpackConfig = {
   entry: './src/index.js',
   devtool: nodeEnv === 'dev' ? 'eval' : 'source-map',
   output: {
@@ -57,4 +48,23 @@ module.exports = {
     aggregateTimeout: 1000,
     poll: 1000
   }
+};
+
+if (nodeEnv === 'production' || nodeEnv === 'analyze') {
+  webpackConfig.optimization = {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          sourceMap: true,
+          compress: {
+            warnings: false
+          }
+        }
+      })
+    ]
+  };
+  plugins.push(new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/))
 }
+
+module.exports = webpackConfig;
