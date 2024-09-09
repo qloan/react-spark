@@ -67,7 +67,7 @@ class SsnInput extends React.Component {
             {...rest}
           />
           {error &&
-            <div style={{ marginTop: '-32px' }}>
+            <div style={{ marginTop: '-54px' }}>
               <ErrorText id={id} error={error} />
             </div>
           }
