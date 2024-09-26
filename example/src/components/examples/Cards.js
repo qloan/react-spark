@@ -1,59 +1,78 @@
 import React from 'react'
-import { Button, Card, Link, Stack } from 'react-spark'
+import { Button, Card, Icon, Link, Stack, Type } from 'react-spark'
 
-import img from '../../assets/images/card-img.jpg'
+import img from '../../assets/images/desktop.jpg'
 
 class Cards extends React.Component {
   renderImg = () => <img alt='Spark placeholder' src={img} />
 
   renderFourUpTeaser = () => (
     <Card>
-      <Stack>
-        <Stack.Item>
-          <a href='#nogo'>
-            {this.renderImg()}
-          </a>
-        </Stack.Item>
-        <Stack.Item>
-          <Card.Content>
-            <Stack>
-              <Stack.Item>
-                <h4 className='sprk-b-TypeDisplaySix sprk-o-Stack__item'>
-                  Title!
-                </h4>
-              </Stack.Item>
-              <Stack.Item>
-                <p className='sprk-b-TypeBodyTwo sprk-o-Stack__item'>
-                  Placeholder text.
-                </p>
-              </Stack.Item>
-              <Stack.Item>
-                <Button>Button</Button>
-              </Stack.Item>
-            </Stack>
-          </Card.Content>
-        </Stack.Item>
-      </Stack>
+      <Card.Content>
+        <Stack itemSpacing='large'>
+          <Stack.Item>
+            <Type.DisplaySix>Card Title</Type.DisplaySix>
+          </Stack.Item>
+          <Stack.Item>
+            <Type.BodyTwo>
+              Lorem ipsum dolor sit amet, doctus invenirevix te. Facilisi
+              perpetua.
+            </Type.BodyTwo>
+          </Stack.Item>
+          <Stack.Item>
+            <Button>Button</Button>
+          </Stack.Item>
+        </Stack>
+      </Card.Content>
+    </Card>
+  )
+
+  renderHighlightedHeader = () => (
+    <Card>
+      <Card.Header>
+        <Stack itemSpacing='medium'>
+          <Stack.Item>
+            <Type.DisplaySeven className='sprk-u-Color--white'>
+              Description
+            </Type.DisplaySeven>
+          </Stack.Item>
+          <Stack.Item>
+            <Type.DisplayFive className='sprk-u-Color--white'>
+              Card Title
+            </Type.DisplayFive>
+          </Stack.Item>
+        </Stack>
+      </Card.Header>
+      <Card.Content>
+        <Type.BodyTwo>
+          Lorem ipsum dolor sit amet, doctus invenire vix te. Facilisi perpetua
+          an pri, errem commune mea at, mei prima tantas signiferumque at.
+          Numquam.
+        </Type.BodyTwo>
+      </Card.Content>
     </Card>
   )
 
   renderTeaser = () => (
-    <Card>
-      <Stack.Item>{this.renderImg()}</Stack.Item>
+    <Card
+      imgAlt='Spark placeholder'
+      imgSrc={img}
+    >
       <Card.Content>
-        <Stack.Item>
-          <h3 className='sprk-b-TypeDisplayFive'>Title</h3>
-        </Stack.Item>
-        <Stack.Item>
-          <p className='sprk-b-TypeBodyTwo'>
-            Lorem ipsum dolor sit amet, doctus invenire vix te. Facilisi
-            perpetua an pri, errem commune mea at, mei prima tantas
-            signiferumque at. Numquam.
-          </p>
-        </Stack.Item>
-        <Stack.Item>
-          <a href='#nogo' className='sprk-c-Button'>Learn More</a>
-        </Stack.Item>
+        <Stack itemSpacing='large'>
+          <Stack.Item>
+            <Type.DisplayFive>Title</Type.DisplayFive>
+          </Stack.Item>
+          <Stack.Item>
+            <Type.BodyTwo>
+              Lorem ipsum dolor sit amet, doctus invenire vix te. Facilisi
+              perpetua an pri, errem commune mea at, mei prima tantas
+              signiferumque at. Numquam.
+            </Type.BodyTwo>
+          </Stack.Item>
+          <Stack.Item>
+            <Button href='#'>Learn More</Button>
+          </Stack.Item></Stack>
       </Card.Content>
     </Card>
   )
@@ -61,22 +80,23 @@ class Cards extends React.Component {
   renderTeaserWithDifferentOrder = () => (
     <Card>
       <Card.Content>
-        <div className='sprk-o-Stack__item'>
-          <h3 className='sprk-b-TypeDisplayFive'>Title</h3>
-        </div>
+        <Type.DisplayFive>Title</Type.DisplayFive>
       </Card.Content>
-      <div className='sprk-o-Stack__item'>{this.renderImg()}</div>
+      {this.renderImg()}
       <Card.Content>
-        <div className='sprk-o-Stack__item'>
-          <p className='sprk-b-TypeBodyTwo'>
-            Lorem ipsum dolor sit amet, doctus invenire vix te. Facilisi
-            perpetua an pri, errem commune mea at, mei prima tantas
-            signiferumque at. Numquam.
-          </p>
-        </div>
-        <div className='sprk-o-Stack__item'>
-          <a href='#nogo' className='sprk-c-Button'>Learn More</a>
-        </div>
+        <Stack itemSpacing='large'>
+          <Stack.Item>
+            <Type.BodyTwo>
+              Lorem ipsum dolor sit amet, doctus invenire vix te. Facilisi
+              perpetua
+              an pri, errem commune mea at, mei prima tantas signiferumque at.
+              Numquam.
+            </Type.BodyTwo>
+          </Stack.Item>
+          <Stack.Item>
+            <Button href='#'>Learn More</Button>
+          </Stack.Item>
+        </Stack>
       </Card.Content>
     </Card>
   )
@@ -84,17 +104,25 @@ class Cards extends React.Component {
   renderThreeUpTeaser = () => (
     <Card>
       <Card.Content>
-        <Stack>
-          <Stack.Item>
-            <h3 className='sprk-b-TypeDisplayFive'>Icons</h3>
+        <Stack className='sprk-u-TextAlign--center' itemSpacing='large'>
+          <Stack.Item className='sprk-u-AbsoluteCenter'>
+            <Icon name='call-team-member' size='xxl' />
           </Stack.Item>
           <Stack.Item>
-            <p className='sprk-b-TypeBodyTwo'>
-              A useful piece of a Design System.
-            </p>
+            <Type.DisplayFive>Icon Title</Type.DisplayFive>
           </Stack.Item>
           <Stack.Item>
-            <Link href='#nogo' variant='plain'>Learn More</Link>
+            <Type.BodyTwo>
+              Lorem ipsum dolor sit amet, doctus invenirevix te. Facilisi
+              perpetua an pri, errem communemea at, mei prima tantas
+              signiferumque at.
+            </Type.BodyTwo>
+          </Stack.Item>
+          <Stack.Item>
+            <Link hasIcon href='#' variant='simple'>
+              Learn More
+              <Icon name='chevron-right' />
+            </Link>
           </Stack.Item>
         </Stack>
       </Card.Content>
@@ -102,67 +130,104 @@ class Cards extends React.Component {
   )
 
   renderTwoUpTeaser = () => (
-    <Card>
-      <Stack.Item>{this.renderImg()}</Stack.Item>
+    <Card
+      imgAlt='Spark placeholder'
+      imgSrc={img}
+    >
       <Card.Content>
-        <Stack.Item>
-          <h3 className='sprk-b-TypeDisplayFive'>Title</h3>
-        </Stack.Item>
-        <Stack.Item>
-          <p className='sprk-b-TypeBodyTwo'>
-            Lorem ipsum dolor sit amet, doctus invenire vix te. Facilisi
-            perpetua an pri, errem commune mea at, mei prima tantas
-            signiferumque at. Numquam.
-          </p>
-        </Stack.Item>
-        <Stack.Item>
-          <Link variant='plain'>Learn More</Link>
-        </Stack.Item>
+        <Stack itemSpacing='large'>
+          <Stack.Item>
+            <Type.DisplayFive>Title</Type.DisplayFive>
+          </Stack.Item>
+          <Stack.Item>
+            <Type.BodyTwo>
+              Lorem ipsum dolor sit amet, doctus invenire vix te. Facilisi
+              perpetua an pri, errem commune mea at, mei prima tantas
+              signiferumque at. Numquam.
+            </Type.BodyTwo>
+          </Stack.Item>
+          <Stack.Item>
+            <Link hasIcon href='#' variant='simple'>
+              Learn More
+              <Icon name='chevron-right' />
+            </Link>
+          </Stack.Item>
+        </Stack>
       </Card.Content>
     </Card>
   )
 
-  render = () => (<>
-    <h2>Cards</h2>
+  render = () => (
+    <Stack itemSpacing='large'>
+      <Stack.Item>
+        <Type.DisplayTwo>Cards</Type.DisplayTwo>
+      </Stack.Item>
 
-    <p>Base:</p>
-    <Card className='extra-class' data-extra-attribute>
-      <Card.Content className='extra-class' data-extra-attribute />
-    </Card>
+      <Stack.Item>
+        <Type.DisplayThree>Base</Type.DisplayThree>
+        <Card className='extra-class' data-extra-attribute>
+          <Card.Content className='extra-class' data-extra-attribute />
+        </Card>
+      </Stack.Item>
 
-    <p>Teaser:</p>
-    {this.renderTeaser()}
+      <Stack.Item>
+        <Type.DisplayThree>Standout</Type.DisplayThree>
+        <Card standout>
+          <Card.Content />
+        </Card>
+      </Stack.Item>
 
-    <p>Teaser with different element order:</p>
-    {this.renderTeaserWithDifferentOrder()}
+      <Stack.Item>
+        <Type.DisplayThree>Highlighted header</Type.DisplayThree>
+        {this.renderHighlightedHeader()}
+      </Stack.Item>
 
-    <p>Card layout - two up:</p>
-    <Stack itemSpacing='large' splitAt='large'>
-      {[0, 1].map(i => (
-        <Stack.Item breakpoint='large' key={i} width='flex'>
-          {this.renderTwoUpTeaser()}
-        </Stack.Item>
-      ))}
+      <Stack.Item>
+        <Type.DisplayThree>Teaser</Type.DisplayThree>
+        {this.renderTeaser()}
+      </Stack.Item>
+
+      <Stack.Item>
+        <Type.DisplayThree>
+          Teaser with different element order
+        </Type.DisplayThree>
+        {this.renderTeaserWithDifferentOrder()}
+      </Stack.Item>
+
+      <Stack.Item>
+        <Type.DisplayThree>Card layout - two up</Type.DisplayThree>
+        <Stack itemSpacing='large' splitAt='large'>
+          {[0, 1].map(i => (
+            <Stack.Item breakpoint='large' key={i} width='flex'>
+              {this.renderTwoUpTeaser()}
+            </Stack.Item>
+          ))}
+        </Stack>
+      </Stack.Item>
+
+      <Stack.Item>
+        <Type.DisplayThree>Card layout - three up</Type.DisplayThree>
+        <Stack itemSpacing='large' splitAt='large'>
+          {[0, 1, 2].map(i => (
+            <Stack.Item breakpoint='large' key={i} width='flex'>
+              {this.renderThreeUpTeaser()}
+            </Stack.Item>
+          ))}
+        </Stack>
+      </Stack.Item>
+
+      <Stack.Item>
+        <Type.DisplayThree>Card layout - four up</Type.DisplayThree>
+        <Stack itemSpacing='large' splitAt='huge'>
+          {[0, 1, 2, 3].map(i => (
+            <Stack.Item breakpoint='huge' key={i} width='flex'>
+              {this.renderFourUpTeaser()}
+            </Stack.Item>
+          ))}
+        </Stack>
+      </Stack.Item>
     </Stack>
-
-    <p>Card layout - three up:</p>
-    <Stack itemSpacing='large' splitAt='large'>
-      {[0, 1, 2].map(i => (
-        <Stack.Item breakpoint='large' key={i} width='flex'>
-          {this.renderThreeUpTeaser()}
-        </Stack.Item>
-      ))}
-    </Stack>
-
-    <p>Card layout - four up:</p>
-    <Stack itemSpacing='large' splitAt='huge'>
-      {[0, 1, 2, 3].map(i => (
-        <Stack.Item breakpoint='huge' key={i} width='flex'>
-          {this.renderFourUpTeaser()}
-        </Stack.Item>
-      ))}
-    </Stack>
-  </>)
+  )
 }
 
 export default Cards
