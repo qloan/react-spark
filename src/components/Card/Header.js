@@ -4,7 +4,7 @@ import React from 'react'
 
 import { sparkComponentClassName } from '../../util'
 
-class Content extends React.Component {
+class Header extends React.Component {
   static defaultProps = {
     children: null,
     className: null
@@ -19,7 +19,7 @@ class Content extends React.Component {
     const { className } = this.props
 
     return classnames(
-      sparkComponentClassName('Card', 'content'),
+      sparkComponentClassName('Card', 'header'),
       { [className]: className }
     )
   }
@@ -31,4 +31,4 @@ class Content extends React.Component {
   }
 }
 
-export default Content
+export default Header
